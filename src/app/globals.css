@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-cormorant: 'Cormorant Garamond', Georgia, serif;
+  --font-poppins: 'Poppins', system-ui, sans-serif;
+  --ground: #FBF8F3;
+  --primary-brown: #746355;
+  --deep-brown: #5C4E44;
+  --sand: #E9DCCF;
+  --sand-light: #F6F1EA;
+  --teal: #8FBCC6;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #FBF8F3;
+  color: #2C2520;
+  font-family: var(--font-poppins);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: #FBF8F3;
+  color: #2C2520;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+::selection {
+  background-color: #E9DCCF;
+  color: #5C4E44;
+}
+
+/* Typography styles */
+.font-serif {
+  font-family: var(--font-cormorant);
+}
+
+.font-sans {
+  font-family: var(--font-poppins);
+}
+
+.tracking-eyebrow {
+  letter-spacing: 0.22em;
+}
+
+/* Noise texture layer */
+.bg-noise {
+  background-image: url('/img/site/noise.webp');
+  background-repeat: repeat;
+}
+
+/* Subtle Ken-Burns animation for hero images */
+@keyframes kenburns {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.04);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-kenburns {
+  animation: kenburns 30s ease-in-out infinite alternate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-kenburns {
+    animation: none;
+  }
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F6F1EA;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D8C5B2;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #746355;
+}
