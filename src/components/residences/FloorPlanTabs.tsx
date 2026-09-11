@@ -1,15 +1,19 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import Image from "next/image";
 import { floorPlans } from "@/content/site-content";
 import { Bed, Bath, Car, Maximize2, X, ArrowRight } from "lucide-react";
 import { useModal } from "@/context/ModalContext";
+import { useFocusTrap } from "@/hooks/useFocusTrap";
 
 export default function FloorPlanTabs() {
   const [activeId, setActiveId] = useState(floorPlans[0].id);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const { openRegister } = useModal();
+
+  const closeLightbox = useCallback(() => setLightboxOpen(false), []);
+  const lightboxRef = useFocusTrap<HTMLDivElement>(lightboxOpen, closeLightbox);
 
   const currentPlan = floorPlans.find((p) => p.id === activeId) || floorPlans[0];
 
@@ -121,18 +125,23 @@ export default function FloorPlanTabs() {
         {lightboxOpen && (
           <div
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md animate-fadeIn"
-            onClick={() => setLightboxOpen(false)}
+            onClick={closeLightbox}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="floorplan-lightbox-title"
           >
             <div
-              className="relative max-w-6xl w-full max-h-[94vh] bg-white p-6 sm:p-10 overflow-auto border border-white/20"
+              ref={lightboxRef}
+              tabIndex={-1}
+              className="relative max-w-6xl w-full max-h-[94vh] bg-white p-6 sm:p-10 overflow-auto border border-white/20 focus:outline-none"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between pb-4 border-b border-mira-border mb-4">
-                <h4 className="text-xl font-serif text-mira-charcoal">
+                <h4 id="floorplan-lightbox-title" className="text-xl font-serif text-mira-charcoal">
                   {currentPlan.name} — Detailed Architectural Plan
                 </h4>
                 <button
-                  onClick={() => setLightboxOpen(false)}
+                  onClick={closeLightbox}
                   className="p-2 text-mira-muted hover:text-mira-charcoal"
                   aria-label="Close lightbox"
                 >

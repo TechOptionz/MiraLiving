@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { registerSection } from "@/content/site-content";
+import { registerSection, siteConfig } from "@/content/site-content";
 import { CheckCircle2, Download, Loader2 } from "lucide-react";
 
 interface BrochureFormProps {
@@ -35,13 +35,6 @@ export default function BrochureForm({ idPrefix = "form", onSuccess, darkVariant
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Honeypot check
-    if (formData.linkedInHoneypot) {
-      console.warn("Spam submission detected via honeypot.");
-      setStatus("success");
-      return;
-    }
-
     if (!formData.firstName || !formData.lastName || !formData.email) {
       setErrorMessage("Please complete all required fields (*).");
       return;
@@ -50,15 +43,32 @@ export default function BrochureForm({ idPrefix = "form", onSuccess, darkVariant
     setStatus("submitting");
     setErrorMessage("");
 
-    // Simulate API submission / CRM dispatch
-    // TODO: connect to client CRM/email dispatch endpoint
+    // Delivery is handled by /api/brochure, which forwards the lead to the
+    // CRM webhook. Success is only reported when the lead was actually
+    // accepted - never on a network or configuration failure.
     try {
-      await new Promise((resolve) => setTimeout(resolve, 800));
+      const response = await fetch("/api/brochure", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+      });
+
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok || !result.ok) {
+        setStatus("error");
+        setErrorMessage(
+          result.message ||
+            "We could not submit your enquiry right now. Please call our sales team directly."
+        );
+        return;
+      }
+
       setStatus("success");
       if (onSuccess) {
         setTimeout(onSuccess, 2000);
       }
-    } catch (err) {
+    } catch {
       setStatus("error");
       setErrorMessage("An error occurred. Please call our sales team directly.");
     }
@@ -72,17 +82,21 @@ export default function BrochureForm({ idPrefix = "form", onSuccess, darkVariant
         </div>
         <h3 className="text-2xl font-serif font-normal mb-2">Registration Received</h3>
         <p className="text-sm font-sans text-mira-muted mb-6 leading-relaxed max-w-md mx-auto">
-          Thank you for registering your interest in Mira Living. A member of our sales team will be in touch shortly.
+          {siteConfig.brochureUrl
+            ? "Thank you for registering your interest in Mira Living. Your brochure is ready to download below, and a member of our sales team will be in touch shortly."
+            : "Thank you for registering your interest in Mira Living. The brochure will be emailed to you shortly, along with a call from a member of our sales team."}
         </p>
-        <a
-          href="/img/site/Sold-Properties-Mira-Living-4.webp"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-6 py-3 bg-mira-teal hover:bg-mira-tealDark text-white text-xs font-sans tracking-eyebrow uppercase transition-colors rounded-sm"
-        >
-          <Download className="w-4 h-4" />
-          Download Overview (PDF Ready)
-        </a>
+        {siteConfig.brochureUrl && (
+          <a
+            href={siteConfig.brochureUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-mira-teal hover:bg-mira-tealDark text-white text-xs font-sans tracking-eyebrow uppercase transition-colors rounded-sm"
+          >
+            <Download className="w-4 h-4" />
+            Download Brochure (PDF)
+          </a>
+        )}
       </div>
     );
   }

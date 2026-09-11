@@ -1,30 +1,17 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import { useModal } from "@/context/ModalContext";
 import BrochureForm from "./BrochureForm";
+import { useFocusTrap } from "@/hooks/useFocusTrap";
 import { X } from "lucide-react";
 
 export default function RegisterModal() {
   const { isRegisterOpen, closeRegister } = useModal();
 
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && isRegisterOpen) {
-        closeRegister();
-      }
-    };
-    if (isRegisterOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    window.addEventListener("keydown", handleKeyDown);
-    return () => {
-      document.body.style.overflow = "";
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [isRegisterOpen, closeRegister]);
+  // Traps Tab inside the dialog, closes on Escape, locks background scroll and
+  // returns focus to whatever opened the modal.
+  const panelRef = useFocusTrap<HTMLDivElement>(isRegisterOpen, closeRegister);
 
   if (!isRegisterOpen) return null;
 
@@ -41,7 +28,11 @@ export default function RegisterModal() {
         aria-hidden="true"
       />
 
-      <div className="relative w-full max-w-2xl bg-mira-ground border border-mira-border shadow-float z-10 max-h-[90vh] overflow-y-auto p-6 sm:p-10">
+      <div
+        ref={panelRef}
+        tabIndex={-1}
+        className="relative w-full max-w-2xl bg-mira-ground border border-mira-border shadow-float z-10 max-h-[90vh] overflow-y-auto p-6 sm:p-10 focus:outline-none"
+      >
         <button
           onClick={closeRegister}
           className="absolute top-5 right-5 p-2 text-mira-muted hover:text-mira-charcoal transition-colors rounded-full"
