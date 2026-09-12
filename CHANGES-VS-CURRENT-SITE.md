@@ -27,6 +27,7 @@ A comprehensive audit of changes, corrections, architectural improvements, and o
    - Transformed the single endless scroll into dedicated, bookmarkable routes:
      - `/residences` (Specs table, finishes, floor plans, timeline)
      - `/location` (Bargara lifestyle, photo vignettes, infrastructure, mud map)
+     - `/story` (The journey of creating Mira, in eight movements — existing copy only)
      - `/team` (Partners and developer bios)
      - `/privacy-policy` (Legal compliance)
 
@@ -49,4 +50,5 @@ A comprehensive audit of changes, corrections, architectural improvements, and o
 | **Starting Price** | `src/content/site-content.ts` (line 61)<br>`src/app/residences/page.tsx` | Instagram bio states "FROM $1.395M" while website states "from $1.425M". Rebuilt using $1.425M. **Confirm current price release with sales team.** |
 | **Brochure PDF Link** | `src/components/common/BrochureForm.tsx` (line 46) | Brochure is gated behind Gravity Forms; provide direct PDF link or configure webhook to sales CRM. |
 | **Floor Plan CAD / Vector PDFs** | `src/components/residences/FloorPlanTabs.tsx` | Replace raster Instagram floor plans with architectural vector PDFs when released by Sparc. |
+| **Story Page Portraits** | `src/content/story-content.ts` (`storyPage.people`) | Every visual on `/story` is an `ImageSlot`: 15 of the 19 now carry real assets (construction chapters from the project's own milestone posts in `/img/social/`, interiors and coastline from `/img/site/`). The **4 portrait slots remain placeholders** — Graham Furtado (3:4) and Sparc, IDC Construct and Sarah Wood (4:5) — because no portrait photography of people has ever been published for this project. Set `src` to a path under `/public` and write real `alt` text to drop each one in; no component changes. Note `Sold-Properties-Mira-Living-4.webp` and `progress-img.webp` are deliberately unused — both carry baked-in "SOLD"/"FUTURE RELEASE" overlays. |
 | **Bundaberg Hospital Usage Rights** | `src/content/site-content.ts` | Hospital render is credited to `widebay.health.qld.gov.au`. Retained attribution caption; client to verify media clearance. |

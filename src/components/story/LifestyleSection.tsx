@@ -1,0 +1,93 @@
+import React from "react";
+import { storyPage } from "@/content/story-content";
+import ChapterLabel from "./ChapterLabel";
+import ImageSlot from "./ImageSlot";
+import Parallax from "./Parallax";
+import Reveal from "./Reveal";
+import ScrollInset from "./ScrollInset";
+
+/** 7 — Lifestyle & Future Living. Emotion first: the light, the walk, the water. */
+export default function LifestyleSection() {
+  const { lifestyle } = storyPage;
+  const { feature, retreat, comfort } = lifestyle;
+
+  return (
+    <section
+      aria-labelledby="lifestyle-heading"
+      className="overflow-hidden border-t border-mira-border py-24 sm:py-40 lg:py-56"
+    >
+      <div className="mx-auto max-w-[1500px] px-6 sm:px-12 lg:px-20">
+        <ChapterLabel numeral={lifestyle.numeral} title={lifestyle.chapter} />
+        <Reveal
+          as="h2"
+          id="lifestyle-heading"
+          className="mt-10 max-w-4xl font-serif text-[clamp(2.25rem,5vw,4.5rem)] font-light leading-[1.05] text-mira-charcoal"
+        >
+          {lifestyle.headline}
+        </Reveal>
+      </div>
+
+      {/* The place — full bleed, opens as it rises */}
+      <ScrollInset className="relative mt-16 h-[85svh] min-h-[520px] w-full overflow-hidden bg-mira-charcoal sm:mt-24 md:h-auto md:min-h-0 md:aspect-[16/9]">
+        <Parallax speed={0.08}>
+          <ImageSlot slot={feature.image} tone="dark" sizes="100vw" />
+        </Parallax>
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent" />
+        <div className="absolute inset-x-6 bottom-8 sm:inset-x-12 sm:bottom-12 lg:inset-x-20 lg:bottom-16">
+          <Reveal as="p" className="max-w-4xl font-serif text-[clamp(2rem,4.8vw,4.25rem)] font-light leading-[1.05] text-white">
+            {feature.overlay}
+          </Reveal>
+        </div>
+      </ScrollInset>
+
+      <div className="mx-auto mt-12 grid max-w-[1500px] grid-cols-1 px-6 sm:mt-16 sm:px-12 lg:grid-cols-12 lg:px-20">
+        <Reveal className="font-sans text-base font-light leading-relaxed text-mira-muted sm:text-lg lg:col-span-5 lg:col-start-8">
+          {feature.text}
+        </Reveal>
+      </div>
+
+      {/* Moments */}
+      <div className="mx-auto mt-24 grid max-w-[1500px] grid-cols-1 gap-14 px-6 sm:mt-36 sm:px-12 md:grid-cols-2 md:gap-16 lg:gap-24 lg:px-20">
+        {lifestyle.moments.map((moment, i) => (
+          <Reveal key={moment.label} delay={i * 120} className="border-t border-mira-border pt-8">
+            <p className="font-sans text-[11px] font-medium uppercase tracking-[0.3em] text-mira-brown">{moment.label}</p>
+            <p className="mt-6 font-serif text-[clamp(1.5rem,2.5vw,2.25rem)] font-light leading-[1.25] text-mira-charcoal">
+              {moment.text}
+            </p>
+          </Reveal>
+        ))}
+      </div>
+
+      {/* The retreat */}
+      <div className="mx-auto mt-24 grid max-w-[1500px] grid-cols-1 items-end gap-10 px-6 sm:mt-36 sm:px-12 lg:grid-cols-12 lg:gap-16 lg:px-20">
+        <figure className="-mx-6 sm:mx-0 lg:col-span-7">
+          <Reveal variant="mask" className="relative aspect-[4/3] w-full overflow-hidden bg-mira-sand">
+            <Parallax speed={0.06}>
+              <ImageSlot slot={retreat.image} sizes="(min-width: 1024px) 55vw, 100vw" />
+            </Parallax>
+          </Reveal>
+          {retreat.image.caption && (
+            <figcaption className="mt-3 px-6 font-sans text-[10px] uppercase tracking-[0.25em] text-mira-muted sm:px-0">
+              {retreat.image.caption}
+            </figcaption>
+          )}
+        </figure>
+
+        <Reveal delay={150} className="lg:col-span-4 lg:col-start-9 lg:pb-10">
+          <p className="font-serif text-[clamp(1.5rem,2.4vw,2.1rem)] font-light leading-[1.2] text-mira-charcoal">
+            {retreat.label}
+          </p>
+          <p className="mt-6 font-sans text-[15px] font-light leading-relaxed text-mira-muted sm:text-base">
+            {retreat.text}
+          </p>
+          <p className="mt-10 border-t border-mira-border pt-6 font-sans text-[11px] font-medium uppercase tracking-[0.3em] text-mira-brown">
+            {comfort.label}
+          </p>
+          <p className="mt-5 font-serif text-xl font-light leading-snug text-mira-brownDark sm:text-2xl">
+            {comfort.text}
+          </p>
+        </Reveal>
+      </div>
+    </section>
+  );
+}

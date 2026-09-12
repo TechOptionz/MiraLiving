@@ -73,6 +73,12 @@ export default function Footer() {
 
             <div className="pt-4">
               <Link
+                href="/story"
+                className="text-xs font-sans tracking-eyebrow uppercase text-mira-teal hover:underline block mb-2"
+              >
+                Our Story →
+              </Link>
+              <Link
                 href="/residences"
                 className="text-xs font-sans tracking-eyebrow uppercase text-mira-teal hover:underline block"
               >

@@ -14,7 +14,8 @@ export default function Header() {
   const pathname = usePathname();
   const { openRegister } = useModal();
 
-  const isHome = pathname === "/";
+  // Pages that open on a full-bleed dark hero get the transparent header until scrolled.
+  const overHero = pathname === "/" || pathname === "/story";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,16 +31,17 @@ export default function Header() {
   }, []);
 
   const navLinks = [
+    { name: "Story", href: "/story" },
     { name: "Residences", href: "/residences" },
     { name: "Location", href: "/location" },
     { name: "Team", href: "/team" },
   ];
 
-  const headerBgClass = isScrolled || !isHome
+  const headerBgClass = isScrolled || !overHero
     ? "bg-mira-ground/95 backdrop-blur-md border-b border-mira-border shadow-subtle text-mira-charcoal"
     : "bg-gradient-to-b from-black/60 via-black/20 to-transparent text-white";
 
-  const logoSrc = isScrolled || !isHome
+  const logoSrc = isScrolled || !overHero
     ? "/img/site/mira-logo-brown.svg"
     : "/img/site/mira-logo.svg";
 
@@ -71,7 +73,7 @@ export default function Header() {
                 className={`text-xs font-sans tracking-eyebrow uppercase transition-colors duration-200 relative py-1 ${
                   isActive
                     ? "font-semibold text-mira-tealDark"
-                    : isScrolled || !isHome
+                    : isScrolled || !overHero
                     ? "text-mira-charcoal hover:text-mira-brown"
                     : "text-white/90 hover:text-white"
                 }`}
@@ -90,7 +92,7 @@ export default function Header() {
           <button
             onClick={openRegister}
             className={`px-6 py-2.5 text-xs font-sans tracking-eyebrow uppercase transition-all duration-300 border ${
-              isScrolled || !isHome
+              isScrolled || !overHero
                 ? "bg-mira-teal hover:bg-mira-tealDark border-mira-teal text-white shadow-subtle hover:shadow-card"
                 : "bg-white/15 hover:bg-white text-white hover:text-mira-charcoal border-white/40 backdrop-blur-sm"
             }`}
@@ -104,7 +106,7 @@ export default function Header() {
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className={`p-2 focus:outline-none ${
-              isScrolled || !isHome ? "text-mira-charcoal" : "text-white"
+              isScrolled || !overHero ? "text-mira-charcoal" : "text-white"
             }`}
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
           >

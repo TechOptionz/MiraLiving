@@ -550,6 +550,7 @@ export const curatedLifestylePhotos: CuratedLifestylePhoto[] = [
   }
 ];
 
+
 export const privacyPolicyContent = {
   lastUpdated: "October 2025",
   projectAddress: "25–27 The Esplanade, Bargara QLD 4670",
