@@ -463,13 +463,14 @@ export const storyPage = {
     intro: registerSection.intro,
     brochureLabel: "Download Brochure",
     enquireLabel: "Enquire Now",
-    image: {
-      // Decorative backdrop behind the closing headline.
-      src: "/img/social/IG_012_2026-06-01_DZCSnLcEWdb_1.jpg",
-      alt: "",
-      label: "Closing image",
-      note: "Sunset over the Coral Sea from the residence",
-      ratio: "16:9",
-    } as ImageSlot,
+    // The page closes on the same footage the homepage registration runs on,
+    // so both invitations to take the brochure move rather than sit still. Its
+    // poster is the footage's own first frame, so the section paints finished.
+    video: {
+      src: "/video/brochure-bg.mp4",
+      poster: "/video/brochure-bg-poster.jpg",
+      description:
+        "Aerial footage of the Coral Sea breaking along the Bargara shoreline below Mira.",
+    } as VideoSlot,
   },
 };

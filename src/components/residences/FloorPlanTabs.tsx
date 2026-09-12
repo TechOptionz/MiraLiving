@@ -30,7 +30,7 @@ export default function FloorPlanTabs() {
       <div className="mx-auto max-w-[1400px]">
         {/* Header */}
         <div className="mx-auto max-w-3xl space-y-5 text-center">
-          <span className="block font-sans text-[11px] font-medium uppercase tracking-[0.3em] text-mira-brown">
+          <span className="block font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-brown">
             Architectural Geometry
           </span>
           <h2 className="font-serif text-[clamp(1.9rem,4.4vw,3.5rem)] font-light leading-[1.12] text-mira-charcoal">
@@ -51,7 +51,7 @@ export default function FloorPlanTabs() {
                 type="button"
                 onClick={() => setActiveId(plan.id)}
                 aria-pressed={activeId === plan.id}
-                className={`relative pb-4 font-sans text-[12px] uppercase tracking-[0.2em] transition-colors sm:text-[13px] ${
+                className={`relative pb-4 font-sans text-[12px] uppercase tracking-[0.15em] transition-colors sm:text-[13px] ${
                   activeId === plan.id
                     ? "font-semibold text-mira-charcoal"
                     : "text-mira-brown hover:text-mira-charcoal"
@@ -85,7 +85,7 @@ export default function FloorPlanTabs() {
                 className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                 sizes="(max-width: 1024px) 100vw, 58vw"
               />
-              <span className="absolute bottom-4 right-4 flex items-center gap-2 bg-mira-charcoal/75 px-4 py-2 font-sans text-[11px] uppercase tracking-[0.16em] text-white backdrop-blur-sm">
+              <span className="absolute bottom-4 right-4 flex items-center gap-2 bg-mira-charcoal/75 px-4 py-2 font-sans text-[12px] uppercase tracking-[0.16em] text-white backdrop-blur-sm">
                 <Maximize2 className="h-3.5 w-3.5" />
                 Expand plan
               </span>
@@ -97,7 +97,7 @@ export default function FloorPlanTabs() {
 
           {/* Specifications */}
           <div className="lg:col-span-5">
-            <span className="block font-sans text-[11px] font-semibold uppercase tracking-[0.28em] text-mira-tealDark">
+            <span className="block font-sans text-[12px] font-semibold uppercase tracking-[0.16em] text-mira-tealDark">
               Residence layout
             </span>
             <h3 className="mt-4 font-serif text-[clamp(1.6rem,2.4vw,2.25rem)] font-light leading-snug text-mira-charcoal">
@@ -107,7 +107,7 @@ export default function FloorPlanTabs() {
             <dl className="mt-8 divide-y divide-mira-border border-y border-mira-border">
               {specs.map((spec) => (
                 <div key={spec.label} className="flex items-baseline justify-between gap-6 py-4">
-                  <dt className="font-sans text-[11px] font-medium uppercase tracking-[0.2em] text-mira-brown">
+                  <dt className="font-sans text-[12px] font-medium uppercase tracking-[0.15em] text-mira-brown">
                     {spec.label}
                   </dt>
                   <dd className="text-right font-sans text-[15px] font-medium text-mira-charcoal sm:text-base">

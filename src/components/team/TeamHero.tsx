@@ -43,7 +43,7 @@ export default function TeamHero() {
               style={{ "--d": "200ms" } as React.CSSProperties}
             >
               <span className="hidden h-px w-12 bg-mira-sand/70 sm:block" />
-              <p className="hero-legible font-sans text-[10px] uppercase tracking-eyebrow text-mira-sandLight/90 sm:text-[11px]">
+              <p className="hero-legible font-sans text-[11px] uppercase tracking-eyebrow text-mira-sandLight/90 sm:text-[12px]">
                 {teamHero.eyebrow}
                 <span className="mx-2 text-white/35">/</span>
                 Project Partners
@@ -75,7 +75,7 @@ export default function TeamHero() {
 
         {/* Photograph credit — the frame says what it is and when. */}
         <figcaption
-          className="absolute bottom-6 right-6 hidden animate-softFade text-right font-sans text-[10px] uppercase tracking-[0.25em] text-white/55 lg:block"
+          className="absolute bottom-6 right-6 hidden animate-softFade text-right font-sans text-[11px] uppercase tracking-[0.16em] text-white/55 lg:block"
           style={{ "--d": "1000ms" } as React.CSSProperties}
         >
           {photo.caption}
@@ -97,7 +97,7 @@ export default function TeamHero() {
                   index > 1 ? "border-t sm:border-t-0" : ""
                 } ${index % 2 === 1 ? "border-l pl-5 sm:pl-8" : ""} sm:border-l sm:first:border-l-0`}
               >
-                <dt className="font-sans text-[9px] uppercase tracking-eyebrow text-white/55 sm:text-[10px]">
+                <dt className="font-sans text-[11px] uppercase tracking-eyebrow text-white/75 sm:text-[12px]">
                   {fact.label}
                 </dt>
                 <dd className="mt-1.5 font-serif text-lg text-mira-sandLight sm:text-xl">

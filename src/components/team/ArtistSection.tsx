@@ -24,7 +24,7 @@ export default function ArtistSection() {
         <Reveal
           variant="fade"
           rootMargin="0px"
-          className="block font-sans text-[11px] font-medium uppercase tracking-[0.3em] text-mira-brown"
+          className="block font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-brown"
         >
           Cultural Connection to Country
         </Reveal>
@@ -34,7 +34,7 @@ export default function ArtistSection() {
           rootMargin="0px"
           className="mt-[clamp(2rem,5vh,3.5rem)] border-y border-mira-border py-[clamp(2rem,5vh,3.5rem)]"
         >
-          <span className="block font-sans text-[10px] uppercase tracking-[0.3em] text-mira-muted">
+          <span className="block font-sans text-[11px] uppercase tracking-[0.16em] text-mira-muted">
             Featured Artist
           </span>
           <h2 className="mt-5 font-serif text-[clamp(2.4rem,7vw,5.5rem)] font-light leading-[1.02] text-mira-charcoal">

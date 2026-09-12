@@ -17,7 +17,7 @@ export default function DeveloperQuote() {
       </span>
 
       <div className="relative z-10 mx-auto max-w-4xl space-y-10 text-center">
-        <Reveal variant="fade" className="block font-sans text-[11px] font-medium uppercase tracking-[0.3em] text-mira-brown">
+        <Reveal variant="fade" className="block font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-brown">
           Vision &amp; Provenance
         </Reveal>
 
@@ -36,7 +36,7 @@ export default function DeveloperQuote() {
             />
           </div>
 
-          <cite className="font-sans text-xs font-medium uppercase not-italic tracking-[0.25em] text-mira-muted">
+          <cite className="font-sans text-xs font-medium uppercase not-italic tracking-[0.16em] text-mira-muted">
             — {developerQuote.author}, {developerQuote.title}
           </cite>
         </Reveal>

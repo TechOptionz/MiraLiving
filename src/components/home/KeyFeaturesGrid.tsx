@@ -14,7 +14,7 @@ export default function KeyFeaturesGrid() {
     <section className="flex min-h-screen w-full flex-col justify-center border-t border-mira-border bg-mira-sandLight px-6 pb-[clamp(3rem,7vh,5rem)] pt-[clamp(7rem,15vh,9.5rem)] sm:px-12 lg:px-20">
       <div className="mx-auto flex w-full max-w-6xl flex-1 flex-col gap-[clamp(2rem,5vh,4rem)]">
         <div className="mx-auto max-w-4xl space-y-3 text-center sm:space-y-4">
-          <Reveal variant="fade" className="block font-sans text-[11px] font-medium uppercase tracking-[0.3em] text-mira-brown">
+          <Reveal variant="fade" className="block font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-brown">
             Architectural Elements
           </Reveal>
           <Reveal as="h2" delay={120} className="font-serif text-[clamp(2.1rem,4.4vw,4rem)] font-light leading-[1.08] text-mira-charcoal">
@@ -37,12 +37,12 @@ export default function KeyFeaturesGrid() {
             >
               <span
                 aria-hidden="true"
-                className="font-mono text-[11px] tracking-widest text-mira-brown transition-colors group-hover:text-mira-brownDeep sm:text-xs"
+                className="font-mono text-[12px] tracking-widest text-mira-brown transition-colors group-hover:text-mira-brownDeep sm:text-xs"
               >
                 {String(idx + 1).padStart(2, "0")}
               </span>
 
-              <dt className="font-sans text-[11px] font-semibold uppercase tracking-[0.18em] text-mira-brownDark sm:text-xs">
+              <dt className="font-sans text-[12px] font-semibold uppercase tracking-[0.18em] text-mira-brownDark sm:text-xs">
                 {feat.label}
               </dt>
 

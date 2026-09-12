@@ -58,7 +58,7 @@ export default function Hero() {
               style={{ "--d": "200ms" } as React.CSSProperties}
             >
               <span className="hidden sm:block w-12 h-px bg-mira-sand/70" />
-              <p className="text-[10px] sm:text-[11px] font-sans uppercase tracking-eyebrow text-mira-sandLight/90 hero-legible">
+              <p className="text-[11px] sm:text-[12px] font-sans uppercase tracking-eyebrow text-mira-sandLight/90 hero-legible">
                 Now Selling
                 <span className="mx-2 text-white/35">/</span>
                 {siteConfig.address.street} · {siteConfig.address.suburb}, {siteConfig.address.state}
@@ -96,14 +96,14 @@ export default function Hero() {
             >
               <button
                 onClick={openRegister}
-                className="group inline-flex items-center justify-center px-9 py-4 bg-mira-sandLight text-mira-charcoal font-sans text-[11px] tracking-eyebrow uppercase transition-colors duration-300 hover:bg-white focus:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent focus-visible:ring-white"
+                className="group inline-flex items-center justify-center px-9 py-4 bg-mira-sandLight text-mira-charcoal font-sans text-[12px] tracking-eyebrow uppercase transition-colors duration-300 hover:bg-white focus:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent focus-visible:ring-white"
               >
                 Download Brochure
               </button>
 
               <Link
                 href="/residences"
-                className="inline-flex items-center gap-3 font-sans text-[11px] tracking-eyebrow uppercase text-white/90 hover:text-white transition-colors duration-300 focus:outline-none focus-visible:ring-1 focus-visible:ring-white"
+                className="inline-flex items-center gap-3 font-sans text-[12px] tracking-eyebrow uppercase text-white/90 hover:text-white transition-colors duration-300 focus:outline-none focus-visible:ring-1 focus-visible:ring-white"
               >
                 <span className="border-b border-white/40 hover:border-white pb-1 transition-colors duration-300">
                   Explore Residences
@@ -119,7 +119,7 @@ export default function Hero() {
           className="hidden lg:flex absolute right-12 bottom-14 flex-col items-center gap-4 text-white/60 hover:text-white transition-colors duration-300 focus:outline-none focus-visible:ring-1 focus-visible:ring-white"
           aria-label="Scroll to the collection"
         >
-          <span className="text-vertical text-[10px] font-sans uppercase tracking-eyebrow">
+          <span className="text-vertical text-[11px] font-sans uppercase tracking-eyebrow">
             Scroll
           </span>
           <span className="block h-14 w-px bg-white/20 overflow-hidden">
@@ -144,7 +144,7 @@ export default function Hero() {
                   index > 1 ? "border-t sm:border-t-0" : ""
                 } ${index % 2 === 1 ? "border-l pl-5 sm:pl-8" : ""} sm:border-l sm:first:border-l-0`}
               >
-                <dt className="text-[9px] sm:text-[10px] font-sans uppercase tracking-eyebrow text-white/55">
+                <dt className="text-[11px] sm:text-[12px] font-sans uppercase tracking-eyebrow text-white/75">
                   {fact.label}
                 </dt>
                 <dd className="mt-1.5 font-serif text-lg sm:text-xl text-mira-sandLight">

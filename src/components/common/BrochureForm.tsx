@@ -131,7 +131,7 @@ export default function BrochureForm({ idPrefix = "form", onSuccess, darkVariant
     [darkVariant]
   );
 
-  const labelClass = `block text-[10px] font-sans uppercase tracking-eyebrow mb-2 ${ink.label}`;
+  const labelClass = `block text-[11px] font-sans uppercase tracking-eyebrow mb-2 ${ink.label}`;
 
   const fieldClass = (field?: FieldName) =>
     [
@@ -145,7 +145,7 @@ export default function BrochureForm({ idPrefix = "form", onSuccess, darkVariant
     errors[field] ? (
       <p
         id={`${idPrefix}-${field}-error`}
-        className={`mt-2 flex items-center gap-1.5 font-sans text-[11px] ${ink.errorInk}`}
+        className={`mt-2 flex items-center gap-1.5 font-sans text-[12px] ${ink.errorInk}`}
       >
         <AlertCircle className="h-3 w-3 shrink-0" aria-hidden="true" />
         {errors[field]}
@@ -156,7 +156,7 @@ export default function BrochureForm({ idPrefix = "form", onSuccess, darkVariant
 
   const Legend = ({ children }: { children: React.ReactNode }) => (
     <div className="flex items-center gap-4">
-      <span className={`text-[10px] font-sans uppercase tracking-eyebrow ${ink.label}`}>{children}</span>
+      <span className={`text-[11px] font-sans uppercase tracking-eyebrow ${ink.label}`}>{children}</span>
       <span className={`h-px flex-1 ${ink.rule}`} aria-hidden="true" />
     </div>
   );
@@ -178,7 +178,7 @@ export default function BrochureForm({ idPrefix = "form", onSuccess, darkVariant
         >
           <CheckCircle2 className="h-7 w-7" strokeWidth={1.25} />
         </div>
-        <p className={`text-[10px] font-sans uppercase tracking-eyebrow ${ink.label}`}>Registration received</p>
+        <p className={`text-[11px] font-sans uppercase tracking-eyebrow ${ink.label}`}>Registration received</p>
         <h3 className="mt-3 font-serif text-3xl font-light sm:text-4xl">Thank you</h3>
         <p
           className={`mx-auto mt-4 max-w-md font-sans text-sm leading-relaxed ${
@@ -194,7 +194,7 @@ export default function BrochureForm({ idPrefix = "form", onSuccess, darkVariant
             href={siteConfig.brochureUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className={`mt-8 inline-flex items-center gap-3 px-9 py-4 font-sans text-[11px] uppercase tracking-eyebrow transition-colors duration-300 focus:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 ${
+            className={`mt-8 inline-flex items-center gap-3 px-9 py-4 font-sans text-[12px] uppercase tracking-eyebrow transition-colors duration-300 focus:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 ${
               darkVariant
                 ? "bg-mira-sandLight text-mira-charcoal hover:bg-white focus-visible:ring-white focus-visible:ring-offset-transparent"
                 : "bg-mira-charcoal text-white hover:bg-mira-brownDeep focus-visible:ring-mira-brown focus-visible:ring-offset-mira-ground"
@@ -399,7 +399,7 @@ export default function BrochureForm({ idPrefix = "form", onSuccess, darkVariant
         <button
           type="submit"
           disabled={status === "submitting"}
-          className={`group flex w-full items-center justify-center gap-3 px-8 py-[1.125rem] font-sans text-[11px] uppercase tracking-eyebrow transition-colors duration-300 focus:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 disabled:cursor-wait disabled:opacity-70 ${
+          className={`group flex w-full items-center justify-center gap-3 px-8 py-[1.125rem] font-sans text-[12px] uppercase tracking-eyebrow transition-colors duration-300 focus:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 disabled:cursor-wait disabled:opacity-70 ${
             darkVariant
               ? "bg-mira-sandLight text-mira-charcoal hover:bg-white focus-visible:ring-white focus-visible:ring-offset-transparent"
               : "bg-mira-charcoal text-white hover:bg-mira-brownDeep focus-visible:ring-mira-brown focus-visible:ring-offset-mira-ground"
@@ -423,7 +423,7 @@ export default function BrochureForm({ idPrefix = "form", onSuccess, darkVariant
           )}
         </button>
 
-        <p className={`mt-5 flex items-center justify-center gap-2 text-center font-sans text-[11px] ${ink.note}`}>
+        <p className={`mt-5 flex items-center justify-center gap-2 text-center font-sans text-[12px] ${ink.note}`}>
           <Lock className="h-3 w-3 shrink-0" strokeWidth={1.5} aria-hidden="true" />
           {registerSection.requiredNotice} · Confidential enquiry direct to the developer
         </p>

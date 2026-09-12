@@ -10,7 +10,7 @@ export default function ConstructionTimeline() {
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="mx-auto max-w-2xl space-y-4 text-center">
-          <span className="block font-sans text-[11px] font-medium uppercase tracking-[0.3em] text-mira-brown">
+          <span className="block font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-brown">
             Building The Vision
           </span>
           <h2 className="font-serif text-[clamp(1.9rem,4vw,3.25rem)] font-light text-mira-charcoal">
@@ -48,7 +48,7 @@ export default function ConstructionTimeline() {
                   {m.formattedDate}
                 </span>
                 {idx === constructionMilestones.length - 1 && (
-                  <span className="absolute bottom-3 right-3 flex items-center gap-1.5 bg-mira-teal px-3 py-1.5 font-sans text-[11px] font-semibold uppercase tracking-[0.12em] text-white shadow-sm">
+                  <span className="absolute bottom-3 right-3 flex items-center gap-1.5 bg-mira-teal px-3 py-1.5 font-sans text-[12px] font-semibold uppercase tracking-[0.12em] text-white shadow-sm">
                     <CheckCircle2 className="h-3.5 w-3.5" />
                     98% complete
                   </span>
@@ -57,7 +57,7 @@ export default function ConstructionTimeline() {
 
               {/* Description */}
               <div className="p-6">
-                <span className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-mira-tealDark">
+                <span className="font-sans text-[12px] font-semibold uppercase tracking-[0.15em] text-mira-tealDark">
                   Milestone {idx + 1}
                 </span>
                 <h3 className="mt-1.5 font-serif text-xl text-mira-charcoal sm:text-2xl">{m.title}</h3>

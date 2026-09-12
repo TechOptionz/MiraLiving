@@ -23,7 +23,7 @@ export default function StoryHero() {
 
       <div className="relative z-10 mx-auto flex h-full w-full max-w-[1800px] flex-col justify-end px-6 pb-10 sm:px-12 sm:pb-14 lg:px-20 2xl:px-28">
         <p
-          className="animate-softFade flex items-center gap-4 font-sans text-[11px] font-medium uppercase tracking-[0.35em] text-mira-sand"
+          className="animate-softFade flex items-center gap-4 font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-sand"
           style={{ "--d": "200ms" } as React.CSSProperties}
         >
           <span className="h-px w-10 bg-mira-sand/60" aria-hidden="true" />
@@ -57,7 +57,7 @@ export default function StoryHero() {
           className="animate-softFade mt-14 flex flex-col gap-6 border-t border-white/20 pt-6 sm:mt-20 sm:flex-row sm:items-end sm:justify-between"
           style={{ "--d": "1300ms" } as React.CSSProperties}
         >
-          <ul className="flex flex-wrap items-center gap-x-6 gap-y-2 font-sans text-[10px] uppercase tracking-[0.3em] text-white/70">
+          <ul className="flex flex-wrap items-center gap-x-6 gap-y-2 font-sans text-[11px] uppercase tracking-[0.16em] text-white/70">
             {hero.facts.map((fact) => (
               <li key={fact}>{fact}</li>
             ))}
@@ -65,7 +65,7 @@ export default function StoryHero() {
 
           <a
             href="#vision"
-            className="group flex items-center gap-4 font-sans text-[10px] uppercase tracking-[0.3em] text-white/70 transition-colors hover:text-white"
+            className="group flex items-center gap-4 font-sans text-[11px] uppercase tracking-[0.16em] text-white/70 transition-colors hover:text-white"
           >
             {hero.scrollLabel}
             <span className="relative block h-10 w-px overflow-hidden bg-white/20" aria-hidden="true">

@@ -43,7 +43,7 @@ export default function MilestoneSection() {
             <Reveal
               variant="fade"
               rootMargin="0px"
-              className="block font-sans text-[11px] font-medium uppercase tracking-[0.3em] text-mira-sand"
+              className="block font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-sand"
             >
               {milestone.eyebrow}
             </Reveal>
@@ -70,7 +70,7 @@ export default function MilestoneSection() {
             <Reveal
               delay={320}
               rootMargin="0px"
-              className="mt-9 flex flex-wrap items-baseline gap-x-8 gap-y-3 border-t border-white/20 pt-6 font-sans text-[10px] uppercase tracking-[0.25em] text-white/65"
+              className="mt-9 flex flex-wrap items-baseline gap-x-8 gap-y-3 border-t border-white/20 pt-6 font-sans text-[11px] uppercase tracking-[0.16em] text-white/65"
             >
               <span>{backdrop.caption}</span>
               <span className="text-white/40">{backdrop.date}</span>
@@ -90,7 +90,7 @@ export default function MilestoneSection() {
                 className="object-cover object-center"
               />
             </ScrollInset>
-            <figcaption className="mt-4 flex items-baseline justify-between gap-4 font-sans text-[10px] uppercase tracking-[0.22em] text-white/60">
+            <figcaption className="mt-4 flex items-baseline justify-between gap-4 font-sans text-[11px] uppercase tracking-[0.15em] text-white/60">
               <span>{inset.caption}</span>
               <span className="shrink-0 text-white/40">{inset.date}</span>
             </figcaption>

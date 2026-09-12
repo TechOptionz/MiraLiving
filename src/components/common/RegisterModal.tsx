@@ -63,7 +63,7 @@ export default function RegisterModal() {
           </div>
 
           <div className="relative z-10 p-10 xl:p-12">
-            <p className="font-sans text-[10px] uppercase tracking-eyebrow text-mira-sandLight/80">
+            <p className="font-sans text-[11px] uppercase tracking-eyebrow text-mira-sandLight/80">
               Exclusive preview
             </p>
             <p className="mt-5 font-serif text-3xl font-light leading-[1.12] text-white xl:text-[2.5rem]">
@@ -74,7 +74,7 @@ export default function RegisterModal() {
             <dl className="mt-9 space-y-3.5 border-t border-white/15 pt-7">
               {modalFacts.map((fact) => (
                 <div key={fact.label} className="flex items-baseline justify-between gap-6">
-                  <dt className="font-sans text-[10px] uppercase tracking-eyebrow text-white/50">
+                  <dt className="font-sans text-[11px] uppercase tracking-eyebrow text-white/50">
                     {fact.label}
                   </dt>
                   <dd className="font-serif text-lg text-mira-sandLight">{fact.value}</dd>
@@ -109,7 +109,7 @@ export default function RegisterModal() {
           </div>
 
           <div className="p-7 sm:p-10 lg:p-12">
-            <p className="font-sans text-[10px] uppercase tracking-eyebrow text-mira-brown">
+            <p className="font-sans text-[11px] uppercase tracking-eyebrow text-mira-brown">
               Exclusive preview
             </p>
             <h2

@@ -45,7 +45,7 @@ export default function RegisterSection() {
         <div className="text-center">
           <div className="flex items-center justify-center gap-4">
             <span className="hidden h-px w-10 bg-mira-sand/50 sm:block" aria-hidden="true" />
-            <p className="font-sans text-[10px] uppercase tracking-eyebrow text-mira-sandLight/85 sm:text-[11px]">
+            <p className="font-sans text-[11px] uppercase tracking-eyebrow text-mira-sandLight/85 sm:text-[12px]">
               Exclusive preview
             </p>
             <span className="hidden h-px w-10 bg-mira-sand/50 sm:block" aria-hidden="true" />
@@ -79,7 +79,7 @@ export default function RegisterSection() {
         </div>
 
         {/* Direct line, for anyone who would rather not fill in a form */}
-        <div className="mt-8 flex flex-col items-center justify-center gap-x-6 gap-y-2 font-sans text-[11px] uppercase tracking-eyebrow text-white/45 sm:flex-row">
+        <div className="mt-8 flex flex-col items-center justify-center gap-x-6 gap-y-2 font-sans text-[12px] uppercase tracking-eyebrow text-white/45 sm:flex-row">
           <span>Or speak with our sales team</span>
           <span className="flex items-center gap-5">
             {siteConfig.contacts.map((contact) => (

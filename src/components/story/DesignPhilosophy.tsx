@@ -27,7 +27,7 @@ export default function DesignPhilosophy() {
             {design.headline}
           </Reveal>
           <Reveal delay={120} className="lg:col-span-3 lg:self-end lg:pb-3">
-            <p className="font-sans text-[11px] font-medium uppercase tracking-[0.25em] text-mira-muted">
+            <p className="font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-muted">
               — {design.attribution}
             </p>
           </Reveal>
@@ -52,7 +52,7 @@ export default function DesignPhilosophy() {
                     >
                       {principle.step}
                     </span>
-                    <h3 className="pb-1 font-sans text-[11px] font-medium uppercase tracking-[0.3em] text-mira-brown">
+                    <h3 className="pb-1 font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-brown">
                       {principle.title}
                     </h3>
                   </div>
@@ -64,7 +64,7 @@ export default function DesignPhilosophy() {
                     {principle.detail}
                   </p>
                   {principle.meta && (
-                    <p className="mt-9 border-t border-mira-border pt-5 font-sans text-[10px] uppercase tracking-[0.25em] text-mira-brown/80 sm:text-[11px]">
+                    <p className="mt-9 border-t border-mira-border pt-5 font-sans text-[11px] uppercase tracking-[0.16em] text-mira-brown/80 sm:text-[12px]">
                       {principle.meta}
                     </p>
                   )}
@@ -84,7 +84,7 @@ export default function DesignPhilosophy() {
                   <ImageSlot slot={principle.image} sizes="(min-width: 1024px) 50vw, 100vw" />
                 </Reveal>
                 {principle.image.caption && (
-                  <figcaption className="mt-3 px-6 font-sans text-[10px] uppercase tracking-[0.25em] text-mira-muted sm:px-0">
+                  <figcaption className="mt-3 px-6 font-sans text-[11px] uppercase tracking-[0.16em] text-mira-muted sm:px-0">
                     {principle.image.caption}
                   </figcaption>
                 )}

@@ -24,7 +24,7 @@ const artistCopy = siteConfig.artistAcknowledgement.text.replace(/^Artist featur
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="text-[11px] font-sans font-medium uppercase tracking-eyebrow text-mira-sand/55">
+    <h3 className="text-[12px] font-sans font-medium uppercase tracking-eyebrow text-mira-sand/55">
       {children}
     </h3>
   );
@@ -181,7 +181,7 @@ export default function Footer() {
 
         {/* ---------- Legal ---------- */}
         <div className="border-t border-mira-sand/10 py-8">
-          <p className="max-w-5xl font-sans text-[11px] leading-[1.7] text-mira-sand/45">
+          <p className="max-w-5xl font-sans text-[12px] leading-[1.7] text-mira-sand/45">
             {siteConfig.legalDisclaimer}
           </p>
         </div>

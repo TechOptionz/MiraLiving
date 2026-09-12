@@ -19,7 +19,7 @@ export default function SalesSection() {
             <Reveal
               variant="fade"
               rootMargin="0px"
-              className="block font-sans text-[11px] font-medium uppercase tracking-[0.3em] text-mira-brown"
+              className="block font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-brown"
             >
               Appointments &amp; Walkthroughs
             </Reveal>
@@ -61,13 +61,13 @@ export default function SalesSection() {
                     .map((n) => n[0])
                     .join("")}
                 </span>
-                <span className="font-sans text-[10px] uppercase tracking-[0.25em] text-mira-muted/70">
+                <span className="font-sans text-[11px] uppercase tracking-[0.16em] text-mira-muted/70">
                   0{idx + 1}
                 </span>
               </div>
 
               <div className="space-y-3">
-                <span className="block font-sans text-[10px] uppercase tracking-[0.25em] text-mira-muted">
+                <span className="block font-sans text-[11px] uppercase tracking-[0.16em] text-mira-muted">
                   {contact.role}
                 </span>
                 <h3 className="font-serif text-[clamp(1.75rem,3.5vw,2.75rem)] font-light leading-tight text-mira-charcoal">
@@ -83,7 +83,7 @@ export default function SalesSection() {
                 href={contact.tel}
                 className="space-y-3 border-t border-mira-border pt-6 font-sans text-mira-tealDark transition-colors hover:text-mira-charcoal focus:outline-none focus-visible:ring-1 focus-visible:ring-mira-teal"
               >
-                <span className="block font-sans text-[10px] uppercase tracking-[0.25em] text-mira-muted">
+                <span className="block font-sans text-[11px] uppercase tracking-[0.16em] text-mira-muted">
                   Direct line
                 </span>
                 <span className="flex items-center justify-between gap-4 text-base sm:text-lg">
@@ -102,7 +102,7 @@ export default function SalesSection() {
           variant="fade"
           delay={240}
           rootMargin="0px"
-          className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2 border-t border-mira-border pt-6 font-sans text-[10px] uppercase tracking-[0.25em] text-mira-muted"
+          className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2 border-t border-mira-border pt-6 font-sans text-[11px] uppercase tracking-[0.16em] text-mira-muted"
         >
           <span>{siteConfig.address.full}</span>
           <span className="text-mira-brown">Now Selling · Completion September 2026</span>

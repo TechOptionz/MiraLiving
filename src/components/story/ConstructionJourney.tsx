@@ -60,7 +60,7 @@ export default function ConstructionJourney() {
                 <h3 className="mt-8 font-serif text-[clamp(1.75rem,2.8vw,2.5rem)] font-light leading-tight text-white">
                   {chapter.title}
                 </h3>
-                <p className="mt-4 font-sans text-[10px] uppercase tracking-[0.3em] text-mira-sand sm:text-[11px]">
+                <p className="mt-4 font-sans text-[11px] uppercase tracking-[0.16em] text-mira-sand sm:text-[12px]">
                   {chapter.period}
                 </p>
               </Reveal>
@@ -75,7 +75,7 @@ export default function ConstructionJourney() {
                     <ImageSlot slot={chapter.image} tone="dark" sizes="(min-width: 1024px) 62vw, 100vw" />
                   </Reveal>
                   {chapter.image.caption && (
-                    <figcaption className="mt-3 font-sans text-[10px] uppercase tracking-[0.25em] text-white/45">
+                    <figcaption className="mt-3 font-sans text-[11px] uppercase tracking-[0.16em] text-white/45">
                       {chapter.image.caption}
                     </figcaption>
                   )}
@@ -90,7 +90,7 @@ export default function ConstructionJourney() {
                       {chapter.detail}
                     </p>
                     {chapter.meta && (
-                      <p className="mt-6 border-t border-white/15 pt-4 font-sans text-[10px] uppercase tracking-[0.25em] text-white/45">
+                      <p className="mt-6 border-t border-white/15 pt-4 font-sans text-[11px] uppercase tracking-[0.16em] text-white/45">
                         {chapter.meta}
                       </p>
                     )}

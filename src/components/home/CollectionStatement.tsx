@@ -12,7 +12,7 @@ export default function CollectionStatement() {
         <Reveal variant="fade">
           <div className="flex items-center justify-center gap-4">
             <span className="h-px w-12 bg-mira-brown/40" />
-            <span className="font-sans text-[11px] font-medium uppercase tracking-[0.3em] text-mira-brown">
+            <span className="font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-brown">
               The Limited Collection
             </span>
             <span className="h-px w-12 bg-mira-brown/40" />
@@ -44,7 +44,7 @@ export default function CollectionStatement() {
               >
                 {stat.value}
               </span>
-              <span className="font-sans text-[10px] font-medium uppercase tracking-[0.25em] text-mira-muted">
+              <span className="font-sans text-[11px] font-medium uppercase tracking-[0.16em] text-mira-muted">
                 {stat.label}
               </span>
             </div>

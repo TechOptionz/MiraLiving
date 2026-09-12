@@ -21,7 +21,7 @@ export default function LocationPage() {
       {/* Hero */}
       <section className="py-24 sm:py-36 px-6 sm:px-12 bg-mira-sandLight border-b border-mira-border text-center">
         <div className="max-w-4xl mx-auto space-y-6">
-          <span className="text-[11px] font-sans tracking-[0.3em] uppercase text-mira-brown block font-medium">
+          <span className="text-[12px] font-sans tracking-[0.16em] uppercase text-mira-brown block font-medium">
             The Coral Coast
           </span>
           <h1 className="text-4xl sm:text-6xl md:text-7xl font-serif text-mira-charcoal font-light leading-[1.1]">
@@ -62,7 +62,7 @@ export default function LocationPage() {
 
               {/* Text Narrative */}
               <div className={`lg:col-span-5 space-y-6 ${isEven ? "lg:order-1" : "lg:order-2"}`}>
-                <span className="text-[10px] font-sans tracking-[0.3em] uppercase text-mira-brown font-semibold">
+                <span className="text-[11px] font-sans tracking-[0.16em] uppercase text-mira-brown font-semibold">
                   Lifestyle Chapter 0{index + 1}
                 </span>
                 <h2 className="text-3xl sm:text-5xl font-serif text-mira-charcoal font-light leading-tight">
@@ -81,7 +81,7 @@ export default function LocationPage() {
       <section className="py-24 sm:py-36 px-6 sm:px-12 lg:px-16 bg-mira-sandLight border-t border-mira-border">
         <div className="max-w-[1600px] mx-auto space-y-16">
           <div className="text-center max-w-3xl mx-auto space-y-4">
-            <span className="text-[11px] font-sans tracking-[0.3em] uppercase text-mira-brown block font-medium">
+            <span className="text-[12px] font-sans tracking-[0.16em] uppercase text-mira-brown block font-medium">
               Authentic Moments
             </span>
             <h2 className="text-3xl sm:text-5xl md:text-6xl font-serif text-mira-charcoal font-light">
@@ -111,7 +111,7 @@ export default function LocationPage() {
                   <p className="text-lg font-serif text-mira-charcoal font-light">
                     {photo.title}
                   </p>
-                  <p className="text-[11px] font-sans text-mira-muted tracking-widest uppercase">
+                  <p className="text-[12px] font-sans text-mira-muted tracking-widest uppercase">
                     {photo.location}
                   </p>
                 </div>
@@ -125,7 +125,7 @@ export default function LocationPage() {
       <section className="py-24 sm:py-36 px-6 sm:px-12 lg:px-16 bg-mira-ground border-t border-mira-border">
         <div className="max-w-[1500px] mx-auto space-y-16">
           <div className="max-w-3xl space-y-4">
-            <span className="text-[11px] font-sans tracking-[0.3em] uppercase text-mira-brown block font-medium">
+            <span className="text-[12px] font-sans tracking-[0.16em] uppercase text-mira-brown block font-medium">
               Regional Capital Investment
             </span>
             <h2 className="text-3xl sm:text-5xl md:text-6xl font-serif text-mira-charcoal font-light leading-tight">
@@ -147,7 +147,7 @@ export default function LocationPage() {
                     className="object-cover transition-transform duration-1000 group-hover:scale-105"
                   />
                   {infra.caption && (
-                    <div className="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm px-3 py-1 text-[10px] text-white/90 font-sans">
+                    <div className="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm px-3 py-1 text-[11px] text-white/90 font-sans">
                       {infra.caption}
                     </div>
                   )}
@@ -168,7 +168,7 @@ export default function LocationPage() {
       <section className="py-24 sm:py-36 px-6 sm:px-12 lg:px-16 bg-mira-sandLight border-t border-mira-border">
         <div className="max-w-[1600px] mx-auto space-y-16">
           <div className="text-center max-w-3xl mx-auto space-y-4">
-            <span className="text-[11px] font-sans tracking-[0.3em] uppercase text-mira-brown block font-medium">
+            <span className="text-[12px] font-sans tracking-[0.16em] uppercase text-mira-brown block font-medium">
               Orientation
             </span>
             <h2 className="text-3xl sm:text-5xl md:text-6xl font-serif text-mira-charcoal font-light">

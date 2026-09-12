@@ -37,7 +37,7 @@ export default function AnewWaySection() {
       </div>
 
       <div className="relative z-10 mx-auto w-full max-w-[1600px] px-6 pb-14 pt-32 sm:px-12 sm:pb-20 lg:px-16">
-        <Reveal variant="fade" className="font-sans text-[11px] font-medium uppercase tracking-[0.3em] text-mira-sand">
+        <Reveal variant="fade" className="font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-sand">
           Coastal Horizon
         </Reveal>
 
@@ -52,7 +52,7 @@ export default function AnewWaySection() {
 
         <Reveal delay={360} className="mt-12 flex flex-col gap-6 border-t border-white/20 pt-7 sm:flex-row sm:items-end sm:justify-between">
           <div className="space-y-1">
-            <span className="font-sans text-[11px] uppercase tracking-[0.25em] text-mira-sand">
+            <span className="font-sans text-[12px] uppercase tracking-[0.16em] text-mira-sand">
               Building Elevation · 25–27 The Esplanade
             </span>
             <p className="font-serif text-lg font-light sm:text-2xl">
@@ -63,13 +63,13 @@ export default function AnewWaySection() {
           <div className="flex flex-wrap items-center gap-4">
             <button
               onClick={openRegister}
-              className="flex items-center gap-2 bg-white/90 px-7 py-4 font-sans text-xs uppercase tracking-[0.2em] text-mira-charcoal shadow-subtle transition-all hover:bg-white"
+              className="flex items-center gap-2 bg-white/90 px-7 py-4 font-sans text-xs uppercase tracking-[0.15em] text-mira-charcoal shadow-subtle transition-all hover:bg-white"
             >
               <span>Check Availability</span>
               <ArrowRight className="h-3.5 w-3.5 text-mira-brown" />
             </button>
             {aNewWayToLive.caption && (
-              <span className="bg-black/40 px-2 py-1 font-sans text-[10px] uppercase tracking-widest text-white/70 backdrop-blur-sm">
+              <span className="bg-black/40 px-2 py-1 font-sans text-[11px] uppercase tracking-widest text-white/70 backdrop-blur-sm">
                 {aNewWayToLive.caption}
               </span>
             )}

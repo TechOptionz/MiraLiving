@@ -41,7 +41,7 @@ export default function PeopleSection() {
           </figure>
 
           <Reveal className="lg:col-span-5 lg:col-start-8 lg:pb-12">
-            <p className="font-sans text-[11px] font-medium uppercase tracking-[0.3em] text-mira-brown">
+            <p className="font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-brown">
               {lead.role} · {lead.company}
             </p>
             <h3 className="mt-5 font-serif text-6xl font-light leading-none text-mira-charcoal sm:text-7xl lg:text-[5.5rem]">
@@ -62,7 +62,7 @@ export default function PeopleSection() {
 
         {/* Collaborators */}
         <Reveal variant="fade" className="mt-24 flex items-center gap-6 sm:mt-36">
-          <span className="font-sans text-[11px] font-medium uppercase tracking-[0.3em] text-mira-brown">
+          <span className="font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-brown">
             {people.collaboratorsLabel}
           </span>
           <span className="h-px flex-1 bg-mira-border" aria-hidden="true" />
@@ -82,7 +82,7 @@ export default function PeopleSection() {
                   <ImageSlot slot={person.image} sizes="(min-width: 768px) 30vw, 78vw" />
                 </div>
                 <div className="mt-8 flex items-center justify-between gap-4 border-b border-mira-border pb-5">
-                  <p className="font-sans text-[10px] font-medium uppercase tracking-[0.3em] text-mira-brown sm:text-[11px]">
+                  <p className="font-sans text-[11px] font-medium uppercase tracking-[0.16em] text-mira-brown sm:text-[12px]">
                     {person.role}
                   </p>
                   <Image

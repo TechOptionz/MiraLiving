@@ -31,7 +31,7 @@ const config: Config = {
         sans: ["var(--font-poppins)", "Poppins", "Outfit", "system-ui", "sans-serif"],
       },
       letterSpacing: {
-        eyebrow: "0.22em",
+        eyebrow: "0.15em",
         relaxed: "0.05em",
       },
       boxShadow: {

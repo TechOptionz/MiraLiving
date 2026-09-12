@@ -30,7 +30,7 @@ export default function PartnersGrid() {
             <Reveal
               variant="fade"
               rootMargin="0px"
-              className="block font-sans text-[11px] font-medium uppercase tracking-[0.3em] text-mira-brown"
+              className="block font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-brown"
             >
               Architectural & Building Disciplines
             </Reveal>
@@ -68,7 +68,7 @@ export default function PartnersGrid() {
                 className="group flex flex-col justify-between gap-[clamp(1.5rem,3.5vh,2.75rem)] border border-mira-border bg-white px-7 py-8 shadow-subtle transition-all duration-500 hover:-translate-y-1 hover:border-mira-brown hover:shadow-card sm:px-9 sm:py-[clamp(1.75rem,4vh,3rem)]"
               >
                 <div className="flex items-center justify-between gap-4 border-b border-mira-border pb-6">
-                  <span className="font-sans text-[10px] tracking-[0.25em] text-mira-muted/70 transition-colors duration-300 group-hover:text-mira-brown">
+                  <span className="font-sans text-[11px] tracking-[0.16em] text-mira-muted/70 transition-colors duration-300 group-hover:text-mira-brown">
                     0{idx + 2}
                   </span>
                   <span className="bg-mira-sandLight p-2 transition-colors duration-300 group-hover:bg-mira-sand">
@@ -91,7 +91,7 @@ export default function PartnersGrid() {
 
                 <div className="space-y-4">
                   <div className="space-y-1">
-                    <span className="font-sans text-[10px] font-semibold uppercase tracking-[0.3em] text-mira-tealDark">
+                    <span className="font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-mira-tealDark">
                       {partner.role}
                     </span>
                     <h3 className="font-serif text-2xl font-light text-mira-charcoal sm:text-[clamp(1.5rem,2.6vw,2rem)]">

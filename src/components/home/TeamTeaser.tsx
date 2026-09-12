@@ -16,7 +16,7 @@ export default function TeamTeaser() {
         {/* Masthead — statement left, supporting note and CTA right. */}
         <div className="grid gap-8 lg:grid-cols-12 lg:items-end lg:gap-16">
           <div className="space-y-4 lg:col-span-7">
-            <Reveal variant="fade" className="block font-sans text-[11px] font-medium uppercase tracking-[0.3em] text-mira-brown">
+            <Reveal variant="fade" className="block font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-brown">
               The Collaborators
             </Reveal>
             <Reveal as="h2" delay={120} className="font-serif text-[clamp(1.9rem,4vw,3.5rem)] font-light leading-[1.1] text-mira-charcoal">
@@ -34,7 +34,7 @@ export default function TeamTeaser() {
             <Reveal variant="fade" delay={240}>
               <Link
                 href="/team"
-                className="group inline-flex w-fit items-center gap-3 border-b border-mira-brown/40 pb-1 font-sans text-[11px] uppercase tracking-[0.25em] text-mira-brown transition-colors hover:border-mira-charcoal hover:text-mira-charcoal"
+                className="group inline-flex w-fit items-center gap-3 border-b border-mira-brown/40 pb-1 font-sans text-[12px] uppercase tracking-[0.16em] text-mira-brown transition-colors hover:border-mira-charcoal hover:text-mira-charcoal"
               >
                 <span>Meet the Project Partners</span>
                 <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
@@ -52,10 +52,10 @@ export default function TeamTeaser() {
               className="group flex flex-col justify-between gap-[clamp(1.5rem,3vh,2.5rem)] border-b border-r border-mira-border bg-transparent px-7 py-8 transition-colors duration-500 hover:bg-white sm:px-8 sm:py-[clamp(1.75rem,3.5vh,3rem)]"
             >
               <div className="flex items-baseline justify-between">
-                <span className="font-sans text-[10px] tracking-[0.25em] text-mira-muted/70 transition-colors duration-300 group-hover:text-mira-brown">
+                <span className="font-sans text-[11px] tracking-[0.16em] text-mira-muted/70 transition-colors duration-300 group-hover:text-mira-brown">
                   0{idx + 1}
                 </span>
-                <span className="font-sans text-[10px] uppercase tracking-[0.25em] text-mira-brown">
+                <span className="font-sans text-[11px] uppercase tracking-[0.16em] text-mira-brown">
                   {partner.role}
                 </span>
               </div>

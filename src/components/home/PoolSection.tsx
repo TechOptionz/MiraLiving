@@ -18,7 +18,7 @@ export default function PoolSection() {
           <div className="max-w-xl lg:ml-auto lg:mr-0">
             <Reveal
               variant="fade"
-              className="block font-sans text-[11px] font-medium uppercase tracking-[0.3em] text-mira-brown"
+              className="block font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-brown"
             >
               Private Resident Oasis
             </Reveal>
@@ -43,7 +43,7 @@ export default function PoolSection() {
               className="mt-10 flex items-center gap-4 border-t border-mira-border pt-6"
             >
               <span className="h-px w-10 shrink-0 bg-mira-sandDark" />
-              <span className="font-sans text-xs font-light uppercase tracking-[0.2em] text-mira-brown">
+              <span className="font-sans text-xs font-light uppercase tracking-[0.15em] text-mira-brown">
                 Resort-Style Pool &amp; Alfresco Lounge
               </span>
             </Reveal>
@@ -68,7 +68,7 @@ export default function PoolSection() {
             className="object-cover object-center transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]"
           />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
-          <span className="absolute bottom-5 right-5 bg-black/45 px-3 py-1 font-sans text-[10px] uppercase tracking-widest text-white backdrop-blur-sm sm:bottom-7 sm:right-7">
+          <span className="absolute bottom-5 right-5 bg-black/45 px-3 py-1 font-sans text-[11px] uppercase tracking-widest text-white backdrop-blur-sm sm:bottom-7 sm:right-7">
             {poolSection.caption}
           </span>
         </Reveal>

@@ -135,7 +135,7 @@ export default function Header() {
           className="md:hidden fixed inset-0 top-20 bg-mira-ground border-t border-mira-border z-40 px-6 py-8 flex flex-col justify-between overflow-y-auto animate-fadeIn"
         >
           <div className="space-y-6 pt-4">
-            <p className="text-[11px] font-sans uppercase tracking-eyebrow text-mira-muted">
+            <p className="text-[12px] font-sans uppercase tracking-eyebrow text-mira-muted">
               Navigation
             </p>
             <nav className="flex flex-col space-y-5">

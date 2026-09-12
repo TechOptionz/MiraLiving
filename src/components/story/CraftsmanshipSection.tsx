@@ -37,7 +37,7 @@ export default function CraftsmanshipSection() {
             {craft.lead}
           </Reveal>
           {craft.feature.caption && (
-            <p className="order-first font-sans text-[10px] uppercase tracking-[0.25em] text-mira-muted lg:order-none lg:col-span-2 lg:col-start-1">
+            <p className="order-first font-sans text-[11px] uppercase tracking-[0.16em] text-mira-muted lg:order-none lg:col-span-2 lg:col-start-1">
               {craft.feature.caption}
             </p>
           )}
@@ -54,7 +54,7 @@ export default function CraftsmanshipSection() {
             <ImageSlot slot={craft.secondary} sizes="(min-width: 1024px) 40vw, 100vw" />
           </Reveal>
           {craft.secondary.caption && (
-            <figcaption className="mt-3 px-6 font-sans text-[10px] uppercase tracking-[0.25em] text-mira-muted sm:px-0">
+            <figcaption className="mt-3 px-6 font-sans text-[11px] uppercase tracking-[0.16em] text-mira-muted sm:px-0">
               {craft.secondary.caption}
             </figcaption>
           )}

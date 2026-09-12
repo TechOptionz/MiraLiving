@@ -21,7 +21,7 @@ export default function LocationTeaser() {
       */}
       <div className="mx-auto grid w-full max-w-[1700px] flex-1 grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-14 xl:gap-16">
         <div className="flex flex-col lg:col-span-5">
-          <Reveal variant="fade" className="block font-sans text-[11px] font-medium uppercase tracking-[0.3em] text-mira-brown">
+          <Reveal variant="fade" className="block font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-brown">
             The Coastal Enclave
           </Reveal>
 
@@ -38,7 +38,7 @@ export default function LocationTeaser() {
           <Reveal delay={300} className="mt-[clamp(1.75rem,3.4vh,2.75rem)] grid grid-cols-2 gap-x-8 border-t border-mira-border">
             {locationTeaser.proximity.map((item) => (
               <div key={item.label} className="border-b border-mira-border py-[clamp(0.85rem,1.8vh,1.25rem)]">
-                <span className="block font-sans text-[10px] uppercase tracking-[0.22em] text-mira-muted">
+                <span className="block font-sans text-[11px] uppercase tracking-[0.15em] text-mira-muted">
                   {item.label}
                 </span>
                 <span className="mt-1 block font-serif text-xl font-light text-mira-charcoal sm:text-2xl">
@@ -51,7 +51,7 @@ export default function LocationTeaser() {
           <Reveal variant="fade" delay={380} className="mt-[clamp(1.75rem,3.4vh,2.75rem)]">
             <Link
               href="/location"
-              className="group inline-flex items-center gap-3 bg-mira-brown px-8 py-4 font-sans text-xs uppercase tracking-[0.2em] text-white shadow-subtle transition-all hover:bg-mira-brownDark"
+              className="group inline-flex items-center gap-3 bg-mira-brown px-8 py-4 font-sans text-xs uppercase tracking-[0.15em] text-white shadow-subtle transition-all hover:bg-mira-brownDark"
             >
               <span>Explore Location &amp; Lifestyle</span>
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -84,11 +84,11 @@ export default function LocationTeaser() {
             delay={320}
             className="mx-auto mt-4 flex w-full max-w-[min(100%,calc(62vh*16/9))] flex-col gap-2 sm:flex-row sm:items-center sm:justify-between"
           >
-            <span className="inline-flex items-center gap-2 font-sans text-[11px] text-mira-charcoal">
+            <span className="inline-flex items-center gap-2 font-sans text-[12px] text-mira-charcoal">
               <MapPin className="h-3.5 w-3.5 shrink-0 text-mira-tealDark" />
               {siteConfig.address.full}
             </span>
-            <span className="font-sans text-[10px] uppercase tracking-[0.22em] text-mira-muted">
+            <span className="font-sans text-[11px] uppercase tracking-[0.15em] text-mira-muted">
               Annotated aerial
             </span>
           </Reveal>

@@ -40,7 +40,7 @@ export default function DeveloperFeature() {
           <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
         </div>
 
-        <figcaption className="absolute inset-x-6 bottom-6 flex items-baseline justify-between gap-4 font-sans text-[10px] uppercase tracking-[0.22em] text-white/80 sm:inset-x-10 sm:bottom-9">
+        <figcaption className="absolute inset-x-6 bottom-6 flex items-baseline justify-between gap-4 font-sans text-[11px] uppercase tracking-[0.15em] text-white/80 sm:inset-x-10 sm:bottom-9">
           <span className="max-w-[18rem] leading-relaxed">{photo.caption}</span>
           <span className="shrink-0 text-white/55">{photo.date}</span>
         </figcaption>
@@ -63,7 +63,7 @@ export default function DeveloperFeature() {
               className="h-auto w-48 object-contain object-left sm:w-56"
             />
             <div className="space-y-1 sm:text-right">
-              <span className="block font-sans text-[10px] font-semibold uppercase tracking-[0.25em] text-mira-tealDark">
+              <span className="block font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-mira-tealDark">
                 The Developer
               </span>
               <span className="font-serif text-sm text-mira-muted">South-East Queensland</span>
@@ -108,7 +108,7 @@ export default function DeveloperFeature() {
               <p className="font-sans text-xs text-mira-muted">Developer, Furtado Property</p>
             </div>
 
-            <span className="font-sans text-[10px] uppercase tracking-[0.25em] text-mira-brown">
+            <span className="font-sans text-[11px] uppercase tracking-[0.16em] text-mira-brown">
               20+ years · Residential
             </span>
           </Reveal>

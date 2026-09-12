@@ -110,7 +110,7 @@ export default function InteriorsSlider() {
 
       {/* Chapter header */}
       <div className="relative z-10 mx-auto w-full max-w-[1700px] px-6 pt-28 sm:px-12 sm:pt-32 lg:px-16">
-        <span className="block font-sans text-[11px] font-medium uppercase tracking-[0.3em] text-mira-sand">
+        <span className="block font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-sand">
           Curated Interiors
         </span>
         <h2 className="mt-5 max-w-4xl font-serif text-[clamp(1.75rem,4vw,3.75rem)] font-light leading-[1.12] text-white">
@@ -122,7 +122,7 @@ export default function InteriorsSlider() {
       <div className="relative z-10 mx-auto w-full max-w-[1700px] px-6 pb-12 sm:px-12 sm:pb-16 lg:px-16">
         <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <div key={currentIndex} className="animate-fadeIn max-w-2xl space-y-3">
-            <span className="font-sans text-[10px] font-medium uppercase tracking-[0.3em] text-mira-tealLight">
+            <span className="font-sans text-[11px] font-medium uppercase tracking-[0.16em] text-mira-tealLight">
               Sanctuary Space · Detail 0{currentIndex + 1}
             </span>
             <h3 className="font-serif text-[clamp(1.6rem,3.4vw,3rem)] font-light leading-tight text-white">
@@ -131,13 +131,13 @@ export default function InteriorsSlider() {
             <p className="max-w-xl font-sans text-sm font-light leading-relaxed text-mira-sandLight/90 sm:text-base">
               {currentSlide.description}
             </p>
-            <span className="inline-block pt-1 font-sans text-[10px] uppercase tracking-widest text-white/60">
+            <span className="inline-block pt-1 font-sans text-[11px] uppercase tracking-widest text-white/60">
               {currentSlide.caption}
             </span>
           </div>
 
           <div className="flex shrink-0 items-center gap-6">
-            <span className="font-sans text-xs uppercase tracking-[0.25em] text-mira-sand">
+            <span className="font-sans text-xs uppercase tracking-[0.16em] text-mira-sand">
               {String(currentIndex + 1).padStart(2, "0")} / {String(featureSlides.length).padStart(2, "0")}
             </span>
             <div className="flex items-center gap-2">
@@ -172,7 +172,7 @@ export default function InteriorsSlider() {
                   : "border-white/20 text-white/50 hover:border-white/40 hover:text-white/80"
               }`}
             >
-              <span className="mb-1 block font-sans text-[10px] uppercase tracking-widest">
+              <span className="mb-1 block font-sans text-[11px] uppercase tracking-widest">
                 0{idx + 1}
               </span>
               <span className="block truncate font-serif text-xs font-light sm:text-sm">

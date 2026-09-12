@@ -12,14 +12,16 @@ export default function ChapterLabel({
   tone?: "light" | "dark";
   className?: string;
 }) {
-  const color = tone === "dark" ? "text-mira-sand" : "text-mira-brown";
-  const rule = tone === "dark" ? "bg-mira-sand/50" : "bg-mira-brown/40";
+  const color = tone === "dark" ? "text-mira-sandLight" : "text-mira-brownDark";
+  const rule = tone === "dark" ? "bg-mira-sandLight/50" : "bg-mira-brownDark/45";
 
   return (
     <Reveal variant="fade" className={`flex items-center gap-4 ${color} ${className}`}>
-      <span className="font-serif text-lg italic leading-none">{numeral}.</span>
+      <span className="font-serif text-xl italic leading-none">{numeral}.</span>
       <span className={`h-px w-10 ${rule}`} aria-hidden="true" />
-      <span className="text-[11px] font-sans font-medium uppercase tracking-[0.3em]">{title}</span>
+      <span className="text-[13px] font-sans font-semibold uppercase tracking-[0.14em] sm:text-sm">
+        {title}
+      </span>
     </Reveal>
   );
 }

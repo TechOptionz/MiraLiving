@@ -46,7 +46,7 @@ export default function VisionSection() {
                 height={37}
                 className="h-8 w-auto opacity-80"
               />
-              <cite className="font-sans text-[11px] font-medium uppercase not-italic tracking-[0.25em] text-mira-muted">
+              <cite className="font-sans text-[12px] font-medium uppercase not-italic tracking-[0.16em] text-mira-muted">
                 {vision.author}, {vision.authorTitle}
               </cite>
             </footer>
@@ -63,7 +63,7 @@ export default function VisionSection() {
               <ImageSlot slot={vision.image} sizes="(min-width: 1024px) 40vw, 100vw" />
             </Reveal>
             {vision.image.caption && (
-              <figcaption className="mt-3 px-6 font-sans text-[10px] uppercase tracking-[0.25em] text-mira-muted sm:px-0">
+              <figcaption className="mt-3 px-6 font-sans text-[11px] uppercase tracking-[0.16em] text-mira-muted sm:px-0">
                 {vision.image.caption}
               </figcaption>
             )}

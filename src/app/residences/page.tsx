@@ -54,7 +54,7 @@ export default function ResidencesPage() {
       {/* Hero */}
       <section className="border-b border-mira-border bg-mira-sandLight px-6 py-24 sm:px-12 sm:py-32">
         <div className="mx-auto max-w-4xl text-center">
-          <Reveal variant="fade" className="block font-sans text-[11px] font-medium uppercase tracking-[0.3em] text-mira-brown">
+          <Reveal variant="fade" className="block font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-brown">
             The Residences
           </Reveal>
 
@@ -74,7 +74,7 @@ export default function ResidencesPage() {
                 <p className="font-serif text-3xl font-light leading-none text-mira-charcoal sm:text-4xl">
                   {fact.value}
                 </p>
-                <p className="font-sans text-[11px] font-medium uppercase tracking-[0.18em] text-mira-brown">
+                <p className="font-sans text-[12px] font-medium uppercase tracking-[0.18em] text-mira-brown">
                   {fact.label}
                 </p>
               </div>
@@ -87,7 +87,7 @@ export default function ResidencesPage() {
       <section className="bg-mira-ground px-6 py-24 sm:px-12 sm:py-32 lg:px-20">
         <div className="mx-auto max-w-5xl">
           <div className="mx-auto max-w-3xl space-y-4 text-center">
-            <Reveal variant="fade" className="block font-sans text-[11px] font-medium uppercase tracking-[0.3em] text-mira-brown">
+            <Reveal variant="fade" className="block font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-brown">
               Development Schedule
             </Reveal>
             <Reveal as="h2" delay={120} className="font-serif text-[clamp(1.9rem,4vw,3.25rem)] font-light text-mira-charcoal">
@@ -102,7 +102,7 @@ export default function ResidencesPage() {
                 delay={idx * 60}
                 className="grid grid-cols-1 gap-x-8 gap-y-2 px-1 py-6 sm:grid-cols-12 sm:items-baseline sm:py-7"
               >
-                <dt className="font-sans text-[11px] font-medium uppercase tracking-[0.2em] text-mira-brown sm:col-span-4">
+                <dt className="font-sans text-[12px] font-medium uppercase tracking-[0.15em] text-mira-brown sm:col-span-4">
                   {row.label}
                 </dt>
                 <dd className="font-serif text-xl leading-snug text-mira-charcoal sm:col-span-8 sm:text-2xl">
@@ -114,7 +114,7 @@ export default function ResidencesPage() {
 
           {/* Amenities — already in the content file, and worth stating plainly here. */}
           <div className="mt-20">
-            <Reveal variant="fade" className="block font-sans text-[11px] font-medium uppercase tracking-[0.3em] text-mira-brown">
+            <Reveal variant="fade" className="block font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-brown">
               Included for every resident
             </Reveal>
             <ul className="mt-8 grid grid-cols-1 gap-x-12 gap-y-5 sm:grid-cols-2">
@@ -138,7 +138,7 @@ export default function ResidencesPage() {
       <section className="border-t border-mira-border bg-mira-sandLight px-6 py-24 sm:px-12 sm:py-32 lg:px-16">
         <div className="mx-auto max-w-[1400px]">
           <div className="max-w-3xl space-y-5">
-            <Reveal variant="fade" className="block font-sans text-[11px] font-medium uppercase tracking-[0.3em] text-mira-brown">
+            <Reveal variant="fade" className="block font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-brown">
               Material Palette
             </Reveal>
             <Reveal as="h2" delay={120} className="font-serif text-[clamp(1.9rem,4.4vw,3.5rem)] font-light leading-[1.12] text-mira-charcoal">
@@ -170,7 +170,7 @@ export default function ResidencesPage() {
                 </Reveal>
 
                 <div className="lg:col-span-5">
-                  <Reveal variant="fade" className="block font-sans text-[11px] font-medium uppercase tracking-[0.28em] text-mira-brown">
+                  <Reveal variant="fade" className="block font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-brown">
                     {item.eyebrow}
                   </Reveal>
                   <Reveal as="h3" delay={120} className="mt-4 font-serif text-[clamp(1.6rem,2.6vw,2.5rem)] font-light leading-tight text-mira-charcoal">
@@ -186,7 +186,7 @@ export default function ResidencesPage() {
 
           {/* Finish schedule — the full specification, previously unused on this page. */}
           <div className="mt-24 sm:mt-32">
-            <Reveal variant="fade" className="block font-sans text-[11px] font-medium uppercase tracking-[0.3em] text-mira-brown">
+            <Reveal variant="fade" className="block font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-brown">
               Finish Schedule
             </Reveal>
             <dl className="mt-8 grid grid-cols-1 gap-x-16 border-t border-mira-border md:grid-cols-2">
@@ -214,7 +214,7 @@ export default function ResidencesPage() {
       <section className="border-t border-mira-border bg-mira-ground px-6 py-24 sm:px-12 sm:py-32 lg:px-16">
         <div className="mx-auto max-w-[1400px]">
           <div className="max-w-3xl space-y-4">
-            <Reveal variant="fade" className="block font-sans text-[11px] font-medium uppercase tracking-[0.3em] text-mira-brown">
+            <Reveal variant="fade" className="block font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-brown">
               Building Elevation
             </Reveal>
             <Reveal as="h2" delay={120} className="font-serif text-[clamp(1.9rem,4vw,3.25rem)] font-light text-mira-charcoal">

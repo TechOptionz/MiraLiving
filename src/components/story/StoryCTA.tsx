@@ -5,10 +5,10 @@ import { ArrowRight } from "lucide-react";
 import { useModal } from "@/context/ModalContext";
 import { siteConfig } from "@/content/site-content";
 import { storyPage } from "@/content/story-content";
-import ImageSlot from "./ImageSlot";
+import BackdropVideo from "@/components/common/BackdropVideo";
 import Reveal from "@/components/common/Reveal";
 
-/** 8 — Closing. One image, one line, two ways to act. */
+/** 8 — Closing. One film, one line, two ways to act. */
 export default function StoryCTA() {
   const { cta } = storyPage;
   const { openRegister } = useModal();
@@ -18,7 +18,17 @@ export default function StoryCTA() {
       aria-labelledby="cta-heading"
       className="relative flex min-h-[88svh] items-center overflow-hidden bg-mira-charcoal text-white"
     >
-      <ImageSlot slot={cta.image} tone="dark" sizes="100vw" />
+      {/* Motion backdrop — one layer only: the poster is the footage's own
+          first frame, so the section paints finished and never swaps in a
+          second picture. It sits below the fold, so BackdropVideo holds the
+          fetch until the visitor is within reach of it and pauses playback
+          again once it scrolls away. */}
+      <BackdropVideo
+        src={cta.video.src}
+        poster={cta.video.poster}
+        aria-label={cta.video.description}
+        className="absolute inset-0 h-full w-full object-cover object-center"
+      />
       <div className="absolute inset-0 bg-black/55" />
       <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/70" />
       <div className="pointer-events-none absolute inset-0 bg-noise opacity-[0.09]" />
@@ -42,7 +52,7 @@ export default function StoryCTA() {
           <button
             type="button"
             onClick={openRegister}
-            className="group inline-flex w-full items-center justify-center gap-4 bg-white px-12 py-5 font-sans text-xs uppercase tracking-[0.3em] text-mira-charcoal transition-colors duration-500 hover:bg-mira-sand focus:outline-none focus-visible:ring-1 focus-visible:ring-mira-teal sm:w-auto"
+            className="group inline-flex w-full items-center justify-center gap-4 bg-white px-12 py-5 font-sans text-xs uppercase tracking-[0.16em] text-mira-charcoal transition-colors duration-500 hover:bg-mira-sand focus:outline-none focus-visible:ring-1 focus-visible:ring-mira-teal sm:w-auto"
           >
             {cta.brochureLabel}
             <ArrowRight
@@ -53,7 +63,7 @@ export default function StoryCTA() {
 
           <a
             href={siteConfig.contacts[0].tel}
-            className="inline-flex w-full items-center justify-center border border-white/60 px-12 py-5 font-sans text-xs uppercase tracking-[0.3em] text-white transition-colors duration-500 hover:bg-white/10 focus:outline-none focus-visible:ring-1 focus-visible:ring-mira-teal sm:w-auto"
+            className="inline-flex w-full items-center justify-center border border-white/60 px-12 py-5 font-sans text-xs uppercase tracking-[0.16em] text-white transition-colors duration-500 hover:bg-white/10 focus:outline-none focus-visible:ring-1 focus-visible:ring-mira-teal sm:w-auto"
           >
             {cta.enquireLabel}
           </a>
@@ -71,7 +81,7 @@ export default function StoryCTA() {
           ))}
         </Reveal>
 
-        <p className="mt-20 font-sans text-[10px] uppercase tracking-[0.3em] text-white/50 sm:mt-24">
+        <p className="mt-20 font-sans text-[11px] uppercase tracking-[0.16em] text-white/50 sm:mt-24">
           {siteConfig.address.full}
         </p>
       </div>

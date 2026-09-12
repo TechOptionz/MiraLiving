@@ -47,7 +47,7 @@ export default function CookieConsent() {
   return (
     <div className="fixed bottom-4 left-4 right-4 md:left-auto md:right-6 md:bottom-6 z-50 max-w-md bg-white/95 backdrop-blur-md border border-mira-border shadow-float p-5 rounded-none animate-fadeIn">
       <div className="text-xs font-sans text-mira-charcoal space-y-2">
-        <p className="font-medium text-mira-brown uppercase tracking-eyebrow text-[10px]">
+        <p className="font-medium text-mira-brown uppercase tracking-eyebrow text-[11px]">
           Cookie & Privacy Preferences
         </p>
         <p className="text-mira-muted leading-relaxed">
@@ -62,13 +62,13 @@ export default function CookieConsent() {
       <div className="flex items-center justify-end gap-3 mt-4 pt-3 border-t border-mira-border/50">
         <button
           onClick={handleDecline}
-          className="px-3 py-1.5 text-[11px] font-sans text-mira-muted hover:text-mira-charcoal uppercase tracking-wider"
+          className="px-3 py-1.5 text-[12px] font-sans text-mira-muted hover:text-mira-charcoal uppercase tracking-wider"
         >
           Decline
         </button>
         <button
           onClick={handleAccept}
-          className="px-4 py-1.5 text-[11px] font-sans bg-mira-brown hover:bg-mira-brownDark text-white uppercase tracking-wider shadow-sm transition-colors"
+          className="px-4 py-1.5 text-[12px] font-sans bg-mira-brown hover:bg-mira-brownDark text-white uppercase tracking-wider shadow-sm transition-colors"
         >
           Accept
         </button>

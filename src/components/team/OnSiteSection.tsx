@@ -20,7 +20,7 @@ export default function OnSiteSection() {
             <Reveal
               variant="fade"
               rootMargin="0px"
-              className="block font-sans text-[11px] font-medium uppercase tracking-[0.3em] text-mira-brown"
+              className="block font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-brown"
             >
               {onSite.eyebrow}
             </Reveal>
@@ -78,7 +78,7 @@ export default function OnSiteSection() {
                 <p className="font-serif text-base font-light leading-snug text-mira-charcoal sm:text-lg">
                   {photo.caption}
                 </p>
-                <span className="shrink-0 font-sans text-[9px] uppercase tracking-[0.3em] text-mira-brown">
+                <span className="shrink-0 font-sans text-[11px] uppercase tracking-[0.16em] text-mira-brown">
                   {photo.date}
                 </span>
               </Reveal>

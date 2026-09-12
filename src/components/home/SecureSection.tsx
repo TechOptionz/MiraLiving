@@ -15,7 +15,7 @@ export default function SecureSection() {
         {/* Editorial Narrative Header */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
           <div className="lg:col-span-8 space-y-6">
-            <span className="text-[11px] font-sans tracking-[0.3em] uppercase text-mira-brown block font-medium">
+            <span className="text-[12px] font-sans tracking-[0.16em] uppercase text-mira-brown block font-medium">
               {secureSection.eyebrow}
             </span>
             <h2 className="text-4xl sm:text-6xl md:text-7xl font-serif text-mira-charcoal font-light leading-tight">
@@ -29,7 +29,7 @@ export default function SecureSection() {
 
           {/* Minimal Concierge Contacts Strip */}
           <div className="lg:col-span-4 p-8 bg-white border border-mira-border shadow-subtle space-y-6">
-            <span className="text-[11px] font-sans tracking-[0.25em] uppercase text-mira-brown block font-medium">
+            <span className="text-[12px] font-sans tracking-[0.16em] uppercase text-mira-brown block font-medium">
               Sales Concierge
             </span>
             <div className="space-y-4">
@@ -48,7 +48,7 @@ export default function SecureSection() {
             </div>
             <button
               onClick={openRegister}
-              className="w-full py-3.5 bg-mira-teal hover:bg-mira-tealDark text-white text-xs font-sans tracking-[0.2em] uppercase transition-colors shadow-subtle flex items-center justify-center gap-2"
+              className="w-full py-3.5 bg-mira-teal hover:bg-mira-tealDark text-white text-xs font-sans tracking-[0.15em] uppercase transition-colors shadow-subtle flex items-center justify-center gap-2"
             >
               <span>Download Full Brochure</span>
               <ArrowRight className="w-4 h-4" />

@@ -86,7 +86,7 @@ export default function ImageSlot({
           m
         </span>
         <p
-          className={`mt-6 font-sans text-[10px] font-medium uppercase tracking-[0.3em] sm:text-[11px] ${
+          className={`mt-6 font-sans text-[11px] font-medium uppercase tracking-[0.16em] sm:text-[12px] ${
             dark ? "text-white/75" : "text-mira-brownDark/80"
           }`}
         >
@@ -104,7 +104,7 @@ export default function ImageSlot({
       </div>
 
       <div
-        className={`absolute inset-x-6 bottom-6 flex justify-between font-sans text-[9px] uppercase tracking-[0.3em] sm:inset-x-10 sm:bottom-8 ${
+        className={`absolute inset-x-6 bottom-6 flex justify-between font-sans text-[11px] uppercase tracking-[0.16em] sm:inset-x-10 sm:bottom-8 ${
           dark ? "text-white/45" : "text-mira-brown/60"
         }`}
       >

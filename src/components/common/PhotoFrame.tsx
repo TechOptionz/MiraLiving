@@ -69,7 +69,7 @@ export default function PhotoFrame({
           className={`object-cover ${zoom ? "transition-transform duration-[1200ms] ease-out group-hover:scale-[1.03]" : ""}`}
         />
         {caption && (
-          <span className="absolute bottom-3 right-3 bg-mira-charcoal/75 px-3 py-1.5 font-sans text-[11px] uppercase tracking-[0.16em] text-white backdrop-blur-sm sm:bottom-4 sm:right-4">
+          <span className="absolute bottom-3 right-3 bg-mira-charcoal/75 px-3 py-1.5 font-sans text-[12px] uppercase tracking-[0.16em] text-white backdrop-blur-sm sm:bottom-4 sm:right-4">
             {caption}
           </span>
         )}

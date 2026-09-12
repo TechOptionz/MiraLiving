@@ -69,7 +69,7 @@ export default function MudMap() {
                 </span>
                 {point.note && (
                   <span
-                    className={`text-[11px] font-sans px-2.5 py-0.5 rounded-none uppercase tracking-wider ${
+                    className={`text-[12px] font-sans px-2.5 py-0.5 rounded-none uppercase tracking-wider ${
                       point.highlight
                         ? "bg-mira-teal text-white font-medium"
                         : "bg-mira-sandLight text-mira-muted"
@@ -112,7 +112,7 @@ export default function MudMap() {
             fill
             className="object-cover transition-transform duration-700 group-hover:scale-105"
           />
-          <div className="absolute bottom-3 right-4 bg-black/60 backdrop-blur-sm px-3 py-1 text-[11px] text-white/90 font-sans tracking-wider">
+          <div className="absolute bottom-3 right-4 bg-black/60 backdrop-blur-sm px-3 py-1 text-[12px] text-white/90 font-sans tracking-wider">
             Artist Impression
           </div>
         </div>
