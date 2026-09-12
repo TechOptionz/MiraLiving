@@ -69,7 +69,7 @@ export default function ImageSlot({
           : "bg-[linear-gradient(150deg,#F1E8DD_0%,#E4D6C6_55%,#D6C3AE_100%)]"
       }`}
     >
-      <div className={`absolute inset-0 bg-noise ${dark ? "opacity-25" : "opacity-40 mix-blend-multiply"}`} />
+      <div className={`absolute inset-0 bg-noise ${dark ? "opacity-25" : "opacity-25"}`} />
       <div
         className={`absolute -left-1/4 -top-1/4 h-3/4 w-3/4 rounded-full blur-3xl ${
           dark ? "bg-mira-brown/25" : "bg-white/40"

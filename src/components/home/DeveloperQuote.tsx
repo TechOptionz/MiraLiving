@@ -6,7 +6,7 @@ import Reveal from "@/components/common/Reveal";
 export default function DeveloperQuote() {
   return (
     <section className="relative flex min-h-screen w-full items-center justify-center overflow-hidden border-t border-mira-border bg-mira-sand px-6 pb-20 pt-28 sm:px-12">
-      <div className="pointer-events-none absolute inset-0 bg-noise opacity-25 mix-blend-overlay" />
+      <div className="pointer-events-none absolute inset-0 bg-noise opacity-[0.14]" />
 
       {/* Oversized quotation mark, set as texture rather than punctuation. */}
       <span

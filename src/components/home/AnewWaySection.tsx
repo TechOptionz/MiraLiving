@@ -1,30 +1,39 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
 import { useModal } from "@/context/ModalContext";
 import { aNewWayToLive } from "@/content/site-content";
 import Reveal from "@/components/common/Reveal";
 import { ArrowRight } from "lucide-react";
+import { useOnScreen } from "@/hooks/useOnScreen";
 
 export default function AnewWaySection() {
   const { openRegister } = useModal();
+  const sectionRef = useRef<HTMLElement>(null);
+  const onScreen = useOnScreen(sectionRef);
 
   return (
-    <section className="relative flex min-h-screen w-full items-end overflow-hidden bg-mira-charcoal text-white">
+    <section
+      ref={sectionRef}
+      className="relative flex min-h-screen w-full items-end overflow-hidden bg-mira-charcoal text-white"
+    >
       {/* The elevation render carries the whole frame at full bleed. */}
       <div className="absolute inset-0">
         <Image
           src={aNewWayToLive.image}
           alt="Mira Living dusk exterior oceanfront render showing absolute beachfront elevation"
           fill
-          priority
-          quality={90}
+          // Not `priority`: this is the fourth section down. Marking it so had
+          // the browser preload a full-viewport render at first paint, ahead of
+          // the hero the visitor is actually looking at.
+          loading="lazy"
+          quality={82}
           sizes="100vw"
-          className="animate-kenburns object-cover object-center"
+          className={`animate-kenburns object-cover object-center ${onScreen ? "" : "is-offscreen"}`}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/50" />
-        <div className="pointer-events-none absolute inset-0 bg-noise opacity-15 mix-blend-overlay" />
+        <div className="pointer-events-none absolute inset-0 bg-noise opacity-[0.09]" />
       </div>
 
       <div className="relative z-10 mx-auto w-full max-w-[1600px] px-6 pb-14 pt-32 sm:px-12 sm:pb-20 lg:px-16">

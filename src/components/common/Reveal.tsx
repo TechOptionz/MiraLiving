@@ -20,6 +20,43 @@ type RevealProps = {
   style?: React.CSSProperties;
 };
 
+/*
+ * One IntersectionObserver per root margin, shared by every reveal that uses it.
+ *
+ * The residences page alone mounts twenty-odd reveals; giving each its own
+ * observer meant twenty separate sets of intersection bookkeeping for what is
+ * really one question asked about twenty elements.
+ */
+type Observed = { observer: IntersectionObserver; callbacks: Map<Element, () => void> };
+const observers = new Map<string, Observed>();
+
+function observe(el: Element, rootMargin: string, onVisible: () => void) {
+  let entry = observers.get(rootMargin);
+  if (!entry) {
+    const callbacks = new Map<Element, () => void>();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (!e.isIntersecting) continue;
+          callbacks.get(e.target)?.();
+          callbacks.delete(e.target);
+          observer.unobserve(e.target);
+        }
+      },
+      { rootMargin }
+    );
+    entry = { observer, callbacks };
+    observers.set(rootMargin, entry);
+  }
+  entry.callbacks.set(el, onVisible);
+  entry.observer.observe(el);
+
+  return () => {
+    entry!.callbacks.delete(el);
+    entry!.observer.unobserve(el);
+  };
+}
+
 export default function Reveal({
   children,
   as = "div",
@@ -32,33 +69,36 @@ export default function Reveal({
 }: RevealProps) {
   const ref = useRef<HTMLElement>(null);
   const [visible, setVisible] = useState(false);
+  const [settled, setSettled] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
     if (!("IntersectionObserver" in window)) {
       setVisible(true);
+      setSettled(true);
       return;
     }
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
+    return observe(el, rootMargin, () => setVisible(true));
   }, [rootMargin]);
+
+  // A reveal plays once. Once it has, drop its compositor hint and its
+  // transitions so the element goes back to being ordinary static content —
+  // otherwise a long page accumulates dozens of live layers behind the reader.
+  useEffect(() => {
+    if (!visible || settled) return;
+    const timer = window.setTimeout(() => setSettled(true), delay + 2600);
+    return () => window.clearTimeout(timer);
+  }, [visible, settled, delay]);
 
   return React.createElement(
     as,
     {
       ref,
       id,
-      className: `reveal reveal-${variant} ${visible ? "is-visible" : ""} ${className}`,
+      className: `reveal reveal-${variant} ${visible ? "is-visible" : ""} ${
+        settled ? "is-settled" : ""
+      } ${className}`,
       style:
         delay || style
           ? ({ ...style, ...(delay ? { "--reveal-delay": `${delay}ms` } : null) } as React.CSSProperties)

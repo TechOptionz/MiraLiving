@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import Image from "next/image";
 import { featureSlides } from "@/content/site-content";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -8,6 +8,27 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 export default function InteriorsSlider() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
+
+  /*
+   * Which slides have an <Image> mounted at all.
+   *
+   * Every slide used to render its photograph up front — five full-viewport
+   * images on a section six screens down the page, three of them preloaded
+   * ahead of the hero. Now a slide's image appears when it is reached or is
+   * next in either direction, and stays once mounted so going back is instant.
+   */
+  const [reached, setReached] = useState(0);
+  useEffect(() => {
+    setReached((prev) => Math.max(prev, currentIndex));
+  }, [currentIndex]);
+
+  const mounted = useMemo(() => {
+    const set = new Set<number>();
+    for (let i = 0; i <= reached; i += 1) set.add(i);
+    set.add((currentIndex + 1) % featureSlides.length);
+    set.add((currentIndex - 1 + featureSlides.length) % featureSlides.length);
+    return set;
+  }, [reached, currentIndex]);
 
   // Functional updates, so the key handler below never reads a stale index.
   const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % featureSlides.length);
@@ -47,29 +68,44 @@ export default function InteriorsSlider() {
       {/*
         The slide itself is the section background — every frame is stacked and
         cross-faded so the next render is already decoded when it comes forward.
+
+        A faded-out layer is still a full-viewport layer the compositor has to
+        carry, so once its cross-fade is over it is taken out of the rendering
+        tree with `visibility` (delayed by the fade's own duration, so the
+        transition still plays).
       */}
       <div className="absolute inset-0">
-        {featureSlides.map((slide, idx) => (
-          <div
-            key={slide.id}
-            aria-hidden={idx !== currentIndex}
-            className={`absolute inset-0 transition-opacity duration-[1200ms] ease-out ${
-              idx === currentIndex ? "opacity-100" : "opacity-0"
-            }`}
-          >
-            <Image
-              src={slide.image}
-              alt={`${slide.title} — Mira Living luxury interior`}
-              fill
-              priority={idx === 0}
-              quality={90}
-              sizes="100vw"
-              className="object-cover object-center"
-            />
-          </div>
-        ))}
+        {featureSlides.map((slide, idx) => {
+          const active = idx === currentIndex;
+
+          return (
+            <div
+              key={slide.id}
+              aria-hidden={!active}
+              style={{
+                visibility: active ? "visible" : "hidden",
+                transition: active
+                  ? "opacity 1200ms ease-out, visibility 0s"
+                  : "opacity 1200ms ease-out, visibility 0s linear 1200ms",
+              }}
+              className={`absolute inset-0 ${active ? "opacity-100" : "opacity-0"}`}
+            >
+              {mounted.has(idx) && (
+                <Image
+                  src={slide.image}
+                  alt={`${slide.title} — Mira Living luxury interior`}
+                  fill
+                  loading="lazy"
+                  quality={82}
+                  sizes="100vw"
+                  className="object-cover object-center"
+                />
+              )}
+            </div>
+          );
+        })}
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/70" />
-        <div className="pointer-events-none absolute inset-0 bg-noise opacity-15 mix-blend-overlay" />
+        <div className="pointer-events-none absolute inset-0 bg-noise opacity-[0.09]" />
       </div>
 
       {/* Chapter header */}

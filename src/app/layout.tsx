@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Cormorant_Garamond, Poppins } from "next/font/google";
 import "./globals.css";
 import { ModalProvider } from "@/context/ModalContext";
 import Header from "@/components/layout/Header";
@@ -6,6 +7,29 @@ import Footer from "@/components/layout/Footer";
 import RegisterModal from "@/components/common/RegisterModal";
 import CookieConsent from "@/components/layout/CookieConsent";
 import { siteConfig } from "@/content/site-content";
+
+/**
+ * Self-hosted through next/font: the files are served from our own origin and
+ * the face declarations are inlined into the document, so there is no
+ * render-blocking round trip to fonts.googleapis.com before the first paint.
+ * Only the weights the design actually uses are requested (300/400/500/600).
+ */
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+  style: ["normal", "italic"],
+  display: "swap",
+  variable: "--font-cormorant",
+  fallback: ["Georgia", "serif"],
+});
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+  display: "swap",
+  variable: "--font-poppins",
+  fallback: ["system-ui", "sans-serif"],
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -116,7 +140,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en-AU" className="scroll-smooth">
+    <html lang="en-AU" className={`scroll-smooth ${cormorant.variable} ${poppins.variable}`}>
       <head>
         <script
           type="application/ld+json"

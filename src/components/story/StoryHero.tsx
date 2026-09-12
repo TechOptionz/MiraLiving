@@ -19,7 +19,7 @@ export default function StoryHero() {
       {/* Elegant dark overlay — keeps the headline legible over any photograph */}
       <div className="absolute inset-0 bg-black/35" />
       <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/55" />
-      <div className="pointer-events-none absolute inset-0 bg-noise opacity-15 mix-blend-overlay" />
+      <div className="pointer-events-none absolute inset-0 bg-noise opacity-[0.09]" />
 
       <div className="relative z-10 mx-auto flex h-full w-full max-w-[1800px] flex-col justify-end px-6 pb-10 sm:px-12 sm:pb-14 lg:px-20 2xl:px-28">
         <p

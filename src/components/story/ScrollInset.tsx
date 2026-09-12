@@ -14,13 +14,23 @@ export default function ScrollInset({
   style?: React.CSSProperties;
 }) {
   const ref = useRef<HTMLDivElement>(null);
+  const lastSide = useRef<number | null>(null);
 
   useScrollFrame(ref, (rect, vh) => {
     const el = ref.current;
     if (!el) return;
+
     const progress = Math.min(1, Math.max(0, (vh - rect.top) / (vh * 0.75)));
-    const side = (1 - progress) * (window.innerWidth < 768 ? 4 : 7);
-    el.style.clipPath = `inset(${(side * 0.7).toFixed(2)}% ${side.toFixed(2)}%)`;
+    // Clip-path cannot be composited — every change repaints the frame and the
+    // full-bleed photograph inside it. Quantising to tenths of a percent keeps
+    // the motion smooth to the eye while cutting the repaints by an order of
+    // magnitude, and an unchanged value is never written back at all.
+    const side = Math.round((1 - progress) * (window.innerWidth < 768 ? 4 : 7) * 10) / 10;
+    if (side === lastSide.current) return;
+    lastSide.current = side;
+
+    // Fully open: drop the clip entirely rather than paying for inset(0% 0%).
+    el.style.clipPath = side === 0 ? "" : `inset(${(side * 0.7).toFixed(2)}% ${side.toFixed(2)}%)`;
   });
 
   return (

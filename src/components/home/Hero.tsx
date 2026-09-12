@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { useModal } from "@/context/ModalContext";
+import BackdropVideo from "@/components/common/BackdropVideo";
 import { siteConfig } from "@/content/site-content";
 
 /**
@@ -23,22 +24,26 @@ export default function Hero() {
     <section className="relative w-full min-h-[100svh] flex flex-col overflow-hidden bg-mira-charcoal text-white">
       {/* Cinematic full-bleed backdrop */}
       <div className="absolute inset-0 z-0" aria-hidden="true">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="metadata"
+        {/*
+          No Ken-Burns here any more: scaling a *playing* video means every
+          decoded frame has to be re-rastered at a new size, which is the one
+          thing the compositor cannot hand off cheaply. The footage already
+          moves — the drift was paying for motion the visitor could not
+          distinguish from the video's own.
+        */}
+        <BackdropVideo
+          src="/video/home-hero.mp4"
           poster="/video/home-hero-poster.jpg"
-          className="w-full h-full object-cover object-center animate-kenburns"
-        >
-          <source src="/video/home-hero.mp4" type="video/mp4" />
-        </video>
+          // The first thing anyone sees: fetched and playing from the markup,
+          // so the water is already moving when the page is first readable.
+          priority
+          className="w-full h-full object-cover object-center"
+        />
 
         {/* Light directional scrim: just enough to seat the type, the photograph stays the hero */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/15" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/35 via-black/5 to-transparent" />
-        <div className="absolute inset-0 bg-noise opacity-[0.07] mix-blend-overlay" />
+        <div className="absolute inset-0 bg-noise opacity-[0.07]" />
       </div>
 
       {/* ------------------------------------------------------------------
@@ -127,7 +132,7 @@ export default function Hero() {
           Specification rail
           ------------------------------------------------------------------ */}
       <div
-        className="relative z-10 border-t border-white/15 bg-black/25 backdrop-blur-md animate-softFade"
+        className="relative z-10 border-t border-white/15 bg-black/45 animate-softFade"
         style={{ "--d": "1100ms" } as React.CSSProperties}
       >
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">

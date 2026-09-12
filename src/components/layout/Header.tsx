@@ -15,19 +15,30 @@ export default function Header() {
   const { openRegister } = useModal();
 
   // Pages that open on a full-bleed dark hero get the transparent header until scrolled.
-  const overHero = pathname === "/" || pathname === "/story";
+  const overHero = pathname === "/" || pathname === "/story" || pathname === "/team";
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+    /*
+     * A sentinel does the watching instead of a scroll listener: the browser
+     * reports the crossing itself, off the main thread, so nothing runs on the
+     * scroll path at all. The old handler fired on every scroll event for the
+     * whole page just to compare one number.
+     */
+    const sentinel = document.createElement("div");
+    sentinel.setAttribute("aria-hidden", "true");
+    sentinel.style.cssText = "position:absolute;top:0;left:0;width:1px;height:50px;pointer-events:none";
+    document.body.appendChild(sentinel);
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsScrolled(!entry.isIntersecting),
+      { threshold: 0 }
+    );
+    observer.observe(sentinel);
+
+    return () => {
+      observer.disconnect();
+      sentinel.remove();
     };
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navLinks = [
@@ -38,7 +49,7 @@ export default function Header() {
   ];
 
   const headerBgClass = isScrolled || !overHero
-    ? "bg-mira-ground/95 backdrop-blur-md border-b border-mira-border shadow-subtle text-mira-charcoal"
+    ? "bg-mira-ground/[0.97] border-b border-mira-border shadow-subtle text-mira-charcoal"
     : "bg-gradient-to-b from-black/60 via-black/20 to-transparent text-white";
 
   const logoSrc = isScrolled || !overHero
@@ -46,7 +57,7 @@ export default function Header() {
     : "/img/site/mira-logo.svg";
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${headerBgClass}`}>
+    <header className={`fixed top-0 left-0 right-0 z-40 transition-colors duration-300 ${headerBgClass}`}>
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 h-20 sm:h-24 flex items-center justify-between">
         {/* Left: Brand Logo */}
         <Link href="/" className="relative z-50 inline-block focus:outline-none focus:ring-1 focus:ring-mira-teal">
@@ -94,7 +105,7 @@ export default function Header() {
             className={`px-6 py-2.5 text-xs font-sans tracking-eyebrow uppercase transition-all duration-300 border ${
               isScrolled || !overHero
                 ? "bg-mira-teal hover:bg-mira-tealDark border-mira-teal text-white shadow-subtle hover:shadow-card"
-                : "bg-white/15 hover:bg-white text-white hover:text-mira-charcoal border-white/40 backdrop-blur-sm"
+                : "bg-white/20 hover:bg-white text-white hover:text-mira-charcoal border-white/40"
             }`}
           >
             Download Brochure
@@ -121,7 +132,7 @@ export default function Header() {
       {mobileMenuOpen && (
         <div
           id="mobile-menu"
-          className="md:hidden fixed inset-0 top-20 bg-mira-ground/98 backdrop-blur-xl border-t border-mira-border z-40 px-6 py-8 flex flex-col justify-between overflow-y-auto animate-fadeIn"
+          className="md:hidden fixed inset-0 top-20 bg-mira-ground border-t border-mira-border z-40 px-6 py-8 flex flex-col justify-between overflow-y-auto animate-fadeIn"
         >
           <div className="space-y-6 pt-4">
             <p className="text-[11px] font-sans uppercase tracking-eyebrow text-mira-muted">

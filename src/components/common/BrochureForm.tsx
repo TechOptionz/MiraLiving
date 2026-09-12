@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { registerSection, siteConfig } from "@/content/site-content";
-import { CheckCircle2, Download, Loader2 } from "lucide-react";
+import { AlertCircle, CheckCircle2, ChevronDown, Download, Loader2, Lock } from "lucide-react";
 
 interface BrochureFormProps {
   idPrefix?: string;
@@ -10,6 +10,18 @@ interface BrochureFormProps {
   darkVariant?: boolean;
 }
 
+type FieldName = "firstName" | "lastName" | "phone" | "email" | "budget" | "timeframe" | "message";
+
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+/**
+ * Registration / brochure request form.
+ *
+ * Fields are hairline-ruled rather than boxed: over the register section's
+ * footage a grid of filled boxes reads like an admin panel, while a single
+ * rule that lights up on focus keeps the section editorial. The same
+ * component serves the light modal by swapping only the ink and rule colours.
+ */
 export default function BrochureForm({ idPrefix = "form", onSuccess, darkVariant = false }: BrochureFormProps) {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -22,21 +34,33 @@ export default function BrochureForm({ idPrefix = "form", onSuccess, darkVariant
     linkedInHoneypot: "" // Honeypot field for anti-spam
   });
 
+  const [errors, setErrors] = useState<Partial<Record<FieldName, string>>>({});
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }));
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    // Clear a field's error as soon as the visitor starts correcting it.
+    setErrors((prev) => (prev[name as FieldName] ? { ...prev, [name]: undefined } : prev));
+  };
+
+  const validate = () => {
+    const next: Partial<Record<FieldName, string>> = {};
+    if (!formData.firstName.trim()) next.firstName = "Please enter your first name.";
+    if (!formData.lastName.trim()) next.lastName = "Please enter your last name.";
+    if (!formData.email.trim()) next.email = "Please enter your email address.";
+    else if (!EMAIL_PATTERN.test(formData.email.trim())) next.email = "Please enter a valid email address.";
+    return next;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!formData.firstName || !formData.lastName || !formData.email) {
-      setErrorMessage("Please complete all required fields (*).");
+    const found = validate();
+    if (Object.keys(found).length > 0) {
+      setErrors(found);
+      setErrorMessage("Please complete the highlighted fields.");
       return;
     }
 
@@ -66,7 +90,7 @@ export default function BrochureForm({ idPrefix = "form", onSuccess, darkVariant
 
       setStatus("success");
       if (onSuccess) {
-        setTimeout(onSuccess, 2000);
+        setTimeout(onSuccess, 2600);
       }
     } catch {
       setStatus("error");
@@ -74,45 +98,121 @@ export default function BrochureForm({ idPrefix = "form", onSuccess, darkVariant
     }
   };
 
+  // ----------------------------------------------------------------------
+  // Field styling - one palette per variant, shared by input, select, textarea
+  // ----------------------------------------------------------------------
+  const ink = useMemo(
+    () =>
+      darkVariant
+        ? {
+            label: "text-white/70",
+            field:
+              "bg-transparent text-white placeholder:text-white/40 border-white/30 hover:border-white/55 focus:border-mira-sandLight",
+            fieldError: "border-red-400/80 focus:border-red-300",
+            option: "bg-mira-brownDeep text-white",
+            rule: "bg-white/25",
+            note: "text-white/60",
+            asterisk: "text-mira-sandLight/80",
+            placeholderInk: "text-white/50",
+            errorInk: "text-red-300"
+          }
+        : {
+            label: "text-mira-muted/75",
+            field:
+              "bg-transparent text-mira-charcoal placeholder:text-mira-muted/40 border-mira-border hover:border-mira-sandDark focus:border-mira-brown",
+            fieldError: "border-red-500/80 focus:border-red-500",
+            option: "bg-white text-mira-charcoal",
+            rule: "bg-mira-border",
+            note: "text-mira-muted/70",
+            asterisk: "text-mira-brown/70",
+            placeholderInk: "text-mira-muted/50",
+            errorInk: "text-red-600"
+          },
+    [darkVariant]
+  );
+
+  const labelClass = `block text-[10px] font-sans uppercase tracking-eyebrow mb-2 ${ink.label}`;
+
+  const fieldClass = (field?: FieldName) =>
+    [
+      "w-full border-0 border-b bg-transparent px-0 py-2.5 font-sans text-[15px] leading-snug",
+      "transition-colors duration-300 focus:outline-none focus:ring-0",
+      ink.field,
+      field && errors[field] ? ink.fieldError : ""
+    ].join(" ");
+
+  const FieldError = ({ field }: { field: FieldName }) =>
+    errors[field] ? (
+      <p
+        id={`${idPrefix}-${field}-error`}
+        className={`mt-2 flex items-center gap-1.5 font-sans text-[11px] ${ink.errorInk}`}
+      >
+        <AlertCircle className="h-3 w-3 shrink-0" aria-hidden="true" />
+        {errors[field]}
+      </p>
+    ) : null;
+
+  const describedBy = (field: FieldName) => (errors[field] ? `${idPrefix}-${field}-error` : undefined);
+
+  const Legend = ({ children }: { children: React.ReactNode }) => (
+    <div className="flex items-center gap-4">
+      <span className={`text-[10px] font-sans uppercase tracking-eyebrow ${ink.label}`}>{children}</span>
+      <span className={`h-px flex-1 ${ink.rule}`} aria-hidden="true" />
+    </div>
+  );
+
+  // ----------------------------------------------------------------------
+  // Success
+  // ----------------------------------------------------------------------
   if (status === "success") {
     return (
-      <div className={`p-8 rounded-sm text-center border ${darkVariant ? "bg-mira-brownDeep/90 border-mira-sand/30 text-mira-sandLight" : "bg-white/95 border-mira-border text-mira-charcoal"}`}>
-        <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-mira-teal/20 flex items-center justify-center text-mira-tealDark">
-          <CheckCircle2 className="w-8 h-8" />
+      <div
+        role="status"
+        aria-live="polite"
+        className={`animate-fadeIn px-2 py-10 text-center sm:px-8 ${darkVariant ? "text-white" : "text-mira-charcoal"}`}
+      >
+        <div
+          className={`mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-full border ${
+            darkVariant ? "border-mira-sandLight/40 text-mira-sandLight" : "border-mira-brown/30 text-mira-brown"
+          }`}
+        >
+          <CheckCircle2 className="h-7 w-7" strokeWidth={1.25} />
         </div>
-        <h3 className="text-2xl font-serif font-normal mb-2">Registration Received</h3>
-        <p className="text-sm font-sans text-mira-muted mb-6 leading-relaxed max-w-md mx-auto">
+        <p className={`text-[10px] font-sans uppercase tracking-eyebrow ${ink.label}`}>Registration received</p>
+        <h3 className="mt-3 font-serif text-3xl font-light sm:text-4xl">Thank you</h3>
+        <p
+          className={`mx-auto mt-4 max-w-md font-sans text-sm leading-relaxed ${
+            darkVariant ? "text-white/70" : "text-mira-muted"
+          }`}
+        >
           {siteConfig.brochureUrl
-            ? "Thank you for registering your interest in Mira Living. Your brochure is ready to download below, and a member of our sales team will be in touch shortly."
-            : "Thank you for registering your interest in Mira Living. The brochure will be emailed to you shortly, along with a call from a member of our sales team."}
+            ? "Your brochure is ready below, and a member of our sales team will be in touch shortly."
+            : "The brochure will be emailed to you shortly, along with a call from a member of our sales team."}
         </p>
         {siteConfig.brochureUrl && (
           <a
             href={siteConfig.brochureUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-mira-teal hover:bg-mira-tealDark text-white text-xs font-sans tracking-eyebrow uppercase transition-colors rounded-sm"
+            className={`mt-8 inline-flex items-center gap-3 px-9 py-4 font-sans text-[11px] uppercase tracking-eyebrow transition-colors duration-300 focus:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 ${
+              darkVariant
+                ? "bg-mira-sandLight text-mira-charcoal hover:bg-white focus-visible:ring-white focus-visible:ring-offset-transparent"
+                : "bg-mira-charcoal text-white hover:bg-mira-brownDeep focus-visible:ring-mira-brown focus-visible:ring-offset-mira-ground"
+            }`}
           >
-            <Download className="w-4 h-4" />
-            Download Brochure (PDF)
+            <Download className="h-4 w-4" strokeWidth={1.5} />
+            Download brochure (PDF)
           </a>
         )}
       </div>
     );
   }
 
-  const inputClass = `w-full px-4 py-3 text-sm font-sans rounded-none border transition-all focus:outline-none focus:ring-1 focus:ring-mira-brown ${
-    darkVariant
-      ? "bg-mira-brownDeep/50 border-mira-borderDark/40 text-mira-sandLight placeholder-mira-sand/50 focus:border-mira-sand"
-      : "bg-white/90 border-mira-border text-mira-charcoal placeholder-mira-muted/60 focus:border-mira-brown"
-  }`;
-
-  const labelClass = `block text-xs font-sans uppercase tracking-eyebrow mb-1.5 font-medium ${
-    darkVariant ? "text-mira-sand/90" : "text-mira-muted"
-  }`;
-
+  // ----------------------------------------------------------------------
+  // Form
+  // ----------------------------------------------------------------------
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 text-left" noValidate>
+    <form onSubmit={handleSubmit} className="text-left" noValidate>
       {/* Honeypot field (hidden from view) */}
       <div className="hidden" aria-hidden="true">
         <label htmlFor={`${idPrefix}-linkedin`}>LinkedIn Profile</label>
@@ -127,40 +227,67 @@ export default function BrochureForm({ idPrefix = "form", onSuccess, darkVariant
         />
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <Legend>Your details</Legend>
+
+      <div className="mt-7 grid grid-cols-1 gap-x-8 gap-y-7 sm:grid-cols-2">
         <div>
           <label htmlFor={`${idPrefix}-firstName`} className={labelClass}>
-            First Name *
+            First name <span className={ink.asterisk}>*</span>
           </label>
           <input
             type="text"
             id={`${idPrefix}-firstName`}
             name="firstName"
-            required
+            autoComplete="given-name"
             value={formData.firstName}
             onChange={handleChange}
-            className={inputClass}
+            aria-invalid={Boolean(errors.firstName)}
+            aria-describedby={describedBy("firstName")}
+            className={fieldClass("firstName")}
             placeholder="John"
           />
+          <FieldError field="firstName" />
         </div>
+
         <div>
           <label htmlFor={`${idPrefix}-lastName`} className={labelClass}>
-            Last Name *
+            Last name <span className={ink.asterisk}>*</span>
           </label>
           <input
             type="text"
             id={`${idPrefix}-lastName`}
             name="lastName"
-            required
+            autoComplete="family-name"
             value={formData.lastName}
             onChange={handleChange}
-            className={inputClass}
+            aria-invalid={Boolean(errors.lastName)}
+            aria-describedby={describedBy("lastName")}
+            className={fieldClass("lastName")}
             placeholder="Smith"
           />
+          <FieldError field="lastName" />
         </div>
-      </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label htmlFor={`${idPrefix}-email`} className={labelClass}>
+            Email <span className={ink.asterisk}>*</span>
+          </label>
+          <input
+            type="email"
+            id={`${idPrefix}-email`}
+            name="email"
+            autoComplete="email"
+            inputMode="email"
+            value={formData.email}
+            onChange={handleChange}
+            aria-invalid={Boolean(errors.email)}
+            aria-describedby={describedBy("email")}
+            className={fieldClass("email")}
+            placeholder="john@example.com"
+          />
+          <FieldError field="email" />
+        </div>
+
         <div>
           <label htmlFor={`${idPrefix}-phone`} className={labelClass}>
             Phone
@@ -169,106 +296,136 @@ export default function BrochureForm({ idPrefix = "form", onSuccess, darkVariant
             type="tel"
             id={`${idPrefix}-phone`}
             name="phone"
+            autoComplete="tel"
+            inputMode="tel"
             value={formData.phone}
             onChange={handleChange}
-            className={inputClass}
+            className={fieldClass()}
             placeholder="0400 000 000"
           />
         </div>
+      </div>
+
+      <div className="mt-11">
+        <Legend>Your enquiry</Legend>
+      </div>
+
+      <div className="mt-7 grid grid-cols-1 gap-x-8 gap-y-7 sm:grid-cols-2">
         <div>
-          <label htmlFor={`${idPrefix}-email`} className={labelClass}>
-            Email *
+          <label htmlFor={`${idPrefix}-budget`} className={labelClass}>
+            Budget
           </label>
-          <input
-            type="email"
-            id={`${idPrefix}-email`}
-            name="email"
-            required
-            value={formData.email}
+          <div className="relative">
+            <select
+              id={`${idPrefix}-budget`}
+              name="budget"
+              value={formData.budget}
+              onChange={handleChange}
+              className={`${fieldClass()} appearance-none pr-8 ${formData.budget ? "" : ink.placeholderInk}`}
+            >
+              <option value="" className={ink.option}>
+                Select a range
+              </option>
+              {registerSection.budgetOptions.map((opt) => (
+                <option key={opt} value={opt} className={ink.option}>
+                  {opt}
+                </option>
+              ))}
+            </select>
+            <ChevronDown
+              className={`pointer-events-none absolute right-0 top-1/2 h-4 w-4 -translate-y-1/2 ${ink.label}`}
+              strokeWidth={1.5}
+              aria-hidden="true"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label htmlFor={`${idPrefix}-timeframe`} className={labelClass}>
+            Purchasing timeframe
+          </label>
+          <div className="relative">
+            <select
+              id={`${idPrefix}-timeframe`}
+              name="timeframe"
+              value={formData.timeframe}
+              onChange={handleChange}
+              className={`${fieldClass()} appearance-none pr-8 ${formData.timeframe ? "" : ink.placeholderInk}`}
+            >
+              <option value="" className={ink.option}>
+                Select a timeframe
+              </option>
+              {registerSection.timeframeOptions.map((opt) => (
+                <option key={opt} value={opt} className={ink.option}>
+                  {opt}
+                </option>
+              ))}
+            </select>
+            <ChevronDown
+              className={`pointer-events-none absolute right-0 top-1/2 h-4 w-4 -translate-y-1/2 ${ink.label}`}
+              strokeWidth={1.5}
+              aria-hidden="true"
+            />
+          </div>
+        </div>
+
+        <div className="sm:col-span-2">
+          <label htmlFor={`${idPrefix}-message`} className={labelClass}>
+            Message <span className={ink.note}>(optional)</span>
+          </label>
+          <textarea
+            id={`${idPrefix}-message`}
+            name="message"
+            rows={2}
+            value={formData.message}
             onChange={handleChange}
-            className={inputClass}
-            placeholder="john@example.com"
+            className={`${fieldClass()} resize-none`}
+            placeholder="Tell us about your apartment requirements…"
           />
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div>
-          <label htmlFor={`${idPrefix}-budget`} className={labelClass}>
-            What is your budget?
-          </label>
-          <select
-            id={`${idPrefix}-budget`}
-            name="budget"
-            value={formData.budget}
-            onChange={handleChange}
-            className={inputClass}
-          >
-            <option value="">Select Budget</option>
-            {registerSection.budgetOptions.map((opt) => (
-              <option key={opt} value={opt} className="text-mira-charcoal bg-white">
-                {opt}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <label htmlFor={`${idPrefix}-timeframe`} className={labelClass}>
-            Purchasing Timeframe?
-          </label>
-          <select
-            id={`${idPrefix}-timeframe`}
-            name="timeframe"
-            value={formData.timeframe}
-            onChange={handleChange}
-            className={inputClass}
-          >
-            <option value="">Select Timeframe</option>
-            {registerSection.timeframeOptions.map((opt) => (
-              <option key={opt} value={opt} className="text-mira-charcoal bg-white">
-                {opt}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
-
-      <div>
-        <label htmlFor={`${idPrefix}-message`} className={labelClass}>
-          Message (Optional)
-        </label>
-        <textarea
-          id={`${idPrefix}-message`}
-          name="message"
-          rows={3}
-          value={formData.message}
-          onChange={handleChange}
-          className={inputClass}
-          placeholder="Tell us about your apartment requirements..."
-        />
-      </div>
-
       {errorMessage && (
-        <p className="text-red-500 text-xs font-sans mt-1">{errorMessage}</p>
+        <p
+          role="alert"
+          className={`mt-8 flex items-start gap-2 font-sans text-xs leading-relaxed ${ink.errorInk}`}
+        >
+          <AlertCircle className="mt-0.5 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+          {errorMessage}
+        </p>
       )}
 
-      <div className="pt-2">
+      <div className="mt-10">
         <button
           type="submit"
           disabled={status === "submitting"}
-          className="w-full py-4 px-8 bg-mira-teal hover:bg-mira-tealDark disabled:opacity-75 text-white font-sans text-xs tracking-eyebrow uppercase transition-all duration-300 flex items-center justify-center gap-2 shadow-subtle hover:shadow-card active:scale-[0.99]"
+          className={`group flex w-full items-center justify-center gap-3 px-8 py-[1.125rem] font-sans text-[11px] uppercase tracking-eyebrow transition-colors duration-300 focus:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 disabled:cursor-wait disabled:opacity-70 ${
+            darkVariant
+              ? "bg-mira-sandLight text-mira-charcoal hover:bg-white focus-visible:ring-white focus-visible:ring-offset-transparent"
+              : "bg-mira-charcoal text-white hover:bg-mira-brownDeep focus-visible:ring-mira-brown focus-visible:ring-offset-mira-ground"
+          }`}
         >
           {status === "submitting" ? (
             <>
-              <Loader2 className="w-4 h-4 animate-spin" />
-              <span>Processing...</span>
+              <Loader2 className="h-4 w-4 animate-spin" strokeWidth={1.5} />
+              <span>Sending your request…</span>
             </>
           ) : (
-            <span>Download Brochure</span>
+            <>
+              <span>Download the brochure</span>
+              <span
+                aria-hidden="true"
+                className="inline-block transition-transform duration-300 group-hover:translate-x-1"
+              >
+                &rarr;
+              </span>
+            </>
           )}
         </button>
-        <p className="text-[11px] text-center mt-3 text-mira-muted font-sans">
-          {registerSection.requiredNotice} · Confidential enquiry direct to developer
+
+        <p className={`mt-5 flex items-center justify-center gap-2 text-center font-sans text-[11px] ${ink.note}`}>
+          <Lock className="h-3 w-3 shrink-0" strokeWidth={1.5} aria-hidden="true" />
+          {registerSection.requiredNotice} · Confidential enquiry direct to the developer
         </p>
       </div>
     </form>

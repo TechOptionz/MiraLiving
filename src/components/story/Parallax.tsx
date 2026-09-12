@@ -18,17 +18,26 @@ export default function Parallax({
 }) {
   const frameRef = useRef<HTMLDivElement>(null);
   const layerRef = useRef<HTMLDivElement>(null);
+  const lastOffset = useRef<number | null>(null);
 
   useScrollFrame(frameRef, (rect, vh) => {
-    const offset = (rect.top + rect.height / 2 - vh / 2) * -speed;
-    if (layerRef.current) {
-      layerRef.current.style.transform = `translate3d(0, ${offset.toFixed(1)}px, 0)`;
-    }
+    const layer = layerRef.current;
+    if (!layer) return;
+
+    // Whole pixels: sub-pixel drift is invisible at this speed but costs a
+    // fresh composite every frame.
+    const offset = Math.round((rect.top + rect.height / 2 - vh / 2) * -speed);
+    if (offset === lastOffset.current) return;
+    lastOffset.current = offset;
+    layer.style.transform = `translate3d(0, ${offset}px, 0)`;
   });
 
   return (
     <div ref={frameRef} className={`absolute inset-0 overflow-hidden ${className}`}>
-      <div ref={layerRef} className="absolute inset-x-0 -top-[12%] -bottom-[12%] will-change-transform">
+      <div
+        ref={layerRef}
+        className="absolute inset-x-0 -top-[12%] -bottom-[12%] will-change-transform [contain:paint]"
+      >
         {children}
       </div>
     </div>

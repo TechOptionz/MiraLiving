@@ -21,7 +21,7 @@ export default function StoryCTA() {
       <ImageSlot slot={cta.image} tone="dark" sizes="100vw" />
       <div className="absolute inset-0 bg-black/55" />
       <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/70" />
-      <div className="pointer-events-none absolute inset-0 bg-noise opacity-15 mix-blend-overlay" />
+      <div className="pointer-events-none absolute inset-0 bg-noise opacity-[0.09]" />
 
       <div className="relative z-10 mx-auto w-full max-w-[1800px] px-6 py-28 text-center sm:px-12 lg:px-20 2xl:px-28">
         <Reveal

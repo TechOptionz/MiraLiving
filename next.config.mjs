@@ -1,7 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  transpilePackages: ["lucide-react"],
+  // Rewrites `import { X } from "lucide-react"` to a direct per-icon import, so
+  // a page that uses three icons no longer pulls the barrel file (and, in dev,
+  // no longer compiles the whole icon set on every change). This replaces the
+  // `transpilePackages` entry, which did the opposite — it forced the package
+  // through the app's own compilation on every build.
+  experimental: {
+    optimizePackageImports: ["lucide-react"],
+  },
   images: {
     // Served through the Next.js image optimizer: the source assets are large
     // (social JPEGs up to ~1.4 MB), so resizing and modern formats matter here.

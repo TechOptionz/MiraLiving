@@ -2,9 +2,27 @@
 
 import React from "react";
 import { useModal } from "@/context/ModalContext";
+import BackdropVideo from "@/components/common/BackdropVideo";
 import BrochureForm from "./BrochureForm";
+import { registerSection, siteConfig } from "@/content/site-content";
 import { useFocusTrap } from "@/hooks/useFocusTrap";
 import { X } from "lucide-react";
+
+/**
+ * The brochure dialog, opened from every "Download Brochure" control on the
+ * site.
+ *
+ * It is a two-column sheet: the footage and the commercial facts hold the left
+ * rail, the form sits on clean ground to the right where the hairline fields
+ * stay easy to read. Below `lg` the rail collapses to a short video band above
+ * the form so the motion is still there without stealing the fold.
+ */
+
+const modalFacts = [
+  { label: "Price from", value: siteConfig.startingPrice },
+  { label: "The collection", value: "25 Residences" },
+  { label: "Completion", value: "September 2026" },
+];
 
 export default function RegisterModal() {
   const { isRegisterOpen, closeRegister } = useModal();
@@ -17,43 +35,98 @@ export default function RegisterModal() {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-10 bg-black/60 backdrop-blur-sm transition-opacity animate-fadeIn"
+      className="animate-fadeIn fixed inset-0 z-50 flex items-center justify-center bg-mira-charcoal/70 p-0 backdrop-blur-sm transition-opacity sm:p-6 md:p-10"
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-title"
     >
-      <div
-        className="fixed inset-0"
-        onClick={closeRegister}
-        aria-hidden="true"
-      />
+      <div className="fixed inset-0" onClick={closeRegister} aria-hidden="true" />
 
       <div
         ref={panelRef}
         tabIndex={-1}
-        className="relative w-full max-w-2xl bg-mira-ground border border-mira-border shadow-float z-10 max-h-[90vh] overflow-y-auto p-6 sm:p-10 focus:outline-none"
+        className="relative z-10 grid h-full max-h-[100svh] w-full max-w-5xl grid-cols-1 overflow-hidden bg-mira-ground shadow-float focus:outline-none sm:h-auto sm:max-h-[92vh] lg:grid-cols-[0.8fr_1fr]"
       >
-        <button
-          onClick={closeRegister}
-          className="absolute top-5 right-5 p-2 text-mira-muted hover:text-mira-charcoal transition-colors rounded-full"
-          aria-label="Close registration modal"
-        >
-          <X className="w-5 h-5" />
-        </button>
+        {/* ------------------------------------------------------------------
+            Left rail — footage, statement and the commercial facts
+            ------------------------------------------------------------------ */}
+        <div className="relative hidden overflow-hidden bg-mira-charcoal text-white lg:flex lg:flex-col lg:justify-end">
+          <div className="absolute inset-0" aria-hidden="true">
+            <BackdropVideo
+              src="/video/brochure-bg.mp4"
+              poster="/video/brochure-bg-poster.jpg"
+              priority
+              className="h-full w-full object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-mira-charcoal via-mira-charcoal/45 to-mira-charcoal/25" />
+            <div className="absolute inset-0 bg-noise opacity-[0.08]" />
+          </div>
 
-        <div className="text-center mb-8">
-          <span className="text-xs font-sans tracking-eyebrow uppercase text-mira-brown mb-2 block font-medium">
-            Exclusive Preview
-          </span>
-          <h2 id="modal-title" className="text-2xl sm:text-3xl font-serif text-mira-charcoal font-normal">
-            Download the Brochure
-          </h2>
-          <p className="text-sm font-sans text-mira-muted mt-2 max-w-md mx-auto leading-relaxed">
-            Register now to download the Mira Living brochure and be amongst the first to experience Bargara’s most exclusive oceanfront residences.
-          </p>
+          <div className="relative z-10 p-10 xl:p-12">
+            <p className="font-sans text-[10px] uppercase tracking-eyebrow text-mira-sandLight/80">
+              Exclusive preview
+            </p>
+            <p className="mt-5 font-serif text-3xl font-light leading-[1.12] text-white xl:text-[2.5rem]">
+              Oceanfront living,
+              <span className="block italic text-mira-sandLight">elevated.</span>
+            </p>
+
+            <dl className="mt-9 space-y-3.5 border-t border-white/15 pt-7">
+              {modalFacts.map((fact) => (
+                <div key={fact.label} className="flex items-baseline justify-between gap-6">
+                  <dt className="font-sans text-[10px] uppercase tracking-eyebrow text-white/50">
+                    {fact.label}
+                  </dt>
+                  <dd className="font-serif text-lg text-mira-sandLight">{fact.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
         </div>
 
-        <BrochureForm idPrefix="modal" onSuccess={closeRegister} />
+        {/* ------------------------------------------------------------------
+            Right column — the form
+            ------------------------------------------------------------------ */}
+        {/* Pinned to the sheet, not to the scrolling column, so it stays put */}
+        <button
+          onClick={closeRegister}
+          className="absolute right-4 top-4 z-20 p-2.5 text-white/80 transition-colors hover:text-white focus:outline-none focus-visible:ring-1 focus-visible:ring-white lg:text-mira-muted lg:hover:text-mira-charcoal lg:focus-visible:ring-mira-brown"
+          aria-label="Close registration dialog"
+        >
+          <X className="h-5 w-5" strokeWidth={1.5} />
+        </button>
+
+        <div className="relative flex max-h-full flex-col overflow-y-auto">
+          {/* Compact motion band, below lg only */}
+          <div className="relative h-36 shrink-0 overflow-hidden bg-mira-charcoal sm:h-44 lg:hidden" aria-hidden="true">
+            <BackdropVideo
+              src="/video/brochure-bg.mp4"
+              poster="/video/brochure-bg-poster.jpg"
+              priority
+              className="h-full w-full object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-mira-ground via-mira-charcoal/35 to-mira-charcoal/45" />
+          </div>
+
+          <div className="p-7 sm:p-10 lg:p-12">
+            <p className="font-sans text-[10px] uppercase tracking-eyebrow text-mira-brown">
+              Exclusive preview
+            </p>
+            <h2
+              id="modal-title"
+              className="mt-4 font-serif text-3xl font-light leading-tight text-mira-charcoal sm:text-4xl"
+            >
+              {registerSection.headline}
+            </h2>
+            <p className="mt-4 font-sans text-sm leading-relaxed text-mira-muted">
+              {registerSection.intro}
+            </p>
+
+            <div className="mt-9">
+              <BrochureForm idPrefix="modal" onSuccess={closeRegister} />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

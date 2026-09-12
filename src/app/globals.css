@@ -1,12 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Poppins:wght@300;400;500;600;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --font-cormorant: 'Cormorant Garamond', Georgia, serif;
-  --font-poppins: 'Poppins', system-ui, sans-serif;
   --ground: #FBF8F3;
   --primary-brown: #746355;
   --deep-brown: #5C4E44;
@@ -50,10 +46,20 @@ body {
   letter-spacing: 0.22em;
 }
 
-/* Noise texture layer */
+/*
+   Noise texture layer.
+
+   These sit full-bleed over hero photography and video. They used to carry
+   `mix-blend-overlay`, which forces the compositor to re-read and re-blend the
+   whole backdrop on every scrolled frame — the single most expensive thing on
+   the page. Plain opacity over the same imagery reads near-identically at
+   7–25% and costs nothing to scroll past.
+*/
 .bg-noise {
   background-image: url('/img/site/noise.webp');
   background-repeat: repeat;
+  /* Isolate the tile from the rest of the page's paint work. */
+  contain: paint style;
 }
 
 /* Fade-in used by the register modal, cookie banner, mobile menu and lightbox */
@@ -87,12 +93,24 @@ body {
   animation: kenburns 30s ease-in-out infinite alternate;
 }
 
+/*
+   An infinite transform on a full-bleed image otherwise runs for the whole
+   visit — including the ten screens' worth of scrolling where the element is
+   nowhere near the viewport. `is-offscreen` is set by the section that owns it.
+*/
+.animate-kenburns.is-offscreen {
+  animation-play-state: paused;
+}
+
 /* ------------------------------------------------------------------
    Story page motion — slow, editorial, never busy
    ------------------------------------------------------------------ */
 
 /* Scroll reveals (toggled by components/story/Reveal) */
 .reveal {
+  /* Hinted only while off-screen/animating; cleared once settled (below), so a
+     long page never holds dozens of live compositor layers at once. */
+  will-change: opacity, transform;
   transition:
     opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1),
     transform 1.2s cubic-bezier(0.22, 1, 0.36, 1),
@@ -123,6 +141,13 @@ body {
   opacity: 1;
   transform: none;
   clip-path: inset(0 0 0 0);
+}
+
+/* Once a reveal has played it is static content — drop the layer hint. */
+.reveal.is-settled,
+.reveal.is-settled > :first-child {
+  will-change: auto;
+  transition: none;
 }
 
 .reveal-mask.is-visible > :first-child {

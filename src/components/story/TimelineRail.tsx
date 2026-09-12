@@ -13,10 +13,16 @@ export default function TimelineRail({
 }) {
   const railRef = useRef<HTMLDivElement>(null);
   const fillRef = useRef<HTMLDivElement>(null);
+  const lastProgress = useRef<number | null>(null);
 
   useScrollFrame(railRef, (rect, vh) => {
-    const progress = Math.min(1, Math.max(0, (vh * 0.65 - rect.top) / rect.height));
-    if (fillRef.current) fillRef.current.style.transform = `scaleY(${progress.toFixed(3)})`;
+    // A hairline one pixel wide: hundredths are far finer than it can show, and
+    // skipping unchanged values keeps the rail off the compositor when idle.
+    const progress =
+      Math.round(Math.min(1, Math.max(0, (vh * 0.65 - rect.top) / rect.height)) * 200) / 200;
+    if (progress === lastProgress.current) return;
+    lastProgress.current = progress;
+    if (fillRef.current) fillRef.current.style.transform = `scaleY(${progress})`;
   });
 
   return (
