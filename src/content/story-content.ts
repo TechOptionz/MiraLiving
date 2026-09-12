@@ -12,11 +12,22 @@
 // stated ratio, so an empty slot is obvious in the layout rather than broken.
 // To swap any image, change `src` and `alt` — no component needs to change.
 //
+// Frames are cut to the shape of the photograph, not the other way round: the
+// layout reads the file's real pixel size from src/content/image-dimensions.ts
+// (regenerate with `npm run images:dimensions`), so nothing is cropped to fit.
+// `ratio` below is the intended shape — it sizes the placeholder, and is the
+// fallback when a file is missing from that manifest, so keep it near the real
+// proportion of the photograph the slot holds.
+//
 // NOT USED, deliberately: Sold-Properties-Mira-Living-4.webp and
 // progress-img.webp both carry baked-in "SOLD" / "FUTURE RELEASE" overlays,
 // which read as a sales board rather than editorial photography. The same
-// render without those overlays is Mira-Facade-Dusk.webp, which closes the
-// construction journey as "The Final Vision".
+// render without those overlays is Mira-Facade-Dusk.webp, which opens Design
+// Philosophy at "Architecture" and closes the construction journey as "The
+// Final Vision" — the only clean façade-in-elevation asset in the library, so
+// it deliberately appears twice. Also unused: IG_090, a soft 1440x810 drone
+// VIDEO still that fell apart upscaled into the 4:3 Architecture frame, and
+// mira-living-img-2.webp, which carries baked-in location labels.
 // ---------------------------------------------------------------------------
 
 import {
@@ -41,6 +52,7 @@ export interface ImageSlot {
   label: string;
   /** Second placeholder line — what the shot should show. */
   note?: string;
+  /** Intended shape — sizes the placeholder; the real file's own shape wins. */
   ratio: "21:9" | "16:9" | "4:3" | "3:4" | "4:5" | "1:1";
   /** Legally required on every render — "Artist Impression". */
   caption?: string;
@@ -122,7 +134,7 @@ export const storyPage = {
       alt: "Bedroom framed by floor-to-ceiling glazing looking out to palms and the Coral Sea",
       label: "The vision",
       note: "Architectural render or the building read against the ocean",
-      ratio: "4:5",
+      ratio: "4:3",
       caption: "Artist Impression",
     } as ImageSlot,
   },
@@ -142,11 +154,12 @@ export const storyPage = {
           "Sparc’s reputation for residential and multi-residential projects brings together pragmatic vision, constructional clarity and innovation.",
         meta: `${developmentSpecs.totalResidences} residences · ${developmentSpecs.internalSizeRange}`,
         image: {
-          src: "/img/social/IG_090_2025-01-06_DEd-AOZMTM4_1.jpg",
-          alt: "Aerial view of the Bargara headland and the Coral Sea, with Mira Living among the buildings on The Esplanade",
+          src: "/img/site/Mira-Facade-Dusk.webp",
+          alt: "The residence seen square-on from The Esplanade — four levels of glass-balustraded balconies under a deep roof plane, framed by palms",
           label: "Architecture",
           note: "Façade, balcony rhythm, the building in elevation",
-          ratio: "4:3",
+          ratio: "16:9",
+          caption: "Artist Impression",
         } as ImageSlot,
       },
       {
@@ -161,7 +174,7 @@ export const storyPage = {
           alt: "Bathroom wrapped in honed Tundra stone tiles with a stone-topped oak vanity and satin nickel tapware",
           label: "Materials",
           note: "Stone, timber and metal close-up",
-          ratio: "4:3",
+          ratio: "3:4",
           caption: "Artist Impression",
         } as ImageSlot,
       },
@@ -177,7 +190,7 @@ export const storyPage = {
           alt: "Open-plan living room opening through wide glazed doors to a balcony and the ocean beyond",
           label: "Light & space",
           note: "Interior looking out — morning light across the living room",
-          ratio: "4:3",
+          ratio: "16:9",
           caption: "Artist Impression",
         } as ImageSlot,
       },
@@ -222,7 +235,7 @@ export const storyPage = {
           alt: "Two excavators working the cleared oceanfront site during early earthworks",
           label: "The beginning",
           note: "Early site works and excavation, January 2025",
-          ratio: "16:9",
+          ratio: "4:5",
         } as ImageSlot,
       },
       {
@@ -238,7 +251,7 @@ export const storyPage = {
           alt: "Completed basement slab ringed by blockwork walls as a worker power-trowels the fresh concrete",
           label: "The foundation",
           note: "Reinforcement and the basement slab pour, mid 2025",
-          ratio: "16:9",
+          ratio: "4:3",
         } as ImageSlot,
         support: {
           src: "/img/social/IG_064_2025-06-06_DKjLC4jsGjy_1.jpg",
@@ -261,7 +274,7 @@ export const storyPage = {
           alt: "Aerial view of the building with a concrete pump reaching over a freshly poured floor, the Coral Sea beyond",
           label: "The structure takes shape",
           note: "The framed building under scaffold, aerial or street level",
-          ratio: "16:9",
+          ratio: "4:3",
         } as ImageSlot,
         support: {
           src: "/img/social/IG_029_2026-02-13_DUsOOoekiN6_1.jpg",
@@ -349,7 +362,7 @@ export const storyPage = {
         alt: "The Mira Living and IDC Construct party gathered in front of the site hoarding at the January 2025 groundbreaking",
         label: "Graham Furtado",
         note: "Portrait — Developer, Furtado Property",
-        ratio: "3:4",
+        ratio: "1:1",
       } as ImageSlot,
     },
     collaboratorsLabel: "In collaboration with",
@@ -440,7 +453,7 @@ export const storyPage = {
         alt: "Resident-only pool with sun loungers, landscaped planting and the shaded alfresco area",
         label: "The pool",
         note: "Resident-only pool and alfresco area",
-        ratio: "4:3",
+        ratio: "16:9",
         caption: "Artist Impression",
       } as ImageSlot,
     },
@@ -463,7 +476,7 @@ export const storyPage = {
       alt: "",
       label: "Closing image",
       note: "Sunset over the Coral Sea from the residence",
-      ratio: "21:9",
+      ratio: "16:9",
     } as ImageSlot,
   },
 };

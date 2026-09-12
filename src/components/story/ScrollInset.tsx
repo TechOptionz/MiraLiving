@@ -7,9 +7,11 @@ import { useScrollFrame } from "@/hooks/useScrollFrame";
 export default function ScrollInset({
   children,
   className = "",
+  style,
 }: {
   children: React.ReactNode;
   className?: string;
+  style?: React.CSSProperties;
 }) {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -22,7 +24,7 @@ export default function ScrollInset({
   });
 
   return (
-    <div ref={ref} className={className}>
+    <div ref={ref} className={className} style={style}>
       {children}
     </div>
   );

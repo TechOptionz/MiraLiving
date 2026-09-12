@@ -1,6 +1,22 @@
 import React from "react";
 import Image from "next/image";
 import type { ImageSlot as ImageSlotContent } from "@/content/story-content";
+import { slotAspect } from "@/content/image-dimensions";
+
+/**
+ * Sizing for the frame that holds a slot: it takes the photograph's own shape,
+ * so the image fills it exactly and nothing is cropped away.
+ *
+ * `maxHeightVh` keeps a tall photograph in a wide column from running past the
+ * screen — the frame narrows and centres instead of the image being cut.
+ */
+export function frameStyle(slot: ImageSlotContent, maxHeightVh?: number): React.CSSProperties {
+  const aspect = slotAspect(slot);
+  return {
+    aspectRatio: aspect,
+    ...(maxHeightVh ? { maxWidth: `calc(${maxHeightVh}svh * ${aspect})` } : null),
+  };
+}
 
 /**
  * Every photograph on the Story page renders through here.

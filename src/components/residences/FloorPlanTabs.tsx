@@ -3,9 +3,10 @@
 import React, { useCallback, useState } from "react";
 import Image from "next/image";
 import { floorPlans } from "@/content/site-content";
-import { Bed, Bath, Car, Maximize2, X, ArrowRight } from "lucide-react";
+import { Maximize2, X, ArrowRight } from "lucide-react";
 import { useModal } from "@/context/ModalContext";
 import { useFocusTrap } from "@/hooks/useFocusTrap";
+import { photoFrameStyle } from "@/components/common/PhotoFrame";
 
 export default function FloorPlanTabs() {
   const [activeId, setActiveId] = useState(floorPlans[0].id);
@@ -17,33 +18,43 @@ export default function FloorPlanTabs() {
 
   const currentPlan = floorPlans.find((p) => p.id === activeId) || floorPlans[0];
 
+  const specs = [
+    { label: "Bedrooms", value: `${currentPlan.bedrooms} Bed${currentPlan.mpr ? " + MPR" : ""}` },
+    { label: "Bathrooms", value: `${currentPlan.bathrooms} Bath` },
+    { label: "Carparks", value: `${currentPlan.cars} Secure underground` },
+    { label: "Internal area", value: currentPlan.internalSize },
+  ];
+
   return (
-    <section className="py-28 sm:py-40 px-6 sm:px-12 lg:px-16 bg-mira-sandLight border-t border-mira-border">
-      <div className="max-w-[1600px] mx-auto space-y-16">
+    <section className="border-t border-mira-border bg-mira-sandLight px-6 py-24 sm:px-12 sm:py-32 lg:px-16">
+      <div className="mx-auto max-w-[1400px]">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4">
-          <span className="text-[11px] font-sans tracking-[0.3em] uppercase text-mira-brown block font-medium">
+        <div className="mx-auto max-w-3xl space-y-5 text-center">
+          <span className="block font-sans text-[11px] font-medium uppercase tracking-[0.3em] text-mira-brown">
             Architectural Geometry
           </span>
-          <h2 className="text-3xl sm:text-5xl md:text-6xl font-serif text-mira-charcoal font-light">
+          <h2 className="font-serif text-[clamp(1.9rem,4.4vw,3.5rem)] font-light leading-[1.12] text-mira-charcoal">
             Individual Residence Layouts
           </h2>
-          <p className="text-base font-sans text-mira-muted leading-relaxed font-light">
-            Generously proportioned residences engineered for cross-flow ventilation, dual outdoor aspects, and horizon views.
+          <p className="font-sans text-[16px] leading-[1.75] text-mira-brownDark sm:text-lg">
+            Generously proportioned residences engineered for cross-flow ventilation, dual outdoor aspects, and
+            horizon views.
           </p>
         </div>
 
-        {/* Minimal Hairline Tab Selectors */}
-        <div className="flex justify-center border-b border-mira-border">
-          <div className="flex gap-4 sm:gap-12">
+        {/* Hairline tab selectors */}
+        <div className="mt-14 flex justify-center border-b border-mira-border">
+          <div className="flex gap-6 sm:gap-14">
             {floorPlans.map((plan) => (
               <button
                 key={plan.id}
+                type="button"
                 onClick={() => setActiveId(plan.id)}
-                className={`pb-4 text-xs font-sans tracking-[0.25em] uppercase transition-all relative ${
+                aria-pressed={activeId === plan.id}
+                className={`relative pb-4 font-sans text-[12px] uppercase tracking-[0.2em] transition-colors sm:text-[13px] ${
                   activeId === plan.id
-                    ? "text-mira-charcoal font-semibold"
-                    : "text-mira-muted hover:text-mira-charcoal"
+                    ? "font-semibold text-mira-charcoal"
+                    : "text-mira-brown hover:text-mira-charcoal"
                 }`}
               >
                 {plan.name}
@@ -55,76 +66,72 @@ export default function FloorPlanTabs() {
           </div>
         </div>
 
-        {/* Grand Layout Showcase (Large image canvas!) */}
-        <div className="bg-white border border-mira-border p-6 sm:p-14 shadow-card grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          {/* Floor Plan Visual (Large!) */}
-          <div className="lg:col-span-8 relative">
-            <div
+        {/* Layout showcase */}
+        <div className="mt-14 grid grid-cols-1 items-center gap-12 border border-mira-border bg-white p-6 shadow-card sm:p-12 lg:grid-cols-12 lg:gap-14">
+          {/* The plan, shown whole: the frame takes the drawing's own proportions,
+              capped by height so a tall plan still fits on screen. */}
+          <div className="lg:col-span-7">
+            <button
+              type="button"
               onClick={() => setLightboxOpen(true)}
-              className="relative aspect-[16/11] w-full bg-mira-ground border border-mira-border/60 overflow-hidden cursor-zoom-in group shadow-subtle"
+              style={photoFrameStyle(currentPlan.image, { maxHeightVh: 70 })}
+              className="group relative mx-auto block w-full cursor-zoom-in overflow-hidden border border-mira-border/60 bg-mira-ground shadow-subtle"
             >
               <Image
                 src={currentPlan.image}
                 alt={`${currentPlan.name} architectural layout`}
                 fill
-                className="object-contain p-6 transition-transform duration-700 group-hover:scale-105"
-                sizes="(max-width: 1024px) 100vw, 70vw"
+                quality={85}
+                className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                sizes="(max-width: 1024px) 100vw, 58vw"
               />
-              <div className="absolute bottom-4 right-4 bg-black/60 backdrop-blur-sm px-4 py-1.5 text-xs text-white font-sans flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                <Maximize2 className="w-3.5 h-3.5" />
-                <span>Click to Expand Plan</span>
-              </div>
-            </div>
-            <p className="text-xs font-sans text-mira-muted text-center mt-3 font-light italic">
-              Illustrative architectural floor plan graphic. Click to inspect high-resolution dimensions.
+              <span className="absolute bottom-4 right-4 flex items-center gap-2 bg-mira-charcoal/75 px-4 py-2 font-sans text-[11px] uppercase tracking-[0.16em] text-white backdrop-blur-sm">
+                <Maximize2 className="h-3.5 w-3.5" />
+                Expand plan
+              </span>
+            </button>
+            <p className="mt-4 text-center font-sans text-[13px] leading-relaxed text-mira-brownDark">
+              Illustrative architectural floor plan. Select to inspect it at full size.
             </p>
           </div>
 
-          {/* Specifications Sidebar */}
-          <div className="lg:col-span-4 space-y-8">
-            <div className="space-y-2">
-              <span className="text-[10px] font-sans tracking-[0.3em] uppercase text-mira-tealDark font-semibold">
-                Residence Layout
-              </span>
-              <h3 className="text-3xl font-serif text-mira-charcoal font-light leading-tight">
-                {currentPlan.tagline}
-              </h3>
-            </div>
+          {/* Specifications */}
+          <div className="lg:col-span-5">
+            <span className="block font-sans text-[11px] font-semibold uppercase tracking-[0.28em] text-mira-tealDark">
+              Residence layout
+            </span>
+            <h3 className="mt-4 font-serif text-[clamp(1.6rem,2.4vw,2.25rem)] font-light leading-snug text-mira-charcoal">
+              {currentPlan.tagline}
+            </h3>
 
-            {/* Spec Highlights Table */}
-            <div className="space-y-3 py-4 border-y border-mira-border text-sm font-sans">
-              <div className="flex items-center justify-between">
-                <span className="text-mira-muted">Bedrooms</span>
-                <span className="font-semibold text-mira-charcoal">{currentPlan.bedrooms} Bed {currentPlan.mpr ? "+ MPR" : ""}</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-mira-muted">Bathrooms</span>
-                <span className="font-semibold text-mira-charcoal">{currentPlan.bathrooms} Bath</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-mira-muted">Carparks</span>
-                <span className="font-semibold text-mira-charcoal">{currentPlan.cars} Secure Underground</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-mira-muted">Internal Area</span>
-                <span className="font-semibold text-mira-charcoal">{currentPlan.internalSize}</span>
-              </div>
-            </div>
+            <dl className="mt-8 divide-y divide-mira-border border-y border-mira-border">
+              {specs.map((spec) => (
+                <div key={spec.label} className="flex items-baseline justify-between gap-6 py-4">
+                  <dt className="font-sans text-[11px] font-medium uppercase tracking-[0.2em] text-mira-brown">
+                    {spec.label}
+                  </dt>
+                  <dd className="text-right font-sans text-[15px] font-medium text-mira-charcoal sm:text-base">
+                    {spec.value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
 
             <button
+              type="button"
               onClick={openRegister}
-              className="w-full py-4 bg-mira-teal hover:bg-mira-tealDark text-white font-sans text-xs tracking-[0.2em] uppercase transition-all shadow-subtle flex items-center justify-center gap-2"
+              className="mt-8 flex w-full items-center justify-center gap-2 bg-mira-teal py-4 font-sans text-[12px] uppercase tracking-[0.18em] text-white shadow-subtle transition-colors hover:bg-mira-tealDark"
             >
-              <span>Download Plan & Specs</span>
-              <ArrowRight className="w-4 h-4" />
+              <span>Download plan &amp; specs</span>
+              <ArrowRight className="h-4 w-4" />
             </button>
           </div>
         </div>
 
-        {/* Lightbox Modal */}
+        {/* Lightbox */}
         {lightboxOpen && (
           <div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md animate-fadeIn"
+            className="animate-fadeIn fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 backdrop-blur-md"
             onClick={closeLightbox}
             role="dialog"
             aria-modal="true"
@@ -133,27 +140,35 @@ export default function FloorPlanTabs() {
             <div
               ref={lightboxRef}
               tabIndex={-1}
-              className="relative max-w-6xl w-full max-h-[94vh] bg-white p-6 sm:p-10 overflow-auto border border-white/20 focus:outline-none"
+              className="relative max-h-[94svh] w-full max-w-5xl overflow-auto border border-white/20 bg-white p-5 focus:outline-none sm:p-8"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex items-center justify-between pb-4 border-b border-mira-border mb-4">
-                <h3 id="floorplan-lightbox-title" className="text-xl font-serif text-mira-charcoal">
-                  {currentPlan.name} — Detailed Architectural Plan
+              <div className="mb-5 flex items-center justify-between gap-6 border-b border-mira-border pb-4">
+                <h3 id="floorplan-lightbox-title" className="font-serif text-xl text-mira-charcoal sm:text-2xl">
+                  {currentPlan.name} — detailed plan
                 </h3>
                 <button
+                  type="button"
                   onClick={closeLightbox}
-                  className="p-2 text-mira-muted hover:text-mira-charcoal"
+                  className="p-2 text-mira-brown transition-colors hover:text-mira-charcoal"
                   aria-label="Close lightbox"
                 >
-                  <X className="w-6 h-6" />
+                  <X className="h-6 w-6" />
                 </button>
               </div>
 
-              <div className="relative aspect-[16/10] w-full min-h-[500px]">
+              {/* Whole plan: the frame is the drawing's own shape, capped so it
+                  always fits the viewport without being cut. */}
+              <div
+                style={photoFrameStyle(currentPlan.image, { maxHeightVh: 72 })}
+                className="relative mx-auto w-full"
+              >
                 <Image
                   src={currentPlan.image}
-                  alt={`${currentPlan.name} high-res floor plan`}
+                  alt={`${currentPlan.name} high-resolution floor plan`}
                   fill
+                  quality={95}
+                  sizes="(max-width: 1024px) 100vw, 1024px"
                   className="object-contain"
                 />
               </div>

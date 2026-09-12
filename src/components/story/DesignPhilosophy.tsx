@@ -1,8 +1,7 @@
 import React from "react";
 import { storyPage } from "@/content/story-content";
 import ChapterLabel from "./ChapterLabel";
-import ImageSlot from "./ImageSlot";
-import Parallax from "./Parallax";
+import ImageSlot, { frameStyle } from "./ImageSlot";
 import Reveal from "@/components/common/Reveal";
 
 /**
@@ -77,10 +76,12 @@ export default function DesignPhilosophy() {
                   imageFirst ? "lg:col-start-1 lg:row-start-1" : "lg:col-start-6"
                 }`}
               >
-                <Reveal variant="mask" className="relative aspect-[4/3] w-full overflow-hidden bg-mira-sand">
-                  <Parallax speed={0.05}>
-                    <ImageSlot slot={principle.image} sizes="(min-width: 1024px) 50vw, 100vw" />
-                  </Parallax>
+                <Reveal
+                  variant="mask"
+                  style={frameStyle(principle.image, 80)}
+                  className="relative w-full overflow-hidden bg-mira-sand"
+                >
+                  <ImageSlot slot={principle.image} sizes="(min-width: 1024px) 50vw, 100vw" />
                 </Reveal>
                 {principle.image.caption && (
                   <figcaption className="mt-3 px-6 font-sans text-[10px] uppercase tracking-[0.25em] text-mira-muted sm:px-0">

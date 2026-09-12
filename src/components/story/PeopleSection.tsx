@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { storyPage } from "@/content/story-content";
 import ChapterLabel from "./ChapterLabel";
-import ImageSlot from "./ImageSlot";
+import ImageSlot, { frameStyle } from "./ImageSlot";
 import Reveal from "@/components/common/Reveal";
 
 // Staggered vertical rhythm for the three collaborators on desktop.
@@ -31,7 +31,11 @@ export default function PeopleSection() {
         {/* The developer */}
         <div className="mt-16 grid grid-cols-1 items-end gap-12 sm:mt-24 lg:grid-cols-12 lg:gap-16">
           <figure className="-mx-6 sm:mx-0 lg:col-span-6">
-            <Reveal variant="mask" className="relative aspect-[3/4] w-full overflow-hidden bg-mira-sand">
+            <Reveal
+              variant="mask"
+              style={frameStyle(lead.image)}
+              className="relative w-full overflow-hidden bg-mira-sand"
+            >
               <ImageSlot slot={lead.image} sizes="(min-width: 1024px) 40vw, 100vw" />
             </Reveal>
           </figure>
@@ -71,7 +75,10 @@ export default function PeopleSection() {
               className={`w-[78%] shrink-0 snap-start sm:w-[45%] md:w-auto ${collaboratorOffsets[i] ?? ""}`}
             >
               <Reveal delay={i * 120}>
-                <div className="relative aspect-[4/5] w-full overflow-hidden bg-mira-sand">
+                <div
+                  style={frameStyle(person.image)}
+                  className="relative w-full overflow-hidden bg-mira-sand"
+                >
                   <ImageSlot slot={person.image} sizes="(min-width: 768px) 30vw, 78vw" />
                 </div>
                 <div className="mt-8 flex items-center justify-between gap-4 border-b border-mira-border pb-5">

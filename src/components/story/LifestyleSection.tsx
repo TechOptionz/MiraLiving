@@ -1,8 +1,7 @@
 import React from "react";
 import { storyPage } from "@/content/story-content";
 import ChapterLabel from "./ChapterLabel";
-import ImageSlot from "./ImageSlot";
-import Parallax from "./Parallax";
+import ImageSlot, { frameStyle } from "./ImageSlot";
 import Reveal from "@/components/common/Reveal";
 import ScrollInset from "./ScrollInset";
 
@@ -28,10 +27,11 @@ export default function LifestyleSection() {
       </div>
 
       {/* The place — full bleed, opens as it rises */}
-      <ScrollInset className="relative mt-16 h-[85svh] min-h-[520px] w-full overflow-hidden bg-mira-charcoal sm:mt-24 md:h-auto md:min-h-0 md:aspect-[16/9]">
-        <Parallax speed={0.08}>
-          <ImageSlot slot={feature.image} tone="dark" sizes="100vw" />
-        </Parallax>
+      <ScrollInset
+        style={frameStyle(feature.image, 72)}
+        className="relative mx-auto mt-16 w-full overflow-hidden bg-mira-charcoal sm:mt-24"
+      >
+        <ImageSlot slot={feature.image} tone="dark" sizes="100vw" />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent" />
         <div className="absolute inset-x-6 bottom-8 sm:inset-x-12 sm:bottom-12 lg:inset-x-20 lg:bottom-16">
           <Reveal as="p" className="max-w-5xl font-serif text-[clamp(2.25rem,5.2vw,5.25rem)] font-light leading-[1.03] text-white">
@@ -61,10 +61,12 @@ export default function LifestyleSection() {
       {/* The retreat */}
       <div className="mx-auto mt-24 grid max-w-[1800px] grid-cols-1 items-end gap-10 px-6 sm:mt-36 sm:px-12 lg:grid-cols-12 lg:gap-16 lg:px-20">
         <figure className="-mx-6 sm:mx-0 lg:col-span-7">
-          <Reveal variant="mask" className="relative aspect-[4/3] w-full overflow-hidden bg-mira-sand">
-            <Parallax speed={0.06}>
-              <ImageSlot slot={retreat.image} sizes="(min-width: 1024px) 55vw, 100vw" />
-            </Parallax>
+          <Reveal
+            variant="mask"
+            style={frameStyle(retreat.image, 80)}
+            className="relative w-full overflow-hidden bg-mira-sand"
+          >
+            <ImageSlot slot={retreat.image} sizes="(min-width: 1024px) 55vw, 100vw" />
           </Reveal>
           {retreat.image.caption && (
             <figcaption className="mt-3 px-6 font-sans text-[10px] uppercase tracking-[0.25em] text-mira-muted sm:px-0">

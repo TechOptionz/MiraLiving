@@ -1,21 +1,9 @@
 import React from "react";
 import { storyPage } from "@/content/story-content";
-import type { ImageSlot as ImageSlotContent } from "@/content/story-content";
 import ChapterLabel from "./ChapterLabel";
-import ImageSlot from "./ImageSlot";
-import Parallax from "./Parallax";
+import ImageSlot, { frameStyle } from "./ImageSlot";
 import Reveal from "@/components/common/Reveal";
 import TimelineRail from "./TimelineRail";
-
-// Tailwind needs whole class names, so the ratios are mapped rather than built.
-const RATIO_CLASS: Record<ImageSlotContent["ratio"], string> = {
-  "21:9": "aspect-[21/9]",
-  "16:9": "aspect-[16/9]",
-  "4:3": "aspect-[4/3]",
-  "3:4": "aspect-[3/4]",
-  "4:5": "aspect-[4/5]",
-  "1:1": "aspect-square",
-};
 
 /**
  * 4 — From Vision To Reality. The construction chapters read as a dark,
@@ -79,10 +67,12 @@ export default function ConstructionJourney() {
 
               <div className="lg:col-span-9">
                 <figure>
-                  <Reveal variant="mask" className="relative aspect-[16/9] w-full overflow-hidden bg-black/40">
-                    <Parallax speed={0.06}>
-                      <ImageSlot slot={chapter.image} tone="dark" sizes="(min-width: 1024px) 62vw, 100vw" />
-                    </Parallax>
+                  <Reveal
+                    variant="mask"
+                    style={frameStyle(chapter.image, 72)}
+                    className="relative w-full overflow-hidden bg-black/40"
+                  >
+                    <ImageSlot slot={chapter.image} tone="dark" sizes="(min-width: 1024px) 62vw, 100vw" />
                   </Reveal>
                   {chapter.image.caption && (
                     <figcaption className="mt-3 font-sans text-[10px] uppercase tracking-[0.25em] text-white/45">
@@ -109,7 +99,8 @@ export default function ConstructionJourney() {
                   {chapter.support && (
                     <figure className="lg:col-span-5">
                       <div
-                        className={`relative w-full overflow-hidden bg-black/40 ${RATIO_CLASS[chapter.support.ratio]}`}
+                        style={frameStyle(chapter.support)}
+                        className="relative w-full overflow-hidden bg-black/40"
                       >
                         <ImageSlot
                           slot={chapter.support}

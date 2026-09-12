@@ -2,67 +2,68 @@ import React from "react";
 import Image from "next/image";
 import { constructionMilestones } from "@/content/site-content";
 import { Calendar, CheckCircle2 } from "lucide-react";
+import { photoFrameStyle } from "@/components/common/PhotoFrame";
 
 export default function ConstructionTimeline() {
   return (
-    <section className="py-24 sm:py-32 px-6 sm:px-10 lg:px-16 bg-mira-ground border-t border-mira-border">
-      <div className="max-w-7xl mx-auto space-y-16">
+    <section className="border-t border-mira-border bg-mira-ground px-6 py-24 sm:px-10 sm:py-32 lg:px-16">
+      <div className="mx-auto max-w-7xl">
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto space-y-3">
-          <span className="text-xs font-sans tracking-eyebrow uppercase text-mira-brown block font-medium">
+        <div className="mx-auto max-w-2xl space-y-4 text-center">
+          <span className="block font-sans text-[11px] font-medium uppercase tracking-[0.3em] text-mira-brown">
             Building The Vision
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-mira-charcoal font-light">
+          <h2 className="font-serif text-[clamp(1.9rem,4vw,3.25rem)] font-light text-mira-charcoal">
             Construction Progress Timeline
           </h2>
-          <p className="text-sm font-sans text-mira-muted leading-relaxed">
-            Follow the journey from our January 2025 groundbreaking to 98% completion in September 2026. Hand-built by Wide Bay master builder IDC Construct.
+          <p className="font-sans text-[16px] leading-[1.75] text-mira-brownDark sm:text-lg">
+            Follow the journey from our January 2025 groundbreaking to 98% completion in September 2026. Hand-built by
+            Wide Bay master builder IDC Construct.
           </p>
         </div>
 
-        {/* Milestone Grid / Strip */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Milestones. Cards are top-aligned and each photo frame takes the shape of
+            its own photograph, so every progress shot is shown whole. */}
+        <div className="mt-16 grid grid-cols-1 items-start gap-8 md:grid-cols-2 lg:grid-cols-3">
           {constructionMilestones.map((m, idx) => (
-            <div
+            <article
               key={m.date}
-              className="bg-white border border-mira-border overflow-hidden transition-all duration-300 hover:shadow-card hover:border-mira-brown group flex flex-col justify-between"
+              className="group flex flex-col border border-mira-border bg-white transition-all duration-300 hover:border-mira-brown hover:shadow-card"
             >
-              {/* Photo Frame */}
-              <div className="relative aspect-[4/3] w-full bg-mira-sand overflow-hidden">
+              {/* Photo */}
+              <div
+                style={photoFrameStyle(m.image, { fallbackAspect: 4 / 3 })}
+                className="relative w-full overflow-hidden bg-mira-sand"
+              >
                 <Image
                   src={m.image}
-                  alt={`${m.title} - ${m.formattedDate}`}
+                  alt={`${m.title} — ${m.formattedDate}`}
                   fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  quality={78}
+                  className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
-                <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-sm px-3 py-1 text-[11px] font-sans text-mira-charcoal flex items-center gap-1.5 shadow-sm">
-                  <Calendar className="w-3 h-3 text-mira-tealDark" />
-                  <span className="font-medium">{m.formattedDate}</span>
-                </div>
+                <span className="absolute left-3 top-3 flex items-center gap-1.5 bg-white/95 px-3 py-1.5 font-sans text-[12px] font-medium text-mira-charcoal shadow-sm backdrop-blur-sm">
+                  <Calendar className="h-3.5 w-3.5 text-mira-tealDark" />
+                  {m.formattedDate}
+                </span>
                 {idx === constructionMilestones.length - 1 && (
-                  <div className="absolute bottom-3 right-3 bg-mira-teal text-white px-3 py-1 text-[11px] font-sans tracking-wider uppercase font-semibold flex items-center gap-1 shadow-sm">
-                    <CheckCircle2 className="w-3 h-3" />
-                    <span>98% Complete</span>
-                  </div>
+                  <span className="absolute bottom-3 right-3 flex items-center gap-1.5 bg-mira-teal px-3 py-1.5 font-sans text-[11px] font-semibold uppercase tracking-[0.12em] text-white shadow-sm">
+                    <CheckCircle2 className="h-3.5 w-3.5" />
+                    98% complete
+                  </span>
                 )}
               </div>
 
-              {/* Text Description */}
-              <div className="p-6 space-y-2 flex-grow flex flex-col justify-between">
-                <div>
-                  <span className="text-[10px] font-sans uppercase tracking-eyebrow text-mira-tealDark font-semibold">
-                    Milestone {idx + 1}
-                  </span>
-                  <h3 className="text-lg font-serif text-mira-charcoal font-medium mt-0.5">
-                    {m.title}
-                  </h3>
-                  <p className="text-xs sm:text-sm font-sans text-mira-muted leading-relaxed font-light mt-2">
-                    {m.description}
-                  </p>
-                </div>
+              {/* Description */}
+              <div className="p-6">
+                <span className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-mira-tealDark">
+                  Milestone {idx + 1}
+                </span>
+                <h3 className="mt-1.5 font-serif text-xl text-mira-charcoal sm:text-2xl">{m.title}</h3>
+                <p className="mt-3 font-sans text-[15px] leading-[1.7] text-mira-brownDark">{m.description}</p>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>

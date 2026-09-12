@@ -13,6 +13,9 @@ export interface KeyFeature {
   id: number;
   text: string;
   iconName: string;
+  // Short scan label shown alongside the spec line (replaces the repeated
+  // "Included Specification" tag, which carried no information per row).
+  label: string;
 }
 
 export interface LifestyleRecord {
@@ -240,31 +243,37 @@ export const keyFeatures: KeyFeature[] = [
   {
     id: 1,
     text: "3-beds with option for additional study or multi-purpose room",
+    label: "Bedrooms",
     iconName: "bed"
   },
   {
     id: 2,
     text: "2 secure underground carparks for peace of mind",
+    label: "Parking",
     iconName: "shield"
   },
   {
     id: 3,
     text: "Spacious layouts from 117sqm to 139sqm internal",
+    label: "Floor area",
     iconName: "maximize"
   },
   {
     id: 4,
     text: "Refined, premium finishes throughout",
+    label: "Finishes",
     iconName: "sparkles"
   },
   {
     id: 5,
     text: "Integrated Smeg appliances that elevate everyday living",
+    label: "Kitchen",
     iconName: "utensils"
   },
   {
     id: 6,
     text: "Pool and alfresco area exclusive to residents",
+    label: "Amenity",
     iconName: "waves"
   }
 ];

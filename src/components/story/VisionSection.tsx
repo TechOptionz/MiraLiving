@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { storyPage } from "@/content/story-content";
 import ChapterLabel from "./ChapterLabel";
-import ImageSlot from "./ImageSlot";
+import ImageSlot, { frameStyle } from "./ImageSlot";
 import Reveal from "@/components/common/Reveal";
 
 /** 2 — The Vision Behind Mira. Editorial split: narrative left, single image right. */
@@ -55,7 +55,11 @@ export default function VisionSection() {
 
         <figure className="-mx-6 sm:mx-0 lg:col-span-6 lg:col-start-7">
           <div className="lg:sticky lg:top-32">
-            <Reveal variant="mask" className="relative aspect-[4/5] w-full overflow-hidden bg-mira-sand">
+            <Reveal
+              variant="mask"
+              style={frameStyle(vision.image)}
+              className="relative w-full overflow-hidden bg-mira-sand"
+            >
               <ImageSlot slot={vision.image} sizes="(min-width: 1024px) 40vw, 100vw" />
             </Reveal>
             {vision.image.caption && (
