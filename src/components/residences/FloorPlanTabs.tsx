@@ -137,9 +137,9 @@ export default function FloorPlanTabs() {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between pb-4 border-b border-mira-border mb-4">
-                <h4 id="floorplan-lightbox-title" className="text-xl font-serif text-mira-charcoal">
+                <h3 id="floorplan-lightbox-title" className="text-xl font-serif text-mira-charcoal">
                   {currentPlan.name} — Detailed Architectural Plan
-                </h4>
+                </h3>
                 <button
                   onClick={closeLightbox}
                   className="p-2 text-mira-muted hover:text-mira-charcoal"

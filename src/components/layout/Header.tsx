@@ -105,10 +105,12 @@ export default function Header() {
         <div className="flex md:hidden items-center">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className={`p-2 focus:outline-none ${
+            className={`p-2 focus:outline-none focus-visible:ring-1 focus-visible:ring-mira-teal ${
               isScrolled || !overHero ? "text-mira-charcoal" : "text-white"
             }`}
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-menu"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -117,7 +119,10 @@ export default function Header() {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden fixed inset-0 top-20 bg-mira-ground/98 backdrop-blur-xl border-t border-mira-border z-40 px-6 py-8 flex flex-col justify-between overflow-y-auto animate-fadeIn">
+        <div
+          id="mobile-menu"
+          className="md:hidden fixed inset-0 top-20 bg-mira-ground/98 backdrop-blur-xl border-t border-mira-border z-40 px-6 py-8 flex flex-col justify-between overflow-y-auto animate-fadeIn"
+        >
           <div className="space-y-6 pt-4">
             <p className="text-[11px] font-sans uppercase tracking-eyebrow text-mira-muted">
               Navigation

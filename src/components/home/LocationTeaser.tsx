@@ -2,52 +2,61 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { locationTeaser } from "@/content/site-content";
-import { ArrowRight, MapPin } from "lucide-react";
+import Reveal from "@/components/common/Reveal";
+import { ArrowRight } from "lucide-react";
 
 export default function LocationTeaser() {
   return (
-    <section className="py-28 sm:py-40 bg-mira-ground border-t border-mira-border overflow-hidden">
-      <div className="max-w-[1600px] mx-auto px-6 sm:px-12 lg:px-16 space-y-16">
-        {/* Narrative Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+    <section className="flex min-h-screen w-full items-center overflow-hidden border-t border-mira-border bg-mira-ground px-6 pb-16 pt-28 sm:px-12 lg:px-16">
+      <div className="mx-auto w-full max-w-[1600px] space-y-10">
+        <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
           <div className="max-w-3xl space-y-4">
-            <span className="text-[11px] font-sans tracking-[0.3em] uppercase text-mira-brown block font-medium">
+            <Reveal variant="fade" className="block font-sans text-[11px] font-medium uppercase tracking-[0.3em] text-mira-brown">
               The Coastal Enclave
-            </span>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-serif text-mira-charcoal font-light leading-tight">
+            </Reveal>
+            <Reveal as="h2" delay={120} className="font-serif text-[clamp(2rem,4.2vw,3.75rem)] font-light leading-[1.1] text-mira-charcoal">
               {locationTeaser.headline}
-            </h2>
-            <p className="text-base sm:text-lg font-sans text-mira-muted font-light leading-relaxed max-w-2xl pt-2">
+            </Reveal>
+            <Reveal delay={220} className="max-w-2xl font-sans text-base font-light leading-relaxed text-mira-muted sm:text-lg">
               {locationTeaser.paragraph1}
-            </p>
+            </Reveal>
           </div>
 
-          <Link
-            href="/location"
-            className="inline-flex items-center gap-3 px-8 py-4 bg-mira-brown hover:bg-mira-brownDark text-white text-xs font-sans tracking-[0.2em] uppercase transition-all shadow-subtle shrink-0"
-          >
-            <span>Explore Location & Lifestyle</span>
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+          <Reveal variant="fade" delay={300}>
+            <Link
+              href="/location"
+              className="inline-flex shrink-0 items-center gap-3 bg-mira-brown px-8 py-4 font-sans text-xs uppercase tracking-[0.2em] text-white shadow-subtle transition-all hover:bg-mira-brownDark"
+            >
+              <span>Explore Location &amp; Lifestyle</span>
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Reveal>
         </div>
 
-        {/* Expansive Aerial Coastal Map Canvas */}
-        <div className="relative w-full aspect-[16/9] sm:aspect-[21/10] bg-mira-sand overflow-hidden shadow-2xl group border border-mira-border">
+        {/*
+          This aerial is an annotated mud map — the place names and the site
+          marker are burnt into the pixels. It is held at its native 16:9 and
+          never cropped to fill, because a cover crop slices the edge labels off.
+        */}
+        <Reveal
+          variant="mask"
+          delay={200}
+          /*
+            Width is capped so that 16:9 never grows past ~44vh — the map and
+            the copy above it then settle inside a single screen, instead of
+            the map pushing the section to one-and-a-half.
+          */
+          className="relative mx-auto aspect-[16/9] w-full max-w-[min(100%,calc(44vh*16/9))] overflow-hidden border border-mira-border bg-mira-sand shadow-2xl"
+        >
           <Image
             src={locationTeaser.aerialImage}
             alt={locationTeaser.aerialAlt}
             fill
-            className="object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.02]"
-            sizes="100vw"
+            quality={92}
+            sizes="(max-width: 1024px) 100vw, 96vw"
+            className="object-contain"
           />
-          <div className="absolute top-6 left-6 sm:top-10 sm:left-10 bg-white/95 backdrop-blur-md px-5 py-3 border border-mira-border shadow-card flex items-center gap-3">
-            <MapPin className="w-4 h-4 text-mira-tealDark" />
-            <div className="text-xs font-sans">
-              <span className="font-semibold text-mira-charcoal block">25–27 The Esplanade, Bargara</span>
-              <span className="text-[10px] text-mira-muted uppercase tracking-wider">Absolute Coral Sea Frontage</span>
-            </div>
-          </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

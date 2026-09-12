@@ -53,9 +53,9 @@ export default function Footer() {
 
           {/* Col 2: Sales Contacts */}
           <div className="md:col-span-3 space-y-4">
-            <h4 className="text-xs font-sans tracking-eyebrow uppercase text-mira-sand font-medium">
+            <h3 className="text-xs font-sans tracking-eyebrow uppercase text-mira-sand font-medium">
               Sales Enquiries
-            </h4>
+            </h3>
             <div className="space-y-4 pt-1">
               {siteConfig.contacts.map((c) => (
                 <div key={c.name} className="text-sm font-sans">
@@ -95,9 +95,9 @@ export default function Footer() {
 
           {/* Col 3: Artist Acknowledgement */}
           <div className="md:col-span-5 space-y-3">
-            <h4 className="text-xs font-sans tracking-eyebrow uppercase text-mira-sand font-medium">
+            <h3 className="text-xs font-sans tracking-eyebrow uppercase text-mira-sand font-medium">
               Artist Feature
-            </h4>
+            </h3>
             <p className="text-xs text-mira-sand/80 font-sans leading-relaxed">
               {siteConfig.artistAcknowledgement.text}
             </p>

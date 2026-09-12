@@ -1,38 +1,28 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useModal } from "@/context/ModalContext";
 import { siteConfig } from "@/content/site-content";
-import { Volume2, VolumeX, ArrowDown } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 
 export default function Hero() {
   const { openRegister } = useModal();
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [isMuted, setIsMuted] = useState(true);
-
-  const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !isMuted;
-      setIsMuted(!isMuted);
-    }
-  };
 
   return (
     <section className="relative w-full h-screen min-h-[700px] flex flex-col justify-between overflow-hidden bg-mira-charcoal text-white">
       {/* Cinematic Full-Bleed Video Background */}
       <div className="absolute inset-0 z-0">
         <video
-          ref={videoRef}
           autoPlay
           loop
-          muted={isMuted}
+          muted
           playsInline
-          poster="/img/site/Hero-Mira-Bg.webp"
+          poster="/video/home-hero-poster.jpg"
           className="w-full h-full object-cover object-center transform scale-[1.03] transition-transform duration-[2000ms] animate-kenburns"
         >
-          <source src="/img/site/mira-living.mp4" type="video/mp4" />
+          <source src="/video/home-hero.mp4" type="video/mp4" />
         </video>
         {/* Editorial Gradients: Darker top and bottom vignette, letting center ocean glow */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/30 to-black/85" />
@@ -109,14 +99,6 @@ export default function Hero() {
           </div>
 
           <div className="flex items-center gap-6">
-            <button
-              onClick={toggleMute}
-              className="flex items-center gap-2 text-white/70 hover:text-white transition-colors"
-              aria-label={isMuted ? "Unmute ocean video" : "Mute ocean video"}
-            >
-              {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
-              <span className="text-[10px] tracking-widest uppercase">{isMuted ? "Sound Off" : "Sound On"}</span>
-            </button>
             <a
               href="#architecture"
               className="text-white/70 hover:text-white transition-colors flex items-center gap-1.5"

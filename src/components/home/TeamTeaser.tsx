@@ -2,51 +2,55 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { partnerRecords } from "@/content/site-content";
+import Reveal from "@/components/common/Reveal";
 import { ArrowRight } from "lucide-react";
 
 export default function TeamTeaser() {
   return (
-    <section className="py-20 sm:py-24 px-6 sm:px-10 lg:px-16 bg-mira-sandLight border-t border-mira-border">
-      <div className="max-w-7xl mx-auto space-y-12">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <div className="space-y-2">
-            <span className="text-xs font-sans tracking-eyebrow uppercase text-mira-brown block font-medium">
+    <section className="flex min-h-screen w-full items-center border-t border-mira-border bg-mira-sandLight px-6 pb-20 pt-28 sm:px-10 lg:px-16">
+      <div className="mx-auto w-full max-w-7xl space-y-14 sm:space-y-20">
+        <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <div className="space-y-3">
+            <Reveal variant="fade" className="block font-sans text-xs font-medium uppercase tracking-eyebrow text-mira-brown">
               The Collaborators
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-serif text-mira-charcoal font-light">
+            </Reveal>
+            <Reveal as="h2" delay={120} className="font-serif text-[clamp(1.9rem,4vw,3.5rem)] font-light leading-tight text-mira-charcoal">
               Brought to life by Furtado Property
-            </h2>
+            </Reveal>
           </div>
 
-          <Link
-            href="/team"
-            className="inline-flex items-center gap-2 text-xs font-sans tracking-eyebrow uppercase text-mira-brown hover:text-mira-charcoal transition-colors border-b border-mira-brown pb-1 w-fit"
-          >
-            <span>Meet the Project Partners</span>
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+          <Reveal variant="fade" delay={200}>
+            <Link
+              href="/team"
+              className="inline-flex w-fit items-center gap-2 border-b border-mira-brown pb-1 font-sans text-xs uppercase tracking-eyebrow text-mira-brown transition-colors hover:text-mira-charcoal"
+            >
+              <span>Meet the Project Partners</span>
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Reveal>
         </div>
 
-        {/* 4 Partner Logo Cards */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
-          {partnerRecords.map((partner) => (
-            <div
+        <div className="grid grid-cols-2 gap-6 sm:gap-8 md:grid-cols-4">
+          {partnerRecords.map((partner, idx) => (
+            <Reveal
               key={partner.id}
-              className="p-8 bg-white border border-mira-border flex flex-col items-center justify-center text-center h-44 transition-all duration-300 hover:shadow-subtle hover:border-mira-brown group"
+              delay={idx * 100}
+              className="group flex h-56 flex-col items-center justify-center border border-mira-border bg-white p-8 text-center transition-all duration-300 hover:border-mira-brown hover:shadow-subtle sm:h-64"
             >
-              <div className="relative w-36 h-16 flex items-center justify-center mb-3">
+              <div className="relative mb-4 flex h-20 w-40 items-center justify-center">
                 <Image
                   src={partner.logo}
                   alt={`${partner.name} logo`}
-                  width={140}
-                  height={60}
-                  className="object-contain max-h-12 filter grayscale contrast-125 group-hover:grayscale-0 transition-all duration-300"
+                  width={160}
+                  height={72}
+                  quality={95}
+                  className="max-h-16 object-contain contrast-125 grayscale transition-all duration-300 group-hover:grayscale-0"
                 />
               </div>
-              <span className="text-xs font-sans text-mira-muted uppercase tracking-eyebrow">
+              <span className="font-sans text-xs uppercase tracking-eyebrow text-mira-muted">
                 {partner.role}
               </span>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>

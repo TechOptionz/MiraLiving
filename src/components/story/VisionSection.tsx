@@ -3,7 +3,7 @@ import Image from "next/image";
 import { storyPage } from "@/content/story-content";
 import ChapterLabel from "./ChapterLabel";
 import ImageSlot from "./ImageSlot";
-import Reveal from "./Reveal";
+import Reveal from "@/components/common/Reveal";
 
 /** 2 — The Vision Behind Mira. Editorial split: narrative left, single image right. */
 export default function VisionSection() {
@@ -11,21 +11,21 @@ export default function VisionSection() {
 
   return (
     <section id="vision" aria-labelledby="vision-heading" className="scroll-mt-24 py-24 sm:py-40 lg:py-56">
-      <div className="mx-auto grid max-w-[1500px] grid-cols-1 gap-16 px-6 sm:px-12 lg:grid-cols-12 lg:gap-20 lg:px-20">
-        <div className="lg:col-span-6">
+      <div className="mx-auto grid max-w-[1800px] grid-cols-1 gap-16 px-6 sm:px-12 lg:grid-cols-12 lg:gap-20 lg:px-20 2xl:px-28">
+        <div className="lg:col-span-5">
           <ChapterLabel numeral={vision.numeral} title={vision.chapter} />
 
           <Reveal
             as="h2"
             id="vision-heading"
-            className="mt-10 max-w-2xl font-serif text-[clamp(2.25rem,4.6vw,4rem)] font-light leading-[1.06] text-mira-charcoal"
+            className="mt-10 font-serif text-[clamp(2.5rem,5.2vw,5.25rem)] font-light leading-[1.04] text-mira-charcoal"
           >
             {vision.headline}
           </Reveal>
 
           <div className="mt-10 max-w-xl space-y-6 sm:mt-14">
             {vision.paragraphs.map((paragraph, i) => (
-              <Reveal key={paragraph} delay={i * 120} as="p" className="font-sans text-base font-light leading-relaxed text-mira-muted sm:text-lg">
+              <Reveal key={paragraph} delay={i * 120} as="p" className="font-sans text-base font-light leading-relaxed text-mira-muted sm:text-lg 2xl:text-xl">
                 {paragraph}
               </Reveal>
             ))}
@@ -53,7 +53,7 @@ export default function VisionSection() {
           </Reveal>
         </div>
 
-        <figure className="-mx-6 sm:mx-0 lg:col-span-5 lg:col-start-8">
+        <figure className="-mx-6 sm:mx-0 lg:col-span-6 lg:col-start-7">
           <div className="lg:sticky lg:top-32">
             <Reveal variant="mask" className="relative aspect-[4/5] w-full overflow-hidden bg-mira-sand">
               <ImageSlot slot={vision.image} sizes="(min-width: 1024px) 40vw, 100vw" />

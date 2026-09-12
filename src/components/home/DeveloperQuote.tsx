@@ -1,36 +1,45 @@
 import React from "react";
 import Image from "next/image";
 import { developerQuote } from "@/content/site-content";
+import Reveal from "@/components/common/Reveal";
 
 export default function DeveloperQuote() {
   return (
-    <section className="py-32 sm:py-44 px-6 sm:px-12 bg-mira-sand relative overflow-hidden border-t border-mira-border">
-      <div className="absolute inset-0 bg-noise opacity-25 mix-blend-overlay pointer-events-none" />
+    <section className="relative flex min-h-screen w-full items-center justify-center overflow-hidden border-t border-mira-border bg-mira-sand px-6 pb-20 pt-28 sm:px-12">
+      <div className="pointer-events-none absolute inset-0 bg-noise opacity-25 mix-blend-overlay" />
 
-      <div className="relative z-10 max-w-4xl mx-auto text-center space-y-10">
-        <span className="text-[11px] font-sans tracking-[0.3em] uppercase text-mira-brown block font-medium">
-          Vision & Provenance
-        </span>
+      {/* Oversized quotation mark, set as texture rather than punctuation. */}
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute left-1/2 top-[12%] -translate-x-1/2 select-none font-serif text-[28rem] leading-none text-mira-brown/[0.06] sm:text-[38rem]"
+      >
+        &ldquo;
+      </span>
 
-        <blockquote className="text-2xl sm:text-4xl md:text-5xl font-serif text-mira-charcoal font-light leading-[1.3] sm:leading-[1.3] italic">
+      <div className="relative z-10 mx-auto max-w-4xl space-y-10 text-center">
+        <Reveal variant="fade" className="block font-sans text-[11px] font-medium uppercase tracking-[0.3em] text-mira-brown">
+          Vision &amp; Provenance
+        </Reveal>
+
+        <Reveal as="blockquote" delay={120} className="font-serif text-[clamp(1.6rem,3.6vw,3.25rem)] font-light italic leading-[1.3] text-mira-charcoal">
           {developerQuote.quote}
-        </blockquote>
+        </Reveal>
 
-        <div className="pt-6 flex flex-col items-center justify-center space-y-4">
-          <div className="relative w-56 sm:w-64 h-14 flex items-center justify-center">
+        <Reveal delay={280} className="flex flex-col items-center justify-center space-y-4 pt-6">
+          <div className="relative flex h-14 w-56 items-center justify-center sm:w-64">
             <Image
               src={developerQuote.signatureImage}
               alt="Graham Furtado Signature"
               width={220}
               height={44}
-              className="object-contain filter contrast-125"
+              className="object-contain contrast-125"
             />
           </div>
 
-          <cite className="not-italic text-xs font-sans uppercase tracking-[0.25em] text-mira-muted font-medium">
+          <cite className="font-sans text-xs font-medium uppercase not-italic tracking-[0.25em] text-mira-muted">
             — {developerQuote.author}, {developerQuote.title}
           </cite>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

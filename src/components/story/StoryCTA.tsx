@@ -6,7 +6,7 @@ import { useModal } from "@/context/ModalContext";
 import { siteConfig } from "@/content/site-content";
 import { storyPage } from "@/content/story-content";
 import ImageSlot from "./ImageSlot";
-import Reveal from "./Reveal";
+import Reveal from "@/components/common/Reveal";
 
 /** 8 — Closing. One image, one line, two ways to act. */
 export default function StoryCTA() {
@@ -23,17 +23,17 @@ export default function StoryCTA() {
       <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/70" />
       <div className="pointer-events-none absolute inset-0 bg-noise opacity-15 mix-blend-overlay" />
 
-      <div className="relative z-10 mx-auto w-full max-w-[1500px] px-6 py-28 text-center sm:px-12 lg:px-20">
+      <div className="relative z-10 mx-auto w-full max-w-[1800px] px-6 py-28 text-center sm:px-12 lg:px-20 2xl:px-28">
         <Reveal
           as="h2"
           id="cta-heading"
-          className="mx-auto max-w-5xl font-serif text-[clamp(2.75rem,7vw,6.5rem)] font-light leading-[1.02]"
+          className="mx-auto max-w-6xl font-serif text-[clamp(3rem,7.6vw,7.75rem)] font-light leading-[1.01]"
         >
           {cta.headline}
         </Reveal>
 
         <Reveal delay={150}>
-          <p className="mx-auto mt-8 max-w-xl font-sans text-base font-light leading-relaxed text-white/80 sm:text-lg">
+          <p className="mx-auto mt-8 max-w-2xl font-sans text-base font-light leading-relaxed text-white/80 sm:text-lg 2xl:text-xl">
             {cta.intro}
           </p>
         </Reveal>

@@ -33,6 +33,9 @@ export default function ImageSlot({
         fill
         priority={priority}
         sizes={sizes}
+        // Photographs at this scale carry 72 without visible loss, and it keeps
+        // the large social JPEGs from dominating page weight.
+        quality={72}
         className={className}
       />
     );

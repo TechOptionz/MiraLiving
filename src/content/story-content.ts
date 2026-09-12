@@ -14,7 +14,9 @@
 //
 // NOT USED, deliberately: Sold-Properties-Mira-Living-4.webp and
 // progress-img.webp both carry baked-in "SOLD" / "FUTURE RELEASE" overlays,
-// which read as a sales board rather than editorial photography.
+// which read as a sales board rather than editorial photography. The same
+// render without those overlays is Mira-Facade-Dusk.webp, which closes the
+// construction journey as "The Final Vision".
 // ---------------------------------------------------------------------------
 
 import {
@@ -44,6 +46,15 @@ export interface ImageSlot {
   caption?: string;
 }
 
+export interface VideoSlot {
+  /** Path under /public. Encoded muted — the hero plays it as silent motion. */
+  src: string;
+  /** First-frame still, shown until the video can play and to reduced-motion users. */
+  poster: string;
+  /** What the footage shows, for the accessible label on the video element. */
+  description: string;
+}
+
 export interface JourneyChapter {
   step: string;
   title: string;
@@ -51,7 +62,10 @@ export interface JourneyChapter {
   statement: string;
   detail: string;
   meta?: string;
+  /** The wide establishing shot for the chapter. */
   image: ImageSlot;
+  /** Optional closer, human-scale companion shown beside the chapter text. */
+  support?: ImageSlot;
 }
 
 const quoteBreak = developerQuote.quote.indexOf(". ") + 1;
@@ -82,6 +96,14 @@ export const storyPage = {
       note: "Cinematic full-bleed exterior or coastline at first light",
       ratio: "16:9",
     } as ImageSlot,
+    // Motion takes the hero when it can play; `image` above stays the base
+    // layer, so the hero is never empty while the file loads or if it fails.
+    video: {
+      src: "/video/story-hero.mp4",
+      poster: "/video/story-hero-poster.jpg",
+      description:
+        "Aerial footage of Mira under construction on the Coral Sea — the coastline, the slab pour and the site crew.",
+    } as VideoSlot,
   },
 
   // 2 — The Vision Behind Mira ----------------------------------------------
@@ -120,7 +142,7 @@ export const storyPage = {
           "Sparc’s reputation for residential and multi-residential projects brings together pragmatic vision, constructional clarity and innovation.",
         meta: `${developmentSpecs.totalResidences} residences · ${developmentSpecs.internalSizeRange}`,
         image: {
-          src: "/img/social/IG_003_2026-09-01_Dcukh9yoLfF_1.jpg",
+          src: "/img/social/IG_090_2025-01-06_DEd-AOZMTM4_1.jpg",
           alt: "Aerial view of the Bargara headland and the Coral Sea, with Mira Living among the buildings on The Esplanade",
           label: "Architecture",
           note: "Façade, balcony rhythm, the building in elevation",
@@ -167,8 +189,8 @@ export const storyPage = {
           "Mira Living places you on the shoreline of the Coral Sea, with nothing between you and the horizon.",
         meta: "Absolute beachfront · The Esplanade, Bargara",
         image: {
-          src: "/img/site/Green-Water.webp",
-          alt: "Sunlight rippling across clear green water",
+          src: "/img/social/IG_042_2025-10-10_DPnHvmoDHS8_1.jpg",
+          alt: "Swimmers in the shallows at Kellys Beach, framed by a pandanus on the grassed foreshore",
           label: "Coastal living",
           note: "The Esplanade, the rocks and the Coral Sea",
           ratio: "4:3",
@@ -218,6 +240,13 @@ export const storyPage = {
           note: "Reinforcement and the basement slab pour, mid 2025",
           ratio: "16:9",
         } as ImageSlot,
+        support: {
+          src: "/img/social/IG_064_2025-06-06_DKjLC4jsGjy_1.jpg",
+          alt: "Crews tying steel reinforcement across the slab before the pour",
+          label: "On site",
+          note: "Steel fixing before the pour",
+          ratio: "1:1",
+        } as ImageSlot,
       },
       {
         step: "03",
@@ -228,26 +257,41 @@ export const storyPage = {
           "Level after level poured through to the final floor, then the roof — the building approaching its full form above the oceanfront site.",
         meta: "Five levels · Final floor poured February 2026",
         image: {
-          src: "/img/social/IG_038_2025-11-12_DQ82UVlEvvc_1.jpg",
-          alt: "Crews pouring a suspended slab over steel reinforcement, the Coral Sea visible beyond the scaffold",
+          src: "/img/social/IG_037_2025-11-22_DRWVMKPktcz_1.jpg",
+          alt: "Aerial view of the building with a concrete pump reaching over a freshly poured floor, the Coral Sea beyond",
           label: "The structure takes shape",
           note: "The framed building under scaffold, aerial or street level",
           ratio: "16:9",
+        } as ImageSlot,
+        support: {
+          src: "/img/social/IG_029_2026-02-13_DUsOOoekiN6_1.jpg",
+          alt: "A concrete pump boom arcs over the freshly poured top floor, the Coral Sea filling the horizon",
+          label: "The top floor",
+          note: "The final floor pour, February 2026",
+          ratio: "4:5",
         } as ImageSlot,
       },
       {
         step: "04",
         title: "The Final Vision",
-        period: "July — September 2026",
+        period: "June — September 2026",
         statement: "The scaffolding is down. The vision stands proud.",
         detail:
           "Internal fit-outs, landscaping and the resident pool complete the residence, now 98% finished ahead of handover.",
         meta: `98% complete · ${siteConfig.completionDate}`,
         image: {
-          src: "/img/social/IG_007_2026-07-29_DbXvpgQJutn_1.jpg",
-          alt: "The completed façade on The Esplanade with balconies glazed and the scaffolding removed",
+          src: "/img/site/Mira-Facade-Dusk.webp",
+          alt: "The completed residence at dusk, seen from the street — four levels of balconies lit warm above the landscaped frontage",
           label: "The final vision",
-          note: "The completed façade, scaffolding removed",
+          note: "The completed façade at dusk",
+          ratio: "16:9",
+          caption: "Artist Impression",
+        } as ImageSlot,
+        support: {
+          src: "/img/social/IG_010_2026-06-12_DZdxWNdk7Zx_1.jpg",
+          alt: "Aerial view of the roofed residence above the rocky foreshore, the resident pool taking shape below",
+          label: "A landmark address",
+          note: "Roof complete, pool and landscaping underway",
           ratio: "16:9",
         } as ImageSlot,
       },
@@ -283,9 +327,12 @@ export const storyPage = {
   },
 
   // 6 — People Behind Mira ---------------------------------------------------
-  // No portrait photography exists for this project — the brand pack confirms
-  // the site has never published photos of people. These four slots stay as
-  // placeholders until portraits are supplied.
+  // No studio portraits exist for this project — the brand pack confirms the
+  // site has never published posed headshots. Each slot therefore carries the
+  // project's own documentary photograph of that party's work: the
+  // groundbreaking, the entrance they designed, their crew on the slab, their
+  // mood board. Alt text describes what is actually in frame, never a person
+  // the photograph does not identify. Swap in a portrait when one is supplied.
   people: {
     numeral: "V",
     chapter: "People Behind Mira",
@@ -298,8 +345,8 @@ export const storyPage = {
         "With over 20 years of experience in residential property across South-East Queensland, Furtado Property brings a legacy of architectural excellence and meticulous craftsmanship to every new address.",
       signature: developerQuote.signatureImage,
       image: {
-        src: null,
-        alt: "",
+        src: "/img/social/IG_086_2025-01-22_DFHMruMxN5m_4.jpg",
+        alt: "The Mira Living and IDC Construct party gathered in front of the site hoarding at the January 2025 groundbreaking",
         label: "Graham Furtado",
         note: "Portrait — Developer, Furtado Property",
         ratio: "3:4",
@@ -314,11 +361,12 @@ export const storyPage = {
         description:
           "Their collaborative approach ensures each residence is not only beautifully designed but also attuned to the lifestyle aspirations of those who will call it home.",
         image: {
-          src: null,
-          alt: "",
+          src: "/img/social/IG_073_2025-03-15_DHNXvkpRuQz_1.jpg",
+          alt: "The residence entrance — brushed Mira Living signage on a deep bronze wall beside glazed doors and strelitzia planting",
           label: "Sparc",
           note: "Studio portrait — Architect",
           ratio: "4:5",
+          caption: "Artist Impression",
         } as ImageSlot,
       },
       {
@@ -328,8 +376,8 @@ export const storyPage = {
         description:
           "The boundary-pushing local builder bringing precision and innovation to every project across Wide Bay, Queensland, sculpting land into exceptional, enduring structures.",
         image: {
-          src: null,
-          alt: "",
+          src: "/img/social/IG_060_2025-06-17_DK_xWzORfhQ_1.jpg",
+          alt: "IDC Construct crew tying steel reinforcement across the slab ahead of a pour",
           label: "IDC Construct",
           note: "On-site portrait — Builder",
           ratio: "4:5",
@@ -343,8 +391,8 @@ export const storyPage = {
         description:
           "With an instinctive eye for colour, texture and detail, Sarah crafts interiors that feel both contemporary and timeless, translating each client’s vision into a cohesive, personal expression of home.",
         image: {
-          src: null,
-          alt: "",
+          src: "/img/social/IG_067_2025-03-29_DHxkXhLA_1P_1.jpg",
+          alt: "Master bedroom mood board — linen weaves, olive and husk fabric swatches, botanical prints and an oak bedside table",
           label: "Sarah Wood",
           note: "Portrait — Interior Designer",
           ratio: "4:5",
@@ -361,9 +409,14 @@ export const storyPage = {
     feature: {
       overlay: "Connected yet worlds away",
       text: locationTeaser.paragraph2,
+      // Full-bleed at sizes="100vw", so this slot needs the widest source in the
+      // library. The social archive tops out at 1440px (Instagram's cap), which
+      // the browser then upscales; this file is 2181x1226 — despite its name it
+      // is a wide Bargara aerial, not a clubhouse shot, and it clears the 1920
+      // deviceSizes ceiling so the optimizer never has to upscale.
       image: {
-        src: "/img/site/Healthcare.webp",
-        alt: "A couple walking barefoot along the shoreline at sunset",
+        src: "/img/site/Bargara-Golf-Clubhouse-2-2.webp",
+        alt: "Aerial view over Bargara — the golf course and township in the foreground, the Esplanade apartments and the Coral Sea beyond",
         label: "The Esplanade",
         note: "Coastline and foreshore in front of the residence",
         ratio: "16:9",
@@ -406,7 +459,7 @@ export const storyPage = {
     enquireLabel: "Enquire Now",
     image: {
       // Decorative backdrop behind the closing headline.
-      src: "/img/site/contactbg-1.webp",
+      src: "/img/social/IG_012_2026-06-01_DZCSnLcEWdb_1.jpg",
       alt: "",
       label: "Closing image",
       note: "Sunset over the Coral Sea from the residence",

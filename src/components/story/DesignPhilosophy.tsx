@@ -3,7 +3,7 @@ import { storyPage } from "@/content/story-content";
 import ChapterLabel from "./ChapterLabel";
 import ImageSlot from "./ImageSlot";
 import Parallax from "./Parallax";
-import Reveal from "./Reveal";
+import Reveal from "@/components/common/Reveal";
 
 /**
  * 3 — Design Philosophy. Four large numbered movements, alternating sides.
@@ -17,13 +17,13 @@ export default function DesignPhilosophy() {
       aria-labelledby="design-heading"
       className="overflow-hidden border-t border-mira-border bg-mira-sandLight py-24 sm:py-40 lg:py-56"
     >
-      <div className="mx-auto max-w-[1500px] px-6 sm:px-12 lg:px-20">
+      <div className="mx-auto max-w-[1800px] px-6 sm:px-12 lg:px-20 2xl:px-28">
         <ChapterLabel numeral={design.numeral} title={design.chapter} />
         <div className="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-12">
           <Reveal
             as="h2"
             id="design-heading"
-            className="font-serif text-[clamp(2rem,4.2vw,3.75rem)] font-light leading-[1.1] text-mira-charcoal lg:col-span-9"
+            className="font-serif text-[clamp(2.25rem,4.8vw,4.75rem)] font-light leading-[1.08] text-mira-charcoal lg:col-span-9"
           >
             {design.headline}
           </Reveal>
@@ -35,7 +35,7 @@ export default function DesignPhilosophy() {
         </div>
       </div>
 
-      <ol className="mx-auto mt-24 max-w-[1500px] px-6 sm:mt-32 sm:px-12 lg:px-20">
+      <ol className="mx-auto mt-24 max-w-[1800px] px-6 sm:mt-32 sm:px-12 lg:px-20 2xl:px-28">
         {design.principles.map((principle, i) => {
           const imageFirst = i % 2 === 1;
 
@@ -44,7 +44,7 @@ export default function DesignPhilosophy() {
               key={principle.title}
               className="grid grid-cols-1 items-center gap-10 border-t border-mira-border pt-14 pb-20 last:pb-0 sm:gap-14 sm:pt-20 sm:pb-32 lg:grid-cols-12 lg:gap-20"
             >
-              <div className={`lg:col-span-5 ${imageFirst ? "lg:col-start-8 lg:row-start-1" : ""}`}>
+              <div className={`lg:col-span-4 ${imageFirst ? "lg:col-start-9 lg:row-start-1" : ""}`}>
                 <Reveal>
                   <div className="flex items-end gap-5">
                     <span
@@ -58,7 +58,7 @@ export default function DesignPhilosophy() {
                     </h3>
                   </div>
 
-                  <p className="mt-10 font-serif text-[clamp(1.6rem,2.9vw,2.6rem)] font-light leading-[1.18] text-mira-charcoal">
+                  <p className="mt-10 font-serif text-[clamp(1.75rem,3.3vw,3.25rem)] font-light leading-[1.15] text-mira-charcoal">
                     {principle.statement}
                   </p>
                   <p className="mt-7 max-w-lg font-sans text-[15px] font-light leading-relaxed text-mira-muted sm:text-base">
@@ -73,8 +73,8 @@ export default function DesignPhilosophy() {
               </div>
 
               <figure
-                className={`-mx-6 sm:mx-0 lg:col-span-6 ${
-                  imageFirst ? "lg:col-start-1 lg:row-start-1" : "lg:col-start-7"
+                className={`-mx-6 sm:mx-0 lg:col-span-7 ${
+                  imageFirst ? "lg:col-start-1 lg:row-start-1" : "lg:col-start-6"
                 }`}
               >
                 <Reveal variant="mask" className="relative aspect-[4/3] w-full overflow-hidden bg-mira-sand">

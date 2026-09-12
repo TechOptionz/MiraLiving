@@ -1,39 +1,41 @@
 import React from "react";
 import { keyFeatures } from "@/content/site-content";
+import Reveal from "@/components/common/Reveal";
 
 export default function KeyFeaturesGrid() {
   return (
-    <section className="py-28 sm:py-36 px-6 sm:px-12 lg:px-20 bg-mira-sandLight border-t border-mira-border">
-      <div className="max-w-6xl mx-auto space-y-16">
-        <div className="text-center max-w-3xl mx-auto space-y-4">
-          <span className="text-[11px] font-sans tracking-[0.3em] uppercase text-mira-brown block font-medium">
+    <section className="flex min-h-screen w-full items-center border-t border-mira-border bg-mira-sandLight px-6 pb-16 pt-28 sm:px-12 lg:px-20">
+      <div className="mx-auto w-full max-w-6xl space-y-10 sm:space-y-14">
+        <div className="mx-auto max-w-3xl space-y-4 text-center">
+          <Reveal variant="fade" className="block font-sans text-[11px] font-medium uppercase tracking-[0.3em] text-mira-brown">
             Architectural Elements
-          </span>
-          <h2 className="text-3xl sm:text-5xl font-serif text-mira-charcoal font-light">
+          </Reveal>
+          <Reveal as="h2" delay={120} className="font-serif text-[clamp(1.9rem,4vw,3.5rem)] font-light text-mira-charcoal">
             Crafted for Enduring Excellence
-          </h2>
+          </Reveal>
         </div>
 
-        {/* Clean Architectural Schedule (Hairline Dividers, not chunky cards) */}
-        <div className="border-t border-mira-border divide-y divide-mira-border">
+        {/* Specification schedule — hairline dividers, numbered like a drawing set. */}
+        <div className="divide-y divide-mira-border border-t border-mira-border">
           {keyFeatures.map((feat, idx) => (
-            <div
+            <Reveal
               key={feat.id}
-              className="py-6 sm:py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 group hover:bg-white/50 px-4 transition-colors"
+              delay={idx * 70}
+              className="group flex flex-col items-start justify-between gap-4 px-4 py-5 transition-colors hover:bg-white/50 sm:flex-row sm:items-center sm:py-6"
             >
               <div className="flex items-center gap-6">
-                <span className="text-xs font-mono tracking-widest text-mira-muted group-hover:text-mira-brown transition-colors">
+                <span className="font-mono text-xs tracking-widest text-mira-muted transition-colors group-hover:text-mira-brown">
                   0{idx + 1}
                 </span>
-                <p className="text-base sm:text-xl font-serif text-mira-charcoal font-light">
+                <p className="font-serif text-base font-light text-mira-charcoal sm:text-xl">
                   {feat.text}
                 </p>
               </div>
 
-              <span className="text-[10px] font-sans uppercase tracking-[0.25em] text-mira-muted shrink-0">
+              <span className="shrink-0 font-sans text-[10px] uppercase tracking-[0.25em] text-mira-muted">
                 Included Specification
               </span>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>

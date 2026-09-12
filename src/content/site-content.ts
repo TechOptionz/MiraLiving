@@ -176,7 +176,11 @@ export const aNewWayToLive = {
   headline: "A new way to live by the sea",
   paragraph1: "Mira Living places you on the shoreline of the Coral Sea, with nothing between you and the horizon. Wake to the sound of waves, enjoy leisurely strolls along the Bargara Esplanade and watch the sun rise over the water from your own private balcony.",
   paragraph2: "This is coastal living, elevated — a rare opportunity to own oceanfront in one of Queensland’s most coveted seaside enclaves.",
-  image: "/img/site/Sold-Properties-Mira-Living-4.webp",
+  // Deliberately NOT Sold-Properties-Mira-Living-4.webp: that is this same
+  // elevation with "SOLD" / "FUTURE RELEASE" burnt into the balconies, which
+  // run full-bleed behind this copy reads as a sales board and misstates
+  // availability. Mira-Facade-Dusk.webp is the clean render.
+  image: "/img/site/Mira-Facade-Dusk.webp",
   caption: "Artist Impression"
 };
 
@@ -437,14 +441,14 @@ export const constructionMilestones: ConstructionMilestone[] = [
     formattedDate: "January 2025",
     title: "Groundbreaking Ceremony",
     description: "Official commencement of works on absolute beachfront Bargara Esplanade site.",
-    image: "/img/social/IG_092_2025-01-02_DETJo53IUF-_1.jpg"
+    image: "/img/social/IG_086_2025-01-22_DFHMruMxN5m_1.jpg"
   },
   {
     date: "2025-01-22",
     formattedDate: "Late January 2025",
     title: "Site Excavation & Mobilisation",
     description: "Heavy machinery and earthworks underway preparing the foundation perimeter.",
-    image: "/img/social/IG_086_2025-01-22_DFHMruMxN5m_1.jpg"
+    image: "/img/social/IG_060_2025-06-17_DK_xWzORfhQ_2.jpg"
   },
   {
     date: "2025-02-25",
@@ -486,7 +490,7 @@ export const constructionMilestones: ConstructionMilestone[] = [
     formattedDate: "February 2026",
     title: "Top Floor Concrete Poured",
     description: "Final floor level reached with internal framing and service fit-outs commencing.",
-    image: "/img/social/IG_031_2026-02-11_DUmBvurDEhF_1.jpg"
+    image: "/img/social/IG_029_2026-02-13_DUsOOoekiN6_1.jpg"
   },
   {
     date: "2026-05-12",
@@ -516,12 +520,12 @@ export const curatedLifestylePhotos: CuratedLifestylePhoto[] = [
   {
     title: "Morning Foreshore Swims",
     location: "Kellys Beach & The Basin",
-    image: "/img/social/IG_008_2026-07-07_DaefaMeE7xl_1.jpg"
+    image: "/img/social/IG_054_2025-07-22_DMZrYZmstuM_1.jpg"
   },
   {
     title: "Coastal Strolls on the Esplanade",
     location: "Directly in front of Mira Living",
-    image: "/img/social/IG_013_2026-05-20_DYi1dj4oPHk_1.jpg"
+    image: "/img/social/IG_063_2025-06-09_DKqBYo2shNn_1.jpg"
   },
   {
     title: "The Basin Tidal Pool",

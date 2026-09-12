@@ -1,5 +1,6 @@
 import React from "react";
 import { storyPage } from "@/content/story-content";
+import HeroVideo from "./HeroVideo";
 import ImageSlot from "./ImageSlot";
 import Parallax from "./Parallax";
 
@@ -10,7 +11,9 @@ export default function StoryHero() {
     <section className="relative flex h-[100svh] min-h-[640px] w-full flex-col overflow-hidden bg-mira-charcoal text-white">
       <Parallax speed={0.25}>
         <div className="absolute inset-0 animate-heroZoom">
+          {/* Still first, motion over it — see HeroVideo for why the order matters. */}
           <ImageSlot slot={hero.image} tone="dark" priority sizes="100vw" className="object-cover object-center" />
+          <HeroVideo slot={hero.video} />
         </div>
       </Parallax>
 
@@ -19,7 +22,7 @@ export default function StoryHero() {
       <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/55" />
       <div className="pointer-events-none absolute inset-0 bg-noise opacity-15 mix-blend-overlay" />
 
-      <div className="relative z-10 mx-auto flex h-full w-full max-w-[1500px] flex-col justify-end px-6 pb-10 sm:px-12 sm:pb-14 lg:px-20">
+      <div className="relative z-10 mx-auto flex h-full w-full max-w-[1800px] flex-col justify-end px-6 pb-10 sm:px-12 sm:pb-14 lg:px-20 2xl:px-28">
         <p
           className="animate-softFade flex items-center gap-4 font-sans text-[11px] font-medium uppercase tracking-[0.35em] text-mira-sand"
           style={{ "--d": "200ms" } as React.CSSProperties}
@@ -29,7 +32,7 @@ export default function StoryHero() {
         </p>
 
         <div className="mt-8 grid grid-cols-1 items-end gap-10 lg:grid-cols-12">
-          <h1 className="font-serif text-[clamp(2.5rem,6.2vw,6.25rem)] font-light leading-[1.02] tracking-[-0.01em] lg:col-span-8">
+          <h1 className="font-serif text-[clamp(2.75rem,7vw,8.25rem)] font-light leading-[1.01] tracking-[-0.015em] lg:col-span-8">
             {hero.headlineLines.map((line, i) => (
               <span key={line} className="line-mask">
                 <span style={{ "--d": `${400 + i * 160}ms` } as React.CSSProperties}>
@@ -44,7 +47,7 @@ export default function StoryHero() {
           </h1>
 
           <p
-            className="animate-softFade max-w-sm font-sans text-base font-light leading-relaxed text-white/80 sm:text-lg lg:col-span-4 lg:pb-4"
+            className="animate-softFade max-w-md font-sans text-base font-light leading-relaxed text-white/80 sm:text-lg lg:col-span-4 lg:pb-4 2xl:text-xl"
             style={{ "--d": "1000ms" } as React.CSSProperties}
           >
             {hero.intro}

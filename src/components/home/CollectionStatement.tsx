@@ -1,40 +1,55 @@
 import React from "react";
 import { collectionStatement } from "@/content/site-content";
+import Reveal from "@/components/common/Reveal";
 
 export default function CollectionStatement() {
   return (
-    <section id="architecture" className="py-28 sm:py-40 px-6 sm:px-12 lg:px-20 bg-mira-ground text-center relative overflow-hidden">
-      <div className="max-w-5xl mx-auto space-y-16">
-        {/* Subtle Editorial Eyebrow */}
-        <div className="flex items-center justify-center gap-4">
-          <span className="w-12 h-[1px] bg-mira-brown/40" />
-          <span className="text-[11px] font-sans tracking-[0.3em] uppercase text-mira-brown font-medium">
-            The Limited Collection
-          </span>
-          <span className="w-12 h-[1px] bg-mira-brown/40" />
-        </div>
+    <section
+      id="architecture"
+      className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-mira-ground px-6 pb-20 pt-28 text-center sm:px-12 lg:px-20"
+    >
+      <div className="mx-auto w-full max-w-5xl space-y-14 sm:space-y-20">
+        <Reveal variant="fade">
+          <div className="flex items-center justify-center gap-4">
+            <span className="h-px w-12 bg-mira-brown/40" />
+            <span className="font-sans text-[11px] font-medium uppercase tracking-[0.3em] text-mira-brown">
+              The Limited Collection
+            </span>
+            <span className="h-px w-12 bg-mira-brown/40" />
+          </div>
+        </Reveal>
 
-        {/* Monumental Headline */}
-        <h2 className="text-3xl sm:text-5xl md:text-6xl font-serif text-mira-charcoal font-light leading-[1.2] max-w-4xl mx-auto">
+        <Reveal as="h2" delay={120} className="mx-auto max-w-4xl font-serif text-[clamp(1.9rem,4.6vw,4rem)] font-light leading-[1.15] text-mira-charcoal">
           {collectionStatement.headline}
-        </h2>
+        </Reveal>
 
-        {/* Minimalist Hairline Architectural Spec Strip (Not chunky cards!) */}
-        <div className="pt-8 border-t border-b border-mira-border/80 divide-y sm:divide-y-0 sm:divide-x divide-mira-border/80 grid grid-cols-2 sm:grid-cols-5">
+        {/* Hairline spec strip — architectural schedule, not chunky cards. */}
+        <Reveal delay={240} className="grid grid-cols-2 divide-y divide-mira-border/80 border-b border-t border-mira-border/80 sm:grid-cols-5 sm:divide-y-0 sm:divide-x">
           {collectionStatement.stats.map((stat) => (
             <div
               key={stat.label}
-              className="py-8 sm:py-10 px-4 flex flex-col items-center justify-center space-y-2 group transition-colors hover:bg-white/60"
+              className="group flex flex-col items-center justify-center space-y-2 px-4 py-9 transition-colors hover:bg-white/60 sm:py-12"
             >
-              <span className="text-3xl sm:text-4xl md:text-5xl font-serif font-light text-mira-charcoal group-hover:text-mira-brown transition-colors">
+              {/*
+                Four of the five values are single digits; "Resort Pool" is a
+                phrase. Sized on the digit scale it overflows the cell, so a
+                word-length value steps down and is allowed to wrap.
+              */}
+              <span
+                className={`font-serif font-light text-mira-charcoal transition-colors group-hover:text-mira-brown ${
+                  stat.value.length > 2
+                    ? "text-[clamp(1.15rem,1.9vw,1.75rem)] leading-tight"
+                    : "text-[clamp(2rem,3.6vw,3.4rem)]"
+                }`}
+              >
                 {stat.value}
               </span>
-              <span className="text-[10px] font-sans tracking-[0.25em] uppercase text-mira-muted font-medium">
+              <span className="font-sans text-[10px] font-medium uppercase tracking-[0.25em] text-mira-muted">
                 {stat.label}
               </span>
             </div>
           ))}
-        </div>
+        </Reveal>
       </div>
     </section>
   );

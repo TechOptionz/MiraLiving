@@ -10,8 +10,8 @@ export default function SecureSection() {
   const { openRegister } = useModal();
 
   return (
-    <section className="py-28 sm:py-40 px-6 sm:px-12 lg:px-20 bg-mira-ground border-t border-mira-border">
-      <div className="max-w-[1500px] mx-auto space-y-20">
+    <section className="flex min-h-screen w-full items-center border-t border-mira-border bg-mira-ground px-6 pb-20 pt-28 sm:px-12 lg:px-20">
+      <div className="mx-auto w-full max-w-[1500px] space-y-16 sm:space-y-20">
         {/* Editorial Narrative Header */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
           <div className="lg:col-span-8 space-y-6">
@@ -60,24 +60,25 @@ export default function SecureSection() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12 pt-8 border-t border-mira-border">
           {stepRecords.map((step) => (
             <div key={step.step} className="space-y-4 group">
-              <div className="flex items-center justify-between border-b border-mira-border pb-4">
-                <span className="text-3xl sm:text-4xl font-serif font-light text-mira-charcoal group-hover:text-mira-brown transition-colors">
-                  {step.step}
-                </span>
-                <div className="w-10 h-10 relative opacity-75 group-hover:opacity-100 transition-opacity">
-                  <Image
-                    src={step.iconSvg}
-                    alt={`Step ${step.step}`}
-                    width={40}
-                    height={40}
-                    className="object-contain"
-                  />
-                </div>
+              {/*
+                step.step and step.iconSvg are the same numeral — the record
+                carries "01" as text and /img/site/01.svg draws it. Rendering
+                both printed the number twice in the row, so the drawn numeral
+                carries it alone and the text lives in the image's alt.
+              */}
+              <div className="flex items-end justify-between border-b border-mira-border pb-4">
+                <Image
+                  src={step.iconSvg}
+                  alt={`Step ${step.step}`}
+                  width={59}
+                  height={41}
+                  className="h-9 w-auto object-contain opacity-70 transition-opacity group-hover:opacity-100 sm:h-11"
+                />
               </div>
 
-              <h4 className="text-xl sm:text-2xl font-serif text-mira-charcoal font-light">
+              <h3 className="text-xl sm:text-2xl font-serif text-mira-charcoal font-light">
                 {step.title}
-              </h4>
+              </h3>
               <p className="text-sm font-sans text-mira-muted leading-relaxed font-light">
                 {step.description}
               </p>
