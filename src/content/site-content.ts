@@ -275,7 +275,15 @@ export const locationTeaser = {
   paragraph1: "Just 20 minutes from Bundaberg, Bargara blends natural beauty with village charm. Start your day strolling the Esplanade or sipping coffee on Bauer Street, then spend the afternoon on the fairways of Bargara Golf Club.",
   paragraph2: "With every convenience close by and the ocean at your door, Bargara feels a world away — yet right where you need to be.",
   aerialImage: "/img/site/mira-living-img-2.webp",
-  aerialAlt: "Aerial view of Bargara coastline showing Mira Living location, Bargara Golf Club, Bargara Central, and surrounding beaches"
+  aerialAlt: "Aerial view of Bargara coastline showing Mira Living location, Bargara Golf Club, Bargara Central, and surrounding beaches",
+  // Drive/walk times shown on the home teaser. Every figure here is one the
+  // rest of the site already states — do not add a new one without a source.
+  proximity: [
+    { label: "The Esplanade", value: "At the door" },
+    { label: "Bargara Golf Club", value: "3 min walk" },
+    { label: "Bundaberg", value: "20 min drive" },
+    { label: "Bundaberg Airport", value: "25 min drive" }
+  ]
 };
 
 export const lifestyleRecords: LifestyleRecord[] = [

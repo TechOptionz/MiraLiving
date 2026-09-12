@@ -254,3 +254,28 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #746355;
 }
+
+/* ------------------------------------------------------------------
+   Hero display type — fluid, so the headline never overflows its column
+   ------------------------------------------------------------------ */
+.text-hero-display {
+  font-size: clamp(2.5rem, 7.4vw, 5.75rem);
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+}
+
+.text-hero-lead {
+  font-size: clamp(0.975rem, 1.35vw, 1.185rem);
+}
+
+/* Vertical scroll cue label (desktop hero) */
+.text-vertical {
+  writing-mode: vertical-rl;
+}
+
+/* Keeps hero type legible over a light scrim, so the imagery isn't washed black */
+.hero-legible {
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.28),
+    0 2px 26px rgba(0, 0, 0, 0.42);
+}
