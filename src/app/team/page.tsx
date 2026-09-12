@@ -52,7 +52,7 @@ export default function TeamPage() {
                 src={partnerRecords[0].logo}
                 alt="Furtado Property logo"
                 width={220}
-                height={80}
+                height={53}
                 className="object-contain"
               />
             </div>
@@ -119,7 +119,7 @@ export default function TeamPage() {
                         alt={`${partner.name} logo`}
                         width={150}
                         height={60}
-                        className="object-contain max-h-14 filter contrast-125"
+                        className="object-contain max-h-14"
                       />
                     </div>
                     <div className="p-2 bg-mira-sandLight">

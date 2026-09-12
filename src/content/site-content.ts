@@ -343,28 +343,28 @@ export const partnerRecords: PartnerRecord[] = [
     id: 1,
     name: "Furtado Property",
     role: "Developer",
-    logo: "/img/site/Furtado_logo.png",
+    logo: "/img/site/Furtado_logo-colour.png",
     description: "With over 20 years of experience in residential property across South-East Queensland, Furtado Property brings a legacy of architectural excellence and meticulous craftsmanship to every new address. Our philosophy is to create buildings that endure, combining quality workmanship with thoughtful, timeless design. At Mira Living, that same commitment ensures your residence is not just a place to live, but a landmark of refined coastal living, impeccably designed for an effortless lifestyle and lasting value."
   },
   {
     id: 2,
     name: "Sparc",
     role: "Architect",
-    logo: "/img/site/Sparc.png",
+    logo: "/img/site/Sparc-colour.png",
     description: "Sparc’s reputation for residential and multi-residential projects brings together pragmatic vision, constructional clarity and innovation. Their collaborative approach ensures each residence is not only beautifully designed but also attuned to the lifestyle aspirations of those who will call it home, for architecture that embodies prestige, practicality and a profound sense of place."
   },
   {
     id: 3,
     name: "IDC Construct",
     role: "Builder",
-    logo: "/img/site/IDC-Construct.png",
+    logo: "/img/site/IDC-Construct-colour.png",
     description: "IDC Construct is the boundary-pushing local builder bringing precision and innovation to every project across Wide Bay, Queensland, sculpting land into exceptional, enduring structures. Their advanced technology and elevated project management ensure that what begins as an empty site becomes a refined and resilient foundation for thriving communities."
   },
   {
     id: 4,
     name: "Sarah Wood Designs",
     role: "Interior Designer",
-    logo: "/img/site/sarahwood.png",
+    logo: "/img/site/sarahwood-colour.png",
     description: "Led by designer Sarah Wood, Sarah Wood Designs brings over 15 years of experience across fashion, interiors and construction to create spaces that balance beauty and function. With an instinctive eye for colour, texture and detail, Sarah crafts interiors that feel both contemporary and timeless, translating each client’s vision into a cohesive, personal expression of home."
   }
 ];

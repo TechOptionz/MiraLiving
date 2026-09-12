@@ -90,7 +90,7 @@ export default function PeopleSection() {
                     alt={`${person.company ?? person.name} logo`}
                     width={160}
                     height={64}
-                    className="h-7 w-auto opacity-60 brightness-0"
+                    className="h-7 w-auto"
                   />
                 </div>
                 <h3 className="mt-6 font-serif text-3xl font-light text-mira-charcoal sm:text-4xl">{person.name}</h3>

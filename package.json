@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "images:dimensions": "node scripts/gen-image-dimensions.mjs"
+    "images:dimensions": "node scripts/gen-image-dimensions.mjs",
+    "images:logos": "node scripts/build-partner-logos.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",

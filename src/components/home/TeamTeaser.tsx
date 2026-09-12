@@ -7,8 +7,11 @@ import { ArrowRight } from "lucide-react";
 
 export default function TeamTeaser() {
   return (
-    <section className="flex min-h-screen w-full items-center border-t border-mira-border bg-mira-sandLight px-6 pb-20 pt-28 sm:px-12 lg:px-20">
-      <div className="mx-auto w-full max-w-6xl space-y-12 sm:space-y-16">
+    /* Same treatment as the specification schedule either side of it: the
+       masthead takes what it needs and the credit ledger stretches into the
+       height that is left, capped so the cards never read as hollow. */
+    <section className="flex min-h-screen w-full flex-col justify-center border-t border-mira-border bg-mira-sandLight px-6 pb-[clamp(3rem,7vh,5rem)] pt-[clamp(7rem,15vh,9.5rem)] sm:px-12 lg:px-20">
+      <div className="mx-auto flex w-full max-w-6xl flex-1 flex-col justify-center gap-[clamp(2.5rem,6vh,4.5rem)]">
         {/* Masthead — statement left, supporting note and CTA right. */}
         <div className="grid gap-8 lg:grid-cols-12 lg:items-end lg:gap-16">
           <div className="space-y-4 lg:col-span-7">
@@ -40,12 +43,12 @@ export default function TeamTeaser() {
         </div>
 
         {/* Credit ledger — a hairline grid, numbered like a drawing set. */}
-        <div className="grid grid-cols-1 border-l border-t border-mira-border sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid flex-1 auto-rows-fr grid-cols-1 border-l border-t border-mira-border sm:grid-cols-2 lg:max-h-[22rem] lg:grid-cols-4">
           {partnerRecords.map((partner, idx) => (
             <Reveal
               key={partner.id}
               delay={idx * 90}
-              className="group flex flex-col justify-between gap-8 border-b border-r border-mira-border bg-transparent px-7 py-8 transition-colors duration-500 hover:bg-white sm:px-8 sm:py-10"
+              className="group flex flex-col justify-between gap-8 border-b border-r border-mira-border bg-transparent px-7 py-8 transition-colors duration-500 hover:bg-white sm:px-8 sm:py-[clamp(2rem,3.5vh,3rem)]"
             >
               <div className="flex items-baseline justify-between">
                 <span className="font-sans text-[10px] tracking-[0.25em] text-mira-muted/70 transition-colors duration-300 group-hover:text-mira-brown">
@@ -56,6 +59,9 @@ export default function TeamTeaser() {
                 </span>
               </div>
 
+              {/* Logos are the partners' own full-colour marks (built by
+                  scripts/build-partner-logos.mjs), so they read at full
+                  strength — no grayscale or fade needed. */}
               <div className="relative flex h-16 items-center justify-start sm:h-20">
                 <Image
                   src={partner.logo}
@@ -63,7 +69,7 @@ export default function TeamTeaser() {
                   width={180}
                   height={80}
                   quality={95}
-                  className="max-h-14 w-auto max-w-[150px] object-contain object-left opacity-60 grayscale transition-all duration-500 group-hover:opacity-100 group-hover:grayscale-0 sm:max-h-16"
+                  className="max-h-14 w-auto max-w-[170px] object-contain object-left sm:max-h-[4.25rem]"
                 />
               </div>
 

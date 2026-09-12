@@ -1,7 +1,6 @@
 import React from "react";
 import { storyPage } from "@/content/story-content";
 import HeroVideo from "./HeroVideo";
-import ImageSlot from "./ImageSlot";
 import Parallax from "./Parallax";
 
 export default function StoryHero() {
@@ -11,8 +10,8 @@ export default function StoryHero() {
     <section className="relative flex h-[100svh] min-h-[640px] w-full flex-col overflow-hidden bg-mira-charcoal text-white">
       <Parallax speed={0.25}>
         <div className="absolute inset-0 animate-heroZoom">
-          {/* Still first, motion over it — see HeroVideo for why the order matters. */}
-          <ImageSlot slot={hero.image} tone="dark" priority sizes="100vw" className="object-cover object-center" />
+          {/* One layer only — the video's poster is its own first frame, so the
+              hero paints finished and never swaps one picture for another. */}
           <HeroVideo slot={hero.video} />
         </div>
       </Parallax>

@@ -101,15 +101,8 @@ export const storyPage = {
       `${developmentSpecs.totalResidences} residences`,
       siteConfig.completionDate,
     ],
-    image: {
-      src: "/img/site/Hero-Mira-Bg.webp",
-      alt: "",
-      label: "Hero — the residence on the Coral Sea",
-      note: "Cinematic full-bleed exterior or coastline at first light",
-      ratio: "16:9",
-    } as ImageSlot,
-    // Motion takes the hero when it can play; `image` above stays the base
-    // layer, so the hero is never empty while the file loads or if it fails.
+    // The hero is the film alone — its poster is the footage's own first frame,
+    // so the section paints a finished still and never swaps in a second photo.
     video: {
       src: "/video/story-hero.mp4",
       poster: "/video/story-hero-poster.jpg",
