@@ -397,11 +397,15 @@ export const storyPage = {
         description:
           "With an instinctive eye for colour, texture and detail, Sarah crafts interiors that feel both contemporary and timeless, translating each client’s vision into a cohesive, personal expression of home.",
         image: {
-          src: "/img/social/IG_067_2025-03-29_DHxkXhLA_1P_1.jpg",
-          alt: "Master bedroom mood board — linen weaves, olive and husk fabric swatches, botanical prints and an oak bedside table",
+          // Her finished work rather than a flat-lay: the mood board that stood
+          // here carried its own studio logo and an "Interior Designer" caption
+          // baked into the artwork, both of which the card already states.
+          src: "/img/site/Dining-room-from-Furtado-site.webp",
+          alt: "Dining room interior — a black table and tan upholstered chairs against a full-height walnut panelled wall, globe pendant overhead and oak flooring below",
           label: "Sarah Wood",
           note: "Portrait — Interior Designer",
-          ratio: "4:5",
+          ratio: "1:1",
+          caption: "Artist Impression",
         } as ImageSlot,
       },
     ],

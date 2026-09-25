@@ -90,11 +90,9 @@ export const siteConfig = {
   // TODO: confirm completion date with client ("Complete September 2026" vs "Q2 2026")
   completionDate: "Completion September 2026",
 
-  // TODO: set to the hosted brochure PDF once the client supplies it, e.g.
-  // "/brochure/mira-living-brochure.pdf". While this is null the confirmation
-  // panel tells the registrant the brochure will be emailed instead of offering
-  // a download link that is not actually a brochure.
-  brochureUrl: null as string | null,
+  // Served from /public. Set to null to fall back to the "we'll email it"
+  // confirmation copy (e.g. once the brochure is delivered by email instead).
+  brochureUrl: "/MIRA-LIVING-Brochure.pdf" as string | null,
   constructionProgress: 98,
   
   address: {
@@ -404,6 +402,7 @@ export const registerSection = {
   budgetOptions: [
     "$1.4M - $1.6M",
     "$1.6M - $1.8M",
+    "$1.8M - $2M",
     "$2M+"
   ],
   timeframeOptions: [

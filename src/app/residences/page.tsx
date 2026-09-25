@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { developmentSpecs } from "@/content/site-content";
 import Reveal from "@/components/common/Reveal";
 import PhotoFrame from "@/components/common/PhotoFrame";
+import ResidencesHero from "@/components/residences/ResidencesHero";
 import FloorPlanTabs from "@/components/residences/FloorPlanTabs";
 import ConstructionTimeline from "@/components/residences/ConstructionTimeline";
 import RegisterSection from "@/components/home/RegisterSection";
@@ -24,13 +25,6 @@ const specSchedule = [
   { label: "Handover target", value: `${developmentSpecs.status} · Completion ${developmentSpecs.completion}` },
 ];
 
-const headlineFacts = [
-  { value: String(developmentSpecs.totalResidences), label: "Oceanfront residences" },
-  { value: "3 + MPR", label: "Bedrooms" },
-  { value: "117–139", label: "Sqm internal" },
-  { value: "2", label: "Secure carparks" },
-];
-
 const interiors = [
   {
     src: "/img/site/Image-5.webp",
@@ -50,38 +44,9 @@ const interiors = [
 
 export default function ResidencesPage() {
   return (
-    <div className="bg-mira-ground pt-24 sm:pt-28">
-      {/* Hero */}
-      <section className="border-b border-mira-border bg-mira-sandLight px-6 py-24 sm:px-12 sm:py-32">
-        <div className="mx-auto max-w-4xl text-center">
-          <Reveal variant="fade" className="block font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-brown">
-            The Residences
-          </Reveal>
-
-          <Reveal as="h1" delay={120} className="mt-6 font-serif text-[clamp(2.25rem,5.2vw,4.5rem)] font-light leading-[1.08] text-mira-charcoal">
-            Residences of Quiet Coastal Distinction
-          </Reveal>
-
-          <Reveal delay={240} className="mx-auto mt-7 max-w-2xl font-sans text-[17px] leading-[1.75] text-mira-brownDark sm:text-lg">
-            A limited boutique collection of 25 oceanfront homes directly on the Bargara Esplanade — engineered for
-            absolute comfort, generous internal space, and panoramic Coral Sea views.
-          </Reveal>
-
-          {/* Quick facts, so the essentials read at a glance before the full schedule. */}
-          <Reveal delay={340} className="mt-14 grid grid-cols-2 gap-y-10 border-t border-mira-border pt-10 sm:grid-cols-4">
-            {headlineFacts.map((fact) => (
-              <div key={fact.label} className="space-y-2 px-2">
-                <p className="font-serif text-3xl font-light leading-none text-mira-charcoal sm:text-4xl">
-                  {fact.value}
-                </p>
-                <p className="font-sans text-[12px] font-medium uppercase tracking-[0.18em] text-mira-brown">
-                  {fact.label}
-                </p>
-              </div>
-            ))}
-          </Reveal>
-        </div>
-      </section>
+    <div className="bg-mira-ground">
+      {/* Hero — the Story film, so the two pages read as one set */}
+      <ResidencesHero />
 
       {/* Specification schedule — hairline rows, read like a drawing set */}
       <section className="bg-mira-ground px-6 py-24 sm:px-12 sm:py-32 lg:px-20">

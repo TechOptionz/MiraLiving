@@ -15,7 +15,8 @@ export default function Header() {
   const { openRegister } = useModal();
 
   // Pages that open on a full-bleed dark hero get the transparent header until scrolled.
-  const overHero = pathname === "/" || pathname === "/story" || pathname === "/team";
+  const overHero =
+    pathname === "/" || pathname === "/story" || pathname === "/residences" || pathname === "/team";
 
   useEffect(() => {
     /*

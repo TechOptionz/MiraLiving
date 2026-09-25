@@ -81,6 +81,12 @@ export default function PeopleSection() {
                 >
                   <ImageSlot slot={person.image} sizes="(min-width: 768px) 30vw, 78vw" />
                 </div>
+                {/* Two of the three slots hold renders, not photographs. */}
+                {person.image.caption && (
+                  <p className="mt-3 font-sans text-[11px] uppercase tracking-[0.16em] text-mira-brown/60">
+                    {person.image.caption}
+                  </p>
+                )}
                 <div className="mt-8 flex items-center justify-between gap-4 border-b border-mira-border pb-5">
                   <p className="font-sans text-[11px] font-medium uppercase tracking-[0.16em] text-mira-brown sm:text-[12px]">
                     {person.role}
