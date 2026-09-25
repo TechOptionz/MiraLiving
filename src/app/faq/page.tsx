@@ -41,10 +41,16 @@ export default function FaqPage() {
           </header>
 
           <dl className="divide-y divide-mira-border">
-            {faqItems.map((item) => (
+            {faqItems.map((item, idx) => (
               <div key={item.question} className="grid gap-3 py-8 sm:grid-cols-12 sm:gap-8">
-                <dt className="sm:col-span-5">
-                  <h2 className="font-serif text-xl font-medium leading-snug text-mira-charcoal sm:text-2xl">
+                <dt className="flex items-start gap-4 sm:col-span-5">
+                  <span
+                    aria-hidden="true"
+                    className="pt-[0.45em] font-sans text-[11px] font-medium tracking-[0.2em] text-mira-brown/70"
+                  >
+                    {String(idx + 1).padStart(2, "0")}
+                  </span>
+                  <h2 className="font-serif text-xl font-light leading-snug text-mira-charcoal sm:text-2xl">
                     {item.question}
                   </h2>
                 </dt>

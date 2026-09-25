@@ -37,7 +37,7 @@ export default function KeyFeaturesGrid() {
             >
               <span
                 aria-hidden="true"
-                className="font-mono text-[12px] tracking-widest text-mira-brown transition-colors group-hover:text-mira-brownDeep sm:text-xs"
+                className="font-sans text-[11px] font-medium tracking-[0.2em] text-mira-brown/70 transition-colors group-hover:text-mira-brownDeep sm:text-[12px]"
               >
                 {String(idx + 1).padStart(2, "0")}
               </span>

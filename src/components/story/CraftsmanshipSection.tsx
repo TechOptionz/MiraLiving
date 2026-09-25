@@ -1,8 +1,10 @@
 import React from "react";
 import { storyPage } from "@/content/story-content";
+import { developmentSpecs } from "@/content/site-content";
 import ChapterLabel from "./ChapterLabel";
 import ImageSlot, { frameStyle } from "./ImageSlot";
 import Reveal from "@/components/common/Reveal";
+import SpecLedger from "@/components/common/SpecLedger";
 
 /** 5 — Craftsmanship & Detail. One large frame, then the finishes read as a list. */
 export default function CraftsmanshipSection() {
@@ -61,16 +63,11 @@ export default function CraftsmanshipSection() {
         </figure>
 
         <div className="lg:col-span-6 lg:col-start-7">
-          <dl>
-            {craft.details.map((detail, i) => (
-              <Reveal key={detail.title} delay={i * 90} className="border-t border-mira-border py-7 first:border-t-0 first:pt-0 sm:py-9">
-                <dt className="font-serif text-[1.75rem] font-light text-mira-charcoal sm:text-[2.25rem]">{detail.title}</dt>
-                <dd className="mt-3 max-w-lg font-sans text-base font-light leading-relaxed text-mira-muted">
-                  {detail.description}
-                </dd>
-              </Reveal>
-            ))}
-          </dl>
+          <Reveal variant="fade" className="mb-6 flex items-baseline justify-between gap-6 font-sans text-[11px] uppercase tracking-[0.16em] text-mira-muted">
+            <span>Finish schedule · Selected items</span>
+            <span>{String(craft.details.length).padStart(2, "0")} of {developmentSpecs.finishes.length}</span>
+          </Reveal>
+          <SpecLedger items={craft.details} revealDelay={90} />
           <Reveal delay={120}>
             <p className="mt-10 font-serif text-xl font-light italic leading-snug text-mira-brownDark sm:text-2xl">
               {craft.closing}

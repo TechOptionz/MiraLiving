@@ -5,6 +5,7 @@ import { residencesGraph } from "@/content/structured-data";
 import JsonLd from "@/components/common/JsonLd";
 import Reveal from "@/components/common/Reveal";
 import PhotoFrame from "@/components/common/PhotoFrame";
+import SpecLedger from "@/components/common/SpecLedger";
 import ResidencesHero from "@/components/residences/ResidencesHero";
 import DisplayGallery from "@/components/residences/DisplayGallery";
 import SharedSpaces from "@/components/residences/SharedSpaces";
@@ -84,24 +85,25 @@ export default function ResidencesPage() {
             ))}
           </dl>
 
-          {/* Amenities — already in the content file, and worth stating plainly here. */}
-          <div className="mt-20">
-            <Reveal variant="fade" className="block font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-brown">
-              Included for every resident
-            </Reveal>
-            <ul className="mt-8 grid grid-cols-1 gap-x-12 gap-y-5 sm:grid-cols-2">
-              {developmentSpecs.amenities.map((amenity, idx) => (
-                <Reveal
-                  as="li"
-                  key={amenity}
-                  delay={idx * 60}
-                  className="flex items-start gap-4 border-b border-mira-border/70 pb-5 font-sans text-[15px] leading-relaxed text-mira-brownDark sm:text-base"
-                >
-                  <span aria-hidden="true" className="mt-[0.6em] h-px w-5 shrink-0 bg-mira-sandDark" />
-                  <span>{amenity}</span>
+          {/* Amenities — the same numbered ledger as the finish schedule, so the two read as one document. */}
+          <div id="amenities" className="mt-20 scroll-mt-28 sm:mt-24">
+            <div className="flex flex-col gap-3 pb-8 sm:flex-row sm:items-end sm:justify-between">
+              <div className="space-y-3">
+                <Reveal variant="fade" className="block font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-brown">
+                  Resident Amenities
                 </Reveal>
-              ))}
-            </ul>
+                <Reveal as="h3" delay={100} className="font-serif text-[clamp(1.5rem,2.6vw,2.25rem)] font-light leading-tight text-mira-charcoal">
+                  Included for every resident
+                </Reveal>
+              </div>
+              <Reveal variant="fade" delay={160} className="font-sans text-[11px] uppercase tracking-[0.16em] text-mira-muted">
+                {String(developmentSpecs.amenities.length).padStart(2, "0")} inclusions
+              </Reveal>
+            </div>
+            <SpecLedger
+              columns={2}
+              items={developmentSpecs.amenities.map((amenity) => ({ title: amenity }))}
+            />
           </div>
         </div>
       </section>
@@ -159,25 +161,28 @@ export default function ResidencesPage() {
             ))}
           </div>
 
-          {/* Finish schedule — the full specification. */}
-          <div className="mt-24 sm:mt-32">
-            <Reveal variant="fade" className="block font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-brown">
-              Finish Schedule
-            </Reveal>
-            <dl className="mt-8 grid grid-cols-1 gap-x-16 border-t border-mira-border md:grid-cols-2">
-              {developmentSpecs.finishes.map((finish, idx) => (
-                <Reveal
-                  key={finish.title}
-                  delay={(idx % 2) * 80}
-                  className="border-b border-mira-border py-6 sm:py-7"
-                >
-                  <dt className="font-serif text-xl text-mira-charcoal sm:text-2xl">{finish.title}</dt>
-                  <dd className="mt-2 font-sans text-[15px] leading-[1.75] text-mira-brownDark">
-                    {finish.description}
-                  </dd>
+          {/* Finish schedule — the full specification as a numbered ledger: index, room, item, note. */}
+          <div id="finishes" className="mt-24 scroll-mt-28 sm:mt-32">
+            <div className="flex flex-col gap-6 pb-10 lg:flex-row lg:items-end lg:justify-between">
+              <div className="max-w-2xl space-y-4">
+                <Reveal variant="fade" className="block font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-brown">
+                  Finish Schedule
                 </Reveal>
-              ))}
-            </dl>
+                <Reveal as="h3" delay={100} className="font-serif text-[clamp(1.7rem,3.2vw,2.75rem)] font-light leading-[1.15] text-mira-charcoal">
+                  The specification, item by item
+                </Reveal>
+              </div>
+              <Reveal variant="fade" delay={180} className="flex flex-wrap gap-x-8 gap-y-2 font-sans text-[11px] uppercase tracking-[0.16em] text-mira-muted lg:justify-end">
+                <span>{String(developmentSpecs.finishes.length).padStart(2, "0")} items</span>
+                <span>Interiors by Sarah Wood Designs</span>
+                <span>Standard to every residence</span>
+              </Reveal>
+            </div>
+            <SpecLedger
+              columns={2}
+              items={developmentSpecs.finishes}
+              footnote="Every finish listed is standard to all 25 residences and is shown as built in the photographs of the completed residence above. Renders are artist impressions; the photographs are the record."
+            />
           </div>
         </div>
       </section>

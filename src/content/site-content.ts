@@ -202,14 +202,16 @@ export const developmentSpecs = {
     "Secure basement parking with lift access",
     "Absolute beachfront frontage onto the Coral Sea"
   ],
+  // `category` is the room or zone each finish belongs to, printed above it in
+  // the specification ledger.
   finishes: [
-    { title: "Porcelain Benchtops", description: "Expansive honed stone surfaces designed for entertaining." },
-    { title: "Smeg Appliances", description: "Seamlessly integrated premium Italian kitchen suite." },
-    { title: "Walnut-Toned Joinery", description: "Bespoke custom cabinetry balancing modern warmth and clean lines." },
-    { title: "Honed Tundra Stone Tiles", description: "Floor-to-ceiling natural stone wrapping private sanctuaries." },
-    { title: "Satin Nickel Tapware", description: "Subtle brushed metal accents and ceramic basins." },
-    { title: "Plush Wool Carpeting", description: "Soft, cushioned flooring in all bedrooms for restful acoustic comfort." },
-    { title: "Tailored Husk & Oak Wardrobes", description: "Spacious walk-in robes continuing the neutral palette." }
+    { category: "Kitchen", title: "Porcelain Benchtops", description: "Expansive honed stone surfaces designed for entertaining." },
+    { category: "Kitchen", title: "Smeg Appliances", description: "Seamlessly integrated premium Italian kitchen suite." },
+    { category: "Kitchen & Living", title: "Walnut-Toned Joinery", description: "Bespoke custom cabinetry balancing modern warmth and clean lines." },
+    { category: "Bathrooms", title: "Honed Tundra Stone Tiles", description: "Floor-to-ceiling natural stone wrapping private sanctuaries." },
+    { category: "Bathrooms", title: "Satin Nickel Tapware", description: "Subtle brushed metal accents and ceramic basins." },
+    { category: "Bedrooms", title: "Plush Wool Carpeting", description: "Soft, cushioned flooring in all bedrooms for restful acoustic comfort." },
+    { category: "Bedrooms", title: "Tailored Husk & Oak Wardrobes", description: "Spacious walk-in robes continuing the neutral palette." }
   ]
 };
 

@@ -34,12 +34,15 @@ export default function CollectionStatement() {
                 Four of the five values are single digits; "Resort Pool" is a
                 phrase. Sized on the digit scale it overflows the cell, so a
                 word-length value steps down and is allowed to wrap.
+
+                Digits are set in the sans face: Cormorant's light "1" has no
+                flag and a full serif foot, so it reads as a Roman numeral I.
               */}
               <span
-                className={`font-serif font-light text-mira-charcoal transition-colors group-hover:text-mira-brown ${
+                className={`text-mira-charcoal transition-colors group-hover:text-mira-brown ${
                   stat.value.length > 2
-                    ? "text-[clamp(1.15rem,1.9vw,1.75rem)] leading-tight"
-                    : "text-[clamp(2rem,3.6vw,3.4rem)]"
+                    ? "font-serif font-light text-[clamp(1.15rem,1.9vw,1.75rem)] leading-tight"
+                    : "font-sans font-light tabular-nums text-[clamp(1.8rem,3.2vw,3rem)]"
                 }`}
               >
                 {stat.value}

@@ -42,7 +42,7 @@ export default function CompletedTeaser() {
 
         <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-3 sm:gap-5">
           {photos.map((photo, idx) => (
-            <Reveal key={photo.src} delay={idx * 120} className={idx === 1 ? "sm:-mt-10" : idx === 2 ? "sm:mt-10" : ""}>
+            <Reveal key={photo.src} delay={idx * 120}>
               <Link href={completedTeaser.href} className="group block">
                 <PhotoFrame
                   src={photo.src}
