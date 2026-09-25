@@ -6,7 +6,9 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import RegisterModal from "@/components/common/RegisterModal";
 import CookieConsent from "@/components/layout/CookieConsent";
+import JsonLd from "@/components/common/JsonLd";
 import { siteConfig } from "@/content/site-content";
+import { siteGraph, ogImagePath } from "@/content/structured-data";
 
 /**
  * Self-hosted through next/font: the files are served from our own origin and
@@ -31,6 +33,19 @@ const poppins = Poppins({
   fallback: ["system-ui", "sans-serif"],
 });
 
+/**
+ * One 1200x630 share image for the whole site (generated from the dusk facade
+ * render with the address and the "Artist Impression" label burnt in), so every
+ * page previews correctly on Facebook, LinkedIn and iMessage. Pages override
+ * the title, description and canonical; they inherit everything else.
+ */
+const shareImage = {
+  url: ogImagePath,
+  width: 1200,
+  height: 630,
+  alt: "Mira Living, 25–27 The Esplanade, Bargara: beachfront apartment building at dusk (artist impression)",
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
@@ -44,14 +59,7 @@ export const metadata: Metadata = {
     description: siteConfig.metaDescription,
     url: siteConfig.url,
     siteName: siteConfig.name,
-    images: [
-      {
-        url: "/img/site/Mira-Facade-Dusk.webp",
-        width: 2560,
-        height: 1440,
-        alt: "Mira Living Bargara - Luxury Oceanfront Residences",
-      },
-    ],
+    images: [shareImage],
     locale: "en_AU",
     type: "website",
   },
@@ -59,7 +67,12 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteConfig.title,
     description: siteConfig.metaDescription,
-    images: ["/img/site/Mira-Facade-Dusk.webp"],
+    images: [shareImage.url],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large" },
   },
   icons: {
     icon: [
@@ -77,75 +90,10 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "ApartmentComplex",
-        "@id": `${siteConfig.url}/#apartmentcomplex`,
-        name: siteConfig.name,
-        description: siteConfig.metaDescription,
-        url: siteConfig.url,
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: siteConfig.address.street,
-          addressLocality: siteConfig.address.suburb,
-          addressRegion: siteConfig.address.state,
-          postalCode: siteConfig.address.postcode,
-          addressCountry: "AU",
-        },
-        geo: {
-          "@type": "GeoCoordinates",
-          latitude: -24.8194,
-          longitude: 152.4578,
-        },
-        offers: {
-          "@type": "AggregateOffer",
-          priceCurrency: "AUD",
-          lowPrice: 1395000,
-          offerCount: 25,
-        },
-      },
-      {
-        "@type": "Organization",
-        "@id": `${siteConfig.url}/#organization`,
-        name: siteConfig.name,
-        url: siteConfig.url,
-        logo: `${siteConfig.url}/img/site/mira-logo-brown.svg`,
-        contactPoint: [
-          {
-            "@type": "ContactPoint",
-            telephone: "+61-438-162-574",
-            contactType: "sales",
-            areaServed: "AU",
-          },
-          {
-            "@type": "ContactPoint",
-            telephone: "+61-458-960-726",
-            contactType: "sales",
-            areaServed: "AU",
-          },
-        ],
-      },
-      {
-        "@type": "WebSite",
-        "@id": `${siteConfig.url}/#website`,
-        url: siteConfig.url,
-        name: siteConfig.name,
-        publisher: {
-          "@id": `${siteConfig.url}/#organization`,
-        },
-      },
-    ],
-  };
-
   return (
     <html lang="en-AU" className={`scroll-smooth ${cormorant.variable} ${poppins.variable}`}>
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        <JsonLd data={siteGraph()} />
       </head>
       <body className="min-h-screen flex flex-col bg-mira-ground text-mira-charcoal antialiased selection:bg-mira-sand selection:text-mira-brownDark">
         {/* Skip to Content for screen reader accessibility */}

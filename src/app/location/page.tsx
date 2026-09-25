@@ -12,8 +12,9 @@ import MudMap from "@/components/location/MudMap";
 import RegisterSection from "@/components/home/RegisterSection";
 
 export const metadata: Metadata = {
-  title: "Location & Bargara Lifestyle",
-  description: "Discover Bargara on Queensland's Coral Coast. Absolute beachfront living, coastal golf, local cafes, pristine beaches, and major regional infrastructure.",
+  title: "Living in Bargara: Location, Beaches & Golf",
+  description: "Living in Bargara on Queensland's Coral Coast: beachfront apartments 20 minutes from Bundaberg, a 3-minute walk to Bargara Golf Club, with local cafes, beaches, hospitals and the airport close by.",
+  alternates: { canonical: "/location" },
 };
 
 export default function LocationPage() {

@@ -120,10 +120,12 @@ export interface DisplayPhoto {
 
 export const siteConfig = {
   name: "Mira Living",
-  title: "Mira Living | Premium Oceanfront Living in Bargara",
+  // Keyword-led (SEO audit, Sept 2026): buyers search "apartments for sale Bargara",
+  // not the brand. Used as the homepage <title> and the OG title.
+  title: "Beachfront Apartments for Sale in Bargara | Mira Living",
   tagline: "Premium Oceanfront Living in Bargara",
   subTagline: "Spacious 3-Bedroom + Multi-Purpose Room Coastal Living from $1.395M",
-  metaDescription: "Oceanfront luxury on the Coral Sea. 3-bedroom apartments now selling from $1.395M at 25–27 The Esplanade, Bargara QLD 4670.",
+  metaDescription: "25 absolute beachfront 3-bedroom apartments on The Esplanade, Bargara QLD, from $1.395M. Nearly complete — download the brochure or book a private inspection.",
   url: "https://miraliving.com.au",
   gtmId: "GTM-TWFRS38X",
   ga4Id: "G-ZPTJCDSVM8",
@@ -132,12 +134,16 @@ export const siteConfig = {
   // (Apartment 10, Type C). Keep in step with `priceGuide` below.
   startingPrice: "$1.395M",
   
-  // TODO: confirm completion date with client ("Complete September 2026" vs "Q2 2026")
+  // Single completion date for the whole site. The old "Q2 2026" line in the
+  // Secure section was the last conflicting copy and now derives from this.
   completionDate: "Completion September 2026",
 
   // Served from /public. Set to null to fall back to the "we'll email it"
   // confirmation copy (e.g. once the brochure is delivered by email instead).
-  brochureUrl: "/MIRA-LIVING-Brochure.pdf" as string | null,
+  // The "-web" export is the print PDF re-encoded at 150 dpi (3.2 MB instead
+  // of 12 MB); it is served with X-Robots-Tag: noindex (next.config.mjs) so
+  // search engines send buyers to the form, not straight to the file.
+  brochureUrl: "/MIRA-LIVING-Brochure-web.pdf" as string | null,
   constructionProgress: 98,
   
   address: {
@@ -436,7 +442,7 @@ export const stepRecords: StepRecord[] = [
 export const secureSection = {
   eyebrow: "Now Selling",
   headline: "Secure your piece of paradise",
-  paragraph1: "Construction is underway, with completion expected in Q2 2026.", // Note: Conflict with "Completion September 2026"
+  paragraph1: `Construction is ${siteConfig.constructionProgress}% complete, with completion in ${developmentSpecs.completion}.`,
   paragraph2: "With only 25 residences available, this is a rare opportunity to claim absolute beachfront living on the Bargara Esplanade."
 };
 
@@ -655,6 +661,46 @@ export function unitRecord(unit: number): UnitRecord | undefined {
     if (found) return found;
   }
   return undefined;
+}
+
+/** "$1,395,000" → 1395000. */
+export function parsePrice(price: string): number {
+  return Number(price.replace(/[^0-9.]/g, ""));
+}
+
+export interface AvailableUnit {
+  number: number;
+  /** As printed on the price guide, e.g. "$1,395,000". */
+  price: string;
+  level: string;
+  plan: FloorPlan;
+}
+
+/** Every apartment currently for sale on the price guide, with its level and plan. */
+export function availableUnits(): AvailableUnit[] {
+  return priceGuide.levels.flatMap((level) =>
+    level.units
+      .filter((u): u is UnitRecord & { price: string } => u.status === "available" && !!u.price)
+      .map((u) => ({
+        number: u.number,
+        price: u.price,
+        level: level.name,
+        plan: floorPlans.find((p) => p.units.includes(u.number)) ?? floorPlans[0],
+      }))
+  );
+}
+
+/** How many apartments sit in each status on the price guide. */
+export function unitCounts(): Record<UnitStatus, number> {
+  const counts: Record<UnitStatus, number> = { available: 0, sold: 0, future: 0 };
+  for (const level of priceGuide.levels) for (const u of level.units) counts[u.status] += 1;
+  return counts;
+}
+
+/** Lowest and highest asking price among the available apartments. */
+export function availablePriceRange(): { low: number; high: number } {
+  const prices = availableUnits().map((u) => parsePrice(u.price));
+  return { low: Math.min(...prices), high: Math.max(...prices) };
 }
 
 export const unitStatusLabel: Record<UnitStatus, string> = {
@@ -1006,3 +1052,74 @@ export const privacyPolicyContent = {
     }
   ]
 };
+
+// ---------------------------------------------------------------------------
+// FAQ — /faq page and its FAQPage schema. Every answer is drawn from the facts
+// above (price guide, plans, specs, partners) so it stays in step with them.
+//
+// Still needed from the client before they can be added: body corporate fees,
+// pet policy, stamp duty / off-the-plan concessions, and settlement timing.
+// ---------------------------------------------------------------------------
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+const formatAud = (n: number) => `$${n.toLocaleString("en-AU")}`;
+
+export const faqItems: FaqItem[] = (() => {
+  const counts = unitCounts();
+  const range = availablePriceRange();
+  const contactLine = siteConfig.contacts.map((c) => `${c.name} on ${c.phone}`).join(" or ");
+  const planLine = floorPlans
+    .map((p) => `${p.name}: ${p.internalArea} internal, ${p.totalArea} including the balcony`)
+    .join("; ");
+  return [
+    {
+      question: "Where is Mira Living?",
+      answer: `Mira Living is at ${siteConfig.address.full}, on the absolute beachfront of the Coral Sea. Bargara is about 20 minutes from Bundaberg. Bargara Golf Club is a three-minute walk from the front door and Bundaberg Airport is a 25-minute drive.`,
+    },
+    {
+      question: "How many apartments are there, and how many are still for sale?",
+      answer: `There are ${developmentSpecs.totalResidences} residences over five levels. On the ${priceGuide.issued} price guide, ${counts.available} are available, ${counts.sold} have sold and ${counts.future} are held for a future release. Current availability is listed level by level on the Residences page.`,
+    },
+    {
+      question: "How much do the apartments cost?",
+      answer: `Available residences are priced from ${formatAud(range.low)} to ${formatAud(range.high)} on the ${priceGuide.issued} price guide, and each apartment is priced individually. Pricing can change without notice, so please confirm the current price with the sales team.`,
+    },
+    {
+      question: "How big are the apartments, and what is the layout?",
+      answer: `There are three floor plans. ${planLine}. Every plan has three bedrooms, a multi-purpose room drawn as a study, two bathrooms and a private oceanfront balcony.`,
+    },
+    {
+      question: "What parking and storage is included?",
+      answer: `Each residence comes with two secure basement car spaces and a lockable storage cage. A lift runs from the basement to every level of the building.`,
+    },
+    {
+      question: "When will Mira Living be completed?",
+      answer: `Construction is ${siteConfig.constructionProgress}% complete, with completion in ${developmentSpecs.completion}. The first ground-floor residence is already finished and furnished for display, and it is photographed on the Residences page.`,
+    },
+    {
+      question: "Can I inspect a completed apartment?",
+      answer: `Yes. Private inspections of the completed, furnished display residence are arranged through the sales team. Call ${contactLine}.`,
+    },
+    {
+      question: "Who is behind Mira Living?",
+      answer: partnerRecords
+        .map((p) => `${p.role}: ${p.name}`)
+        .join(". ") + ". Furtado Property brings more than 20 years of residential development in South-East Queensland; IDC Construct is a Wide Bay builder.",
+    },
+    {
+      question: "What shared amenities do residents have?",
+      answer: developmentSpecs.amenities.join(". ") + ".",
+    },
+    {
+      question: "What finishes come as standard?",
+      answer: developmentSpecs.finishes.map((f) => f.title).join(", ") + ". The finishes are shown as built in the photographs of the completed residence.",
+    },
+    {
+      question: "How do I get the brochure and floor plans?",
+      answer: `Register through the form on any page and the brochure downloads straight away, with a follow-up from the sales team. Dimensioned floor plan PDFs for each plan type are on the Residences page.`,
+    },
+  ];
+})();

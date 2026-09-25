@@ -1,6 +1,8 @@
 import React from "react";
 import type { Metadata } from "next";
 import { developmentSpecs } from "@/content/site-content";
+import { residencesGraph } from "@/content/structured-data";
+import JsonLd from "@/components/common/JsonLd";
 import Reveal from "@/components/common/Reveal";
 import PhotoFrame from "@/components/common/PhotoFrame";
 import ResidencesHero from "@/components/residences/ResidencesHero";
@@ -13,9 +15,10 @@ import ConstructionTimeline from "@/components/residences/ConstructionTimeline";
 import RegisterSection from "@/components/home/RegisterSection";
 
 export const metadata: Metadata = {
-  title: "Residences, Floor Plans & Availability",
+  title: "Apartments for Sale: Floor Plans, Prices & Availability",
   description:
-    "The 25 oceanfront residences at Mira Living, Bargara: three floor plans from 118–139 sqm internal with room dimensions, photographs of the completed residence, and current availability level by level.",
+    "The 25 beachfront apartments for sale at Mira Living, Bargara: three floor plans from 118–139 sqm internal with room dimensions, photographs of the completed residence, and prices and availability level by level.",
+  alternates: { canonical: "/residences" },
 };
 
 /** The schedule rows, kept beside the copy they describe rather than inline in the markup. */
@@ -25,7 +28,6 @@ const specSchedule = [
   { label: "Bathrooms & cars", value: `${developmentSpecs.bathrooms} · ${developmentSpecs.carSpaces}` },
   { label: "Internal area", value: developmentSpecs.internalSizeRange },
   { label: "Price release", value: `From ${developmentSpecs.priceFrom}` },
-  // TODO: confirm completion date
   { label: "Handover target", value: `${developmentSpecs.status} · Completion ${developmentSpecs.completion}` },
 ];
 
@@ -49,6 +51,7 @@ const interiors = [
 export default function ResidencesPage() {
   return (
     <div className="bg-mira-ground">
+      <JsonLd data={residencesGraph()} />
       {/* Hero — the interior film */}
       <ResidencesHero />
 

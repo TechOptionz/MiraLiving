@@ -1,4 +1,6 @@
 import React from "react";
+import type { Metadata } from "next";
+import { siteConfig } from "@/content/site-content";
 import Hero from "@/components/home/Hero";
 import StatusBar from "@/components/home/StatusBar";
 import CollectionStatement from "@/components/home/CollectionStatement";
@@ -12,6 +14,14 @@ import LocationTeaser from "@/components/home/LocationTeaser";
 import TeamTeaser from "@/components/home/TeamTeaser";
 import SecureSection from "@/components/home/SecureSection";
 import RegisterSection from "@/components/home/RegisterSection";
+
+export const metadata: Metadata = {
+  // `absolute` skips the "| Mira Living Bargara" template: the default title
+  // already ends in the brand.
+  title: { absolute: siteConfig.title },
+  description: siteConfig.metaDescription,
+  alternates: { canonical: "/" },
+};
 
 export default function HomePage() {
   return (

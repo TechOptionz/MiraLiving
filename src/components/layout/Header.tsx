@@ -51,6 +51,7 @@ export default function Header() {
     { name: "Residences", href: "/residences" },
     { name: "Location", href: "/location" },
     { name: "Team", href: "/team" },
+    { name: "FAQ", href: "/faq" },
   ];
 
   const headerBgClass = isScrolled || !overHero

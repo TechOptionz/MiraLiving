@@ -22,6 +22,25 @@ const nextConfig = {
     deviceSizes: [640, 750, 828, 1080, 1200, 1600, 1920],
     imageSizes: [256, 384],
   },
+  async headers() {
+    return [
+      {
+        // The brochure is gated behind the registration form. Without this a
+        // search engine that finds the file would index it and send buyers
+        // straight to the PDF, skipping the lead capture (SEO audit, Sept 2026).
+        source: "/MIRA-LIVING-Brochure(-web)?.pdf",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
+      {
+        // Hero and backdrop footage only changes under a new file name, so it
+        // can sit in the browser and CDN cache for a month.
+        source: "/video/:path*",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=2592000, stale-while-revalidate=86400" },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;

@@ -35,7 +35,6 @@ export default function StatusBar() {
 
         {/* Right: Target Date */}
         <div className="text-mira-muted uppercase tracking-eyebrow">
-          {/* TODO: confirm completion date with client ("Completion September 2026" vs "Q2 2026") */}
           <span>{siteConfig.completionDate}</span>
         </div>
       </div>

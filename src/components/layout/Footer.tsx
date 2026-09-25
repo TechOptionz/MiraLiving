@@ -9,6 +9,8 @@ const footerNav = [
   { name: "Residences", href: "/residences" },
   { name: "Location", href: "/location" },
   { name: "The Team", href: "/team" },
+  { name: "Buyer FAQ", href: "/faq" },
+  { name: "Download Brochure", href: "/#register" },
 ];
 
 /* One focus treatment shared by every interactive element in the footer. */

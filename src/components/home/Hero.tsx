@@ -59,7 +59,7 @@ export default function Hero() {
             >
               <span className="hidden sm:block w-12 h-px bg-mira-sand/70" />
               <p className="text-[11px] sm:text-[12px] font-sans uppercase tracking-eyebrow text-mira-sandLight/90 hero-legible">
-                Now Selling
+                Now Selling · Beachfront Apartments
                 <span className="mx-2 text-white/35">/</span>
                 {siteConfig.address.street} · {siteConfig.address.suburb}, {siteConfig.address.state}
               </p>
@@ -85,8 +85,8 @@ export default function Hero() {
               className="mt-7 sm:mt-8 max-w-xl font-sans font-light text-hero-lead leading-relaxed text-white/85 hero-legible animate-softFade"
               style={{ "--d": "750ms" } as React.CSSProperties}
             >
-              A limited collection of bespoke three-bedroom residences on the Coral
-              Sea, designed for the way Bargara actually lives.
+              A limited collection of 25 beachfront three-bedroom apartments for sale
+              on The Esplanade, designed for the way Bargara actually lives.
             </p>
 
             {/* Actions — one primary, one quiet secondary */}
