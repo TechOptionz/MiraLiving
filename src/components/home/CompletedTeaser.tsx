@@ -15,7 +15,7 @@ export default function CompletedTeaser() {
   );
 
   return (
-    <section className="border-t border-mira-border bg-mira-ground px-6 py-24 sm:px-12 sm:py-32 lg:px-16">
+    <section className="border-t border-mira-border bg-mira-ground section-pad px-6 sm:px-12 lg:px-16">
       <div className="mx-auto max-w-[1400px]">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end">
           <div className="max-w-2xl space-y-5 lg:col-span-7">

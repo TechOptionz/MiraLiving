@@ -6,7 +6,7 @@ import PhotoFrame from "@/components/common/PhotoFrame";
 /** The basement car park, from the plan sheet. */
 export default function BasementSection() {
   return (
-    <section className="border-t border-mira-border bg-mira-sandLight px-6 py-24 sm:px-12 sm:py-32 lg:px-16">
+    <section className="border-t border-mira-border bg-mira-sandLight section-pad px-6 sm:px-12 lg:px-16">
       <div className="mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
         <Reveal className="lg:col-span-5">
           <PhotoFrame

@@ -66,7 +66,7 @@ export default function Header() {
     <header className={`fixed top-0 left-0 right-0 z-40 transition-colors duration-300 ${headerBgClass}`}>
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 h-20 sm:h-24 flex items-center justify-between">
         {/* Left: Brand Logo */}
-        <Link href="/" className="relative z-50 inline-block focus:outline-none focus:ring-1 focus:ring-mira-teal">
+        <Link href="/" className="relative z-50 inline-block focus:outline-none">
           <div className="relative w-28 sm:w-36 h-12 flex items-center">
             <Image
               src={logoSrc}

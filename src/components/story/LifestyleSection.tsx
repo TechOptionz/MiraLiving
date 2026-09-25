@@ -14,7 +14,7 @@ export default function LifestyleSection() {
   return (
     <section
       aria-labelledby="lifestyle-heading"
-      className="overflow-x-clip border-t border-mira-border py-24 sm:py-40 lg:py-56"
+      className="overflow-x-clip border-t border-mira-border section-pad-lg"
     >
       <div className="mx-auto max-w-[1800px] px-6 sm:px-12 lg:px-20 2xl:px-28">
         <ChapterLabel numeral={lifestyle.numeral} title={lifestyle.chapter} />
@@ -29,7 +29,7 @@ export default function LifestyleSection() {
 
       {/* The place — pins to the viewport and opens to full screen as it rises */}
       <ScrollExpand
-        className="mt-16 sm:mt-24"
+        className="mt-12 sm:mt-16"
         aspect={slotAspect(feature.image)}
         overlay={
           <Reveal as="p" className="max-w-5xl font-serif text-[clamp(2.25rem,5.2vw,5.25rem)] font-light leading-[1.03] text-white">
@@ -48,7 +48,7 @@ export default function LifestyleSection() {
       </div>
 
       {/* Moments */}
-      <div className="mx-auto mt-24 grid max-w-[1800px] grid-cols-1 gap-14 px-6 sm:mt-36 sm:px-12 md:grid-cols-2 md:gap-16 lg:gap-24 lg:px-20">
+      <div className="mx-auto mt-16 grid max-w-[1800px] grid-cols-1 gap-14 px-6 sm:mt-24 sm:px-12 md:grid-cols-2 md:gap-16 lg:gap-24 lg:px-20">
         {lifestyle.moments.map((moment, i) => (
           <Reveal key={moment.label} delay={i * 120} className="border-t border-mira-border pt-8">
             <p className="font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-brown">{moment.label}</p>
@@ -60,7 +60,7 @@ export default function LifestyleSection() {
       </div>
 
       {/* The retreat */}
-      <div className="mx-auto mt-24 grid max-w-[1800px] grid-cols-1 items-end gap-10 px-6 sm:mt-36 sm:px-12 lg:grid-cols-12 lg:gap-16 lg:px-20">
+      <div className="mx-auto mt-16 grid max-w-[1800px] grid-cols-1 items-end gap-10 px-6 sm:mt-24 sm:px-12 lg:grid-cols-12 lg:gap-16 lg:px-20">
         <figure className="-mx-6 sm:mx-0 lg:col-span-7">
           <Reveal
             variant="mask"

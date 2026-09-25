@@ -10,7 +10,7 @@ export default function VisionSection() {
   const { vision } = storyPage;
 
   return (
-    <section id="vision" aria-labelledby="vision-heading" className="scroll-mt-24 py-24 sm:py-40 lg:py-56">
+    <section id="vision" aria-labelledby="vision-heading" className="scroll-mt-24 section-pad-lg">
       <div className="mx-auto grid max-w-[1800px] grid-cols-1 gap-16 px-6 sm:px-12 lg:grid-cols-12 lg:gap-20 lg:px-20 2xl:px-28">
         <div className="lg:col-span-5">
           <ChapterLabel numeral={vision.numeral} title={vision.chapter} />

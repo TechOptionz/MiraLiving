@@ -57,7 +57,7 @@ export default function ResidencesPage() {
       <ResidencesHero />
 
       {/* Specification schedule — hairline rows, read like a drawing set */}
-      <section className="bg-mira-ground px-6 py-24 sm:px-12 sm:py-32 lg:px-20">
+      <section className="bg-mira-ground section-pad px-6 sm:px-12 lg:px-20">
         <div className="mx-auto max-w-5xl">
           <div className="mx-auto max-w-3xl space-y-4 text-center">
             <Reveal variant="fade" className="block font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-brown">
@@ -68,7 +68,7 @@ export default function ResidencesPage() {
             </Reveal>
           </div>
 
-          <dl className="mt-14 divide-y divide-mira-border border-y border-mira-border">
+          <dl className="mt-12 divide-y divide-mira-border border-y border-mira-border">
             {specSchedule.map((row, idx) => (
               <Reveal
                 key={row.label}
@@ -86,7 +86,7 @@ export default function ResidencesPage() {
           </dl>
 
           {/* Amenities — the same numbered ledger as the finish schedule, so the two read as one document. */}
-          <div id="amenities" className="mt-20 scroll-mt-28 sm:mt-24">
+          <div id="amenities" className="mt-16 scroll-mt-28 sm:mt-20">
             <div className="flex flex-col gap-3 pb-8 sm:flex-row sm:items-end sm:justify-between">
               <div className="space-y-3">
                 <Reveal variant="fade" className="block font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-brown">
@@ -100,9 +100,20 @@ export default function ResidencesPage() {
                 {String(developmentSpecs.amenities.length).padStart(2, "0")} inclusions
               </Reveal>
             </div>
+            {/* Five inclusions in two columns leave a sixth cell; the note fills it
+                with the cross-reference to the full finish schedule. */}
             <SpecLedger
               columns={2}
               items={developmentSpecs.amenities.map((amenity) => ({ title: amenity }))}
+              footnote={
+                <>
+                  Every residence also carries the same interior specification.{" "}
+                  <a href="#finishes" className="border-b border-mira-sandDark text-mira-brownDark transition-colors hover:border-mira-brownDark">
+                    Read the finish schedule, item by item
+                  </a>
+                  .
+                </>
+              }
             />
           </div>
         </div>
@@ -112,22 +123,25 @@ export default function ResidencesPage() {
       <DisplayGallery />
 
       {/* Material palette — each render shown whole, alternating with its copy */}
-      <section className="border-t border-mira-border bg-mira-sandLight px-6 py-24 sm:px-12 sm:py-32 lg:px-16">
+      <section className="border-t border-mira-border bg-mira-sandLight section-pad px-6 sm:px-12 lg:px-16">
         <div className="mx-auto max-w-[1400px]">
-          <div className="max-w-3xl space-y-5">
-            <Reveal variant="fade" className="block font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-brown">
-              Material Palette
-            </Reveal>
-            <Reveal as="h2" delay={120} className="font-serif text-[clamp(1.9rem,4.4vw,3.5rem)] font-light leading-[1.12] text-mira-charcoal">
-              Tactile Warmth &amp; Italian Engineering
-            </Reveal>
-            <Reveal delay={220} className="font-sans text-[16px] leading-[1.75] text-mira-brownDark sm:text-lg">
+          {/* Heading left, intro right and bottom-aligned, so the header uses the full row. */}
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:items-end lg:gap-12">
+            <div className="space-y-5 lg:col-span-7">
+              <Reveal variant="fade" className="block font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-brown">
+                Material Palette
+              </Reveal>
+              <Reveal as="h2" delay={120} className="font-serif text-[clamp(1.9rem,4.4vw,3.5rem)] font-light leading-[1.12] text-mira-charcoal">
+                Tactile Warmth &amp; Italian Engineering
+              </Reveal>
+            </div>
+            <Reveal delay={220} className="font-sans text-[16px] leading-[1.75] text-mira-brownDark sm:text-lg lg:col-span-5 lg:pb-2">
               Curated by Sarah Wood Designs, every residence combines honed Australian Tundra stone tiles, seamlessly
               integrated Smeg appliances, and custom walnut-toned joinery.
             </Reveal>
           </div>
 
-          <div className="mt-16 space-y-20 sm:mt-20 sm:space-y-28">
+          <div className="mt-12 space-y-16 sm:mt-16 sm:space-y-20">
             {interiors.map((item, idx) => (
               <div
                 key={item.src}
@@ -162,7 +176,7 @@ export default function ResidencesPage() {
           </div>
 
           {/* Finish schedule — the full specification as a numbered ledger: index, room, item, note. */}
-          <div id="finishes" className="mt-24 scroll-mt-28 sm:mt-32">
+          <div id="finishes" className="mt-20 scroll-mt-28 sm:mt-24">
             <div className="flex flex-col gap-6 pb-10 lg:flex-row lg:items-end lg:justify-between">
               <div className="max-w-2xl space-y-4">
                 <Reveal variant="fade" className="block font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-brown">

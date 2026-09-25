@@ -17,7 +17,7 @@ export default function ConstructionJourney() {
   return (
     <section
       aria-labelledby="journey-heading"
-      className="relative overflow-hidden bg-mira-charcoal py-24 text-white sm:py-40 lg:py-56"
+      className="relative overflow-hidden bg-mira-charcoal section-pad-lg text-white"
     >
       <div className="pointer-events-none absolute inset-0 bg-noise opacity-10" />
 
@@ -37,13 +37,13 @@ export default function ConstructionJourney() {
         </div>
       </div>
 
-      <ol className="relative mx-auto mt-24 max-w-[1800px] px-6 sm:mt-36 sm:px-12 lg:px-20">
+      <ol className="relative mx-auto mt-16 max-w-[1800px] px-6 sm:mt-24 sm:px-12 lg:px-20">
         <div className="absolute inset-y-0 left-6 sm:left-12 lg:left-20">
           <TimelineRail tone="dark" />
         </div>
 
         {journey.chapters.map((chapter) => (
-          <li key={chapter.step} className="relative pb-24 pl-8 last:pb-0 sm:pb-36 sm:pl-14">
+          <li key={chapter.step} className="relative pb-20 pl-8 last:pb-0 sm:pb-28 sm:pl-14">
             <span
               aria-hidden="true"
               className="absolute left-0 top-4 h-2.5 w-2.5 -translate-x-1/2 rounded-full border border-mira-sand bg-mira-charcoal"

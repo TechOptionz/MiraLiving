@@ -54,7 +54,7 @@ export default function AvailabilityGrid() {
   return (
     <section
       id="availability"
-      className="scroll-mt-24 border-t border-mira-border bg-mira-ground px-6 py-24 sm:px-12 sm:py-32 lg:px-16"
+      className="scroll-mt-24 border-t border-mira-border bg-mira-ground section-pad px-6 sm:px-12 lg:px-16"
     >
       <div className="mx-auto max-w-[1400px]">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-end">
@@ -87,7 +87,7 @@ export default function AvailabilityGrid() {
           </Reveal>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-14">
+        <div className="mt-12 grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-14">
           {/* The grid */}
           <div className="lg:col-span-7">
             <div className="space-y-5">

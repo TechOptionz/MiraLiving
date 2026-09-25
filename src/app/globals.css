@@ -2,6 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+   Section rhythm.
+
+   Stacked sections used to carry 128px top and bottom each (story chapters up
+   to 224px), so two adjacent sections met across a 256–448px empty band. One
+   token now sets the block padding for every content section, and a larger
+   one for the story chapters, so the gap between sections is the same
+   everywhere and never reads as a void.
+*/
+@layer utilities {
+  /* 56px on phones rising to 96px on desktop; two sections meet across ~190px. */
+  .section-pad {
+    padding-block: clamp(3.5rem, 6.5vw, 6rem);
+  }
+  /* Story chapters: still cinematic, 72px rising to 128px. */
+  .section-pad-lg {
+    padding-block: clamp(4.5rem, 9vw, 8rem);
+  }
+}
+
 :root {
   --ground: #FBF8F3;
   --primary-brown: #746355;

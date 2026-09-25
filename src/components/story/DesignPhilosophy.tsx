@@ -14,7 +14,7 @@ export default function DesignPhilosophy() {
   return (
     <section
       aria-labelledby="design-heading"
-      className="overflow-hidden border-t border-mira-border bg-mira-sandLight py-24 sm:py-40 lg:py-56"
+      className="overflow-hidden border-t border-mira-border bg-mira-sandLight section-pad-lg"
     >
       <div className="mx-auto max-w-[1800px] px-6 sm:px-12 lg:px-20 2xl:px-28">
         <ChapterLabel numeral={design.numeral} title={design.chapter} />
@@ -34,14 +34,14 @@ export default function DesignPhilosophy() {
         </div>
       </div>
 
-      <ol className="mx-auto mt-24 max-w-[1800px] px-6 sm:mt-32 sm:px-12 lg:px-20 2xl:px-28">
+      <ol className="mx-auto mt-16 max-w-[1800px] px-6 sm:mt-24 sm:px-12 lg:px-20 2xl:px-28">
         {design.principles.map((principle, i) => {
           const imageFirst = i % 2 === 1;
 
           return (
             <li
               key={principle.title}
-              className="grid grid-cols-1 items-center gap-10 border-t border-mira-border pt-14 pb-20 last:pb-0 sm:gap-14 sm:pt-20 sm:pb-32 lg:grid-cols-12 lg:gap-20"
+              className="grid grid-cols-1 items-center gap-10 border-t border-mira-border pt-12 pb-16 last:pb-0 sm:gap-14 sm:pt-16 sm:pb-24 lg:grid-cols-12 lg:gap-20"
             >
               <div className={`lg:col-span-4 ${imageFirst ? "lg:col-start-9 lg:row-start-1" : ""}`}>
                 <Reveal>

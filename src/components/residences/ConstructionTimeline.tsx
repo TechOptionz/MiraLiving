@@ -6,7 +6,7 @@ import { photoFrameStyle } from "@/components/common/PhotoFrame";
 
 export default function ConstructionTimeline() {
   return (
-    <section className="border-t border-mira-border bg-mira-ground px-6 py-24 sm:px-10 sm:py-32 lg:px-16">
+    <section className="border-t border-mira-border bg-mira-ground section-pad px-6 sm:px-10 lg:px-16">
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="mx-auto max-w-2xl space-y-4 text-center">
@@ -24,7 +24,7 @@ export default function ConstructionTimeline() {
 
         {/* Milestones. Cards are top-aligned and each photo frame takes the shape of
             its own photograph, so every progress shot is shown whole. */}
-        <div className="mt-16 grid grid-cols-1 items-start gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid grid-cols-1 items-start gap-8 sm:mt-14 md:grid-cols-2 lg:grid-cols-3">
           {constructionMilestones.map((m, idx) => (
             <article
               key={m.date}

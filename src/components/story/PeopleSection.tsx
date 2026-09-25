@@ -16,7 +16,7 @@ export default function PeopleSection() {
   return (
     <section
       aria-labelledby="people-heading"
-      className="overflow-hidden border-t border-mira-border bg-mira-sandLight py-24 sm:py-40 lg:py-56"
+      className="overflow-hidden border-t border-mira-border bg-mira-sandLight section-pad-lg"
     >
       <div className="mx-auto max-w-[1800px] px-6 sm:px-12 lg:px-20 2xl:px-28">
         <ChapterLabel numeral={people.numeral} title={people.chapter} />
@@ -29,7 +29,7 @@ export default function PeopleSection() {
         </Reveal>
 
         {/* The developer */}
-        <div className="mt-16 grid grid-cols-1 items-end gap-12 sm:mt-24 lg:grid-cols-12 lg:gap-16">
+        <div className="mt-12 grid grid-cols-1 items-end gap-12 sm:mt-16 lg:grid-cols-12 lg:gap-16">
           <figure className="-mx-6 sm:mx-0 lg:col-span-6">
             <Reveal
               variant="mask"
@@ -61,7 +61,7 @@ export default function PeopleSection() {
         </div>
 
         {/* Collaborators */}
-        <Reveal variant="fade" className="mt-24 flex items-center gap-6 sm:mt-36">
+        <Reveal variant="fade" className="mt-16 flex items-center gap-6 sm:mt-24">
           <span className="font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-brown">
             {people.collaboratorsLabel}
           </span>

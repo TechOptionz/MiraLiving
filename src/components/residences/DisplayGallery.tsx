@@ -95,7 +95,7 @@ export default function DisplayGallery() {
   return (
     <section
       id="completed"
-      className="scroll-mt-24 border-t border-mira-border bg-mira-ground px-6 py-24 sm:px-12 sm:py-32 lg:px-16"
+      className="scroll-mt-24 border-t border-mira-border bg-mira-ground section-pad px-6 sm:px-12 lg:px-16"
     >
       <div className="mx-auto max-w-[1400px]">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end">

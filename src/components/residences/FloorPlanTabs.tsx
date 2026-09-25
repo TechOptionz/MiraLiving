@@ -53,7 +53,7 @@ export default function FloorPlanTabs() {
   return (
     <section
       id="floor-plans"
-      className="scroll-mt-24 border-t border-mira-border bg-mira-sandLight px-6 py-24 sm:px-12 sm:py-32 lg:px-16"
+      className="scroll-mt-24 border-t border-mira-border bg-mira-sandLight section-pad px-6 sm:px-12 lg:px-16"
     >
       <div className="mx-auto max-w-[1400px]">
         {/* Header */}

@@ -13,7 +13,7 @@ export default function CraftsmanshipSection() {
   return (
     <section
       aria-labelledby="craft-heading"
-      className="overflow-hidden border-t border-mira-border py-24 sm:py-40 lg:py-56"
+      className="overflow-hidden border-t border-mira-border section-pad-lg"
     >
       <div className="mx-auto max-w-[1800px] px-6 sm:px-12 lg:px-20 2xl:px-28">
         <ChapterLabel numeral={craft.numeral} title={craft.chapter} />
@@ -26,7 +26,7 @@ export default function CraftsmanshipSection() {
         </Reveal>
       </div>
 
-      <figure className="mx-auto mt-16 sm:mt-24 sm:px-12 lg:px-20 2xl:px-28">
+      <figure className="mx-auto mt-12 sm:mt-16 sm:px-12 lg:px-20 2xl:px-28">
         <Reveal
           variant="mask"
           style={frameStyle(craft.feature, 72)}
@@ -46,7 +46,7 @@ export default function CraftsmanshipSection() {
         </figcaption>
       </figure>
 
-      <div className="mx-auto mt-24 grid max-w-[1800px] grid-cols-1 gap-14 px-6 sm:mt-36 sm:px-12 lg:grid-cols-12 lg:gap-20 lg:px-20">
+      <div className="mx-auto mt-16 grid max-w-[1800px] grid-cols-1 gap-14 px-6 sm:mt-24 sm:px-12 lg:grid-cols-12 lg:gap-20 lg:px-20">
         <figure className="-mx-6 sm:mx-0 lg:col-span-5">
           <Reveal
             variant="mask"
