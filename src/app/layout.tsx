@@ -46,9 +46,9 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     images: [
       {
-        url: "/img/site/Sold-Properties-Mira-Living-4.webp",
-        width: 1755,
-        height: 1125,
+        url: "/img/site/Mira-Facade-Dusk.webp",
+        width: 2560,
+        height: 1440,
         alt: "Mira Living Bargara - Luxury Oceanfront Residences",
       },
     ],
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteConfig.title,
     description: siteConfig.metaDescription,
-    images: ["/img/site/Sold-Properties-Mira-Living-4.webp"],
+    images: ["/img/site/Mira-Facade-Dusk.webp"],
   },
   icons: {
     icon: [
@@ -102,7 +102,7 @@ export default function RootLayout({
         offers: {
           "@type": "AggregateOffer",
           priceCurrency: "AUD",
-          lowPrice: 1425000,
+          lowPrice: 1395000,
           offerCount: 25,
         },
       },

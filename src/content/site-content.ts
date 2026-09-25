@@ -62,30 +62,75 @@ export interface CuratedLifestylePhoto {
   image: string;
 }
 
+export interface FloorPlanRoom {
+  name: string;
+  /** Internal dimensions as drawn on the architect's typical plan, e.g. "3.7 × 3.5 m". */
+  size: string;
+  /** e.g. "Walk-in robe · Ensuite" */
+  note?: string;
+}
+
 export interface FloorPlan {
   id: string;
+  /** Single letter used on the plans and the price guide. */
+  code: "A" | "B" | "C";
   name: string;
   tagline: string;
+  summary: string;
   bedrooms: number;
   bathrooms: number;
   cars: number;
+  /** Multi-purpose room — drawn as "Study" on the plans. */
   mpr: boolean;
-  internalSize: string;
+  /** Areas from the marketing floor plan sheets (Sept 2026). */
+  internalArea: string;
+  externalArea: string;
+  totalArea: string;
+  /** Apartment numbers built to this plan, lowest to highest. */
+  units: number[];
+  rooms: FloorPlanRoom[];
+  highlights: string[];
+  /** The drawing alone, cropped from the marketing sheet. Portrait. */
   image: string;
+  /** Dimensioned 1:100 architect sheet, served from /public. */
+  pdf: string;
+}
+
+export type UnitStatus = "available" | "sold" | "future";
+
+export interface UnitRecord {
+  number: number;
+  status: UnitStatus;
+  /** Formatted as printed on the price guide, e.g. "$1,580,000". Available units only. */
+  price?: string;
+}
+
+export interface BuildingLevel {
+  /** Level naming follows the price guide: Ground Floor, then Levels 2–5. */
+  name: string;
+  units: UnitRecord[];
+}
+
+export interface DisplayPhoto {
+  src: string;
+  alt: string;
+  /** Short room label shown in the gallery and lightbox. */
+  room: string;
 }
 
 export const siteConfig = {
   name: "Mira Living",
   title: "Mira Living | Premium Oceanfront Living in Bargara",
   tagline: "Premium Oceanfront Living in Bargara",
-  subTagline: "Spacious 3-Bedroom + Multi-Purpose Room Coastal Living from $1.425M",
-  metaDescription: "Oceanfront luxury on the Coral Sea. 3-bedroom apartments now selling from $1.425M at 25–27 The Esplanade, Bargara QLD 4670.",
+  subTagline: "Spacious 3-Bedroom + Multi-Purpose Room Coastal Living from $1.395M",
+  metaDescription: "Oceanfront luxury on the Coral Sea. 3-bedroom apartments now selling from $1.395M at 25–27 The Esplanade, Bargara QLD 4670.",
   url: "https://miraliving.com.au",
   gtmId: "GTM-TWFRS38X",
   ga4Id: "G-ZPTJCDSVM8",
   
-  // TODO: confirm price with client ($1.395M on Instagram bio vs $1.425M on website)
-  startingPrice: "$1.425M",
+  // Lowest available residence on the Price Guide issued September 2026
+  // (Apartment 10, Type C). Keep in step with `priceGuide` below.
+  startingPrice: "$1.395M",
   
   // TODO: confirm completion date with client ("Complete September 2026" vs "Q2 2026")
   completionDate: "Completion September 2026",
@@ -139,8 +184,8 @@ export const developmentSpecs = {
   bedrooms: "3 Bedrooms (+ Multi-Purpose Room)",
   bathrooms: "2 Bathrooms",
   carSpaces: "2 Secure Underground Carparks",
-  internalSizeRange: "117 sqm to 139 sqm internal",
-  priceFrom: "$1.425M",
+  internalSizeRange: "118 sqm to 139 sqm internal",
+  priceFrom: "$1.395M",
   status: "Under construction · 98% complete",
   completion: "September 2026",
   location: "25–27 The Esplanade, Bargara QLD 4670",
@@ -252,7 +297,7 @@ export const keyFeatures: KeyFeature[] = [
   },
   {
     id: 3,
-    text: "Spacious layouts from 117sqm to 139sqm internal",
+    text: "Spacious layouts from 118sqm to 139sqm internal",
     label: "Floor area",
     iconName: "maximize"
   },
@@ -413,42 +458,353 @@ export const registerSection = {
   ]
 };
 
-// Curated 3 Floor Plans from Social Archive
+// Floor plans — from the marketing plan sheets and the architect's typical
+// plans (Mondo Architects, 1:100). Room sizes are internal dimensions as drawn.
 export const floorPlans: FloorPlan[] = [
   {
     id: "type-a",
-    name: "Type A Residence",
-    tagline: "Thoughtfully designed for effortless living with fluid ocean views.",
+    code: "A",
+    name: "Type A",
+    tagline: "The largest plan: a study off the entry, a 7.4-metre living room and the master suite on the ocean side.",
+    summary:
+      "Ten residences are built to this plan — two on every level. The entry opens past the laundry and a dedicated study into one long living and dining room, with the kitchen along one wall and the balcony across the far end. The master suite sits beside the balcony with a walk-in robe and ensuite; the second and third bedrooms share the main bathroom at the quiet end of the plan.",
     bedrooms: 3,
     bathrooms: 2,
     cars: 2,
     mpr: true,
-    internalSize: "139 sqm",
-    image: "/img/social/IG_094_2024-12-28_DEHYCu4o6rH_1.jpg"
+    internalArea: "139.22 sqm",
+    externalArea: "22.80 sqm",
+    totalArea: "162.02 sqm",
+    units: [1, 4, 6, 9, 11, 14, 16, 19, 21, 24],
+    rooms: [
+      { name: "Living & dining", size: "5.1 × 7.4 m", note: "Opens to the balcony" },
+      { name: "Kitchen", size: "Island bench", note: "Walk-in pantry · Integrated Smeg suite" },
+      { name: "Master bedroom", size: "3.7 × 3.5 m", note: "Walk-in robe · Ensuite" },
+      { name: "Bedroom 2", size: "3.1 × 3.2 m", note: "Built-in robe" },
+      { name: "Bedroom 3", size: "3.2 × 3.2 m", note: "Built-in robe" },
+      { name: "Study / multi-purpose", size: "2.5 × 3.1 m" },
+      { name: "Main bathroom", size: "Bath & shower" },
+      { name: "Laundry & linen", size: "Separate room" },
+    ],
+    highlights: [
+      "Two residences per level, ten in all",
+      "Dedicated study separate from the bedrooms",
+      "Master suite on the balcony side of the plan",
+      "Separate laundry and walk-in pantry",
+    ],
+    image: "/img/plans/type-a.webp",
+    pdf: "/plans/mira-living-type-a-floor-plan.pdf",
   },
   {
     id: "type-b",
-    name: "Type B Residence",
-    tagline: "Seamless indoor-outdoor integration framing coastal breezes.",
+    code: "B",
+    name: "Type B",
+    tagline: "The mirrored corner plan: the same long living room and study, with the widest balcony of the three.",
+    summary:
+      "Ten residences are built to this plan, paired on every level. The arrangement mirrors Type A — study and laundry at the entry, one open living and dining room running to the balcony, and the master suite with its walk-in robe and ensuite beside it — with a slightly more compact footprint and the largest private balcony in the building at just under 25 square metres.",
     bedrooms: 3,
     bathrooms: 2,
     cars: 2,
     mpr: true,
-    internalSize: "128 sqm",
-    image: "/img/social/IG_085_2025-01-25_DFOQ0kQSsvW_1.jpg"
+    internalArea: "131.13 sqm",
+    externalArea: "24.96 sqm",
+    totalArea: "156.09 sqm",
+    units: [2, 3, 7, 8, 12, 13, 17, 18, 22, 23],
+    rooms: [
+      { name: "Living & dining", size: "5.1 × 7.2 m", note: "Opens to the balcony" },
+      { name: "Kitchen", size: "Island bench", note: "Walk-in pantry · Integrated Smeg suite" },
+      { name: "Master bedroom", size: "3.5 × 3.6 m", note: "Walk-in robe · Ensuite" },
+      { name: "Bedroom 2", size: "3.2 × 3.0 m", note: "Built-in robe" },
+      { name: "Bedroom 3", size: "3.2 × 3.0 m", note: "Built-in robe" },
+      { name: "Study / multi-purpose", size: "2.5 × 3.0 m" },
+      { name: "Main bathroom", size: "Bath & shower" },
+      { name: "Laundry & linen", size: "Separate room" },
+    ],
+    highlights: [
+      "Two residences per level, ten in all",
+      "Largest balcony of the three plans",
+      "Study and separate laundry at the entry",
+      "Master suite with walk-in robe and ensuite",
+    ],
+    image: "/img/plans/type-b.webp",
+    pdf: "/plans/mira-living-type-b-floor-plan.pdf",
   },
   {
     id: "type-c",
-    name: "Type C Residence",
-    tagline: "Generous master suite sanctuary and open entertainer's layout.",
+    code: "C",
+    name: "Type C",
+    tagline: "The end residence: one per level, with living and dining as two distinct rooms and the largest master bedroom.",
+    summary:
+      "Five residences are built to this plan — one at the end of every level. Rather than a single long room, living and dining are two connected spaces set around the kitchen, and the balcony runs off the living room. The master bedroom is the widest in the building at four metres, with a walk-in robe and ensuite. There is no separate study on this plan.",
     bedrooms: 3,
     bathrooms: 2,
     cars: 2,
     mpr: false,
-    internalSize: "117 sqm",
-    image: "/img/social/IG_069_2025-03-25_DHmrxS3Swch_1.jpg"
-  }
+    internalArea: "118.29 sqm",
+    externalArea: "21.42 sqm",
+    totalArea: "139.71 sqm",
+    units: [5, 10, 15, 20, 25],
+    rooms: [
+      { name: "Living", size: "5.2 × 4.0 m", note: "Opens to the balcony" },
+      { name: "Dining", size: "5.3 × 3.2 m", note: "Beside the kitchen" },
+      { name: "Kitchen", size: "Island bench", note: "Walk-in pantry · Integrated Smeg suite" },
+      { name: "Master bedroom", size: "4.0 × 3.3 m", note: "Walk-in robe · Ensuite" },
+      { name: "Bedroom 2", size: "3.0 × 3.3 m", note: "Built-in robe" },
+      { name: "Bedroom 3", size: "3.0 × 3.3 m", note: "Built-in robe" },
+      { name: "Main bathroom", size: "Bath & shower" },
+      { name: "Laundry & linen", size: "Separate room" },
+    ],
+    highlights: [
+      "One residence per level, five in all",
+      "Separate living and dining rooms",
+      "Widest master bedroom in the building",
+      "Entry-level pricing in the collection",
+    ],
+    image: "/img/plans/type-c.webp",
+    pdf: "/plans/mira-living-type-c-floor-plan.pdf",
+  },
 ];
+
+/** Which plan an apartment number is built to. */
+export function planForUnit(unit: number): FloorPlan | undefined {
+  return floorPlans.find((plan) => plan.units.includes(unit));
+}
+
+// The basement, from the carpark plan sheet.
+export const basementPlan = {
+  eyebrow: "Below Ground",
+  headline: "Secure basement parking for every residence",
+  body: "The whole of the basement is given to residents: fifty car spaces — two for each of the twenty-five residences — together with lockable storage cages, the pump and services rooms, and a lift lobby that rises to every level of the building.",
+  facts: [
+    { value: "50", label: "Secure car spaces" },
+    { value: "2", label: "Per residence" },
+    { value: "Lift", label: "Basement to every level" },
+    { value: "Cages", label: "Lockable storage" },
+  ],
+  image: "/img/plans/basement.webp",
+};
+
+// Availability — transcribed from the Mira Living Price Guide, September 2026.
+// Level naming follows the guide (Ground Floor, then Levels 2–5). Update this
+// block whenever a new guide is issued; everything on the site derives from it.
+export const priceGuide: { issued: string; levels: BuildingLevel[] } = {
+  issued: "September 2026",
+  levels: [
+    {
+      name: "Ground Floor",
+      units: [
+        { number: 1, status: "sold" },
+        { number: 2, status: "available", price: "$1,580,000" },
+        { number: 3, status: "available", price: "$1,620,000" },
+        { number: 4, status: "sold" },
+        { number: 5, status: "sold" },
+      ],
+    },
+    {
+      name: "Level 2",
+      units: [
+        { number: 6, status: "future" },
+        { number: 7, status: "future" },
+        { number: 8, status: "future" },
+        { number: 9, status: "future" },
+        { number: 10, status: "available", price: "$1,395,000" },
+      ],
+    },
+    {
+      name: "Level 3",
+      units: [
+        { number: 11, status: "sold" },
+        { number: 12, status: "sold" },
+        { number: 13, status: "available", price: "$1,795,000" },
+        { number: 14, status: "sold" },
+        { number: 15, status: "available", price: "$1,550,000" },
+      ],
+    },
+    {
+      name: "Level 4",
+      units: [
+        { number: 16, status: "available", price: "$2,100,000" },
+        { number: 17, status: "available", price: "$1,950,000" },
+        { number: 18, status: "available", price: "$1,950,000" },
+        { number: 19, status: "sold" },
+        { number: 20, status: "future" },
+      ],
+    },
+    {
+      name: "Level 5",
+      units: [
+        { number: 21, status: "sold" },
+        { number: 22, status: "available", price: "$2,300,000" },
+        { number: 23, status: "available", price: "$2,350,000" },
+        { number: 24, status: "sold" },
+        { number: 25, status: "sold" },
+      ],
+    },
+  ],
+};
+
+/** The level an apartment number sits on, by the price guide's naming. */
+export function levelOfUnit(unit: number): BuildingLevel | undefined {
+  return priceGuide.levels.find((level) => level.units.some((u) => u.number === unit));
+}
+
+/** One apartment's line on the price guide. */
+export function unitRecord(unit: number): UnitRecord | undefined {
+  for (const level of priceGuide.levels) {
+    const found = level.units.find((u) => u.number === unit);
+    if (found) return found;
+  }
+  return undefined;
+}
+
+export const unitStatusLabel: Record<UnitStatus, string> = {
+  available: "Available",
+  sold: "Sold",
+  future: "Future release",
+};
+
+// The completed ground-floor residence, photographed September 2026.
+export const displayResidence = {
+  eyebrow: "The Completed Residence",
+  headline: "Photographed, not rendered",
+  intro:
+    "With construction all but complete, the first ground-floor residence has been finished and furnished. These are photographs of that home — the porcelain benchtops, the walnut-toned joinery and the honed stone bathrooms exactly as they have been built.",
+  note: "Photography of a completed ground-floor residence, furnished for display. Furniture and styling are not included.",
+  photos: [
+    {
+      src: "/img/residences/display-living-to-kitchen.webp",
+      alt: "Open-plan living room of the completed residence looking through to the kitchen and dining area",
+      room: "Living & dining",
+    },
+    {
+      src: "/img/residences/display-kitchen-island.webp",
+      alt: "Kitchen island bench with porcelain benchtop, walnut-toned joinery and bar stools",
+      room: "Kitchen",
+    },
+    {
+      src: "/img/residences/display-master-bedroom.webp",
+      alt: "Master bedroom of the completed residence with rattan bedhead and timber side tables",
+      room: "Master bedroom",
+    },
+    {
+      src: "/img/residences/display-ensuite-shower.webp",
+      alt: "Ensuite bathroom with full-height stone tiles, twin rain showers and stone vanity",
+      room: "Ensuite",
+    },
+    {
+      src: "/img/residences/display-dining-to-balcony.webp",
+      alt: "Dining table and lounge looking out through wide sliding doors to the terrace",
+      room: "Dining to terrace",
+    },
+    {
+      src: "/img/residences/display-kitchen-joinery.webp",
+      alt: "Full-height walnut-toned kitchen joinery and stone splashback with integrated appliances",
+      room: "Kitchen joinery",
+    },
+    {
+      src: "/img/residences/display-study-nook.webp",
+      alt: "Study with timber desk, round mirror and reading lamp",
+      room: "Study",
+    },
+    {
+      src: "/img/residences/display-living-tv-wall.webp",
+      alt: "Living room with television wall, travertine coffee table and view through to the kitchen",
+      room: "Living",
+    },
+    {
+      src: "/img/residences/display-ensuite-vanity.webp",
+      alt: "Stone vanity with wall-mounted tapware and mirrored cabinet in the ensuite",
+      room: "Ensuite vanity",
+    },
+    {
+      src: "/img/residences/display-second-bedroom.webp",
+      alt: "Second bedroom with built-in robe, woven wall hanging and side table lamp",
+      room: "Bedroom 2",
+    },
+    {
+      src: "/img/residences/display-kitchen-to-living.webp",
+      alt: "Kitchen island looking across the living room to the terrace doors",
+      room: "Kitchen to living",
+    },
+    {
+      src: "/img/residences/display-main-bathroom.webp",
+      alt: "Main bathroom with bath, glass shower screen and full-height stone tiling",
+      room: "Main bathroom",
+    },
+    {
+      src: "/img/residences/display-island-to-living.webp",
+      alt: "Waterfall stone island bench with the living room beyond",
+      room: "Island bench",
+    },
+    {
+      src: "/img/residences/display-third-bedroom.webp",
+      alt: "Third bedroom with upholstered bedhead and timber side table",
+      room: "Bedroom 3",
+    },
+    {
+      src: "/img/residences/display-kitchen-bench-detail.webp",
+      alt: "Kitchen bench detail with stone splashback, sink and pendant lighting",
+      room: "Kitchen detail",
+    },
+    {
+      src: "/img/residences/display-dining-table.webp",
+      alt: "Round dining table and timber chairs beside the kitchen",
+      room: "Dining",
+    },
+    {
+      src: "/img/residences/display-laundry.webp",
+      alt: "Laundry with stone bench, stainless sink and window",
+      room: "Laundry",
+    },
+  ] as DisplayPhoto[],
+};
+
+// Shared spaces — the two renders of the building's common areas.
+export const sharedSpaces = {
+  eyebrow: "Shared Spaces",
+  headline: "The arrival, and the retreat",
+  intro:
+    "Between the street and the front door, and between the building and the beach, two spaces belong to every resident.",
+  items: [
+    {
+      eyebrow: "The arrival",
+      title: "A lobby set among gardens",
+      body: "The entry sits back from the Esplanade behind a deep planted courtyard, so the walk from the street to the lift passes under a timber pergola and between tropical planting before the glass doors and the Mira signature.",
+      image: "/img/renders/lobby-arrival.webp",
+      alt: "Mira Living entry lobby with tropical planting, timber pergola and glazed doors",
+      caption: "Artist Impression",
+    },
+    {
+      eyebrow: "The retreat",
+      title: "A resident-only pool and lawn",
+      body: "Behind the building, a lap pool, sun loungers and a covered alfresco lounge sit within the landscaped rear garden — a private sanctuary a lift ride from every residence.",
+      image: "/img/site/Mira-Pool-Living.webp",
+      alt: "Residents' pool with sun loungers, covered alfresco area and tropical landscaping",
+      caption: "Artist Impression",
+    },
+  ],
+};
+
+// The home page teaser for the completed residence.
+export const completedTeaser = {
+  eyebrow: "Now Complete",
+  headline: "From render to reality",
+  body: "The first residence is finished and furnished. See the kitchens, bathrooms and bedrooms as they have been built — photographed, not rendered.",
+  cta: "See the completed residence",
+  href: "/residences#completed",
+  photos: [
+    "/img/residences/display-kitchen-island.webp",
+    "/img/residences/display-living-tv-wall.webp",
+    "/img/residences/display-ensuite-shower.webp",
+  ],
+};
+
+// Aerial photograph used on the Location page masthead (drone still, June 2026).
+export const locationHero = {
+  image: "/img/site/aerial-bargara-headland.webp",
+  alt: "Aerial photograph of the Bargara headland, its rock shelf and beaches, with the township and golf course behind",
+  caption: "Bargara headland, June 2026",
+};
 
 // Curated Chronological Milestones (11 items instead of all 135)
 export const constructionMilestones: ConstructionMilestone[] = [

@@ -2,34 +2,37 @@ import React from "react";
 import BackdropVideo from "@/components/common/BackdropVideo";
 import Parallax from "@/components/story/Parallax";
 import { developmentSpecs, siteConfig } from "@/content/site-content";
-import { storyPage } from "@/content/story-content";
 
 /**
  * The development's masthead.
  *
- * The same aerial film that opens the Story — the building rising on the
- * Esplanade — so the two pages read as one set. The poster is the footage's
- * own first frame, so the hero paints finished and never swaps one picture
- * for another; reduced-motion visitors keep that still.
+ * A short interior film — the kitchen, then a bedroom — cut from two
+ * cinematic clips and joined with a crossfade (public/video/residences-hero.mp4,
+ * 13 s, silent). The poster is the footage's own first frame, so the hero
+ * paints finished and never swaps one picture for another; reduced-motion
+ * visitors keep that still.
  */
+const heroFilm = {
+  src: "/video/residences-hero.mp4",
+  poster: "/video/residences-hero-poster.jpg",
+  description: "Interior film of a Mira residence: the kitchen and living room, then the master bedroom.",
+};
 const headlineFacts = [
   { value: String(developmentSpecs.totalResidences), label: "Oceanfront residences" },
   { value: "3 + MPR", label: "Bedrooms" },
-  { value: "117–139", label: "Sqm internal" },
+  { value: "118–139", label: "Sqm internal" },
   { value: "2", label: "Secure carparks" },
 ];
 
 export default function ResidencesHero() {
-  const { video } = storyPage.hero;
-
   return (
     <section className="relative flex min-h-[100svh] w-full flex-col overflow-hidden bg-mira-charcoal text-white">
       <div className="absolute inset-0 z-0" aria-hidden="true">
         <Parallax speed={0.12}>
           <BackdropVideo
-            src={video.src}
-            poster={video.poster}
-            aria-label={video.description}
+            src={heroFilm.src}
+            poster={heroFilm.poster}
+            aria-label={heroFilm.description}
             // The page's own landing frame — fetched and playing from the markup.
             priority
             className="absolute inset-0 h-full w-full object-cover object-center"

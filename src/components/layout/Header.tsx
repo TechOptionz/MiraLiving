@@ -16,7 +16,11 @@ export default function Header() {
 
   // Pages that open on a full-bleed dark hero get the transparent header until scrolled.
   const overHero =
-    pathname === "/" || pathname === "/story" || pathname === "/residences" || pathname === "/team";
+    pathname === "/" ||
+    pathname === "/story" ||
+    pathname === "/residences" ||
+    pathname === "/location" ||
+    pathname === "/team";
 
   useEffect(() => {
     /*

@@ -4,13 +4,18 @@ import { developmentSpecs } from "@/content/site-content";
 import Reveal from "@/components/common/Reveal";
 import PhotoFrame from "@/components/common/PhotoFrame";
 import ResidencesHero from "@/components/residences/ResidencesHero";
+import DisplayGallery from "@/components/residences/DisplayGallery";
+import SharedSpaces from "@/components/residences/SharedSpaces";
 import FloorPlanTabs from "@/components/residences/FloorPlanTabs";
+import BasementSection from "@/components/residences/BasementSection";
+import AvailabilityGrid from "@/components/residences/AvailabilityGrid";
 import ConstructionTimeline from "@/components/residences/ConstructionTimeline";
 import RegisterSection from "@/components/home/RegisterSection";
 
 export const metadata: Metadata = {
-  title: "Residences & Architecture",
-  description: "Explore the 25 luxury oceanfront residences at Mira Living, Bargara. 3-bedroom + MPR apartments from 117–139 sqm with floor plans and premium finishes.",
+  title: "Residences, Floor Plans & Availability",
+  description:
+    "The 25 oceanfront residences at Mira Living, Bargara: three floor plans from 118–139 sqm internal with room dimensions, photographs of the completed residence, and current availability level by level.",
 };
 
 /** The schedule rows, kept beside the copy they describe rather than inline in the markup. */
@@ -19,7 +24,6 @@ const specSchedule = [
   { label: "Configuration", value: developmentSpecs.bedrooms },
   { label: "Bathrooms & cars", value: `${developmentSpecs.bathrooms} · ${developmentSpecs.carSpaces}` },
   { label: "Internal area", value: developmentSpecs.internalSizeRange },
-  // TODO: confirm price with client
   { label: "Price release", value: `From ${developmentSpecs.priceFrom}` },
   // TODO: confirm completion date
   { label: "Handover target", value: `${developmentSpecs.status} · Completion ${developmentSpecs.completion}` },
@@ -45,7 +49,7 @@ const interiors = [
 export default function ResidencesPage() {
   return (
     <div className="bg-mira-ground">
-      {/* Hero — the Story film, so the two pages read as one set */}
+      {/* Hero — the interior film */}
       <ResidencesHero />
 
       {/* Specification schedule — hairline rows, read like a drawing set */}
@@ -99,6 +103,9 @@ export default function ResidencesPage() {
         </div>
       </section>
 
+      {/* The completed residence — photography, not renders */}
+      <DisplayGallery />
+
       {/* Material palette — each render shown whole, alternating with its copy */}
       <section className="border-t border-mira-border bg-mira-sandLight px-6 py-24 sm:px-12 sm:py-32 lg:px-16">
         <div className="mx-auto max-w-[1400px]">
@@ -149,7 +156,7 @@ export default function ResidencesPage() {
             ))}
           </div>
 
-          {/* Finish schedule — the full specification, previously unused on this page. */}
+          {/* Finish schedule — the full specification. */}
           <div className="mt-24 sm:mt-32">
             <Reveal variant="fade" className="block font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-brown">
               Finish Schedule
@@ -172,37 +179,17 @@ export default function ResidencesPage() {
         </div>
       </section>
 
-      {/* Interactive Floor Plans */}
+      {/* Shared spaces — the lobby and the pool */}
+      <SharedSpaces />
+
+      {/* Floor plans — three plans with room schedules and the apartments built to each */}
       <FloorPlanTabs />
 
-      {/* Panoramic Building Elevation */}
-      <section className="border-t border-mira-border bg-mira-ground px-6 py-24 sm:px-12 sm:py-32 lg:px-16">
-        <div className="mx-auto max-w-[1400px]">
-          <div className="max-w-3xl space-y-4">
-            <Reveal variant="fade" className="block font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-brown">
-              Building Elevation
-            </Reveal>
-            <Reveal as="h2" delay={120} className="font-serif text-[clamp(1.9rem,4vw,3.25rem)] font-light text-mira-charcoal">
-              Current Release &amp; Availability
-            </Reveal>
-            <Reveal delay={220} className="font-sans text-[16px] leading-[1.75] text-mira-brownDark sm:text-lg">
-              The full four-storey elevation, shown whole — every apartment in the building, and which of them remain.
-            </Reveal>
-          </div>
+      {/* The basement */}
+      <BasementSection />
 
-          <Reveal className="mt-14">
-            <PhotoFrame
-              src="/img/site/Sold-Properties-Mira-Living-4.webp"
-              alt="Mira Living beachfront four-storey elevation showing available and sold apartments"
-              caption="Artist Impression"
-              maxHeightVh={82}
-              sizes="(max-width: 1400px) 100vw, 1400px"
-              quality={90}
-              frameClassName="border border-mira-border shadow-card"
-            />
-          </Reveal>
-        </div>
-      </section>
+      {/* Availability — every residence, level by level, from the price guide */}
+      <AvailabilityGrid />
 
       {/* Construction Timeline */}
       <ConstructionTimeline />

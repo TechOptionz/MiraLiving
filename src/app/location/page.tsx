@@ -3,6 +3,7 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import {
   locationTeaser,
+  locationHero,
   lifestyleRecords,
   infrastructureRecords,
   curatedLifestylePhotos,
@@ -17,23 +18,57 @@ export const metadata: Metadata = {
 
 export default function LocationPage() {
   return (
-    <div className="pt-24 sm:pt-28 bg-mira-ground">
-      {/* Hero */}
-      <section className="py-24 sm:py-36 px-6 sm:px-12 bg-mira-sandLight border-b border-mira-border text-center">
-        <div className="max-w-4xl mx-auto space-y-6">
-          <span className="text-[12px] font-sans tracking-[0.16em] uppercase text-mira-brown block font-medium">
-            The Coral Coast
-          </span>
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-serif text-mira-charcoal font-light leading-[1.1]">
-            {locationTeaser.headline}
-          </h1>
-          <p className="text-lg sm:text-xl font-sans text-mira-muted max-w-2xl mx-auto font-light leading-relaxed">
-            {locationTeaser.paragraph1}
-          </p>
-          <p className="text-base sm:text-lg font-sans text-mira-muted max-w-2xl mx-auto font-light leading-relaxed pt-2">
-            {locationTeaser.paragraph2}
-          </p>
+    <div className="bg-mira-ground">
+      {/* Hero — the headland from the air, full bleed under the transparent header */}
+      <section className="relative flex min-h-[88svh] w-full flex-col justify-end overflow-hidden bg-mira-charcoal text-white">
+        <div className="absolute inset-0" aria-hidden="true">
+          <Image
+            src={locationHero.image}
+            alt={locationHero.alt}
+            fill
+            priority
+            quality={80}
+            sizes="100vw"
+            className="animate-heroZoom object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/35" />
+          <div className="absolute inset-0 bg-noise opacity-[0.08]" />
         </div>
+
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-14 pt-40 sm:px-8 sm:pb-20 lg:px-12">
+          <div className="max-w-3xl">
+            <div className="flex animate-softFade items-center gap-4" style={{ "--d": "200ms" } as React.CSSProperties}>
+              <span className="hidden h-px w-12 bg-mira-sand/70 sm:block" />
+              <p className="hero-legible font-sans text-[11px] uppercase tracking-eyebrow text-mira-sandLight/90 sm:text-[12px]">
+                The Coral Coast
+              </p>
+            </div>
+            <h1 className="hero-legible mt-7 font-serif text-[clamp(2.5rem,6.5vw,5.5rem)] font-light leading-[1.04]">
+              <span className="line-mask">
+                <span style={{ "--d": "350ms" } as React.CSSProperties}>{locationTeaser.headline}</span>
+              </span>
+            </h1>
+            <p
+              className="hero-legible mt-7 max-w-2xl animate-softFade font-sans text-base font-light leading-relaxed text-white/85 sm:text-lg"
+              style={{ "--d": "700ms" } as React.CSSProperties}
+            >
+              {locationTeaser.paragraph1}
+            </p>
+          </div>
+          <span
+            className="absolute bottom-5 right-6 animate-softFade bg-black/40 px-2.5 py-1 font-sans text-[11px] uppercase tracking-widest text-white/75 backdrop-blur-sm sm:right-8"
+            style={{ "--d": "1000ms" } as React.CSSProperties}
+          >
+            {locationHero.caption}
+          </span>
+        </div>
+      </section>
+
+      {/* Intro band */}
+      <section className="border-b border-mira-border bg-mira-sandLight px-6 py-16 sm:px-12 sm:py-20">
+        <p className="mx-auto max-w-3xl text-center font-serif text-[clamp(1.4rem,2.6vw,2.1rem)] font-light leading-snug text-mira-charcoal">
+          {locationTeaser.paragraph2}
+        </p>
       </section>
 
       {/* 4 Alternating Large Editorial Lifestyle Chapters */}

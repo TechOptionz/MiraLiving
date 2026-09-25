@@ -5,6 +5,7 @@ import CollectionStatement from "@/components/home/CollectionStatement";
 import AnewWaySection from "@/components/home/AnewWaySection";
 import DeveloperQuote from "@/components/home/DeveloperQuote";
 import InteriorsSlider from "@/components/home/InteriorsSlider";
+import CompletedTeaser from "@/components/home/CompletedTeaser";
 import PoolSection from "@/components/home/PoolSection";
 import KeyFeaturesGrid from "@/components/home/KeyFeaturesGrid";
 import LocationTeaser from "@/components/home/LocationTeaser";
@@ -32,6 +33,9 @@ export default function HomePage() {
 
       {/* 6. Interiors Editorial Slider (5 slides verbatim) */}
       <InteriorsSlider />
+
+      {/* 6b. The completed residence, photographed */}
+      <CompletedTeaser />
 
       {/* 7. Residents' Pool Sanctuary */}
       <PoolSection />
