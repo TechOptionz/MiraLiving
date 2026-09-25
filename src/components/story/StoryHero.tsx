@@ -31,7 +31,7 @@ export default function StoryHero() {
         </p>
 
         <div className="mt-8 grid grid-cols-1 items-end gap-10 lg:grid-cols-12">
-          <h1 className="font-serif text-[clamp(2.75rem,7vw,8.25rem)] font-light leading-[1.01] tracking-[-0.015em] lg:col-span-8">
+          <h1 className="font-serif text-[clamp(2.5rem,5.2vw,5.75rem)] font-light leading-[1.06] tracking-[-0.015em] lg:col-span-8">
             {hero.headlineLines.map((line, i) => (
               <span key={line} className="line-mask">
                 <span style={{ "--d": `${400 + i * 160}ms` } as React.CSSProperties}>
