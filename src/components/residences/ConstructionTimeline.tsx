@@ -17,7 +17,7 @@ export default function ConstructionTimeline() {
             Construction Progress Timeline
           </h2>
           <p className="font-sans text-[16px] leading-[1.75] text-mira-brownDark sm:text-lg">
-            Follow the journey from our January 2025 groundbreaking to 98% completion in September 2026. Hand-built by
+            Follow the journey from the January 2025 groundbreaking to the completed building. Hand-built by
             Wide Bay master builder IDC Construct.
           </p>
         </div>
@@ -50,7 +50,7 @@ export default function ConstructionTimeline() {
                 {idx === constructionMilestones.length - 1 && (
                   <span className="absolute bottom-3 right-3 flex items-center gap-1.5 bg-mira-teal px-3 py-1.5 font-sans text-[12px] font-semibold uppercase tracking-[0.12em] text-white shadow-sm">
                     <CheckCircle2 className="h-3.5 w-3.5" />
-                    98% complete
+                    100% complete
                   </span>
                 )}
               </div>

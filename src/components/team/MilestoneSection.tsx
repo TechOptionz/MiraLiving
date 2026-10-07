@@ -29,7 +29,7 @@ export default function MilestoneSection() {
             loading="lazy"
             quality={78}
             sizes="100vw"
-            className="object-cover object-[center_28%]"
+            className="object-cover object-[center_45%]"
           />
         </Parallax>
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/40" />

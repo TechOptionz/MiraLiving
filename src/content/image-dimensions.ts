@@ -28,6 +28,7 @@ export const imageDimensions: Record<string, [number, number]> = {
   "/img/residences/display-second-bedroom.webp": [2400, 1600],
   "/img/residences/display-study-nook.webp": [2400, 1600],
   "/img/residences/display-third-bedroom.webp": [2400, 1600],
+  "/img/site/Bargara-Central.webp": [1920, 1320],
   "/img/site/Bargara-Golf-Clubhouse-2-2.webp": [2181, 1226],
   "/img/site/Bundaberg-Hospital.webp": [600, 450],
   "/img/site/Cafes-Mira-Living.webp": [2048, 1366],
@@ -58,6 +59,7 @@ export const imageDimensions: Record<string, [number, number]> = {
   "/img/site/mira-fav.jpg": [512, 512],
   "/img/site/mira-living-img-2.webp": [2000, 1125],
   "/img/site/noise.webp": [1440, 263],
+  "/img/site/og-image.jpg": [1200, 630],
   "/img/site/progress-img.webp": [1755, 1125],
   "/img/site/sarahwood-colour.png": [400, 160],
   "/img/site/sarahwood.png": [400, 160],
@@ -105,6 +107,7 @@ export const imageDimensions: Record<string, [number, number]> = {
   "/img/social/IG_092_2025-01-02_DETJo53IUF-_1.jpg": [1440, 1800],
   "/img/social/IG_094_2024-12-28_DEHYCu4o6rH_1.jpg": [1080, 1350],
   "/img/social/IG_099_2024-12-15_DDltZLWIr7C_1.jpg": [1440, 1800],
+  "/img/social/site-excavator-2025.webp": [2560, 1912],
 };
 
 /** Aspect ratio (w / h) of a public image path, or null if it isn't known. */

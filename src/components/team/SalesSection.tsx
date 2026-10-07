@@ -105,7 +105,7 @@ export default function SalesSection() {
           className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2 border-t border-mira-border pt-6 font-sans text-[11px] uppercase tracking-[0.16em] text-mira-muted"
         >
           <span>{siteConfig.address.full}</span>
-          <span className="text-mira-brown">Now Selling · Completion September 2026</span>
+          <span className="text-mira-brown">Now Selling · 100% Completed</span>
         </Reveal>
       </div>
     </section>

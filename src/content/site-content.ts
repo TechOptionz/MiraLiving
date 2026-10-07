@@ -125,7 +125,7 @@ export const siteConfig = {
   title: "Beachfront Apartments for Sale in Bargara | Mira Living",
   tagline: "Premium Oceanfront Living in Bargara",
   subTagline: "Spacious 3-Bedroom + Multi-Purpose Room Coastal Living from $1.395M",
-  metaDescription: "25 absolute beachfront 3-bedroom apartments on The Esplanade, Bargara QLD, from $1.395M. Nearly complete — download the brochure or book a private inspection.",
+  metaDescription: "25 absolute beachfront 3-bedroom apartments on The Esplanade, Bargara QLD, from $1.395M. Now complete and the display suite is open — download the brochure or book a private inspection.",
   url: "https://miraliving.com.au",
   gtmId: "GTM-TWFRS38X",
   ga4Id: "G-ZPTJCDSVM8",
@@ -134,9 +134,10 @@ export const siteConfig = {
   // (Apartment 10, Type C). Keep in step with `priceGuide` below.
   startingPrice: "$1.395M",
   
-  // Single completion date for the whole site. The old "Q2 2026" line in the
-  // Secure section was the last conflicting copy and now derives from this.
-  completionDate: "Completion September 2026",
+  // Single build-status line for the whole site. Construction finished in
+  // September 2026 (client sign-off, 7 Oct 2026); every "Completion …" stamp
+  // now reads from here so the site cannot drift back to a target date.
+  completionDate: "Completed",
 
   // Served from /public. Set to null to fall back to the "we'll email it"
   // confirmation copy (e.g. once the brochure is delivered by email instead).
@@ -144,15 +145,25 @@ export const siteConfig = {
   // of 12 MB); it is served with X-Robots-Tag: noindex (next.config.mjs) so
   // search engines send buyers to the form, not straight to the file.
   brochureUrl: "/MIRA-LIVING-Brochure-web.pdf" as string | null,
-  constructionProgress: 98,
+  constructionProgress: 100,
+
+  // The local drone fly-over that replaces the "Check Availability" button on
+  // the home page. The client is supplying the footage; until `src` is set the
+  // section shows a quiet "coming soon" stamp instead of a dead button.
+  flyoverVideo: {
+    src: null as string | null,
+    poster: "/img/site/mira-living-img-2.webp",
+    title: "Bargara from the air",
+    description: "A local fly-over of Bargara and the Mira Living address on the Esplanade.",
+  },
   
   address: {
-    street: "25–27 The Esplanade",
+    street: "25 Esplanade",
     suburb: "Bargara",
     state: "QLD",
     postcode: "4670", // Fixed: Bargara's official postcode is 4670 (was 4760 in previous footer)
-    full: "25–27 The Esplanade, Bargara QLD 4670",
-    googleMapsEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3587.640989396263!2d152.4578508!3d-24.8194444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6be896f5b90f4cfd%3A0x2db4aa0cfc3451bf!2s25-27%20The%20Esplanade%2C%20Bargara%20QLD%204670!5e0!3m2!1sen!2sau!4v1710000000000!5m2!1sen!2sau"
+    full: "25 Esplanade, Bargara QLD 4670",
+    googleMapsEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3587.640989396263!2d152.4578508!3d-24.8194444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6be896f5b90f4cfd%3A0x2db4aa0cfc3451bf!2s25%20Esplanade%2C%20Bargara%20QLD%204670!5e0!3m2!1sen!2sau!4v1710000000000!5m2!1sen!2sau"
   },
   
   contacts: [
@@ -192,9 +203,9 @@ export const developmentSpecs = {
   carSpaces: "2 Secure Underground Carparks",
   internalSizeRange: "118 sqm to 139 sqm internal",
   priceFrom: "$1.395M",
-  status: "Under construction · 98% complete",
-  completion: "September 2026",
-  location: "25–27 The Esplanade, Bargara QLD 4670",
+  status: "100% Completed",
+  completion: "Completed",
+  location: "25 Esplanade, Bargara QLD 4670",
   amenities: [
     "Resident-only swimming pool & sun loungers",
     "Landscaped private alfresco entertaining area",
@@ -351,7 +362,7 @@ export const lifestyleRecords: LifestyleRecord[] = [
     id: 1,
     title: "Shopping",
     description: "For everyday ease, Bargara Central has your grocer, pharmacy and specialty stores, plus Bargara Meats — the local butcher known for hand-made sausages and quality cuts. For fresh produce, small-batch jams and gelato, Bargara Berries on Hughes Road is a favourite.",
-    image: "/img/site/Shopping-Mira-Living.webp"
+    image: "/img/site/Bargara-Central.webp"
   },
   {
     id: 2,
@@ -444,7 +455,7 @@ export const stepRecords: StepRecord[] = [
 export const secureSection = {
   eyebrow: "Now Selling",
   headline: "Secure your piece of paradise",
-  paragraph1: `Construction is ${siteConfig.constructionProgress}% complete, with completion in ${developmentSpecs.completion}.`,
+  paragraph1: "Construction is 100% complete and the display suite is now open.",
   paragraph2: "With only 25 residences available, this is a rare opportunity to claim absolute beachfront living on the Bargara Esplanade."
 };
 
@@ -713,10 +724,10 @@ export const unitStatusLabel: Record<UnitStatus, string> = {
 
 // The completed ground-floor residence, photographed September 2026.
 export const displayResidence = {
-  eyebrow: "The Completed Residence",
+  eyebrow: "Display Suite Now Open",
   headline: "Photographed, not rendered",
   intro:
-    "With construction all but complete, the first ground-floor residence has been finished and furnished. These are photographs of that home — the porcelain benchtops, the walnut-toned joinery and the honed stone bathrooms exactly as they have been built.",
+    "Construction is complete and the display suite is now open. These are photographs of that home — the porcelain benchtops, the walnut-toned joinery and the honed stone bathrooms exactly as they have been built.",
   note: "Photography of a completed ground-floor residence, furnished for display. Furniture and styling are not included.",
   photos: [
     {
@@ -835,10 +846,10 @@ export const sharedSpaces = {
 
 // The home page teaser for the completed residence.
 export const completedTeaser = {
-  eyebrow: "Now Complete",
+  eyebrow: "100% Completed",
   headline: "From render to reality",
-  body: "The first residence is finished and furnished. See the kitchens, bathrooms and bedrooms as they have been built — photographed, not rendered.",
-  cta: "See the completed residence",
+  body: "Display suite now open. See the kitchens, bathrooms and bedrooms as they have been built — photographed, not rendered.",
+  cta: "See the display suite",
   href: "/residences#completed",
   photos: [
     "/img/residences/display-kitchen-island.webp",
@@ -929,8 +940,8 @@ export const constructionMilestones: ConstructionMilestone[] = [
   {
     date: "2026-09-01",
     formattedDate: "September 2026",
-    title: "98% Milestone & Landscaping",
-    description: "Lush tropical planting installed around the resort pool with completion only days away.",
+    title: "Construction Complete",
+    description: "Lush tropical planting installed around the resort pool as the build reaches 100% completion.",
     image: "/img/social/IG_003_2026-09-01_Dcukh9yoLfF_1.jpg"
   }
 ];
@@ -977,7 +988,7 @@ export const curatedLifestylePhotos: CuratedLifestylePhoto[] = [
 
 export const privacyPolicyContent = {
   lastUpdated: "October 2025",
-  projectAddress: "25–27 The Esplanade, Bargara QLD 4670",
+  projectAddress: siteConfig.address.full,
   intro: "This Privacy Policy outlines how we collect, use, disclose and protect your personal information in accordance with the Privacy Act 1988 (Cth) and the Australian Privacy Principles (APPs).",
   sections: [
     {
@@ -1098,8 +1109,8 @@ export const faqItems: FaqItem[] = (() => {
       answer: `Each residence comes with two secure basement car spaces and a lockable storage cage. A lift runs from the basement to every level of the building.`,
     },
     {
-      question: "When will Mira Living be completed?",
-      answer: `Construction is ${siteConfig.constructionProgress}% complete, with completion in ${developmentSpecs.completion}. The first ground-floor residence is already finished and furnished for display, and it is photographed on the Residences page.`,
+      question: "Is Mira Living completed?",
+      answer: `Yes. Construction is 100% complete and the display suite is now open. The furnished ground-floor display residence is photographed on the Residences page, and private inspections are arranged through the sales team.`,
     },
     {
       question: "Can I inspect a completed apartment?",

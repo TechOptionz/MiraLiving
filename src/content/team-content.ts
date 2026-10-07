@@ -61,11 +61,11 @@ export const teamPhotos = {
     caption: "Smoko at the Esplanade shelter",
     date: "April 2026",
   },
-  /** Milestone — the group who turned the first sod. */
+  /** Milestone — the excavator on the cleared block, the day works began (client photo IMG_0301). */
   groundbreaking: {
-    src: "/img/social/IG_086_2025-01-22_DFHMruMxN5m_4.jpg",
-    alt: "Five people, including the developer and the builder in hard hats, standing together on the cleared Mira Living site in front of the project hoarding",
-    caption: "The first sod turned at 25–27 The Esplanade",
+    src: "/img/social/site-excavator-2025.webp",
+    alt: "A yellow Cat 330 excavator on the freshly cleared Mira Living site, the project hoarding and the neighbouring houses behind it under a clear sky",
+    caption: "Breaking ground at 25 Esplanade",
     date: "January 2025",
   },
   /** Milestone — guests gathered for the ceremony. */
@@ -88,7 +88,7 @@ export const teamHero = {
     { label: "Disciplines", value: "Four" },
     { label: "Developer", value: "Furtado Property" },
     { label: "Ground turned", value: "January 2025" },
-    { label: "Completion", value: "September 2026" },
+    { label: "Status", value: "Completed" },
   ],
 };
 

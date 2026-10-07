@@ -3,13 +3,14 @@
 import React, { useRef } from "react";
 import Image from "next/image";
 import { useModal } from "@/context/ModalContext";
-import { aNewWayToLive } from "@/content/site-content";
+import { aNewWayToLive, siteConfig } from "@/content/site-content";
 import Reveal from "@/components/common/Reveal";
-import { ArrowRight } from "lucide-react";
+import { Play } from "lucide-react";
 import { useOnScreen } from "@/hooks/useOnScreen";
 
 export default function AnewWaySection() {
-  const { openRegister } = useModal();
+  const { openFlyover } = useModal();
+  const flyover = siteConfig.flyoverVideo;
   const sectionRef = useRef<HTMLElement>(null);
   const onScreen = useOnScreen(sectionRef);
 
@@ -53,7 +54,7 @@ export default function AnewWaySection() {
         <Reveal delay={360} className="mt-12 flex flex-col gap-6 border-t border-white/20 pt-7 sm:flex-row sm:items-end sm:justify-between">
           <div className="space-y-1">
             <span className="font-sans text-[12px] uppercase tracking-[0.16em] text-mira-sand">
-              Building Elevation · 25–27 The Esplanade
+              Building Elevation · {siteConfig.address.street}
             </span>
             <p className="font-serif text-lg font-light sm:text-2xl">
               Absolute Oceanfront Coral Sea Panorama
@@ -61,13 +62,29 @@ export default function AnewWaySection() {
           </div>
 
           <div className="flex flex-wrap items-center gap-4">
-            <button
-              onClick={openRegister}
-              className="flex items-center gap-2 bg-white/90 px-7 py-4 font-sans text-xs uppercase tracking-[0.15em] text-mira-charcoal shadow-subtle transition-all hover:bg-white"
-            >
-              <span>Check Availability</span>
-              <ArrowRight className="h-3.5 w-3.5 text-mira-brown" />
-            </button>
+            {/* The local fly-over replaced "Check Availability" (client request,
+                Oct 2026). The film is supplied by the client; until its src is
+                set in siteConfig.flyoverVideo the slot holds a quiet stamp so
+                the layout does not shift when the button arrives. */}
+            {flyover.src ? (
+              <button
+                type="button"
+                onClick={openFlyover}
+                className="flex items-center gap-3 bg-white/90 px-7 py-4 font-sans text-xs uppercase tracking-[0.15em] text-mira-charcoal shadow-subtle transition-all hover:bg-white"
+              >
+                <span className="flex h-6 w-6 items-center justify-center rounded-full border border-mira-brown/50">
+                  <Play className="ml-px h-3 w-3 fill-mira-brown text-mira-brown" />
+                </span>
+                <span>Watch the Local Fly Over</span>
+              </button>
+            ) : (
+              <span className="flex items-center gap-3 border border-white/30 px-7 py-4 font-sans text-xs uppercase tracking-[0.15em] text-white/80">
+                <span className="flex h-6 w-6 items-center justify-center rounded-full border border-white/40">
+                  <Play className="ml-px h-3 w-3 fill-white/70 text-white/70" />
+                </span>
+                <span>Local Fly Over · Coming Soon</span>
+              </span>
+            )}
             {aNewWayToLive.caption && (
               <span className="bg-black/40 px-2 py-1 font-sans text-[11px] uppercase tracking-widest text-white/70 backdrop-blur-sm">
                 {aNewWayToLive.caption}

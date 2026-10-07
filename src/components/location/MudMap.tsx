@@ -84,11 +84,11 @@ export default function MudMap() {
         </div>
       </div>
 
-      {/* Right: Embedded Google Map for 25–27 The Esplanade */}
+      {/* Right: Embedded Google Map for the project address */}
       <div className="lg:col-span-6 space-y-6">
         <div className="relative aspect-[4/3] w-full bg-mira-sand overflow-hidden border border-mira-border shadow-subtle">
           <iframe
-            title="Mira Living Project Location - 25-27 The Esplanade Bargara"
+            title={`Mira Living Project Location - ${siteConfig.address.full}`}
             src={siteConfig.address.googleMapsEmbedUrl}
             width="100%"
             height="100%"
@@ -100,7 +100,7 @@ export default function MudMap() {
           />
           <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-sm px-3 py-1.5 text-xs font-sans text-mira-charcoal flex items-center gap-1.5 shadow-sm border border-mira-border">
             <MapPin className="w-3.5 h-3.5 text-mira-tealDark" />
-            <span className="font-medium">25–27 The Esplanade, Bargara QLD 4670</span>
+            <span className="font-medium">{siteConfig.address.full}</span>
           </div>
         </div>
 

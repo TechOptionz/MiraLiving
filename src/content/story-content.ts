@@ -213,7 +213,7 @@ export const storyPage = {
     chapter: "From Vision To Reality",
     headline: "A masterpiece taking shape.",
     intro:
-      "Construction commenced with a groundbreaking ceremony in January 2025. Twenty months on, the residence stands on the Esplanade — 98% complete.",
+      "Construction commenced with a groundbreaking ceremony in January 2025. Twenty months on, the residence stands complete on the Esplanade.",
     chapters: [
       {
         step: "01",
@@ -283,8 +283,8 @@ export const storyPage = {
         period: "June — September 2026",
         statement: "The scaffolding is down. The vision stands proud.",
         detail:
-          "Internal fit-outs, landscaping and the resident pool complete the residence, now 98% finished ahead of handover.",
-        meta: `98% complete · ${siteConfig.completionDate}`,
+          "Internal fit-outs, landscaping and the resident pool complete the residence, now 100% finished with the display suite open.",
+        meta: `100% complete · Display suite now open`,
         image: {
           src: "/img/site/Mira-Facade-Dusk.webp",
           alt: "The completed residence at dusk, seen from the street — four levels of balconies lit warm above the landscaped frontage",

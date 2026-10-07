@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/privacy-policy" },
   robots: { index: false, follow: true },
   title: "Privacy Policy",
-  description: "Privacy Policy for Mira Living, 25–27 The Esplanade, Bargara QLD 4670. Learn how personal information is collected, used, and protected.",
+  description: "Privacy Policy for Mira Living, 25 Esplanade, Bargara QLD 4670. Learn how personal information is collected, used, and protected.",
 };
 
 export default function PrivacyPolicyPage() {

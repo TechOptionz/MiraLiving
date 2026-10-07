@@ -29,7 +29,7 @@ const specSchedule = [
   { label: "Bathrooms & cars", value: `${developmentSpecs.bathrooms} · ${developmentSpecs.carSpaces}` },
   { label: "Internal area", value: developmentSpecs.internalSizeRange },
   { label: "Price release", value: `From ${developmentSpecs.priceFrom}` },
-  { label: "Handover target", value: `${developmentSpecs.status} · Completion ${developmentSpecs.completion}` },
+  { label: "Construction", value: `${developmentSpecs.status} · Display suite now open` },
 ];
 
 const interiors = [

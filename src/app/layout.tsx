@@ -5,6 +5,7 @@ import { ModalProvider } from "@/context/ModalContext";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import RegisterModal from "@/components/common/RegisterModal";
+import FlyoverModal from "@/components/common/FlyoverModal";
 import CookieConsent from "@/components/layout/CookieConsent";
 import JsonLd from "@/components/common/JsonLd";
 import { siteConfig } from "@/content/site-content";
@@ -43,7 +44,7 @@ const shareImage = {
   url: ogImagePath,
   width: 1200,
   height: 630,
-  alt: "Mira Living, 25–27 The Esplanade, Bargara: beachfront apartment building at dusk (artist impression)",
+  alt: "Mira Living, 25 Esplanade, Bargara: beachfront apartment building at dusk (artist impression)",
 };
 
 export const metadata: Metadata = {
@@ -111,6 +112,7 @@ export default function RootLayout({
           </main>
           <Footer />
           <RegisterModal />
+          <FlyoverModal />
           <CookieConsent />
         </ModalProvider>
       </body>

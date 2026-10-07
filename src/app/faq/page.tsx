@@ -10,7 +10,7 @@ import RegisterSection from "@/components/home/RegisterSection";
 export const metadata: Metadata = {
   title: "Buyer FAQ: Prices, Sizes, Parking & Completion",
   description:
-    "Answers for buyers of the Mira Living beachfront apartments in Bargara: current prices and availability, apartment sizes and layouts, parking, completion date, inspections and the team behind the project.",
+    "Answers for buyers of the Mira Living beachfront apartments in Bargara: current prices and availability, apartment sizes and layouts, parking, completion status, inspections and the team behind the project.",
   alternates: { canonical: "/faq" },
 };
 

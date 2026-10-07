@@ -161,7 +161,7 @@ export default function Footer() {
                 <dd className="text-mira-sandLight">{siteConfig.startingPrice}</dd>
               </div>
               <div>
-                <dt className="sr-only">Completion</dt>
+                <dt className="sr-only">Status</dt>
                 <dd className="text-mira-sand/55">{siteConfig.completionDate}</dd>
               </div>
             </dl>

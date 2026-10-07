@@ -21,7 +21,7 @@ import { X } from "lucide-react";
 const modalFacts = [
   { label: "Price from", value: siteConfig.startingPrice },
   { label: "The collection", value: "25 Residences" },
-  { label: "Completion", value: "September 2026" },
+  { label: "Status", value: siteConfig.completionDate },
 ];
 
 export default function RegisterModal() {
