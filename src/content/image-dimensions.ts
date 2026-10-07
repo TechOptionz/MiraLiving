@@ -48,7 +48,6 @@ export const imageDimensions: Record<string, [number, number]> = {
   "/img/site/Render-Slider-1.webp": [2000, 1271],
   "/img/site/Render-Slider-3.webp": [2048, 1380],
   "/img/site/Render-Slider-4-scaled.webp": [1985, 2560],
-  "/img/site/Shopping-Mira-Living.webp": [1920, 1381],
   "/img/site/Sold-Properties-Mira-Living-4.webp": [1755, 1125],
   "/img/site/Sparc-colour.png": [209, 80],
   "/img/site/Sparc.png": [209, 80],
