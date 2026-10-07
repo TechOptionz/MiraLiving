@@ -28,7 +28,7 @@ const nextConfig = {
         // The brochure is gated behind the registration form. Without this a
         // search engine that finds the file would index it and send buyers
         // straight to the PDF, skipping the lead capture (SEO audit, Sept 2026).
-        source: "/MIRA-LIVING-Brochure(-web)?.pdf",
+        source: "/MIRA-LIVING-Brochure(-web|-2026)?.pdf",
         headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
       },
       {

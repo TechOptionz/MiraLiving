@@ -141,10 +141,13 @@ export const siteConfig = {
 
   // Served from /public. Set to null to fall back to the "we'll email it"
   // confirmation copy (e.g. once the brochure is delivered by email instead).
-  // The "-web" export is the print PDF re-encoded at 150 dpi (3.2 MB instead
-  // of 12 MB); it is served with X-Robots-Tag: noindex (next.config.mjs) so
-  // search engines send buyers to the form, not straight to the file.
-  brochureUrl: "/MIRA-LIVING-Brochure-web.pdf" as string | null,
+  // The 2026 brochure is generated from this file's content by
+  // `npm run brochure` (scripts/brochure/brochure.html), so prices, status and
+  // the display-suite copy match the site. It is served with X-Robots-Tag:
+  // noindex (next.config.mjs) so search engines send buyers to the form, not
+  // straight to the file. The older print exports (MIRA-LIVING-Brochure*.pdf)
+  // still say "under construction" and are kept only for reference.
+  brochureUrl: "/MIRA-LIVING-Brochure-2026.pdf" as string | null,
   constructionProgress: 100,
 
   // The local drone fly-over that replaces the "Check Availability" button on

@@ -31,3 +31,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# brochure build intermediates
+scripts/brochure/.img/
+scripts/brochure/.print.html
