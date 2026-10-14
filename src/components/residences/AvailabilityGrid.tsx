@@ -145,9 +145,9 @@ export default function AvailabilityGrid() {
           <div className="lg:col-span-5">
             <Reveal delay={200}>
               <PhotoFrame
-                src="/img/site/Mira-Facade-Dusk.webp"
-                alt="Mira Living street elevation at dusk: five levels of balconies above the landscaped ground floor"
-                caption="Artist Impression"
+                src="/img/site/facade-dusk-photo.webp"
+                alt="The completed Mira Living elevation at dusk, photographed from the Esplanade: four levels of balconies above the landscaped ground floor"
+                caption="Photographed October 2026"
                 sizes="(max-width: 1024px) 100vw, 40vw"
                 quality={86}
                 frameClassName="border border-mira-border shadow-card"

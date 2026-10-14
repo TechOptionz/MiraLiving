@@ -6,7 +6,7 @@ import Reveal from "@/components/common/Reveal";
 export default function PoolSection() {
   return (
     <section className="relative flex min-h-screen w-full items-center overflow-hidden border-t border-mira-border bg-mira-ground py-20 sm:py-24 lg:py-0">
-      {/* Sand wash under the render so the right bleed reads as a panel rather than a floating crop. */}
+      {/* Sand wash under the photograph so the right bleed reads as a panel rather than a floating crop. */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-y-0 right-0 hidden w-[58%] bg-mira-sandLight lg:block"
@@ -52,7 +52,7 @@ export default function PoolSection() {
 
         {/*
           Runs to the right viewport edge for scale. Sized by height on desktop so the
-          1170x649 source is cropped into the frame instead of being upscaled to fill it.
+          3:2 photograph is cropped into the frame instead of being upscaled to fill it.
         */}
         <Reveal
           variant="mask"
@@ -61,7 +61,7 @@ export default function PoolSection() {
         >
           <Image
             src={poolSection.image}
-            alt="Residents private pool sanctuary with tropical landscaping and sun loungers"
+            alt="The completed residents' pool at dusk, the sky reflected in the water and the covered alfresco room beside it"
             fill
             quality={90}
             sizes="(max-width: 1024px) 100vw, 60vw"

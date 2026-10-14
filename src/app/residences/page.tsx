@@ -32,17 +32,21 @@ const specSchedule = [
   { label: "Construction", value: `${developmentSpecs.status} · Display suite now open` },
 ];
 
+// Photographs of the display suite (October 2026); the renders they replaced
+// still appear on the Story page as the design intent.
 const interiors = [
   {
-    src: "/img/site/Image-5.webp",
-    alt: "Kitchen and open plan entertaining area with integrated Smeg appliances",
+    src: "/img/residences/suite-kitchen-joinery.webp",
+    alt: "The completed kitchen: full-height walnut-toned joinery, stone splashback and integrated oven behind the porcelain island bench",
+    caption: "Display suite · Photographed",
     eyebrow: "The kitchen",
     title: "Kitchens built for entertaining",
     body: "Porcelain benchtops run the length of the island, soft walnut-toned joinery warms the edges, and the Smeg suite disappears behind cabinetry — so the room stays a living space, not a galley.",
   },
   {
-    src: "/img/site/Render-Slider-4-scaled.webp",
-    alt: "Sanctuary bathroom lined in honed Tundra stone tiles",
+    src: "/img/residences/suite-ensuite.webp",
+    alt: "The completed ensuite, lined floor to ceiling in honed Tundra stone with twin rain showers and a stone vanity",
+    caption: "Display suite · Photographed",
     eyebrow: "The bathroom",
     title: "Serene private sanctuaries",
     body: "Bathrooms are wrapped floor-to-ceiling in honed Australian Tundra stone, anchored by elegant ceramic basins and softened by the low sheen of satin nickel tapware.",
@@ -122,7 +126,7 @@ export default function ResidencesPage() {
       {/* The completed residence — photography, not renders */}
       <DisplayGallery />
 
-      {/* Material palette — each render shown whole, alternating with its copy */}
+      {/* Material palette — each photograph shown whole, alternating with its copy */}
       <section className="border-t border-mira-border bg-mira-sandLight section-pad px-6 sm:px-12 lg:px-16">
         <div className="mx-auto max-w-[1400px]">
           {/* Heading left, intro right and bottom-aligned, so the header uses the full row. */}
@@ -153,7 +157,7 @@ export default function ResidencesPage() {
                   <PhotoFrame
                     src={item.src}
                     alt={item.alt}
-                    caption="Artist Impression"
+                    caption={item.caption}
                     maxHeightVh={78}
                     sizes="(max-width: 1024px) 100vw, 58vw"
                     frameClassName="shadow-card"

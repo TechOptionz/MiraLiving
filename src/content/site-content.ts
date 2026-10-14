@@ -154,7 +154,7 @@ export const siteConfig = {
   // section shows a quiet "coming soon" stamp instead of a dead button.
   flyoverVideo: {
     src: null as string | null,
-    poster: "/img/site/mira-living-img-2.webp",
+    poster: "/img/site/aerial-esplanade-front.webp",
     title: "Bargara from the air",
     description: "A local fly-over of Bargara and the Mira Living address on the Esplanade.",
   },
@@ -242,12 +242,13 @@ export const aNewWayToLive = {
   headline: "A new way to live by the sea",
   paragraph1: "Mira Living places you on the shoreline of the Coral Sea, with nothing between you and the horizon. Wake to the sound of waves, enjoy leisurely strolls along the Bargara Esplanade and watch the sun rise over the water from your own private balcony.",
   paragraph2: "This is coastal living, elevated — a rare opportunity to own oceanfront in one of Queensland’s most coveted seaside enclaves.",
-  // Deliberately NOT Sold-Properties-Mira-Living-4.webp: that is this same
-  // elevation with "SOLD" / "FUTURE RELEASE" burnt into the balconies, which
-  // run full-bleed behind this copy reads as a sales board and misstates
-  // availability. Mira-Facade-Dusk.webp is the clean render.
-  image: "/img/site/Mira-Facade-Dusk.webp",
-  caption: "Artist Impression"
+  // The completed building from the Esplanade at dusk (drone, October 2026).
+  // It replaced the render (Mira-Facade-Dusk.webp, still used where the Story
+  // page shows the design intent) — and deliberately never
+  // Sold-Properties-Mira-Living-4.webp, which has "SOLD" / "FUTURE RELEASE"
+  // burnt into the balconies and reads as a sales board.
+  image: "/img/site/facade-dusk-photo.webp",
+  caption: "Photographed October 2026"
 };
 
 export const developerQuote = {
@@ -257,6 +258,8 @@ export const developerQuote = {
   title: "Developer, Furtado Property"
 };
 
+// Four of the five slides are photographs of the display suite (October 2026);
+// no wardrobe was photographed, so that slide still carries its render.
 export const featureSlides: FeatureSlide[] = [
   {
     id: 1,
@@ -269,37 +272,39 @@ export const featureSlides: FeatureSlide[] = [
     id: 2,
     title: "Serene private sanctuaries",
     description: "Bathrooms are wrapped in honed Tundra stone tiles, anchored by elegant ceramic basins and softened by the sheen of satin nickel tapware.",
-    image: "/img/site/Render-Slider-4-scaled.webp",
-    caption: "Artist Impression"
+    image: "/img/residences/suite-ensuite.webp",
+    caption: "Display suite · Photographed"
   },
   {
     id: 3,
     title: "Kitchens for entertaining",
     description: "Porcelain benchtops, soft walnut-toned joinery and seamlessly integrated Smeg appliances make every meal feel like an occasion.",
-    image: "/img/site/Image-5.webp",
-    caption: "Artist Impression"
+    image: "/img/residences/suite-kitchen-dining.webp",
+    caption: "Display suite · Photographed"
   },
   {
     id: 4,
     title: "Open-plan living",
     description: "Living spaces are framed in warm vanilla tones and open through wide glazed doors to the ocean beyond.",
-    image: "/img/site/Render-Slider-1.webp",
-    caption: "Artist Impression"
+    image: "/img/residences/suite-living-terrace.webp",
+    caption: "Display suite · Photographed"
   },
   {
     id: 5,
     title: "Restful nights",
     description: "In the bedrooms, plush wool carpet cushions every step, creating a quiet retreat to begin and end your days.",
-    image: "/img/site/Image-2.webp",
-    caption: "Artist Impression"
+    image: "/img/residences/suite-bedroom-evening.webp",
+    caption: "Display suite · Photographed"
   }
 ];
 
 export const poolSection = {
   headline: "Quiet moments between the waves",
   description: "After a day spent exploring the coastline, the resident-only pool offers a private sanctuary. Designed for quiet relaxation, it’s a retreat to restore, recharge and savour the simple pleasure of stillness.",
-  image: "/img/site/Mira-Pool-Living.webp",
-  caption: "Artist Impression"
+  // The completed pool, photographed at dusk in October 2026 — the render it
+  // replaced (Mira-Pool-Living.webp) was removed with it.
+  image: "/img/site/pool-dusk-photo.webp",
+  caption: "Photographed October 2026"
 };
 
 export const keyFeatures: KeyFeature[] = [
@@ -705,7 +710,13 @@ export const unitStatusLabel: Record<UnitStatus, string> = {
   future: "Future release",
 };
 
-// The completed ground-floor residence, photographed September 2026.
+// The completed ground-floor residence, photographed for the client on
+// 9 October 2026 (public/img/residences/suite-*). This set replaced the
+// September photographs, which carried the photographer's watermark and were
+// smaller; the two rooms that set alone covered (main bathroom, laundry) are
+// kept at the end. Order matters: the first eleven are laid out as tiles cut
+// to 3:2, so the two portrait details sit after them and are seen whole in
+// the lightbox only.
 export const displayResidence = {
   eyebrow: "Display Suite Now Open",
   headline: "Photographed, not rendered",
@@ -714,84 +725,99 @@ export const displayResidence = {
   note: "Photography of a completed ground-floor residence, furnished for display. Furniture and styling are not included.",
   photos: [
     {
-      src: "/img/residences/display-living-to-kitchen.webp",
-      alt: "Open-plan living room of the completed residence looking through to the kitchen and dining area",
-      room: "Living & dining",
+      src: "/img/residences/suite-living-terrace.webp",
+      alt: "Living room of the completed residence, the sofa and travertine coffee table facing wide open sliding doors to the terrace, the Esplanade and the sea",
+      room: "Living to terrace",
     },
     {
-      src: "/img/residences/display-kitchen-island.webp",
-      alt: "Kitchen island bench with porcelain benchtop, walnut-toned joinery and bar stools",
+      src: "/img/residences/suite-kitchen-island.webp",
+      alt: "Porcelain island bench with timber bowls, looking through to the walnut-toned kitchen run and stone splashback",
       room: "Kitchen",
     },
     {
-      src: "/img/residences/display-master-bedroom.webp",
-      alt: "Master bedroom of the completed residence with rattan bedhead and timber side tables",
+      src: "/img/residences/suite-master-bedroom.webp",
+      alt: "Master bedroom of the completed residence with rattan bedhead, timber side tables and a reading chair by the window",
       room: "Master bedroom",
     },
     {
-      src: "/img/residences/display-ensuite-shower.webp",
-      alt: "Ensuite bathroom with full-height stone tiles, twin rain showers and stone vanity",
+      src: "/img/residences/suite-terrace.webp",
+      alt: "Covered terrace with a round table and woven chairs, timber shutters folded back to the lawn, the Esplanade and the ocean",
+      room: "Terrace",
+    },
+    {
+      src: "/img/residences/suite-ensuite.webp",
+      alt: "Ensuite with full-height honed stone tiles, twin rain showers behind a glass screen and a stone vanity",
       room: "Ensuite",
     },
     {
-      src: "/img/residences/display-dining-to-balcony.webp",
-      alt: "Dining table and lounge looking out through wide sliding doors to the terrace",
-      room: "Dining to terrace",
-    },
-    {
-      src: "/img/residences/display-kitchen-joinery.webp",
-      alt: "Full-height walnut-toned kitchen joinery and stone splashback with integrated appliances",
-      room: "Kitchen joinery",
-    },
-    {
-      src: "/img/residences/display-study-nook.webp",
-      alt: "Study with timber desk, round mirror and reading lamp",
-      room: "Study",
-    },
-    {
-      src: "/img/residences/display-living-tv-wall.webp",
-      alt: "Living room with television wall, travertine coffee table and view through to the kitchen",
+      src: "/img/residences/suite-living.webp",
+      alt: "Living room with bouclé sofa, tan leather armchair and three framed prints beside the terrace doors",
       room: "Living",
     },
     {
-      src: "/img/residences/display-ensuite-vanity.webp",
+      src: "/img/residences/suite-kitchen-dining.webp",
+      alt: "Waterfall stone island with bar stools, the dining table and lounge beyond under the linear pendant",
+      room: "Kitchen & dining",
+    },
+    {
+      src: "/img/residences/suite-bedroom-terrace.webp",
+      alt: "Bedroom with curved upholstered bedhead and sliding doors open to the terrace, lawn and sea",
+      room: "Bedroom to terrace",
+    },
+    {
+      src: "/img/residences/suite-kitchen-joinery.webp",
+      alt: "Full-height walnut-toned kitchen joinery, stone splashback and integrated oven, the island bench in the foreground",
+      room: "Kitchen joinery",
+    },
+    {
+      src: "/img/residences/suite-living-tv.webp",
+      alt: "Living room with the television wall and terrace doors open to the garden",
+      room: "Living",
+    },
+    {
+      src: "/img/residences/suite-dining.webp",
+      alt: "Oval dining table and timber chairs looking back to the kitchen island and joinery",
+      room: "Dining",
+    },
+    {
+      src: "/img/residences/suite-terrace-living.webp",
+      alt: "Terrace table and chairs beside the open sliding doors, the living room and kitchen seen inside",
+      room: "Terrace to living",
+    },
+    {
+      src: "/img/residences/suite-island-living.webp",
+      alt: "Island bench under the linear pendant, looking across the living room to the terrace doors",
+      room: "Island bench",
+    },
+    {
+      src: "/img/residences/suite-second-bedroom.webp",
+      alt: "Second bedroom with built-in robe, woven wall hanging and bedside lamp",
+      room: "Bedroom 2",
+    },
+    {
+      src: "/img/residences/suite-ensuite-vanity.webp",
       alt: "Stone vanity with wall-mounted tapware and mirrored cabinet in the ensuite",
       room: "Ensuite vanity",
     },
     {
-      src: "/img/residences/display-second-bedroom.webp",
-      alt: "Second bedroom with built-in robe, woven wall hanging and side table lamp",
-      room: "Bedroom 2",
+      src: "/img/residences/suite-study.webp",
+      alt: "Study with timber desk, round mirror and reading lamp",
+      room: "Study",
     },
     {
-      src: "/img/residences/display-kitchen-to-living.webp",
-      alt: "Kitchen island looking across the living room to the terrace doors",
-      room: "Kitchen to living",
+      src: "/img/residences/suite-bedroom-detail.webp",
+      alt: "Bed dressed in linen with cushions and layered throws, a lamp lit beside it",
+      room: "Bedroom detail",
+    },
+    {
+      src: "/img/residences/suite-bench-detail.webp",
+      alt: "Kitchen bench detail: the porcelain top and stone splashback, undermount sink and satin tapware",
+      room: "Kitchen detail",
     },
     {
       src: "/img/residences/display-main-bathroom.webp",
       alt: "Main bathroom with bath, glass shower screen and full-height stone tiling",
       room: "Main bathroom",
-    },
-    {
-      src: "/img/residences/display-island-to-living.webp",
-      alt: "Waterfall stone island bench with the living room beyond",
-      room: "Island bench",
-    },
-    {
-      src: "/img/residences/display-third-bedroom.webp",
-      alt: "Third bedroom with upholstered bedhead and timber side table",
-      room: "Bedroom 3",
-    },
-    {
-      src: "/img/residences/display-kitchen-bench-detail.webp",
-      alt: "Kitchen bench detail with stone splashback, sink and pendant lighting",
-      room: "Kitchen detail",
-    },
-    {
-      src: "/img/residences/display-dining-table.webp",
-      alt: "Round dining table and timber chairs beside the kitchen",
-      room: "Dining",
     },
     {
       src: "/img/residences/display-laundry.webp",
@@ -801,7 +827,7 @@ export const displayResidence = {
   ] as DisplayPhoto[],
 };
 
-// Shared spaces — the two renders of the building's common areas.
+// Shared spaces — the lobby render and the completed pool, photographed.
 export const sharedSpaces = {
   eyebrow: "Shared Spaces",
   headline: "The arrival, and the retreat",
@@ -820,9 +846,9 @@ export const sharedSpaces = {
       eyebrow: "The retreat",
       title: "A resident-only pool and lawn",
       body: "Behind the building, a lap pool, sun loungers and a covered alfresco lounge sit within the landscaped rear garden — a private sanctuary a lift ride from every residence.",
-      image: "/img/site/Mira-Pool-Living.webp",
-      alt: "Residents' pool with sun loungers, covered alfresco area and tropical landscaping",
-      caption: "Artist Impression",
+      image: "/img/site/pool-dusk-photo.webp",
+      alt: "The completed residents' pool at dusk, the covered alfresco room at its head and new planting along the fence",
+      caption: "Photographed October 2026",
     },
   ],
 };
@@ -835,9 +861,9 @@ export const completedTeaser = {
   cta: "See the display suite",
   href: "/residences#completed",
   photos: [
-    "/img/residences/display-kitchen-island.webp",
-    "/img/residences/display-living-tv-wall.webp",
-    "/img/residences/display-ensuite-shower.webp",
+    "/img/residences/suite-kitchen-island.webp",
+    "/img/residences/suite-living-terrace.webp",
+    "/img/residences/suite-ensuite.webp",
   ],
 };
 

@@ -19,15 +19,15 @@ export default function AnewWaySection() {
       ref={sectionRef}
       className="relative flex min-h-screen w-full items-end overflow-hidden bg-mira-charcoal text-white"
     >
-      {/* The elevation render carries the whole frame at full bleed. */}
+      {/* The completed elevation, photographed at dusk, carries the whole frame at full bleed. */}
       <div className="absolute inset-0">
         <Image
           src={aNewWayToLive.image}
-          alt="Mira Living dusk exterior oceanfront render showing absolute beachfront elevation"
+          alt="The completed Mira Living building at dusk, photographed from above the Esplanade: four levels of balconies facing the Coral Sea"
           fill
           // Not `priority`: this is the fourth section down. Marking it so had
-          // the browser preload a full-viewport render at first paint, ahead of
-          // the hero the visitor is actually looking at.
+          // the browser preload a full-viewport photograph at first paint, ahead
+          // of the hero the visitor is actually looking at.
           loading="lazy"
           quality={82}
           sizes="100vw"

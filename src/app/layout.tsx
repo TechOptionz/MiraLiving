@@ -35,9 +35,9 @@ const poppins = Poppins({
 });
 
 /**
- * One 1200x630 share image for the whole site (generated from the dusk facade
- * render with the address and the "Artist Impression" label burnt in), so every
- * page previews correctly on Facebook, LinkedIn and iMessage. Pages override
+ * One 1200x630 share image for the whole site (cut from the dusk photograph of
+ * the completed building, October 2026, with the logo set in the corner), so
+ * every page previews correctly on Facebook, LinkedIn and iMessage. Pages override
  * the title, description and canonical; they inherit everything else.
  */
 const shareImage = {

@@ -21,7 +21,7 @@ export const ids = {
   website: `${url}/#website`,
 };
 
-/** Fixed OG / share image, 1200×630, generated from the dusk facade render. */
+/** Fixed OG / share image, 1200×630, cut from the dusk facade photograph (October 2026). */
 export const ogImagePath = "/img/site/og-image.jpg";
 
 const postalAddress = {

@@ -12,9 +12,11 @@ const photos = displayResidence.photos;
 /**
  * Photography of the completed residence.
  *
- * Every photograph is 3:2, so the tiles are all cut to that ratio and nothing
- * is cropped away in the grid; the one exception is the pair stacked beside
- * the lead image, which lose a gap's worth of height to line up with it.
+ * The first eleven photographs are 3:2, so the tiles are all cut to that ratio
+ * and nothing is cropped away in the grid; the one exception is the pair
+ * stacked beside the lead image, which lose a gap's worth of height to line up
+ * with it. The two portrait details in the set sit after the tiles, so they
+ * are only ever shown whole, in the lightbox.
  *
  * Eleven tiles are laid out; the last carries a count and opens the lightbox
  * on the twelfth, where the whole set can be paged through.
