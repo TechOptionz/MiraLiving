@@ -59,7 +59,13 @@ export default function ScrollExpand({
     let height = vh * startHeight;
     let width = height * aspect;
     const maxWidth = rect.width * startWidth;
-    if (width > maxWidth) {
+    if (rect.width < 640) {
+      // A phone is taller than the photograph is wide: keeping the picture's
+      // own shape leaves a letterbox strip in an empty screen, so the window
+      // takes the phone's shape and the frame is cropped as it would be at
+      // full bleed anyway.
+      width = maxWidth;
+    } else if (width > maxWidth) {
       width = maxWidth;
       height = width / aspect;
     }

@@ -11,7 +11,7 @@ export default function KeyFeaturesGrid() {
       Row height and type both scale with the viewport, so the whole ledger
       still lands inside one screen on a laptop.
     */
-    <section className="flex min-h-screen w-full flex-col justify-center border-t border-mira-border bg-mira-sandLight px-6 pb-[clamp(3rem,7vh,5rem)] pt-[clamp(7rem,15vh,9.5rem)] sm:px-12 lg:px-20">
+    <section className="flex min-h-screen w-full flex-col justify-center border-t border-mira-border bg-mira-sandLight px-6 py-16 sm:px-12 sm:pb-[clamp(3rem,7vh,5rem)] sm:pt-[clamp(7rem,15vh,9.5rem)] lg:px-20">
       <div className="mx-auto flex w-full max-w-6xl flex-1 flex-col gap-[clamp(2rem,5vh,4rem)]">
         <div className="mx-auto max-w-4xl space-y-3 text-center sm:space-y-4">
           <Reveal variant="fade" className="block font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-brown">

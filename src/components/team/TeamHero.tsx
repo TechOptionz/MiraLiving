@@ -95,7 +95,7 @@ export default function TeamHero() {
                 key={fact.label}
                 className={`border-white/12 py-5 sm:px-8 sm:py-6 sm:first:pl-0 ${
                   index > 1 ? "border-t sm:border-t-0" : ""
-                } ${index % 2 === 1 ? "border-l pl-5 sm:pl-8" : ""} sm:border-l sm:first:border-l-0`}
+                } ${index % 2 === 1 ? "border-l pl-5 sm:pl-8" : "pr-4 sm:pr-0"} sm:border-l sm:first:border-l-0`}
               >
                 <dt className="font-sans text-[11px] uppercase tracking-eyebrow text-white/75 sm:text-[12px]">
                   {fact.label}

@@ -88,12 +88,12 @@ export default function FloorPlanTabs() {
                 aria-controls={`plan-panel-${p.id}`}
                 id={`plan-tab-${p.id}`}
                 onClick={() => setActiveId(p.id)}
-                className={`relative px-2 py-5 text-center transition-colors sm:py-6 ${
+                className={`relative px-1 py-5 text-center transition-colors sm:px-2 sm:py-6 ${
                   active ? "text-mira-charcoal" : "text-mira-brown hover:text-mira-charcoal"
                 }`}
               >
                 <span className="block font-serif text-2xl font-light leading-none sm:text-3xl">{p.name}</span>
-                <span className="mt-2 block font-sans text-[11px] uppercase tracking-[0.14em] sm:text-[12px]">
+                <span className="mt-2 block font-sans text-[10px] uppercase tracking-[0.08em] sm:text-[12px] sm:tracking-[0.14em]">
                   {p.internalArea.replace(/\.\d+/, "")} · {p.units.length} residences
                 </span>
                 {active && <span className="absolute -bottom-px left-0 right-0 h-[2px] bg-mira-brown" />}
@@ -161,14 +161,16 @@ export default function FloorPlanTabs() {
             {/* Areas */}
             <dl className="mt-8 grid grid-cols-3 divide-x divide-mira-border border-y border-mira-border">
               {areas.map((a) => (
-                <div key={a.label} className="px-4 py-5 first:pl-0 sm:px-6">
-                  <dd className="font-serif text-2xl font-light leading-none text-mira-charcoal sm:text-3xl">
+                <div key={a.label} className="px-3 py-5 first:pl-0 sm:px-6">
+                  {/* The unit drops under the figure on phones, where three
+                      "139.22 sqm" side by side would not fit the column. */}
+                  <dd className="font-serif text-xl font-light leading-none text-mira-charcoal sm:text-3xl">
                     {a.value.replace(" sqm", "")}
-                    <span className="ml-1 font-sans text-[11px] uppercase tracking-[0.14em] text-mira-brown">
+                    <span className="mt-1 block font-sans text-[10px] uppercase tracking-[0.14em] text-mira-brown sm:ml-1 sm:mt-0 sm:inline sm:text-[11px]">
                       sqm
                     </span>
                   </dd>
-                  <dt className="mt-2 font-sans text-[11px] uppercase tracking-[0.15em] text-mira-brown sm:text-[12px]">
+                  <dt className="mt-2 font-sans text-[10px] uppercase tracking-[0.1em] text-mira-brown sm:text-[12px] sm:tracking-[0.15em]">
                     {a.label}
                   </dt>
                 </div>

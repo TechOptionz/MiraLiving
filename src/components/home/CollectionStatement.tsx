@@ -6,7 +6,7 @@ export default function CollectionStatement() {
   return (
     <section
       id="architecture"
-      className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-mira-ground px-6 pb-20 pt-28 text-center sm:px-12 lg:px-20"
+      className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-mira-ground px-6 py-20 text-center sm:px-12 sm:pb-20 sm:pt-28 lg:px-20"
     >
       <div className="mx-auto w-full max-w-5xl space-y-14 sm:space-y-20">
         <Reveal variant="fade">
@@ -24,11 +24,11 @@ export default function CollectionStatement() {
         </Reveal>
 
         {/* Hairline spec strip — architectural schedule, not chunky cards. */}
-        <Reveal delay={240} className="grid grid-cols-2 divide-y divide-mira-border/80 border-b border-t border-mira-border/80 sm:grid-cols-5 sm:divide-y-0 sm:divide-x">
+        <Reveal delay={240} className="grid grid-cols-2 divide-y divide-mira-border/80 border-b border-t border-mira-border/80 [&>:nth-child(2)]:border-t-0 sm:grid-cols-5 sm:divide-y-0 sm:divide-x">
           {collectionStatement.stats.map((stat) => (
             <div
               key={stat.label}
-              className="group flex flex-col items-center justify-center space-y-2 px-4 py-9 transition-colors hover:bg-white/60 sm:py-12"
+              className="group flex flex-col items-center justify-center space-y-2 px-4 py-9 transition-colors last:col-span-2 hover:bg-white/60 sm:py-12 sm:last:col-span-1"
             >
               {/*
                 Four of the five values are single digits; "Resort Pool" is a

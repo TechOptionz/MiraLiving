@@ -152,7 +152,7 @@ export default function DisplayGallery() {
       {/* Lightbox */}
       {open && (
         <div
-          className="animate-fadeIn fixed inset-0 z-50 flex flex-col bg-black/95 text-white"
+          className="animate-fadeIn fixed inset-0 z-50 flex flex-col bg-black text-white"
           role="dialog"
           aria-modal="true"
           aria-label={`Photograph ${index + 1} of ${photos.length}: ${current.room}`}
@@ -181,7 +181,7 @@ export default function DisplayGallery() {
               </button>
             </div>
 
-            <div className="relative flex-1 px-4 pb-4 sm:px-20">
+            <div className="relative flex-1 px-4 pb-16 sm:px-20 sm:pb-4">
               <div key={current.src} className="animate-fadeIn relative h-full w-full">
                 <Image
                   src={current.src}
@@ -197,7 +197,7 @@ export default function DisplayGallery() {
               <button
                 type="button"
                 onClick={prev}
-                className="absolute left-2 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center border border-white/30 bg-black/40 text-white backdrop-blur-sm transition-colors hover:border-white hover:bg-black/60 sm:left-6 sm:h-14 sm:w-14"
+                className="absolute bottom-2 left-4 flex h-12 w-12 items-center justify-center border border-white/30 bg-black/40 text-white backdrop-blur-sm transition-colors hover:border-white hover:bg-black/60 sm:bottom-auto sm:left-6 sm:top-1/2 sm:h-14 sm:w-14 sm:-translate-y-1/2"
                 aria-label="Previous photograph"
               >
                 <ChevronLeft className="h-6 w-6 stroke-[1.25]" />
@@ -205,7 +205,7 @@ export default function DisplayGallery() {
               <button
                 type="button"
                 onClick={next}
-                className="absolute right-2 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center border border-white/30 bg-black/40 text-white backdrop-blur-sm transition-colors hover:border-white hover:bg-black/60 sm:right-6 sm:h-14 sm:w-14"
+                className="absolute bottom-2 right-4 flex h-12 w-12 items-center justify-center border border-white/30 bg-black/40 text-white backdrop-blur-sm transition-colors hover:border-white hover:bg-black/60 sm:bottom-auto sm:right-6 sm:top-1/2 sm:h-14 sm:w-14 sm:-translate-y-1/2"
                 aria-label="Next photograph"
               >
                 <ChevronRight className="h-6 w-6 stroke-[1.25]" />

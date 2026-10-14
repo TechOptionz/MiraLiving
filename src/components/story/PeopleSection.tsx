@@ -68,11 +68,11 @@ export default function PeopleSection() {
           <span className="h-px flex-1 bg-mira-border" aria-hidden="true" />
         </Reveal>
 
-        <ul className="no-scrollbar -mx-6 mt-12 flex snap-x snap-mandatory gap-6 overflow-x-auto px-6 sm:mx-0 sm:px-0 md:grid md:grid-cols-3 md:gap-10 md:overflow-visible lg:gap-16">
+        <ul className="mt-12 grid grid-cols-1 gap-14 sm:grid-cols-2 sm:gap-10 md:grid-cols-3 lg:gap-16">
           {people.collaborators.map((person, i) => (
             <li
               key={person.name}
-              className={`w-[78%] shrink-0 snap-start sm:w-[45%] md:w-auto ${collaboratorOffsets[i] ?? ""}`}
+              className={collaboratorOffsets[i] ?? ""}
             >
               <Reveal delay={i * 120}>
                 <div

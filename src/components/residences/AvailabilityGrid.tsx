@@ -78,54 +78,14 @@ export default function AvailabilityGrid() {
 
         <div className="mt-12 grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-14">
           {/* The grid */}
-          <div className="lg:col-span-7">
-            <div className="space-y-5">
-              {[...priceGuide.levels].reverse().map((level, idx) => (
-                <Reveal key={level.name} delay={idx * 60}>
-                  <div className="mb-2 flex items-baseline justify-between">
-                    <span className="font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-brown">
-                      {level.name}
-                    </span>
-                    <span className="font-sans text-[11px] uppercase tracking-[0.14em] text-mira-brown/70">
-                      {level.units.filter((u) => u.status === "available").length} available
-                    </span>
-                  </div>
-                  <ul className="grid grid-cols-5 gap-2 sm:gap-3">
-                    {level.units.map((unit) => {
-                      const plan = planForUnit(unit.number);
-                      return (
-                        <li
-                          key={unit.number}
-                          className={`flex min-h-[5.5rem] flex-col justify-between border p-2.5 transition-colors sm:min-h-[6.5rem] sm:p-3 ${cellTone[unit.status]}`}
-                        >
-                          <div className="flex items-start justify-between gap-1">
-                            <span className="font-serif text-xl font-light leading-none sm:text-2xl">
-                              {String(unit.number).padStart(2, "0")}
-                            </span>
-                            {plan && (
-                              <span
-                                className="font-sans text-[10px] font-medium uppercase tracking-[0.12em] opacity-80"
-                                title={`${plan.name} · ${plan.internalArea} internal`}
-                              >
-                                {plan.code}
-                              </span>
-                            )}
-                          </div>
-                          <span className="font-sans text-[10px] leading-tight sm:text-[12px]">
-                            <span className={`uppercase tracking-[0.1em] ${unit.status === "available" ? "font-medium" : ""}`}>
-                              {unitStatusLabel[unit.status]}
-                            </span>
-                          </span>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </Reveal>
-              ))}
-            </div>
-
-            {/* Legend */}
-            <ul className="mt-8 flex flex-wrap gap-x-8 gap-y-3 border-t border-mira-border pt-5 font-sans text-[12px] text-mira-brownDark">
+          <div className="flex flex-col lg:col-span-7">
+            {/*
+              Legend. On phones the cells carry a status dot rather than a word
+              (five cells across 320px leave ~45px each), so the key sits above
+              the grid where it is read first; from `sm` the words return and
+              the legend drops back under the grid.
+            */}
+            <ul className="order-first mb-6 flex flex-wrap gap-x-6 gap-y-3 border-b border-mira-border pb-5 font-sans text-[12px] text-mira-brownDark sm:order-none sm:mb-0 sm:mt-8 sm:gap-x-8 sm:border-b-0 sm:border-t sm:pb-0 sm:pt-5">
               {(["available", "sold", "future"] as UnitStatus[]).map((status) => (
                 <li key={status} className="flex items-center gap-2.5">
                   <span aria-hidden="true" className={`h-2.5 w-2.5 rounded-full ${dotTone[status]}`} />
@@ -139,6 +99,55 @@ export default function AvailabilityGrid() {
                 Plan type
               </li>
             </ul>
+
+            <div className="space-y-5">
+              {[...priceGuide.levels].reverse().map((level, idx) => (
+                <Reveal key={level.name} delay={idx * 60}>
+                  <div className="mb-2 flex items-baseline justify-between">
+                    <span className="font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-brown">
+                      {level.name}
+                    </span>
+                    <span className="font-sans text-[11px] uppercase tracking-[0.14em] text-mira-brown/70">
+                      {level.units.filter((u) => u.status === "available").length} available
+                    </span>
+                  </div>
+                  <ul className="grid grid-cols-5 gap-1.5 sm:gap-3">
+                    {level.units.map((unit) => {
+                      const plan = planForUnit(unit.number);
+                      return (
+                        <li
+                          key={unit.number}
+                          className={`flex min-h-[4.5rem] flex-col justify-between border p-2 transition-colors sm:min-h-[6.5rem] sm:p-3 ${cellTone[unit.status]}`}
+                        >
+                          <div className="flex items-start justify-between gap-1">
+                            <span className="font-serif text-lg font-light leading-none sm:text-2xl">
+                              {String(unit.number).padStart(2, "0")}
+                            </span>
+                            {plan && (
+                              <span
+                                className="font-sans text-[10px] font-medium uppercase tracking-[0.12em] opacity-80"
+                                title={`${plan.name} · ${plan.internalArea} internal`}
+                              >
+                                {plan.code}
+                              </span>
+                            )}
+                          </div>
+                          <span className="flex items-center font-sans text-[10px] leading-tight sm:text-[12px]">
+                            {/* Phones: a dot (the legend above names it); wider: the word. */}
+                            <span aria-hidden="true" className={`h-2 w-2 rounded-full sm:hidden ${dotTone[unit.status]}`} />
+                            <span className="sr-only sm:hidden">{unitStatusLabel[unit.status]}</span>
+                            <span className={`hidden uppercase tracking-[0.1em] sm:inline ${unit.status === "available" ? "font-medium" : ""}`}>
+                              {unitStatusLabel[unit.status]}
+                            </span>
+                          </span>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </Reveal>
+              ))}
+            </div>
+
           </div>
 
           {/* The elevation, so the grid reads against the building itself. */}

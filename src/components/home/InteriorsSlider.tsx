@@ -160,7 +160,7 @@ export default function InteriorsSlider() {
         </div>
 
         {/* Hairline navigator across the foot of the frame */}
-        <div className="mt-10 grid grid-cols-5 gap-3 sm:gap-6">
+        <div className="mt-10 grid grid-cols-5 gap-2 sm:gap-6">
           {featureSlides.map((slide, idx) => (
             <button
               key={slide.id}
@@ -175,7 +175,9 @@ export default function InteriorsSlider() {
               <span className="mb-1 block font-sans text-[11px] uppercase tracking-widest">
                 0{idx + 1}
               </span>
-              <span className="block truncate font-serif text-xs font-light sm:text-sm">
+              {/* Five titles across a phone truncate to a word each; the number
+                  and the lit rule carry the position there. */}
+              <span className="hidden truncate font-serif text-xs font-light sm:block sm:text-sm">
                 {slide.title}
               </span>
             </button>
