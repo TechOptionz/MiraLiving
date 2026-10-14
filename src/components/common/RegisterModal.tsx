@@ -19,8 +19,8 @@ import { X } from "lucide-react";
  */
 
 const modalFacts = [
-  { label: "Price from", value: siteConfig.startingPrice },
   { label: "The collection", value: "25 Residences" },
+  { label: "Layout", value: "3 Bed + MPR" },
   { label: "Status", value: siteConfig.completionDate },
 ];
 

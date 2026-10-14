@@ -8,9 +8,9 @@ import JsonLd from "@/components/common/JsonLd";
 import RegisterSection from "@/components/home/RegisterSection";
 
 export const metadata: Metadata = {
-  title: "Buyer FAQ: Prices, Sizes, Parking & Completion",
+  title: "Buyer FAQ: Availability, Sizes, Parking & Completion",
   description:
-    "Answers for buyers of the Mira Living beachfront apartments in Bargara: current prices and availability, apartment sizes and layouts, parking, completion status, inspections and the team behind the project.",
+    "Answers for buyers of the Mira Living beachfront apartments in Bargara: current availability, how pricing works, apartment sizes and layouts, parking, completion status, inspections and the team behind the project.",
   alternates: { canonical: "/faq" },
 };
 
@@ -35,7 +35,7 @@ export default function FaqPage() {
             </h1>
             <p className="max-w-2xl font-sans text-sm leading-relaxed text-mira-muted sm:text-base">
               The questions buyers ask most about the {siteConfig.name} beachfront apartments at{" "}
-              {siteConfig.address.full}: what they cost, how big they are, what is included and when
+              {siteConfig.address.full}: what is still available, how big they are, what is included and when
               you can move in. Anything not covered here, the sales team can answer directly.
             </p>
           </header>

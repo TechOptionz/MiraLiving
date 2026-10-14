@@ -11,9 +11,9 @@ import { siteConfig } from "@/content/site-content";
  * commercial detail is scannable without crowding the editorial statement.
  */
 const heroFacts = [
-  { label: "Price from", value: siteConfig.startingPrice },
   { label: "The collection", value: "25 Residences" },
   { label: "Layout", value: "3 Bed + MPR" },
+  { label: "Address", value: "The Esplanade, Bargara" },
   { label: "Status", value: siteConfig.completionDate },
 ];
 

@@ -17,13 +17,6 @@ const footerNav = [
 const focusRing =
   "focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-mira-teal focus-visible:ring-offset-2 focus-visible:ring-offset-mira-brownDeep rounded-sm";
 
-/*
- * The acknowledgement copy in site-content is written as a standalone sentence
- * beginning "Artist feature:", which duplicated the column heading. Drop the
- * prefix here so the heading carries the label and the paragraph reads as prose.
- */
-const artistCopy = siteConfig.artistAcknowledgement.text.replace(/^Artist feature:\s*/i, "");
-
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
     <h3 className="text-[12px] font-sans font-medium uppercase tracking-eyebrow text-mira-sand/55">
@@ -157,8 +150,8 @@ export default function Footer() {
             </a>
             <dl className="space-y-1.5 font-sans text-sm">
               <div className="flex gap-2">
-                <dt className="text-mira-sand/55">Residences from</dt>
-                <dd className="text-mira-sandLight">{siteConfig.startingPrice}</dd>
+                <dt className="text-mira-sand/55">The collection</dt>
+                <dd className="text-mira-sandLight">25 Residences</dd>
               </div>
               <div>
                 <dt className="sr-only">Status</dt>
@@ -167,15 +160,12 @@ export default function Footer() {
             </dl>
           </div>
 
-          {/* Artist feature */}
+          {/* Acknowledgement of Country */}
           <div className="space-y-5 sm:col-span-2 md:col-span-4">
-            <Eyebrow>Artist Feature</Eyebrow>
+            <Eyebrow>Acknowledgement</Eyebrow>
             <div className="border-l border-mira-teal/40 pl-5">
-              <p className="font-serif text-lg text-mira-sandLight">
-                {siteConfig.artistAcknowledgement.artist}
-              </p>
-              <p className="mt-2 font-sans text-xs leading-relaxed text-mira-sand/65">
-                {artistCopy}
+              <p className="font-serif text-lg italic leading-snug text-mira-sandLight">
+                {siteConfig.acknowledgementOfCountry}
               </p>
             </div>
           </div>

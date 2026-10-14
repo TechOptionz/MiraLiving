@@ -200,7 +200,7 @@ export default function FloorPlanTabs() {
               </dl>
             </div>
 
-            {/* Where in the building — with each apartment's line on the price guide. */}
+            {/* Where in the building — each apartment's status on the price guide (no prices). */}
             <div className="mt-8">
               <div className="flex flex-wrap items-baseline justify-between gap-2">
                 <span className="font-sans text-[11px] font-medium uppercase tracking-[0.16em] text-mira-brown">
@@ -221,7 +221,7 @@ export default function FloorPlanTabs() {
                           className={`inline-flex items-center gap-2 border px-2.5 py-1 font-sans text-[12px] ${statusTone[u.status]}`}
                         >
                           <span className="font-medium tabular-nums">{String(u.number).padStart(2, "0")}</span>
-                          <span>{u.status === "available" && u.price ? u.price : unitStatusLabel[u.status]}</span>
+                          <span>{unitStatusLabel[u.status]}</span>
                         </span>
                       ))}
                     </div>

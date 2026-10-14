@@ -16,9 +16,9 @@ import ConstructionTimeline from "@/components/residences/ConstructionTimeline";
 import RegisterSection from "@/components/home/RegisterSection";
 
 export const metadata: Metadata = {
-  title: "Apartments for Sale: Floor Plans, Prices & Availability",
+  title: "Apartments for Sale: Floor Plans & Availability",
   description:
-    "The 25 beachfront apartments for sale at Mira Living, Bargara: three floor plans from 118–139 sqm internal with room dimensions, photographs of the completed residence, and prices and availability level by level.",
+    "The 25 beachfront apartments for sale at Mira Living, Bargara: three floor plans from 118–139 sqm internal with room dimensions, photographs of the completed residence, and current availability level by level.",
   alternates: { canonical: "/residences" },
 };
 
@@ -28,7 +28,7 @@ const specSchedule = [
   { label: "Configuration", value: developmentSpecs.bedrooms },
   { label: "Bathrooms & cars", value: `${developmentSpecs.bathrooms} · ${developmentSpecs.carSpaces}` },
   { label: "Internal area", value: developmentSpecs.internalSizeRange },
-  { label: "Price release", value: `From ${developmentSpecs.priceFrom}` },
+  { label: "Pricing", value: "On application · Contact the sales team" },
   { label: "Construction", value: `${developmentSpecs.status} · Display suite now open` },
 ];
 
@@ -210,7 +210,7 @@ export default function ResidencesPage() {
       {/* The basement */}
       <BasementSection />
 
-      {/* Availability — every residence, level by level, from the price guide */}
+      {/* Availability — every residence, level by level, from the price guide (status only) */}
       <AvailabilityGrid />
 
       {/* Construction Timeline */}

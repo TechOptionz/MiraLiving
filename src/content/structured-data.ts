@@ -2,15 +2,14 @@
 // in place of the WordPress defaults (Article/Person): the development as an
 // ApartmentComplex with an AggregateOffer, the developer as seller, the agents,
 // each available apartment as an Apartment + Offer, and the FAQ as FAQPage.
+// Prices are not published, so offers carry availability and seller only.
 import {
   siteConfig,
   developmentSpecs,
   partnerRecords,
   priceGuide,
   availableUnits,
-  availablePriceRange,
   unitCounts,
-  parsePrice,
   type FaqItem,
 } from "./site-content";
 
@@ -40,7 +39,6 @@ const e164 = (phone: string) => "+61" + phone.replace(/\s/g, "").replace(/^0/, "
 /** Site-wide graph, rendered once from the root layout. */
 export function siteGraph() {
   const developer = partnerRecords.find((p) => p.role === "Developer");
-  const range = availablePriceRange();
   const counts = unitCounts();
 
   return {
@@ -110,8 +108,6 @@ export function siteGraph() {
         offers: {
           "@type": "AggregateOffer",
           priceCurrency: "AUD",
-          lowPrice: range.low,
-          highPrice: range.high,
           offerCount: counts.available,
           availability: "https://schema.org/InStock",
           url: `${url}/residences`,
@@ -154,7 +150,6 @@ export function residencesGraph() {
       containedInPlace: { "@id": ids.development },
       offers: {
         "@type": "Offer",
-        price: parsePrice(u.price),
         priceCurrency: "AUD",
         availability: "https://schema.org/InStock",
         url: `${pageUrl}#availability`,

@@ -313,31 +313,23 @@ export default function BrochureForm({ idPrefix = "form", onSuccess, darkVariant
       <div className="mt-7 grid grid-cols-1 gap-x-8 gap-y-7 sm:grid-cols-2">
         <div>
           <label htmlFor={`${idPrefix}-budget`} className={labelClass}>
-            Budget
+            Budget (optional)
           </label>
-          <div className="relative">
-            <select
-              id={`${idPrefix}-budget`}
-              name="budget"
-              value={formData.budget}
-              onChange={handleChange}
-              className={`${fieldClass()} appearance-none pr-8 ${formData.budget ? "" : ink.placeholderInk}`}
-            >
-              <option value="" className={ink.option}>
-                Select a range
-              </option>
-              {registerSection.budgetOptions.map((opt) => (
-                <option key={opt} value={opt} className={ink.option}>
-                  {opt}
-                </option>
-              ))}
-            </select>
-            <ChevronDown
-              className={`pointer-events-none absolute right-0 top-1/2 h-4 w-4 -translate-y-1/2 ${ink.label}`}
-              strokeWidth={1.5}
-              aria-hidden="true"
-            />
-          </div>
+          {/*
+            Free text rather than a dropdown: the dollar bands that stood here
+            gave away the entry price, and prices are no longer published.
+            The CRM still receives the same `budget` string.
+          */}
+          <input
+            type="text"
+            id={`${idPrefix}-budget`}
+            name="budget"
+            autoComplete="off"
+            value={formData.budget}
+            onChange={handleChange}
+            className={fieldClass()}
+            placeholder="If you would like to share it"
+          />
         </div>
 
         <div>

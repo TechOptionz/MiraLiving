@@ -101,8 +101,6 @@ export type UnitStatus = "available" | "sold" | "future";
 export interface UnitRecord {
   number: number;
   status: UnitStatus;
-  /** Formatted as printed on the price guide, e.g. "$1,580,000". Available units only. */
-  price?: string;
 }
 
 export interface BuildingLevel {
@@ -124,15 +122,16 @@ export const siteConfig = {
   // not the brand. Used as the homepage <title> and the OG title.
   title: "Beachfront Apartments for Sale in Bargara | Mira Living",
   tagline: "Premium Oceanfront Living in Bargara",
-  subTagline: "Spacious 3-Bedroom + Multi-Purpose Room Coastal Living from $1.395M",
-  metaDescription: "25 absolute beachfront 3-bedroom apartments on The Esplanade, Bargara QLD, from $1.395M. Now complete and the display suite is open — download the brochure or book a private inspection.",
+  subTagline: "Spacious 3-Bedroom + Multi-Purpose Room Coastal Living on the Esplanade",
+  metaDescription: "25 absolute beachfront 3-bedroom apartments on The Esplanade, Bargara QLD. Now complete and the display suite is open — download the brochure or book a private inspection.",
   url: "https://miraliving.com.au",
   gtmId: "GTM-TWFRS38X",
   ga4Id: "G-ZPTJCDSVM8",
   
-  // Lowest available residence on the Price Guide issued September 2026
-  // (Apartment 10, Type C). Keep in step with `priceGuide` below.
-  startingPrice: "$1.395M",
+  // Prices are deliberately not published anywhere on the site or in the
+  // brochure (client decision, 14 Oct 2026): buyers are sent to the sales
+  // team for pricing. Availability (available / sold / future release) is
+  // still shown from `priceGuide` below.
   
   // Single build-status line for the whole site. Construction finished in
   // September 2026 (client sign-off, 7 Oct 2026); every "Completion …" stamp
@@ -142,7 +141,7 @@ export const siteConfig = {
   // Served from /public. Set to null to fall back to the "we'll email it"
   // confirmation copy (e.g. once the brochure is delivered by email instead).
   // The 2026 brochure is generated from this file's content by
-  // `npm run brochure` (scripts/brochure/brochure.html), so prices, status and
+  // `npm run brochure` (scripts/brochure/brochure.html), so availability and
   // the display-suite copy match the site. It is served with X-Robots-Tag:
   // noindex (next.config.mjs) so search engines send buyers to the form, not
   // straight to the file. The older print exports (MIRA-LIVING-Brochure*.pdf)
@@ -190,10 +189,10 @@ export const siteConfig = {
     instagram: "https://www.instagram.com/miraliving.bargara/"
   },
   
-  artistAcknowledgement: {
-    artist: "Goompi Ugerabah",
-    text: "Artist feature: Goompi Ugerabah is a contemporary Aboriginal artist with deep cultural ties to the Bundaberg region. Known for his restrained earthy palettes and fluid dot formations, his work reflects the rhythms of land and sea, bringing a strong sense of Country and connection to place."
-  },
+  // The artwork / featured-artist content was removed from the site at the
+  // client's request (14 Oct 2026). The Acknowledgement of Country stays, in
+  // the footer, without any reference to it.
+  acknowledgementOfCountry: "Mira acknowledges the Traditional Custodians of the land and sea on which it is built, and pays respect to Elders past and present.",
   
   legalDisclaimer: "Images / photos are for marketing purposes only. Information contained within any marketing material, website or other portal should not be relied upon. Changes to availability and price may occur without notice at the discretion of the seller. All persons should make their own enquiries and seek their own independent advice with respect to any property advertised or the information about the property contained in any marketing materials."
 };
@@ -205,7 +204,6 @@ export const developmentSpecs = {
   bathrooms: "2 Bathrooms",
   carSpaces: "2 Secure Underground Carparks",
   internalSizeRange: "118 sqm to 139 sqm internal",
-  priceFrom: "$1.395M",
   status: "100% Completed",
   completion: "Completed",
   location: "25 Esplanade, Bargara QLD 4670",
@@ -466,12 +464,7 @@ export const registerSection = {
   headline: "Download the brochure",
   intro: "Register now to download the Mira Living brochure and be amongst the first to experience Bargara’s most exclusive oceanfront residences.",
   requiredNotice: "* indicates required fields",
-  budgetOptions: [
-    "$1.4M - $1.6M",
-    "$1.6M - $1.8M",
-    "$1.8M - $2M",
-    "$2M+"
-  ],
+  // The budget field is free text (no dollar bands: prices are not published).
   timeframeOptions: [
     "Ready Now",
     "0-3 months",
@@ -580,7 +573,7 @@ export const floorPlans: FloorPlan[] = [
       "One residence per level, five in all",
       "Separate living and dining rooms",
       "Widest master bedroom in the building",
-      "Entry-level pricing in the collection",
+      "The most compact plan in the collection",
     ],
     image: "/img/plans/type-c.webp",
     pdf: "/plans/mira-living-type-c-floor-plan.pdf",
@@ -609,6 +602,7 @@ export const basementPlan = {
 // Availability — transcribed from the Mira Living Price Guide, September 2026.
 // Level naming follows the guide (Ground Floor, then Levels 2–5). Update this
 // block whenever a new guide is issued; everything on the site derives from it.
+// Only the status is carried over: prices are not published (see siteConfig).
 export const priceGuide: { issued: string; levels: BuildingLevel[] } = {
   issued: "September 2026",
   levels: [
@@ -616,8 +610,8 @@ export const priceGuide: { issued: string; levels: BuildingLevel[] } = {
       name: "Ground Floor",
       units: [
         { number: 1, status: "sold" },
-        { number: 2, status: "available", price: "$1,580,000" },
-        { number: 3, status: "available", price: "$1,620,000" },
+        { number: 2, status: "available" },
+        { number: 3, status: "available" },
         { number: 4, status: "sold" },
         { number: 5, status: "sold" },
       ],
@@ -629,7 +623,7 @@ export const priceGuide: { issued: string; levels: BuildingLevel[] } = {
         { number: 7, status: "future" },
         { number: 8, status: "future" },
         { number: 9, status: "future" },
-        { number: 10, status: "available", price: "$1,395,000" },
+        { number: 10, status: "available" },
       ],
     },
     {
@@ -637,17 +631,17 @@ export const priceGuide: { issued: string; levels: BuildingLevel[] } = {
       units: [
         { number: 11, status: "sold" },
         { number: 12, status: "sold" },
-        { number: 13, status: "available", price: "$1,795,000" },
+        { number: 13, status: "available" },
         { number: 14, status: "sold" },
-        { number: 15, status: "available", price: "$1,550,000" },
+        { number: 15, status: "available" },
       ],
     },
     {
       name: "Level 4",
       units: [
-        { number: 16, status: "available", price: "$2,100,000" },
-        { number: 17, status: "available", price: "$1,950,000" },
-        { number: 18, status: "available", price: "$1,950,000" },
+        { number: 16, status: "available" },
+        { number: 17, status: "available" },
+        { number: 18, status: "available" },
         { number: 19, status: "sold" },
         { number: 20, status: "future" },
       ],
@@ -656,8 +650,8 @@ export const priceGuide: { issued: string; levels: BuildingLevel[] } = {
       name: "Level 5",
       units: [
         { number: 21, status: "sold" },
-        { number: 22, status: "available", price: "$2,300,000" },
-        { number: 23, status: "available", price: "$2,350,000" },
+        { number: 22, status: "available" },
+        { number: 23, status: "available" },
         { number: 24, status: "sold" },
         { number: 25, status: "sold" },
       ],
@@ -679,15 +673,8 @@ export function unitRecord(unit: number): UnitRecord | undefined {
   return undefined;
 }
 
-/** "$1,395,000" → 1395000. */
-export function parsePrice(price: string): number {
-  return Number(price.replace(/[^0-9.]/g, ""));
-}
-
 export interface AvailableUnit {
   number: number;
-  /** As printed on the price guide, e.g. "$1,395,000". */
-  price: string;
   level: string;
   plan: FloorPlan;
 }
@@ -696,10 +683,9 @@ export interface AvailableUnit {
 export function availableUnits(): AvailableUnit[] {
   return priceGuide.levels.flatMap((level) =>
     level.units
-      .filter((u): u is UnitRecord & { price: string } => u.status === "available" && !!u.price)
+      .filter((u) => u.status === "available")
       .map((u) => ({
         number: u.number,
-        price: u.price,
         level: level.name,
         plan: floorPlans.find((p) => p.units.includes(u.number)) ?? floorPlans[0],
       }))
@@ -711,12 +697,6 @@ export function unitCounts(): Record<UnitStatus, number> {
   const counts: Record<UnitStatus, number> = { available: 0, sold: 0, future: 0 };
   for (const level of priceGuide.levels) for (const u of level.units) counts[u.status] += 1;
   return counts;
-}
-
-/** Lowest and highest asking price among the available apartments. */
-export function availablePriceRange(): { low: number; high: number } {
-  const prices = availableUnits().map((u) => parsePrice(u.price));
-  return { low: Math.min(...prices), high: Math.max(...prices) };
 }
 
 export const unitStatusLabel: Record<UnitStatus, string> = {
@@ -1058,12 +1038,7 @@ export const privacyPolicyContent = {
     },
     {
       num: 9,
-      title: "9. Artist Feature",
-      content: "As part of this project, works by Goompi Ugerabah, a contemporary Aboriginal artist, are featured. His artworks express strong cultural ties to the Bundaberg region and are used respectfully with acknowledgment of his connection to Country and heritage."
-    },
-    {
-      num: 10,
-      title: "10. Contact Us",
+      title: "9. Contact Us",
       content: "For privacy-related questions, access requests, or complaints, please contact our representatives directly."
     }
   ]
@@ -1081,11 +1056,8 @@ export interface FaqItem {
   answer: string;
 }
 
-const formatAud = (n: number) => `$${n.toLocaleString("en-AU")}`;
-
 export const faqItems: FaqItem[] = (() => {
   const counts = unitCounts();
-  const range = availablePriceRange();
   const contactLine = siteConfig.contacts.map((c) => `${c.name} on ${c.phone}`).join(" or ");
   const planLine = floorPlans
     .map((p) => `${p.name}: ${p.internalArea} internal, ${p.totalArea} including the balcony`)
@@ -1101,7 +1073,7 @@ export const faqItems: FaqItem[] = (() => {
     },
     {
       question: "How much do the apartments cost?",
-      answer: `Available residences are priced from ${formatAud(range.low)} to ${formatAud(range.high)} on the ${priceGuide.issued} price guide, and each apartment is priced individually. Pricing can change without notice, so please confirm the current price with the sales team.`,
+      answer: `Each apartment is priced individually and pricing is not published online. For the current price of any available residence, please contact the sales team: call ${contactLine}, or request the price guide through the enquiry form.`,
     },
     {
       question: "How big are the apartments, and what is the layout?",

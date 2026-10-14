@@ -22,14 +22,6 @@ const dotTone: Record<UnitStatus, string> = {
   future: "border border-mira-borderDark bg-transparent",
 };
 
-/** "$1,950,000" → "$1.95M". */
-function shortPrice(price: string): string {
-  const n = Number(price.replace(/[^0-9]/g, ""));
-  if (!n) return price;
-  // Up to three decimals, trailing zeros dropped: $1,395,000 → $1.395M, not $1.4M.
-  return `$${parseFloat((n / 1_000_000).toFixed(3))}M`;
-}
-
 /**
  * Every residence in the building, level by level, from the price guide.
  *
@@ -39,16 +31,13 @@ function shortPrice(price: string): string {
 export default function AvailabilityGrid() {
   const allUnits = priceGuide.levels.flatMap((l) => l.units);
   const count = (status: UnitStatus) => allUnits.filter((u) => u.status === status).length;
-  const lowest = allUnits
-    .filter((u) => u.status === "available" && u.price)
-    .map((u) => ({ n: Number(u.price!.replace(/[^0-9]/g, "")), label: u.price! }))
-    .sort((a, b) => a.n - b.n)[0];
 
+  // Prices are not published: the fourth tile points buyers to the sales team.
   const summary = [
     { value: String(count("available")), label: "Available now" },
     { value: String(count("sold")), label: "Sold" },
     { value: String(count("future")), label: "Future release" },
-    { value: lowest ? lowest.label : "—", label: "From" },
+    { value: "On request", label: "Pricing" },
   ];
 
   return (
@@ -66,8 +55,8 @@ export default function AvailabilityGrid() {
               Every residence, level by level
             </Reveal>
             <Reveal delay={220} className="font-sans text-[16px] leading-[1.75] text-mira-brownDark sm:text-lg">
-              Twenty-five residences across five levels, as at the {priceGuide.issued} price guide. Each
-              apartment is marked with the plan it is built to.
+              Twenty-five residences across five levels, as at {priceGuide.issued}. Each apartment is
+              marked with the plan it is built to. Pricing is available from the sales team on request.
             </Reveal>
           </div>
 
@@ -123,15 +112,9 @@ export default function AvailabilityGrid() {
                             )}
                           </div>
                           <span className="font-sans text-[10px] leading-tight sm:text-[12px]">
-                            {unit.status === "available" && unit.price ? (
-                              <>
-                                {/* "$1.95M" at phone width, where five cells share 390px. */}
-                                <span className="font-medium tabular-nums sm:hidden">{shortPrice(unit.price)}</span>
-                                <span className="hidden font-medium tabular-nums sm:inline">{unit.price}</span>
-                              </>
-                            ) : (
-                              <span className="uppercase tracking-[0.1em]">{unitStatusLabel[unit.status]}</span>
-                            )}
+                            <span className={`uppercase tracking-[0.1em] ${unit.status === "available" ? "font-medium" : ""}`}>
+                              {unitStatusLabel[unit.status]}
+                            </span>
                           </span>
                         </li>
                       );
@@ -181,7 +164,7 @@ export default function AvailabilityGrid() {
         </div>
 
         <p className="mt-12 max-w-4xl border-t border-mira-border pt-6 font-sans text-[12px] leading-relaxed text-mira-brown">
-          Prices and availability as at {priceGuide.issued}. {siteConfig.legalDisclaimer}
+          Availability as at {priceGuide.issued}. Prices are available from the sales team on request. {siteConfig.legalDisclaimer}
         </p>
       </div>
     </section>
