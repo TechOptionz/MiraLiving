@@ -2,22 +2,25 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { locationTeaser, siteConfig } from "@/content/site-content";
+import { photoFrameStyle } from "@/components/common/PhotoFrame";
 import Reveal from "@/components/common/Reveal";
 import { ArrowRight, MapPin } from "lucide-react";
 
 export default function LocationTeaser() {
+  const frame = photoFrameStyle(locationTeaser.aerialImage, { maxHeightVh: 62 });
+
   return (
     <section className="flex min-h-screen w-full flex-col justify-center overflow-hidden border-t border-mira-border bg-mira-ground px-6 pb-[clamp(3rem,7vh,5rem)] pt-[clamp(7rem,15vh,9.5rem)] sm:px-10 lg:px-12 xl:px-16">
       {/*
-        Copy and map sit side by side rather than stacked. The aerial is an
-        annotated mud map held at 16:9 and never cropped, so stacking it left it
-        marooned in whitespace; beside the text it reads at full size and the
-        whole section still settles inside one screen.
+        Copy and photograph sit side by side rather than stacked. The aerial is
+        cut to its own ratio and never cropped, so stacking it left it marooned
+        in whitespace; beside the text it reads at full size and the whole
+        section still settles inside one screen.
 
         Both the frame and the copy are sized off the viewport so the pair grows
         into a large screen instead of leaving a band of empty ground around it —
-        the map takes as much width as its column allows, capped only by the
-        height left over once the header and padding are paid for.
+        the photograph takes as much width as its column allows, capped only by
+        the height left over once the header and padding are paid for.
       */}
       <div className="mx-auto grid w-full max-w-[1700px] flex-1 grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-14 xl:gap-16">
         <div className="flex flex-col lg:col-span-5">
@@ -61,35 +64,38 @@ export default function LocationTeaser() {
 
         <div className="lg:col-span-7">
           {/*
-            Height is capped so 16:9 never grows past ~62vh — on short screens
-            the map shrinks rather than pushing the section past one viewport.
+            Height is capped so the frame never grows past ~62vh — on short
+            screens the photograph shrinks rather than pushing the section past
+            one viewport. The caption row takes the same width.
           */}
           <Reveal
             variant="mask"
             delay={200}
-            className="relative mx-auto aspect-[16/9] w-full max-w-[min(100%,calc(62vh*16/9))] overflow-hidden border border-mira-border bg-mira-sand shadow-card"
+            style={frame}
+            className="relative mx-auto w-full overflow-hidden border border-mira-border bg-mira-sand shadow-card"
           >
             <Image
               src={locationTeaser.aerialImage}
               alt={locationTeaser.aerialAlt}
               fill
-              quality={92}
+              quality={90}
               sizes="(max-width: 1024px) 100vw, 58vw"
-              className="object-contain"
+              className="object-cover"
             />
           </Reveal>
 
           <Reveal
             variant="fade"
             delay={320}
-            className="mx-auto mt-4 flex w-full max-w-[min(100%,calc(62vh*16/9))] flex-col gap-2 sm:flex-row sm:items-center sm:justify-between"
+            style={{ maxWidth: frame.maxWidth }}
+            className="mx-auto mt-4 flex w-full flex-col gap-2 sm:flex-row sm:items-center sm:justify-between"
           >
             <span className="inline-flex items-center gap-2 font-sans text-[12px] text-mira-charcoal">
               <MapPin className="h-3.5 w-3.5 shrink-0 text-mira-tealDark" />
               {siteConfig.address.full}
             </span>
             <span className="font-sans text-[11px] uppercase tracking-[0.15em] text-mira-muted">
-              Annotated aerial
+              {locationTeaser.aerialCaption}
             </span>
           </Reveal>
         </div>

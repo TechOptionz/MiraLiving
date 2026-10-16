@@ -62,14 +62,6 @@ export interface CuratedLifestylePhoto {
   image: string;
 }
 
-export interface FloorPlanRoom {
-  name: string;
-  /** Internal dimensions as drawn on the architect's typical plan, e.g. "3.7 × 3.5 m". */
-  size: string;
-  /** e.g. "Walk-in robe · Ensuite" */
-  note?: string;
-}
-
 export interface FloorPlan {
   id: string;
   /** Single letter used on the plans and the price guide. */
@@ -88,8 +80,8 @@ export interface FloorPlan {
   totalArea: string;
   /** Apartment numbers built to this plan, lowest to highest. */
   units: number[];
-  rooms: FloorPlanRoom[];
-  highlights: string[];
+  /** The one thing that marks this plan out, as the brochure badges it. */
+  badge: string;
   /** The drawing alone, cropped from the marketing sheet. Portrait. */
   image: string;
   /** Dimensioned 1:100 architect sheet, served from /public. */
@@ -128,10 +120,11 @@ export const siteConfig = {
   gtmId: "GTM-TWFRS38X",
   ga4Id: "G-ZPTJCDSVM8",
   
-  // Prices are deliberately not published anywhere on the site or in the
-  // brochure (client decision, 14 Oct 2026): buyers are sent to the sales
-  // team for pricing. Availability (available / sold / future release) is
-  // still shown from `priceGuide` below.
+  // Only the entry price is published (client email, 16 Oct 2026), written
+  // as a decimal figure. Per-residence prices stay off the site and out of
+  // the brochure: buyers go to the sales team. Availability (available /
+  // sold / future release) is shown from `priceGuide` below.
+  priceFrom: "$1.55M",
   
   // Single build-status line for the whole site. Construction finished in
   // September 2026 (client sign-off, 7 Oct 2026); every "Completion …" stamp
@@ -203,27 +196,31 @@ export const developmentSpecs = {
   bedrooms: "3 Bedrooms (+ Multi-Purpose Room)",
   bathrooms: "2 Bathrooms",
   carSpaces: "2 Secure Underground Carparks",
-  internalSizeRange: "118 sqm to 139 sqm internal",
+  internalSizeRange: "117 sqm to 139 sqm internal",
   status: "100% Completed",
   completion: "Completed",
   location: "25 Esplanade, Bargara QLD 4670",
+  // The brochure's "For every resident" list, line for line (client review,
+  // 16 Oct 2026).
   amenities: [
-    "Resident-only swimming pool & sun loungers",
-    "Landscaped private alfresco entertaining area",
+    "Resident-only swimming pool",
+    "Private alfresco entertaining area with BBQ facilities",
     "Expansive oceanfront private balconies",
     "Secure basement parking with lift access",
-    "Absolute beachfront frontage onto the Coral Sea"
+    "Absolute oceanfront frontage onto the Coral Sea",
+    "Lockable basement storage cage"
   ],
   // `category` is the room or zone each finish belongs to, printed above it in
-  // the specification ledger.
+  // the specification ledger. Product names (Lusso Stone, Nikpol) and the
+  // wording are the client's (review, 16 Oct 2026).
   finishes: [
-    { category: "Kitchen", title: "Porcelain Benchtops", description: "Expansive honed stone surfaces designed for entertaining." },
-    { category: "Kitchen", title: "Smeg Appliances", description: "Seamlessly integrated premium Italian kitchen suite." },
-    { category: "Kitchen & Living", title: "Walnut-Toned Joinery", description: "Bespoke custom cabinetry balancing modern warmth and clean lines." },
+    { category: "Kitchen", title: "Lusso Stone Benchtops", description: "Expansive honed stone surfaces designed for entertaining." },
+    { category: "Kitchen", title: "Smeg Appliances", description: "Seamlessly integrated premium luxury kitchen suite." },
+    { category: "Kitchen & Living", title: "Coastal Elegant Joinery", description: "Bespoke custom Nikpol cabinetry balancing modern warmth and clean lines." },
     { category: "Bathrooms", title: "Honed Tundra Stone Tiles", description: "Floor-to-ceiling natural stone wrapping private sanctuaries." },
     { category: "Bathrooms", title: "Satin Nickel Tapware", description: "Subtle brushed metal accents and ceramic basins." },
     { category: "Bedrooms", title: "Plush Wool Carpeting", description: "Soft, cushioned flooring in all bedrooms for restful acoustic comfort." },
-    { category: "Bedrooms", title: "Tailored Husk & Oak Wardrobes", description: "Spacious walk-in robes continuing the neutral palette." }
+    { category: "Bedrooms", title: "Tailored Husk & Oak Wardrobes", description: "Spacious robes continuing the neutral palette." }
   ]
 };
 
@@ -263,8 +260,8 @@ export const developerQuote = {
 export const featureSlides: FeatureSlide[] = [
   {
     id: 1,
-    title: "Walk-in wardrobes",
-    description: "Tailored, timber-toned storage in soft husk and oak finishes continue the calm, natural palette that flows throughout.",
+    title: "Tailored wardrobes",
+    description: "Contemporary wardrobe design.",
     image: "/img/site/Render-Slider-3.webp",
     caption: "Artist Impression"
   },
@@ -278,7 +275,7 @@ export const featureSlides: FeatureSlide[] = [
   {
     id: 3,
     title: "Kitchens for entertaining",
-    description: "Porcelain benchtops, soft walnut-toned joinery and seamlessly integrated Smeg appliances make every meal feel like an occasion.",
+    description: "Lusso Stone benchtops, soft timber-toned Nikpol joinery and seamlessly integrated Smeg appliances make every meal feel like an occasion.",
     image: "/img/residences/suite-kitchen-dining.webp",
     caption: "Display suite · Photographed"
   },
@@ -322,7 +319,7 @@ export const keyFeatures: KeyFeature[] = [
   },
   {
     id: 3,
-    text: "Spacious layouts from 118sqm to 139sqm internal",
+    text: "Spacious layouts from 117sqm to 139sqm internal",
     label: "Floor area",
     iconName: "maximize"
   },
@@ -340,7 +337,7 @@ export const keyFeatures: KeyFeature[] = [
   },
   {
     id: 6,
-    text: "Pool and alfresco area exclusive to residents",
+    text: "Resort-style pool, private entertaining and BBQ facilities exclusive to residents",
     label: "Amenity",
     iconName: "waves"
   }
@@ -351,8 +348,12 @@ export const locationTeaser = {
   headline: "Queensland's best-kept coastal secret",
   paragraph1: "Just 20 minutes from Bundaberg, Bargara blends natural beauty with village charm. Start your day strolling the Esplanade or sipping coffee on Bauer Street, then spend the afternoon on the fairways of Bargara Golf Club.",
   paragraph2: "With every convenience close by and the ocean at your door, Bargara feels a world away — yet right where you need to be.",
-  aerialImage: "/img/site/mira-living-img-2.webp",
-  aerialAlt: "Aerial view of Bargara coastline showing Mira Living location, Bargara Golf Club, Bargara Central, and surrounding beaches",
+  // The completed building from the air (drone, October 2026) — the frame the
+  // brochure's Bargara spread opens on. It replaced the annotated mud map,
+  // which still showed the site as a cleared block (client review, 16 Oct 2026).
+  aerialImage: "/img/site/aerial-headland-oct-2026.webp",
+  aerialAlt: "Aerial photograph of the completed Mira Living on the Bargara Esplanade, the rock shelf and beach in front of it and the township, golf course and cane fields behind",
+  aerialCaption: "Photographed October 2026",
   // Drive/walk times shown on the home teaser. Every figure here is one the
   // rest of the site already states — do not add a new one without a source.
   proximity: [
@@ -478,16 +479,20 @@ export const registerSection = {
   ]
 };
 
-// Floor plans — from the marketing plan sheets and the architect's typical
-// plans (Mondo Architects, 1:100). Room sizes are internal dimensions as drawn.
+// Floor plans — areas from the marketing plan sheets; the descriptions are the
+// brochure's (client review, 16 Oct 2026). Room dimensions are no longer
+// published: the plans with measurements are available on request.
+export const floorPlanNote =
+  "Ground-floor residences feature additional exclusive-use external areas. Floor plans with measurements available upon request. Areas are approximate.";
+
 export const floorPlans: FloorPlan[] = [
   {
     id: "type-a",
     code: "A",
     name: "Type A",
-    tagline: "The largest plan: a study off the entry, a 7.4-metre living room and the master suite on the ocean side.",
+    tagline: "Type A, the largest plan, combines generous internal living with expansive outdoor space, creating an effortless connection between inside and out.",
     summary:
-      "Ten residences are built to this plan — two on every level. The entry opens past the laundry and a dedicated study into one long living and dining room, with the kitchen along one wall and the balcony across the far end. The master suite sits beside the balcony with a walk-in robe and ensuite; the second and third bedrooms share the main bathroom at the quiet end of the plan.",
+      "Ten residences are built to this plan — two on every level. The entry opens past the laundry and a dedicated study into one long living and dining room, with the kitchen along one wall and the balcony across the far end. The master suite, with its own robe and ensuite, sits on the balcony side of the plan; the second and third bedrooms share the main bathroom at the quiet end.",
     bedrooms: 3,
     bathrooms: 2,
     cars: 2,
@@ -496,22 +501,7 @@ export const floorPlans: FloorPlan[] = [
     externalArea: "22.80 sqm",
     totalArea: "162.02 sqm",
     units: [1, 4, 6, 9, 11, 14, 16, 19, 21, 24],
-    rooms: [
-      { name: "Living & dining", size: "5.1 × 7.4 m", note: "Opens to the balcony" },
-      { name: "Kitchen", size: "Island bench", note: "Walk-in pantry · Integrated Smeg suite" },
-      { name: "Master bedroom", size: "3.7 × 3.5 m", note: "Walk-in robe · Ensuite" },
-      { name: "Bedroom 2", size: "3.1 × 3.2 m", note: "Built-in robe" },
-      { name: "Bedroom 3", size: "3.2 × 3.2 m", note: "Built-in robe" },
-      { name: "Study / multi-purpose", size: "2.5 × 3.1 m" },
-      { name: "Main bathroom", size: "Bath & shower" },
-      { name: "Laundry & linen", size: "Separate room" },
-    ],
-    highlights: [
-      "Two residences per level, ten in all",
-      "Dedicated study separate from the bedrooms",
-      "Master suite on the balcony side of the plan",
-      "Separate laundry and walk-in pantry",
-    ],
+    badge: "Dedicated study",
     image: "/img/plans/type-a.webp",
     pdf: "/plans/mira-living-type-a-floor-plan.pdf",
   },
@@ -519,9 +509,9 @@ export const floorPlans: FloorPlan[] = [
     id: "type-b",
     code: "B",
     name: "Type B",
-    tagline: "The mirrored corner plan: the same long living room and study, with the widest balcony of the three.",
+    tagline: "Designed with flexibility and everyday living in mind, Type B residences provide generous interiors complemented by private outdoor living.",
     summary:
-      "Ten residences are built to this plan, paired on every level. The arrangement mirrors Type A — study and laundry at the entry, one open living and dining room running to the balcony, and the master suite with its walk-in robe and ensuite beside it — with a slightly more compact footprint and the largest private balcony in the building at just under 25 square metres.",
+      "Ten residences are built to this plan, paired on every level. The arrangement mirrors Type A — study and laundry at the entry, one open living and dining room running to the balcony, and the master suite with its robe and ensuite beside it — on a slightly more compact footprint, with the largest private balcony in the building.",
     bedrooms: 3,
     bathrooms: 2,
     cars: 2,
@@ -530,22 +520,7 @@ export const floorPlans: FloorPlan[] = [
     externalArea: "24.96 sqm",
     totalArea: "156.09 sqm",
     units: [2, 3, 7, 8, 12, 13, 17, 18, 22, 23],
-    rooms: [
-      { name: "Living & dining", size: "5.1 × 7.2 m", note: "Opens to the balcony" },
-      { name: "Kitchen", size: "Island bench", note: "Walk-in pantry · Integrated Smeg suite" },
-      { name: "Master bedroom", size: "3.5 × 3.6 m", note: "Walk-in robe · Ensuite" },
-      { name: "Bedroom 2", size: "3.2 × 3.0 m", note: "Built-in robe" },
-      { name: "Bedroom 3", size: "3.2 × 3.0 m", note: "Built-in robe" },
-      { name: "Study / multi-purpose", size: "2.5 × 3.0 m" },
-      { name: "Main bathroom", size: "Bath & shower" },
-      { name: "Laundry & linen", size: "Separate room" },
-    ],
-    highlights: [
-      "Two residences per level, ten in all",
-      "Largest balcony of the three plans",
-      "Study and separate laundry at the entry",
-      "Master suite with walk-in robe and ensuite",
-    ],
+    badge: "Largest balcony",
     image: "/img/plans/type-b.webp",
     pdf: "/plans/mira-living-type-b-floor-plan.pdf",
   },
@@ -553,33 +528,21 @@ export const floorPlans: FloorPlan[] = [
     id: "type-c",
     code: "C",
     name: "Type C",
-    tagline: "The end residence: one per level, with living and dining as two distinct rooms and the largest master bedroom.",
+    tagline: "Thoughtfully designed for effortless coastal living, Type C residences combine functional interiors with generous outdoor space and a relaxed connection to the surrounding environment.",
     summary:
-      "Five residences are built to this plan — one at the end of every level. Rather than a single long room, living and dining are two connected spaces set around the kitchen, and the balcony runs off the living room. The master bedroom is the widest in the building at four metres, with a walk-in robe and ensuite. There is no separate study on this plan.",
+      "Five residences are built to this plan — one at the end of every level. Rather than a single long room, living and dining are two connected spaces set around the kitchen, and the balcony runs off the living room. The master bedroom is the widest in the building, with its own robe and ensuite. There is no separate study on this plan.",
     bedrooms: 3,
     bathrooms: 2,
     cars: 2,
     mpr: false,
-    internalArea: "118.29 sqm",
+    // The plan sheet gives 118.29 sqm internal / 139.71 sqm total; the client
+    // asked for 117 "throughout" (review, 16 Oct 2026), so the internal figure
+    // is theirs and the total is internal + balcony to match.
+    internalArea: "117 sqm",
     externalArea: "21.42 sqm",
-    totalArea: "139.71 sqm",
+    totalArea: "138.42 sqm",
     units: [5, 10, 15, 20, 25],
-    rooms: [
-      { name: "Living", size: "5.2 × 4.0 m", note: "Opens to the balcony" },
-      { name: "Dining", size: "5.3 × 3.2 m", note: "Beside the kitchen" },
-      { name: "Kitchen", size: "Island bench", note: "Walk-in pantry · Integrated Smeg suite" },
-      { name: "Master bedroom", size: "4.0 × 3.3 m", note: "Walk-in robe · Ensuite" },
-      { name: "Bedroom 2", size: "3.0 × 3.3 m", note: "Built-in robe" },
-      { name: "Bedroom 3", size: "3.0 × 3.3 m", note: "Built-in robe" },
-      { name: "Main bathroom", size: "Bath & shower" },
-      { name: "Laundry & linen", size: "Separate room" },
-    ],
-    highlights: [
-      "One residence per level, five in all",
-      "Separate living and dining rooms",
-      "Widest master bedroom in the building",
-      "The most compact plan in the collection",
-    ],
+    badge: "Maximised space",
     image: "/img/plans/type-c.webp",
     pdf: "/plans/mira-living-type-c-floor-plan.pdf",
   },
@@ -588,6 +551,19 @@ export const floorPlans: FloorPlan[] = [
 /** Which plan an apartment number is built to. */
 export function planForUnit(unit: number): FloorPlan | undefined {
   return floorPlans.find((plan) => plan.units.includes(unit));
+}
+
+/**
+ * The number on the door, as the brochure and the price guide print it: the
+ * level first, then the position along it — 101 to 105 on the ground floor,
+ * 201 to 205 on Level 2, and so on. `priceGuide` still keys every apartment by
+ * its sequential number (1–25), which is what the plans and the schema use.
+ */
+export function unitLabel(unit: number): string {
+  const levelIndex = priceGuide.levels.findIndex((level) => level.units.some((u) => u.number === unit));
+  if (levelIndex < 0) return String(unit);
+  const position = priceGuide.levels[levelIndex].units.findIndex((u) => u.number === unit) + 1;
+  return String((levelIndex + 1) * 100 + position);
 }
 
 // The basement, from the carpark plan sheet.
@@ -721,7 +697,7 @@ export const displayResidence = {
   eyebrow: "Display Suite Now Open",
   headline: "Photographed, not rendered",
   intro:
-    "Construction is complete and the display suite is now open. These are photographs of that home — the porcelain benchtops, the walnut-toned joinery and the honed stone bathrooms exactly as they have been built.",
+    "Construction is complete and the display suite is now open. These are photographs of that home — the Lusso Stone benchtops, the Nikpol joinery and the honed stone bathrooms exactly as they have been built.",
   note: "Photography of a completed ground-floor residence, furnished for display. Furniture and styling are not included.",
   photos: [
     {
@@ -731,7 +707,7 @@ export const displayResidence = {
     },
     {
       src: "/img/residences/suite-kitchen-island.webp",
-      alt: "Porcelain island bench with timber bowls, looking through to the walnut-toned kitchen run and stone splashback",
+      alt: "Stone island bench with timber bowls, looking through to the timber-toned kitchen run and stone splashback",
       room: "Kitchen",
     },
     {
@@ -766,7 +742,7 @@ export const displayResidence = {
     },
     {
       src: "/img/residences/suite-kitchen-joinery.webp",
-      alt: "Full-height walnut-toned kitchen joinery, stone splashback and integrated oven, the island bench in the foreground",
+      alt: "Full-height timber-toned kitchen joinery, stone splashback and integrated oven, the island bench in the foreground",
       room: "Kitchen joinery",
     },
     {
@@ -811,7 +787,7 @@ export const displayResidence = {
     },
     {
       src: "/img/residences/suite-bench-detail.webp",
-      alt: "Kitchen bench detail: the porcelain top and stone splashback, undermount sink and satin tapware",
+      alt: "Kitchen bench detail: the Lusso Stone top, stone splashback, undermount sink and satin tapware",
       room: "Kitchen detail",
     },
     {
@@ -827,27 +803,29 @@ export const displayResidence = {
   ] as DisplayPhoto[],
 };
 
-// Shared spaces — the lobby render and the completed pool, photographed.
+// Shared spaces — the pool and the beachfront, as the brochure's "Shared
+// Spaces" spread has them (client review, 16 Oct 2026). The lobby render that
+// used to open this section was dropped with it.
 export const sharedSpaces = {
   eyebrow: "Shared Spaces",
-  headline: "The arrival, and the retreat",
+  headline: "Your private coastal sanctuary",
   intro:
-    "Between the street and the front door, and between the building and the beach, two spaces belong to every resident.",
+    "Enjoy the luxury of relaxed living with Mira Living’s resort-style pool, a tranquil space to cool off, unwind and soak up the Queensland sunshine.",
   items: [
     {
-      eyebrow: "The arrival",
-      title: "A lobby set among gardens",
-      body: "The entry sits back from the Esplanade behind a deep planted courtyard, so the walk from the street to the lift passes under a timber pergola and between tropical planting before the glass doors and the Mira signature.",
-      image: "/img/renders/lobby-arrival.webp",
-      alt: "Mira Living entry lobby with tropical planting, timber pergola and glazed doors",
-      caption: "Artist Impression",
-    },
-    {
       eyebrow: "The retreat",
-      title: "A resident-only pool and lawn",
-      body: "Behind the building, a lap pool, sun loungers and a covered alfresco lounge sit within the landscaped rear garden — a private sanctuary a lift ride from every residence.",
+      title: "A resort-style pool for residents",
+      body: "Reserved for residents, the pool and its covered alfresco lounge sit within the landscaped rear garden, a lift ride from every residence. Below ground, the whole of the basement is given to residents.",
       image: "/img/site/pool-dusk-photo.webp",
       alt: "The completed residents' pool at dusk, the covered alfresco room at its head and new planting along the fence",
+      caption: "Photographed October 2026",
+    },
+    {
+      eyebrow: "The setting",
+      title: "Absolute beachfront on the Esplanade",
+      body: "The building sits directly on the Esplanade, with nothing between its balconies and the Coral Sea. The foreshore walk and Bargara’s beaches begin at the front door.",
+      image: "/img/site/aerial-esplanade-front.webp",
+      alt: "Aerial photograph of the completed Mira Living from over the water, the rock shelf and foreshore in front of it and the township behind",
       caption: "Photographed October 2026",
     },
   ],
@@ -1099,7 +1077,7 @@ export const faqItems: FaqItem[] = (() => {
     },
     {
       question: "How much do the apartments cost?",
-      answer: `Each apartment is priced individually and pricing is not published online. For the current price of any available residence, please contact the sales team: call ${contactLine}, or request the price guide through the enquiry form.`,
+      answer: `Residences are available from ${siteConfig.priceFrom}. Each apartment is priced individually, so for the current price of any available residence please contact the sales team: call ${contactLine}, or request the price guide through the enquiry form.`,
     },
     {
       question: "How big are the apartments, and what is the layout?",

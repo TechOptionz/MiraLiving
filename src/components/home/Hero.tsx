@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { useModal } from "@/context/ModalContext";
-import BackdropVideo from "@/components/common/BackdropVideo";
+import Image from "next/image";
 import { siteConfig } from "@/content/site-content";
 
 /**
@@ -25,19 +25,20 @@ export default function Hero() {
       {/* Cinematic full-bleed backdrop */}
       <div className="absolute inset-0 z-0" aria-hidden="true">
         {/*
-          No Ken-Burns here any more: scaling a *playing* video means every
-          decoded frame has to be re-rastered at a new size, which is the one
-          thing the compositor cannot hand off cheaply. The footage already
-          moves — the drift was paying for motion the visitor could not
-          distinguish from the video's own.
+          The completed building from the Esplanade at dusk (drone, October
+          2026). It replaced the moving-water footage, which was not Bargara
+          (client review, 16 Oct 2026). The frame is anchored a little above
+          centre so the building stays whole under the headline on wide
+          screens and keeps its roofline on phones.
         */}
-        <BackdropVideo
-          src="/video/home-hero.mp4"
-          poster="/video/home-hero-poster.jpg"
-          // The first thing anyone sees: fetched and playing from the markup,
-          // so the water is already moving when the page is first readable.
+        <Image
+          src="/img/site/facade-dusk-photo.webp"
+          alt=""
+          fill
           priority
-          className="w-full h-full object-cover object-center"
+          quality={85}
+          sizes="100vw"
+          className="object-cover object-[center_42%]"
         />
 
         {/* Light directional scrim: just enough to seat the type, the photograph stays the hero */}

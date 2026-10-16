@@ -9,6 +9,7 @@ import {
   partnerRecords,
   priceGuide,
   availableUnits,
+  unitLabel,
   unitCounts,
   type FaqItem,
 } from "./site-content";
@@ -136,7 +137,7 @@ export function residencesGraph() {
     item: {
       "@type": "Apartment",
       "@id": `${pageUrl}#apartment-${u.number}`,
-      name: `Apartment ${u.number}, ${siteConfig.name} — ${u.plan.name}, ${u.level}`,
+      name: `Apartment ${unitLabel(u.number)}, ${siteConfig.name} — ${u.plan.name}, ${u.level}`,
       url: `${pageUrl}#availability`,
       floorLevel: u.level,
       numberOfBedrooms: u.plan.bedrooms,

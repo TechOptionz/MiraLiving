@@ -2,6 +2,7 @@ import React from "react";
 import {
   priceGuide,
   planForUnit,
+  unitLabel,
   unitStatusLabel,
   siteConfig,
   type UnitStatus,
@@ -32,12 +33,12 @@ export default function AvailabilityGrid() {
   const allUnits = priceGuide.levels.flatMap((l) => l.units);
   const count = (status: UnitStatus) => allUnits.filter((u) => u.status === status).length;
 
-  // Prices are not published: the fourth tile points buyers to the sales team.
+  // Only the entry price is published; per-residence prices come from the sales team.
   const summary = [
     { value: String(count("available")), label: "Available now" },
     { value: String(count("sold")), label: "Sold" },
     { value: String(count("future")), label: "Future release" },
-    { value: "On request", label: "Pricing" },
+    { value: siteConfig.priceFrom, label: "Priced from" },
   ];
 
   return (
@@ -56,7 +57,8 @@ export default function AvailabilityGrid() {
             </Reveal>
             <Reveal delay={220} className="font-sans text-[16px] leading-[1.75] text-mira-brownDark sm:text-lg">
               Twenty-five residences across five levels, as at {priceGuide.issued}. Each apartment is
-              marked with the plan it is built to. Pricing is available from the sales team on request.
+              marked with the plan it is built to. Residences are available from {siteConfig.priceFrom};
+              individual pricing is available from the sales team on request.
             </Reveal>
           </div>
 
@@ -121,7 +123,7 @@ export default function AvailabilityGrid() {
                         >
                           <div className="flex items-start justify-between gap-1">
                             <span className="font-serif text-lg font-light leading-none sm:text-2xl">
-                              {String(unit.number).padStart(2, "0")}
+                              {unitLabel(unit.number)}
                             </span>
                             {plan && (
                               <span
@@ -164,8 +166,9 @@ export default function AvailabilityGrid() {
             </Reveal>
             <Reveal delay={300} className="mt-6 space-y-4 border-t border-mira-border pt-6">
               <p className="font-sans text-[15px] leading-[1.75] text-mira-brownDark">
-                Five residences sit on each level, each with its balcony to the Esplanade and the Coral Sea
-                beyond. The higher the level, the longer the view along the coast.
+                With just five residences on each level, enjoy a sense of space, privacy and exclusivity,
+                completed by balconies overlooking the Esplanade and the Coral Sea. Residences are
+                available from {siteConfig.priceFrom}.
               </p>
               <RegisterButton className="w-full sm:w-auto">Request the price guide</RegisterButton>
             </Reveal>
@@ -173,7 +176,7 @@ export default function AvailabilityGrid() {
         </div>
 
         <p className="mt-12 max-w-4xl border-t border-mira-border pt-6 font-sans text-[12px] leading-relaxed text-mira-brown">
-          Availability as at {priceGuide.issued}. Prices are available from the sales team on request. {siteConfig.legalDisclaimer}
+          Availability as at {priceGuide.issued}. Residences are available from {siteConfig.priceFrom}; individual prices are available from the sales team on request. {siteConfig.legalDisclaimer}
         </p>
       </div>
     </section>

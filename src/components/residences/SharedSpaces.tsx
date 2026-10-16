@@ -3,7 +3,7 @@ import { sharedSpaces } from "@/content/site-content";
 import Reveal from "@/components/common/Reveal";
 import PhotoFrame from "@/components/common/PhotoFrame";
 
-/** The building's common areas: the entry lobby and the residents' pool. */
+/** The building's common areas: the residents' pool and the beachfront setting. */
 export default function SharedSpaces() {
   return (
     <section className="border-t border-mira-border bg-mira-ground section-pad px-6 sm:px-12 lg:px-16">

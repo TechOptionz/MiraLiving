@@ -27,7 +27,7 @@
 // Final Vision" — the only clean façade-in-elevation asset in the library, so
 // it deliberately appears twice. Also unused: IG_090, a soft 1440x810 drone
 // VIDEO still that fell apart upscaled into the 4:3 Architecture frame, and
-// mira-living-img-2.webp, which carries baked-in location labels.
+// the annotated mud map (mira-living-img-2.webp, removed 16 Oct 2026).
 // ---------------------------------------------------------------------------
 
 import {
@@ -161,7 +161,7 @@ export const storyPage = {
         statement: "A calm, natural palette that flows throughout.",
         detail:
           "Bathrooms are wrapped in honed Tundra stone tiles, anchored by elegant ceramic basins and softened by the sheen of satin nickel tapware.",
-        meta: "Tundra stone · Porcelain · Walnut · Oak · Wool",
+        meta: "Tundra stone · Lusso Stone · Nikpol · Oak · Wool",
         image: {
           src: "/img/site/Render-Slider-4-scaled.webp",
           alt: "Bathroom wrapped in honed Tundra stone tiles with a stone-topped oak vanity and satin nickel tapware",
@@ -317,17 +317,17 @@ export const storyPage = {
     details: developmentSpecs.finishes.slice(0, 4),
     feature: {
       src: "/img/residences/suite-kitchen-joinery.webp",
-      alt: "The completed kitchen: full-height walnut-toned joinery, stone splashback and integrated oven, the porcelain island bench in the foreground",
+      alt: "The completed kitchen: full-height timber-toned joinery, stone splashback and integrated oven, the Lusso Stone island bench in the foreground",
       label: "Interior detail",
-      note: "Kitchen joinery and porcelain benchtop, close range",
+      note: "Kitchen joinery and Lusso Stone benchtop, close range",
       ratio: "16:9",
       caption: "Display suite · Photographed October 2026",
     } as ImageSlot,
     secondary: {
       src: "/img/residences/suite-bench-detail.webp",
-      alt: "Kitchen bench detail in the completed residence: the porcelain top, stone splashback, undermount sink and satin tapware",
+      alt: "Kitchen bench detail in the completed residence: the Lusso Stone top, stone splashback, undermount sink and satin tapware",
       label: "Material close-up",
-      note: "Stone, satin nickel tapware or walnut-toned joinery",
+      note: "Stone, satin nickel tapware or timber-toned joinery",
       ratio: "3:4",
       caption: "Display suite · Photographed October 2026",
     } as ImageSlot,

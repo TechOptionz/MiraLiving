@@ -18,7 +18,7 @@ import RegisterSection from "@/components/home/RegisterSection";
 export const metadata: Metadata = {
   title: "Apartments for Sale: Floor Plans & Availability",
   description:
-    "The 25 beachfront apartments for sale at Mira Living, Bargara: three floor plans from 118–139 sqm internal with room dimensions, photographs of the completed residence, and current availability level by level.",
+    "The 25 beachfront apartments for sale at Mira Living, Bargara: three floor plans from 117–139 sqm internal, photographs of the completed residence, and current availability level by level.",
   alternates: { canonical: "/residences" },
 };
 
@@ -37,11 +37,11 @@ const specSchedule = [
 const interiors = [
   {
     src: "/img/residences/suite-kitchen-joinery.webp",
-    alt: "The completed kitchen: full-height walnut-toned joinery, stone splashback and integrated oven behind the porcelain island bench",
+    alt: "The completed kitchen: full-height timber-toned Nikpol joinery, stone splashback and integrated oven behind the Lusso Stone island bench",
     caption: "Display suite · Photographed",
     eyebrow: "The kitchen",
     title: "Kitchens built for entertaining",
-    body: "Porcelain benchtops run the length of the island, soft walnut-toned joinery warms the edges, and the Smeg suite disappears behind cabinetry — so the room stays a living space, not a galley.",
+    body: "Lusso Stone benchtops run the length of the island, soft timber-toned Nikpol joinery warms the edges, and the Smeg suite disappears behind cabinetry — so the room stays a living space, not a galley.",
   },
   {
     src: "/img/residences/suite-ensuite.webp",
@@ -104,8 +104,8 @@ export default function ResidencesPage() {
                 {String(developmentSpecs.amenities.length).padStart(2, "0")} inclusions
               </Reveal>
             </div>
-            {/* Five inclusions in two columns leave a sixth cell; the note fills it
-                with the cross-reference to the full finish schedule. */}
+            {/* Six inclusions fill the two columns; the note sits beneath them with
+                the cross-reference to the full finish schedule. */}
             <SpecLedger
               columns={2}
               items={developmentSpecs.amenities.map((amenity) => ({ title: amenity }))}
@@ -136,12 +136,12 @@ export default function ResidencesPage() {
                 Material Palette
               </Reveal>
               <Reveal as="h2" delay={120} className="font-serif text-[clamp(1.9rem,4.4vw,3.5rem)] font-light leading-[1.12] text-mira-charcoal">
-                Tactile Warmth &amp; Italian Engineering
+                Tactile Warmth &amp; Luxury Engineering
               </Reveal>
             </div>
             <Reveal delay={220} className="font-sans text-[16px] leading-[1.75] text-mira-brownDark sm:text-lg lg:col-span-5 lg:pb-2">
               Curated by Sarah Wood Designs, every residence combines honed Australian Tundra stone tiles, seamlessly
-              integrated Smeg appliances, and custom walnut-toned joinery.
+              integrated Smeg appliances, and custom Nikpol joinery.
             </Reveal>
           </div>
 
@@ -205,10 +205,10 @@ export default function ResidencesPage() {
         </div>
       </section>
 
-      {/* Shared spaces — the lobby and the pool */}
+      {/* Shared spaces — the pool and the beachfront */}
       <SharedSpaces />
 
-      {/* Floor plans — three plans with room schedules and the apartments built to each */}
+      {/* Floor plans — three plans and the apartments built to each */}
       <FloorPlanTabs />
 
       {/* The basement */}

@@ -5,7 +5,9 @@ import Image from "next/image";
 import { Maximize2, X, Download, ArrowDownRight } from "lucide-react";
 import {
   floorPlans,
+  floorPlanNote,
   priceGuide,
+  unitLabel,
   unitStatusLabel,
   type FloorPlan,
   type UnitStatus,
@@ -94,7 +96,7 @@ export default function FloorPlanTabs() {
               >
                 <span className="block font-serif text-2xl font-light leading-none sm:text-3xl">{p.name}</span>
                 <span className="mt-2 block font-sans text-[10px] uppercase tracking-[0.08em] sm:text-[12px] sm:tracking-[0.14em]">
-                  {p.internalArea.replace(/\.\d+/, "")} · {p.units.length} residences
+                  {p.units.length} residences · {p.bedrooms} bed{p.mpr ? " + study" : ""}
                 </span>
                 {active && <span className="absolute -bottom-px left-0 right-0 h-[2px] bg-mira-brown" />}
               </button>
@@ -177,29 +179,12 @@ export default function FloorPlanTabs() {
               ))}
             </dl>
 
-            {/* Room schedule */}
-            <div className="mt-8">
-              <span className="block font-sans text-[11px] font-medium uppercase tracking-[0.16em] text-mira-brown">
-                Room schedule
+            {/* The brochure's note on the plans, and the one thing that marks this plan out. */}
+            <div className="mt-5 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+              <p className="max-w-[52ch] font-sans text-[12px] leading-relaxed text-mira-brownDark">{floorPlanNote}</p>
+              <span className="inline-flex shrink-0 items-center self-start border border-mira-tealDark/40 bg-mira-tealLight/60 px-3 py-1.5 font-sans text-[11px] font-medium uppercase tracking-[0.14em] text-mira-tealDark">
+                {plan.badge}
               </span>
-              <dl className="mt-3 grid grid-cols-1 gap-x-10 sm:grid-cols-2">
-                {plan.rooms.map((room) => (
-                  <div
-                    key={room.name}
-                    className="flex items-baseline justify-between gap-4 border-b border-mira-border/80 py-3"
-                  >
-                    <dt className="min-w-0">
-                      <span className="block font-sans text-[14px] text-mira-charcoal">{room.name}</span>
-                      {room.note && (
-                        <span className="block font-sans text-[12px] leading-snug text-mira-brown">{room.note}</span>
-                      )}
-                    </dt>
-                    <dd className="shrink-0 font-sans text-[13px] font-medium tabular-nums text-mira-charcoal">
-                      {room.size}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
             </div>
 
             {/* Where in the building — each apartment's status on the price guide (no prices). */}
@@ -222,7 +207,7 @@ export default function FloorPlanTabs() {
                           key={u.number}
                           className={`inline-flex items-center gap-2 border px-2.5 py-1 font-sans text-[12px] ${statusTone[u.status]}`}
                         >
-                          <span className="font-medium tabular-nums">{String(u.number).padStart(2, "0")}</span>
+                          <span className="font-medium tabular-nums">{unitLabel(u.number)}</span>
                           <span>{unitStatusLabel[u.status]}</span>
                         </span>
                       ))}

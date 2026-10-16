@@ -74,28 +74,25 @@
 
   /* Ledger lists */
   .ledger { border-top: 1px solid var(--border); }
-  .ledger .row { display: grid; grid-template-columns: 24mm 1fr; gap: 4mm; padding: 2.6mm 0; border-bottom: 1px solid var(--border); align-items: baseline; }
+  .ledger .row { display: grid; grid-template-columns: 24mm 1fr; gap: 4mm; padding: 2.2mm 0; border-bottom: 1px solid var(--border); align-items: baseline; }
   .ledger .row .c { font-size: 6.4pt; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
   .ledger .row .t { font-family: var(--serif); font-size: 12.5pt; font-weight: 500; color: var(--charcoal); line-height: 1.15; }
   .ledger .row .d { font-size: 7.6pt; color: var(--muted); line-height: 1.45; margin-top: 0.8mm; }
 
   /* Numbered list */
   .num { display: grid; grid-template-columns: 1fr 1fr; column-gap: 8mm; }
-  .num div { display: grid; grid-template-columns: 7mm 1fr; gap: 2mm; padding: 2.4mm 0; border-bottom: 1px solid var(--border); font-size: 8.4pt; line-height: 1.45; color: var(--brown-dark); }
+  .num div { display: grid; grid-template-columns: 7mm 1fr; gap: 2mm; padding: 1.9mm 0; border-bottom: 1px solid var(--border); font-size: 8.2pt; line-height: 1.4; color: var(--brown-dark); }
   .num div span { font-size: 6.4pt; color: var(--teal-dark); letter-spacing: 0.1em; padding-top: 0.6mm; font-weight: 500; }
 
   /* Plan pages */
-  .plan { display: grid; grid-template-columns: 112mm 1fr; grid-template-rows: 100%; column-gap: 12mm; height: 100%; }
+  .plan { display: grid; grid-template-columns: 128mm 1fr; grid-template-rows: 100%; column-gap: 12mm; height: 100%; }
   .plan .draw { position: relative; background: #fff; border: 1px solid var(--border); height: 100%; overflow: hidden; }
   .plan .draw img { position: absolute; left: 6mm; top: 6mm; width: calc(100% - 12mm); height: calc(100% - 12mm); object-fit: contain; }
   .plan > div:last-child { min-height: 0; }
-  .rooms { border-top: 1px solid var(--border); }
-  .rooms .r { display: grid; grid-template-columns: 1fr 24mm 1fr; gap: 3mm; padding: 1.9mm 0; border-bottom: 1px solid var(--border); font-size: 7.8pt; align-items: baseline; }
-  .rooms .r b { font-weight: 500; color: var(--charcoal); }
-  .rooms .r i { font-style: normal; font-family: var(--serif); font-size: 10.5pt; font-weight: 500; color: var(--charcoal); }
-  .rooms .r s { text-decoration: none; color: var(--muted); font-size: 7pt; }
   .badge { display: inline-block; font-size: 6.4pt; letter-spacing: 0.16em; text-transform: uppercase; color: var(--teal-dark); border: 1px solid var(--teal); padding: 1.2mm 2.4mm; font-weight: 500; white-space: nowrap; }
   .letter { font-family: var(--serif); font-size: 92pt; line-height: 0.8; color: var(--sand-dark); font-weight: 300; }
+  .units { display: flex; flex-wrap: wrap; gap: 2mm; margin-top: 3mm; }
+  .units span { font-family: var(--serif); font-size: 12.5pt; font-weight: 500; color: var(--charcoal); background: #fff; border: 1px solid var(--border); padding: 1.6mm 0; min-width: 15mm; text-align: center; line-height: 1; }
 
   /* Availability grid */
   .bldg { display: grid; grid-template-columns: 26mm repeat(5, 1fr); gap: 1.6mm; }
@@ -130,7 +127,7 @@
       <h1 style="margin-top:6mm;font-size:62pt">Oceanfront Living,<br><span class="ital">Elevated</span></h1>
       <div class="rule light" style="margin-top:9mm"></div>
       <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:4mm">
-        <div class="eyebrow light" style="color:rgba(255,255,255,0.8)">Completed &nbsp;·&nbsp; Display suite now open &nbsp;·&nbsp; 25 beachfront residences</div>
+        <div class="eyebrow light" style="color:rgba(255,255,255,0.8)">Completed &nbsp;·&nbsp; Display suite now open &nbsp;·&nbsp; 25 boutique residences</div>
         <div class="eyebrow light" style="color:rgba(255,255,255,0.5)">Photographed October 2026</div>
       </div>
     </div>
@@ -155,11 +152,11 @@
         <div><div class="k">Bedrooms</div><div class="v">3 + MPR</div></div>
         <div><div class="k">Bathrooms</div><div class="v">2</div></div>
         <div><div class="k">Car spaces</div><div class="v">2</div></div>
-        <div><div class="k">Internal</div><div class="v">118–139 m²</div></div>
+        <div><div class="k">Internal</div><div class="v">117–139 m²</div></div>
       </div>
     </div>
     <div style="display:grid;grid-template-rows:1fr 1fr;row-gap:6mm">
-      <div class="ph"><img src="../../public/img/residences/suite-living-terrace.webp" alt=""><span class="tag">Display suite · Photographed</span></div>
+      <div class="ph"><img src="../../public/img/residences/suite-living-terrace.webp" alt=""></div>
       <div style="display:grid;grid-template-columns:1fr 1fr;column-gap:6mm">
         <div class="ph"><img src="../../public/img/residences/suite-kitchen-island.webp" alt=""></div>
         <div class="ph"><img src="../../public/img/residences/suite-master-bedroom.webp" alt=""></div>
@@ -171,8 +168,8 @@
 
 <!-- ============================================================ 3. BY THE SEA -->
 <section class="page light" style="background:var(--charcoal)">
-  <div class="ph" style="position:absolute;inset:0"><img src="../../public/img/site/aerial-bargara-headland.webp" alt="" style="object-position:center 40%"></div>
-  <div style="position:absolute;inset:0;background:linear-gradient(to right, rgba(20,16,13,0.88) 0%, rgba(20,16,13,0.62) 38%, rgba(20,16,13,0.05) 70%)"></div>
+  <div class="ph" style="position:absolute;inset:0"><img src="../../public/img/site/aerial-headland-oct-2026.webp" alt="" style="object-position:center 50%;transform:scale(1.22);transform-origin:0% 55%"></div>
+  <div style="position:absolute;inset:0;background:linear-gradient(to right, rgba(20,16,13,0.9) 0%, rgba(20,16,13,0.72) 34%, rgba(20,16,13,0.3) 48%, rgba(20,16,13,0.04) 62%)"></div>
   <div class="pad">
     <div style="width:118mm;height:100%;display:flex;flex-direction:column">
       <div class="eyebrow light">Coastal Horizon</div>
@@ -180,15 +177,16 @@
       <p class="lead" style="margin-top:8mm">Mira Living places you on the shoreline of the Coral Sea, with nothing between you and the horizon. Wake to the sound of waves, enjoy leisurely strolls along the Bargara Esplanade and watch the sun rise over the water from your own private balcony.</p>
       <p style="margin-top:4mm">This is coastal living, elevated — a rare opportunity to own oceanfront in one of Queensland’s most coveted seaside enclaves. Just 20 minutes from Bundaberg, Bargara blends natural beauty with village charm, with every convenience close by and the ocean at your door.</p>
       <div style="flex:1"></div>
-      <div class="rail light" style="width:128mm">
+      <div class="rail light" style="width:156mm">
         <div><div class="k">The Esplanade</div><div class="v" style="font-size:14.5pt">At the door</div></div>
+        <div><div class="k">Beach</div><div class="v" style="font-size:14.5pt">XXX</div></div>
         <div><div class="k">Golf club</div><div class="v" style="font-size:14.5pt">3 min walk</div></div>
         <div><div class="k">Bundaberg</div><div class="v" style="font-size:14.5pt">20 min</div></div>
         <div><div class="k">Airport</div><div class="v" style="font-size:14.5pt">25 min</div></div>
       </div>
     </div>
   </div>
-  <div class="folio light"><span>Bargara headland, June 2026</span><span>03</span></div>
+  <div class="folio light"><span>Mira Living · Bargara</span><span>03</span></div>
 </section>
 
 <!-- ============================================================ 4. DISPLAY SUITE -->
@@ -199,7 +197,10 @@
         <div class="eyebrow teal">Display Suite Now Open</div>
         <h2 style="margin-top:4mm">Photographed, not rendered</h2>
       </div>
-      <p>Construction is complete and the display suite is now open. These are photographs of that home — the porcelain benchtops, the walnut-toned joinery and the honed stone bathrooms exactly as they have been built. Private inspections are arranged through the sales team.</p>
+      <div>
+        <p>Construction is now completed, and our display suite is open for you to experience Mira Living firsthand.</p>
+        <p style="margin-top:2.5mm">These photographs showcase the quality of the finished residences, featuring elegant Lusso Stone benchtops, warm timber-toned Nikpol joinery, and honed stone bathrooms, all delivered exactly as built.</p>
+      </div>
     </div>
     <div style="display:grid;grid-template-columns:1.45fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:5mm">
       <div class="ph" style="grid-row:1 / span 2"><img src="../../public/img/residences/suite-kitchen-dining.webp" alt=""><span class="tag">Kitchen &amp; dining</span></div>
@@ -214,35 +215,35 @@
 
 <!-- ============================================================ 5. FINISHES -->
 <section class="page">
-  <div class="pad" style="display:grid;grid-template-columns:1fr 112mm;column-gap:14mm">
-    <div style="display:flex;flex-direction:column">
+  <div class="pad" style="display:grid;grid-template-columns:1fr 112mm;grid-template-rows:100%;column-gap:14mm">
+    <div style="display:flex;flex-direction:column;min-height:0">
       <div class="eyebrow">Finishes &amp; Inclusions</div>
       <h2 style="margin-top:4mm;font-size:30pt">Standard to every residence</h2>
       <div class="ledger" style="margin-top:7mm">
-        <div class="row"><div class="c">Kitchen</div><div><div class="t">Porcelain benchtops</div><div class="d">Expansive honed stone surfaces designed for entertaining.</div></div></div>
-        <div class="row"><div class="c">Kitchen</div><div><div class="t">Integrated Smeg appliances</div><div class="d">Seamlessly integrated premium Italian kitchen suite.</div></div></div>
-        <div class="row"><div class="c">Kitchen &amp; living</div><div><div class="t">Walnut-toned joinery</div><div class="d">Bespoke custom cabinetry balancing modern warmth and clean lines.</div></div></div>
+        <div class="row"><div class="c">Kitchen</div><div><div class="t">Lusso Stone benchtops</div><div class="d">Expansive honed stone surfaces designed for entertaining.</div></div></div>
+        <div class="row"><div class="c">Kitchen</div><div><div class="t">Integrated Smeg appliances</div><div class="d">Seamlessly integrated premium luxury kitchen suite.</div></div></div>
+        <div class="row"><div class="c">Kitchen &amp; living</div><div><div class="t">Coastal elegant joinery</div><div class="d">Bespoke custom Nikpol cabinetry balancing modern warmth and clean lines.</div></div></div>
         <div class="row"><div class="c">Bathrooms</div><div><div class="t">Honed Tundra stone tiles</div><div class="d">Floor-to-ceiling natural stone wrapping private sanctuaries.</div></div></div>
         <div class="row"><div class="c">Bathrooms</div><div><div class="t">Satin nickel tapware</div><div class="d">Subtle brushed metal accents and ceramic basins.</div></div></div>
         <div class="row"><div class="c">Bedrooms</div><div><div class="t">Plush wool carpeting</div><div class="d">Soft, cushioned flooring in all bedrooms for restful acoustic comfort.</div></div></div>
-        <div class="row"><div class="c">Bedrooms</div><div><div class="t">Tailored husk &amp; oak wardrobes</div><div class="d">Spacious walk-in robes continuing the neutral palette.</div></div></div>
+        <div class="row"><div class="c">Bedrooms</div><div><div class="t">Tailored husk &amp; oak wardrobes</div><div class="d">Spacious robes continuing the neutral palette.</div></div></div>
       </div>
       <div style="flex:1"></div>
       <div class="eyebrow" style="margin-bottom:3mm">For every resident</div>
       <div class="num">
-        <div><span>01</span>Resident-only swimming pool &amp; sun loungers</div>
-        <div><span>02</span>Landscaped private alfresco entertaining area</div>
+        <div><span>01</span>Resident-only swimming pool</div>
+        <div><span>02</span>Private alfresco entertaining area with BBQ facilities</div>
         <div><span>03</span>Expansive oceanfront private balconies</div>
         <div><span>04</span>Secure basement parking with lift access</div>
-        <div><span>05</span>Absolute beachfront frontage onto the Coral Sea</div>
+        <div><span>05</span>Absolute oceanfront frontage onto the Coral Sea</div>
         <div><span>06</span>Lockable basement storage cage</div>
       </div>
     </div>
-    <div style="display:grid;grid-template-rows:1.3fr 1fr;row-gap:5mm">
-      <div class="ph"><img src="../../public/img/residences/suite-island-living.webp" alt=""><span class="tag">Porcelain bench · Smeg suite</span></div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;column-gap:5mm">
-        <div class="ph"><img src="../../public/img/residences/suite-bench-detail.webp" alt=""><span class="tag">Bench detail</span></div>
-        <div class="ph"><img src="../../public/img/residences/suite-study.webp" alt=""><span class="tag">Study</span></div>
+    <div style="display:grid;grid-template-rows:1.3fr 1fr;row-gap:5mm;min-height:0;height:100%">
+      <div class="ph" style="min-height:0"><img src="../../public/img/residences/suite-island-living.webp" alt=""><span class="tag">Lusso Stone bench · Smeg suite</span></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;column-gap:5mm;min-height:0">
+        <div class="ph" style="min-height:0"><img src="../../public/img/residences/suite-bench-detail.webp" alt=""><span class="tag">Bench detail</span></div>
+        <div class="ph" style="min-height:0"><img src="../../public/img/residences/suite-study.webp" alt=""><span class="tag">Study</span></div>
       </div>
     </div>
   </div>
@@ -258,26 +259,21 @@
         <div><div class="eyebrow">Floor Plan</div><h2 style="margin-top:3mm">Type A</h2></div>
         <div class="letter">A</div>
       </div>
-      <p class="serif" style="font-size:13pt;line-height:1.35;margin-top:2mm;color:var(--brown-dark)">The largest plan: a study off the entry, a 7.4-metre living room and the master suite on the ocean side.</p>
+      <p class="serif" style="font-size:13pt;line-height:1.35;margin-top:2mm;color:var(--brown-dark)">Type A, the largest plan combines generous internal living with expansive outdoor space, creating an effortless connection between inside and out.</p>
       <div class="rail" style="margin-top:6mm">
         <div><div class="k">Internal</div><div class="v">139.22 m²</div></div>
         <div><div class="k">Balcony</div><div class="v">22.80 m²</div></div>
         <div><div class="k">Total</div><div class="v">162.02 m²</div></div>
         <div><div class="k">Bed · Bath · Car</div><div class="v">3 · 2 · 2</div></div>
       </div>
-      <div class="rooms" style="margin-top:7mm">
-        <div class="r"><b>Living &amp; dining</b><i>5.1 × 7.4 m</i><s>Opens to the balcony</s></div>
-        <div class="r"><b>Kitchen</b><i>Island bench</i><s>Walk-in pantry · Integrated Smeg suite</s></div>
-        <div class="r"><b>Master bedroom</b><i>3.7 × 3.5 m</i><s>Walk-in robe · Ensuite</s></div>
-        <div class="r"><b>Bedroom 2</b><i>3.1 × 3.2 m</i><s>Built-in robe</s></div>
-        <div class="r"><b>Bedroom 3</b><i>3.2 × 3.2 m</i><s>Built-in robe</s></div>
-        <div class="r"><b>Study / multi-purpose</b><i>2.5 × 3.1 m</i><s></s></div>
-        <div class="r"><b>Main bathroom</b><i>Bath &amp; shower</i><s></s></div>
-        <div class="r"><b>Laundry &amp; linen</b><i>Separate room</i><s></s></div>
+      <div style="margin-top:8mm">
+        <div class="eyebrow">Residences</div>
+        <div class="units"><span>101</span><span>104</span><span>201</span><span>204</span><span>301</span><span>304</span><span>401</span><span>404</span><span>501</span><span>504</span></div>
+        <div class="fine" style="margin-top:2.5mm">Two residences per level, ten in all.</div>
       </div>
-      <div style="flex:1"></div>
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:6mm">
-        <div class="fine">Two residences per level, ten in all: residences 1, 4, 6, 9, 11, 14, 16, 19, 21 and 24. Dimensions are internal, as drawn on the architect’s typical plan.</div>
+      <div class="ph" style="flex:1;min-height:0;margin-top:7mm"><img src="../../public/img/residences/suite-living-tv.webp" alt=""><span class="tag">Display residence · Living to the terrace</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:6mm;margin-top:5mm">
+        <div class="fine" style="max-width:88mm">Ground-floor residences feature additional exclusive-use external areas. Floor plans with measurements available upon request. Areas are approximate.</div>
         <span class="badge">Dedicated study</span>
       </div>
     </div>
@@ -294,26 +290,21 @@
         <div><div class="eyebrow">Floor Plan</div><h2 style="margin-top:3mm">Type B</h2></div>
         <div class="letter">B</div>
       </div>
-      <p class="serif" style="font-size:13pt;line-height:1.35;margin-top:2mm;color:var(--brown-dark)">The mirrored corner plan: the same long living room and study, with the widest balcony of the three.</p>
+      <p class="serif" style="font-size:13pt;line-height:1.35;margin-top:2mm;color:var(--brown-dark)">Designed with flexibility and everyday living in mind, Type B residences provide generous interiors complemented by private outdoor living.</p>
       <div class="rail" style="margin-top:6mm">
         <div><div class="k">Internal</div><div class="v">131.13 m²</div></div>
         <div><div class="k">Balcony</div><div class="v">24.96 m²</div></div>
         <div><div class="k">Total</div><div class="v">156.09 m²</div></div>
         <div><div class="k">Bed · Bath · Car</div><div class="v">3 · 2 · 2</div></div>
       </div>
-      <div class="rooms" style="margin-top:7mm">
-        <div class="r"><b>Living &amp; dining</b><i>5.1 × 7.2 m</i><s>Opens to the balcony</s></div>
-        <div class="r"><b>Kitchen</b><i>Island bench</i><s>Walk-in pantry · Integrated Smeg suite</s></div>
-        <div class="r"><b>Master bedroom</b><i>3.5 × 3.6 m</i><s>Walk-in robe · Ensuite</s></div>
-        <div class="r"><b>Bedroom 2</b><i>3.2 × 3.0 m</i><s>Built-in robe</s></div>
-        <div class="r"><b>Bedroom 3</b><i>3.2 × 3.0 m</i><s>Built-in robe</s></div>
-        <div class="r"><b>Study / multi-purpose</b><i>2.5 × 3.0 m</i><s></s></div>
-        <div class="r"><b>Main bathroom</b><i>Bath &amp; shower</i><s></s></div>
-        <div class="r"><b>Laundry &amp; linen</b><i>Separate room</i><s></s></div>
+      <div style="margin-top:8mm">
+        <div class="eyebrow">Residences</div>
+        <div class="units"><span>102</span><span>103</span><span>202</span><span>203</span><span>302</span><span>303</span><span>402</span><span>403</span><span>502</span><span>503</span></div>
+        <div class="fine" style="margin-top:2.5mm">Two residences per level, ten in all.</div>
       </div>
-      <div style="flex:1"></div>
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:6mm">
-        <div class="fine">Two residences per level, ten in all: residences 2, 3, 7, 8, 12, 13, 17, 18, 22 and 23. Dimensions are internal, as drawn on the architect’s typical plan.</div>
+      <div class="ph" style="flex:1;min-height:0;margin-top:7mm"><img src="../../public/img/residences/suite-living.webp" alt=""><span class="tag">Display residence · Living room</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:6mm;margin-top:5mm">
+        <div class="fine" style="max-width:88mm">Ground-floor residences feature additional exclusive-use external areas. Floor plans with measurements available upon request. Areas are approximate.</div>
         <span class="badge">Largest balcony</span>
       </div>
     </div>
@@ -330,27 +321,22 @@
         <div><div class="eyebrow">Floor Plan</div><h2 style="margin-top:3mm">Type C</h2></div>
         <div class="letter">C</div>
       </div>
-      <p class="serif" style="font-size:13pt;line-height:1.35;margin-top:2mm;color:var(--brown-dark)">The end residence: one per level, with living and dining as two distinct rooms and the largest master bedroom.</p>
+      <p class="serif" style="font-size:13pt;line-height:1.35;margin-top:2mm;color:var(--brown-dark)">Thoughtfully designed for effortless coastal living, Type C residences combine functional interiors with generous outdoor space and a relaxed connection to the surrounding environment.</p>
       <div class="rail" style="margin-top:6mm">
-        <div><div class="k">Internal</div><div class="v">118.29 m²</div></div>
+        <div><div class="k">Internal</div><div class="v">117 m²</div></div>
         <div><div class="k">Balcony</div><div class="v">21.42 m²</div></div>
-        <div><div class="k">Total</div><div class="v">139.71 m²</div></div>
+        <div><div class="k">Total</div><div class="v">138.42 m²</div></div>
         <div><div class="k">Bed · Bath · Car</div><div class="v">3 · 2 · 2</div></div>
       </div>
-      <div class="rooms" style="margin-top:7mm">
-        <div class="r"><b>Living</b><i>5.2 × 4.0 m</i><s>Opens to the balcony</s></div>
-        <div class="r"><b>Dining</b><i>5.3 × 3.2 m</i><s>Beside the kitchen</s></div>
-        <div class="r"><b>Kitchen</b><i>Island bench</i><s>Walk-in pantry · Integrated Smeg suite</s></div>
-        <div class="r"><b>Master bedroom</b><i>4.0 × 3.3 m</i><s>Walk-in robe · Ensuite</s></div>
-        <div class="r"><b>Bedroom 2</b><i>3.0 × 3.3 m</i><s>Built-in robe</s></div>
-        <div class="r"><b>Bedroom 3</b><i>3.0 × 3.3 m</i><s>Built-in robe</s></div>
-        <div class="r"><b>Main bathroom</b><i>Bath &amp; shower</i><s></s></div>
-        <div class="r"><b>Laundry &amp; linen</b><i>Separate room</i><s></s></div>
+      <div style="margin-top:8mm">
+        <div class="eyebrow">Residences</div>
+        <div class="units"><span>105</span><span>205</span><span>305</span><span>405</span><span>505</span></div>
+        <div class="fine" style="margin-top:2.5mm">One residence per level, five in all.</div>
       </div>
-      <div style="flex:1"></div>
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:6mm">
-        <div class="fine">One residence per level, five in all: residences 5, 10, 15, 20 and 25. No separate study on this plan. Dimensions are internal, as drawn on the architect’s typical plan.</div>
-        <span class="badge">Most compact plan</span>
+      <div class="ph" style="flex:1;min-height:0;margin-top:7mm"><img src="../../public/img/residences/suite-dining.webp" alt=""><span class="tag">Display residence · Dining &amp; kitchen</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:6mm;margin-top:5mm">
+        <div class="fine" style="max-width:88mm">Ground-floor residences feature additional exclusive-use external areas. Floor plans with measurements available upon request. Areas are approximate.</div>
+        <span class="badge">Maximised space</span>
       </div>
     </div>
   </div></div>
@@ -361,20 +347,15 @@
 <section class="page">
   <div class="pad" style="display:grid;grid-template-rows:auto 1fr auto;row-gap:6mm">
     <div style="display:grid;grid-template-columns:1fr 1fr;column-gap:14mm;align-items:end">
-      <div><div class="eyebrow">Shared Spaces</div><h2 style="margin-top:4mm">The arrival, and the retreat</h2></div>
-      <p>Between the street and the front door, and between the building and the beach, two spaces belong to every resident. Below ground, the whole of the basement is given to residents.</p>
+      <div><div class="eyebrow">Shared Spaces</div><h2 style="margin-top:4mm">Your Private<br>Coastal Sanctuary</h2></div>
+      <div>
+        <p class="lead">Enjoy the luxury of relaxed living with Mira Living’s resort-style pool, a tranquil space to cool off, unwind and soak up the Queensland sunshine.</p>
+        <p style="margin-top:3mm">Reserved for residents, the pool and its covered alfresco lounge sit within the landscaped rear garden, a lift ride from every residence. Below ground, the whole of the basement is given to residents.</p>
+      </div>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;column-gap:6mm;min-height:0">
-      <div style="display:flex;flex-direction:column;min-height:0">
-        <div class="ph" style="flex:1;min-height:0"><img src="../../public/img/renders/lobby-arrival.webp" alt=""><span class="tag r">Artist impression</span></div>
-        <div style="margin-top:4mm"><div class="eyebrow teal">The arrival</div><h3 style="margin-top:1.5mm">A lobby set among gardens</h3>
-        <p style="margin-top:1.5mm;font-size:8.4pt">The entry sits back from the Esplanade behind a deep planted courtyard, so the walk from the street to the lift passes under a timber pergola and between tropical planting before the glass doors and the Mira signature.</p></div>
-      </div>
-      <div style="display:flex;flex-direction:column;min-height:0">
-        <div class="ph" style="flex:1;min-height:0"><img src="../../public/img/site/pool-dusk-photo.webp" alt=""><span class="tag r">Photographed October 2026</span></div>
-        <div style="margin-top:4mm"><div class="eyebrow teal">The retreat</div><h3 style="margin-top:1.5mm">A resident-only pool and lawn</h3>
-        <p style="margin-top:1.5mm;font-size:8.4pt">Behind the building, a lap pool, sun loungers and a covered alfresco lounge sit within the landscaped rear garden — a private sanctuary a lift ride from every residence.</p></div>
-      </div>
+    <div style="display:grid;grid-template-columns:1.55fr 1fr;column-gap:6mm;min-height:0">
+      <div class="ph" style="min-height:0"><img src="../../public/img/site/pool-dusk-photo.webp" alt=""><span class="tag r">Resident-only pool · Photographed October 2026</span></div>
+      <div class="ph" style="min-height:0"><img src="../../public/img/site/aerial-esplanade-front.webp" alt="" style="object-position:center 55%"><span class="tag r">Absolute beachfront · Photographed October 2026</span></div>
     </div>
     <div class="rail">
       <div><div class="k">Basement</div><div class="v">50 car spaces</div></div>
@@ -392,47 +373,47 @@
     <div style="display:grid;grid-template-columns:1fr 1fr;column-gap:14mm;align-items:end">
       <div><div class="eyebrow">Availability</div><h2 style="margin-top:4mm">Residence by residence</h2></div>
       <div>
-        <p>Five residences sit on each level, each with its balcony to the Esplanade and the Coral Sea. Ten residences are currently available. Residences marked future release will be offered at a later date. Pricing is available from the sales team on request.</p>
+        <p>With just five residences on each level, enjoy a sense of space, privacy and exclusivity, completed by balconies overlooking the Esplanade and the Coral Sea. Residences are available from $1.55M. Ten residences are currently available; residences marked future release will be offered at a later date.</p>
         <div class="legend" style="margin-top:3.5mm"><span><i class="a"></i>Available</span><span><i class="s"></i>Sold</span><span><i class="f"></i>Future release</span></div>
       </div>
     </div>
     <div class="bldg">
       <div class="lvl">Level 5</div>
-      <div class="cell sold"><div class="n"><span>No. 21</span><span>Type A</span></div><div class="p">Sold</div></div>
-      <div class="cell avail"><div class="n"><span>No. 22</span><span>Type B</span></div><div class="p">Available</div></div>
-      <div class="cell avail"><div class="n"><span>No. 23</span><span>Type B</span></div><div class="p">Available</div></div>
-      <div class="cell sold"><div class="n"><span>No. 24</span><span>Type A</span></div><div class="p">Sold</div></div>
-      <div class="cell sold"><div class="n"><span>No. 25</span><span>Type C</span></div><div class="p">Sold</div></div>
+      <div class="cell sold"><div class="n"><span>No. 501</span><span>Type A</span></div><div class="p">Sold</div></div>
+      <div class="cell avail"><div class="n"><span>No. 502</span><span>Type B</span></div><div class="p">Available</div></div>
+      <div class="cell avail"><div class="n"><span>No. 503</span><span>Type B</span></div><div class="p">Available</div></div>
+      <div class="cell sold"><div class="n"><span>No. 504</span><span>Type A</span></div><div class="p">Sold</div></div>
+      <div class="cell sold"><div class="n"><span>No. 505</span><span>Type C</span></div><div class="p">Sold</div></div>
 
       <div class="lvl">Level 4</div>
-      <div class="cell avail"><div class="n"><span>No. 16</span><span>Type A</span></div><div class="p">Available</div></div>
-      <div class="cell avail"><div class="n"><span>No. 17</span><span>Type B</span></div><div class="p">Available</div></div>
-      <div class="cell avail"><div class="n"><span>No. 18</span><span>Type B</span></div><div class="p">Available</div></div>
-      <div class="cell sold"><div class="n"><span>No. 19</span><span>Type A</span></div><div class="p">Sold</div></div>
-      <div class="cell future"><div class="n"><span>No. 20</span><span>Type C</span></div><div class="p">Future release</div></div>
+      <div class="cell avail"><div class="n"><span>No. 401</span><span>Type A</span></div><div class="p">Available</div></div>
+      <div class="cell avail"><div class="n"><span>No. 402</span><span>Type B</span></div><div class="p">Available</div></div>
+      <div class="cell avail"><div class="n"><span>No. 403</span><span>Type B</span></div><div class="p">Available</div></div>
+      <div class="cell sold"><div class="n"><span>No. 404</span><span>Type A</span></div><div class="p">Sold</div></div>
+      <div class="cell future"><div class="n"><span>No. 405</span><span>Type C</span></div><div class="p">Future release</div></div>
 
       <div class="lvl">Level 3</div>
-      <div class="cell sold"><div class="n"><span>No. 11</span><span>Type A</span></div><div class="p">Sold</div></div>
-      <div class="cell sold"><div class="n"><span>No. 12</span><span>Type B</span></div><div class="p">Sold</div></div>
-      <div class="cell avail"><div class="n"><span>No. 13</span><span>Type B</span></div><div class="p">Available</div></div>
-      <div class="cell sold"><div class="n"><span>No. 14</span><span>Type A</span></div><div class="p">Sold</div></div>
-      <div class="cell avail"><div class="n"><span>No. 15</span><span>Type C</span></div><div class="p">Available</div></div>
+      <div class="cell sold"><div class="n"><span>No. 301</span><span>Type A</span></div><div class="p">Sold</div></div>
+      <div class="cell sold"><div class="n"><span>No. 302</span><span>Type B</span></div><div class="p">Sold</div></div>
+      <div class="cell avail"><div class="n"><span>No. 303</span><span>Type B</span></div><div class="p">Available</div></div>
+      <div class="cell sold"><div class="n"><span>No. 304</span><span>Type A</span></div><div class="p">Sold</div></div>
+      <div class="cell avail"><div class="n"><span>No. 305</span><span>Type C</span></div><div class="p">Available</div></div>
 
       <div class="lvl">Level 2</div>
-      <div class="cell future"><div class="n"><span>No. 6</span><span>Type A</span></div><div class="p">Future release</div></div>
-      <div class="cell future"><div class="n"><span>No. 7</span><span>Type B</span></div><div class="p">Future release</div></div>
-      <div class="cell future"><div class="n"><span>No. 8</span><span>Type B</span></div><div class="p">Future release</div></div>
-      <div class="cell future"><div class="n"><span>No. 9</span><span>Type A</span></div><div class="p">Future release</div></div>
-      <div class="cell avail"><div class="n"><span>No. 10</span><span>Type C</span></div><div class="p">Available</div></div>
+      <div class="cell future"><div class="n"><span>No. 201</span><span>Type A</span></div><div class="p">Future release</div></div>
+      <div class="cell future"><div class="n"><span>No. 202</span><span>Type B</span></div><div class="p">Future release</div></div>
+      <div class="cell future"><div class="n"><span>No. 203</span><span>Type B</span></div><div class="p">Future release</div></div>
+      <div class="cell future"><div class="n"><span>No. 204</span><span>Type A</span></div><div class="p">Future release</div></div>
+      <div class="cell avail"><div class="n"><span>No. 205</span><span>Type C</span></div><div class="p">Available</div></div>
 
       <div class="lvl">Ground Floor</div>
-      <div class="cell sold"><div class="n"><span>No. 1</span><span>Type A</span></div><div class="p">Sold</div></div>
-      <div class="cell avail"><div class="n"><span>No. 2</span><span>Type B</span></div><div class="p">Available</div></div>
-      <div class="cell avail"><div class="n"><span>No. 3</span><span>Type B</span></div><div class="p">Available</div></div>
-      <div class="cell sold"><div class="n"><span>No. 4</span><span>Type A</span></div><div class="p">Sold</div></div>
-      <div class="cell sold"><div class="n"><span>No. 5</span><span>Type C</span></div><div class="p">Sold</div></div>
+      <div class="cell sold"><div class="n"><span>No. 101</span><span>Type A</span></div><div class="p">Sold</div></div>
+      <div class="cell avail"><div class="n"><span>No. 102</span><span>Type B</span></div><div class="p">Available</div></div>
+      <div class="cell avail"><div class="n"><span>No. 103</span><span>Type B</span></div><div class="p">Available</div></div>
+      <div class="cell sold"><div class="n"><span>No. 104</span><span>Type A</span></div><div class="p">Sold</div></div>
+      <div class="cell sold"><div class="n"><span>No. 105</span><span>Type C</span></div><div class="p">Sold</div></div>
     </div>
-    <div class="fine">Availability as at September 2026. Prices are not published and are available from the sales team on request. Changes to availability and price may occur without notice at the discretion of the seller. Please confirm current availability and pricing with the sales team before relying on this schedule.</div>
+    <div class="fine">Availability as at September 2026. Residences are available from $1.55M; individual prices are available from the sales team on request. Changes to availability and price may occur without notice at the discretion of the seller. Please confirm current availability and pricing with the sales team before relying on this schedule.</div>
   </div>
   <div class="folio"><span>Mira Living · Availability September 2026</span><span>10</span></div>
 </section>
@@ -558,7 +539,7 @@
         <div><div class="k">Online</div><div style="font-size:9pt;margin-top:2mm;line-height:1.5;color:#fff">miraliving.com.au<br>@miraliving.bargara</div></div>
       </div>
       <div class="rule light" style="margin-top:7mm"></div>
-      <div class="fine" style="margin-top:5mm">Images and photographs are for marketing purposes only. Information contained within any marketing material, website or other portal should not be relied upon. Changes to availability and price may occur without notice at the discretion of the seller. All persons should make their own enquiries and seek their own independent advice with respect to any property advertised or the information about the property contained in any marketing materials. Renders are artist impressions. Display residence furniture and styling are not included.</div>
+      <div class="fine" style="margin-top:5mm">Images and photographs are for marketing purposes only. Information contained within any marketing material, website or other portal should not be relied upon. Changes to availability and price may occur without notice at the discretion of the seller. All persons should make their own enquiries and seek their own independent advice with respect to any property advertised or the information about the property contained in any marketing materials. Display residence furniture and styling are not included.</div>
     </div>
   </div>
 </section>

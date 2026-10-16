@@ -20,7 +20,7 @@ const heroFilm = {
 const headlineFacts = [
   { value: String(developmentSpecs.totalResidences), label: "Oceanfront residences" },
   { value: "3 + MPR", label: "Bedrooms" },
-  { value: "118–139", label: "Sqm internal" },
+  { value: "117–139", label: "Sqm internal" },
   { value: "2", label: "Secure carparks" },
 ];
 
