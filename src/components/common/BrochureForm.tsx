@@ -37,6 +37,9 @@ export default function BrochureForm({ idPrefix = "form", onSuccess, darkVariant
   const [errors, setErrors] = useState<Partial<Record<FieldName, string>>>({});
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  // False when the API accepted the lead but no CRM is connected to pass it
+  // on, in which case the thank-you must not promise a call back.
+  const [delivered, setDelivered] = useState(true);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -89,6 +92,21 @@ export default function BrochureForm({ idPrefix = "form", onSuccess, darkVariant
       }
 
       setStatus("success");
+      setDelivered(result.delivered !== false);
+      // Start the download straight away — a same-origin link with the
+      // `download` attribute, so the visitor is not sent off the page and no
+      // pop-up blocker gets a say. The button in the success state remains
+      // for anyone whose browser handled this as a prompt they dismissed.
+      if (siteConfig.brochureUrl) {
+        const link = document.createElement("a");
+        link.href = siteConfig.brochureUrl;
+        link.download = siteConfig.brochureUrl.split("/").pop() ?? "brochure.pdf";
+        document.body.appendChild(link);
+        link.click();
+        // Removed a moment later: some browsers start the download
+        // asynchronously and drop it if the anchor is gone from the document.
+        setTimeout(() => link.remove(), 2000);
+      }
       if (onSuccess) {
         setTimeout(onSuccess, 2600);
       }
@@ -186,14 +204,15 @@ export default function BrochureForm({ idPrefix = "form", onSuccess, darkVariant
           }`}
         >
           {siteConfig.brochureUrl
-            ? "Your brochure is ready below, and a member of our sales team will be in touch shortly."
+            ? `Your brochure is downloading. If it has not started, use the button below.${
+                delivered ? " A member of our sales team will be in touch shortly." : ""
+              }`
             : "The brochure will be emailed to you shortly, along with a call from a member of our sales team."}
         </p>
         {siteConfig.brochureUrl && (
           <a
             href={siteConfig.brochureUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+            download
             className={`mt-8 inline-flex items-center gap-3 px-9 py-4 font-sans text-[12px] uppercase tracking-eyebrow transition-colors duration-300 focus:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 ${
               darkVariant
                 ? "bg-mira-sandLight text-mira-charcoal hover:bg-white focus-visible:ring-white focus-visible:ring-offset-transparent"

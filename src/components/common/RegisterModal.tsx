@@ -16,6 +16,13 @@ import { X } from "lucide-react";
  * rail, the form sits on clean ground to the right where the hairline fields
  * stay easy to read. Below `lg` the rail collapses to a short video band above
  * the form so the motion is still there without stealing the fold.
+ *
+ * The sheet is a flex row, not a grid: its height is `auto` capped at 92vh,
+ * and a flex line is clamped to that cap, so the form column gets a definite
+ * height to scroll inside. As a grid the row track sized to the form's full
+ * height, the column's `max-h-full` resolved against that, and on any screen
+ * shorter than the form the submit button sat below the clipped edge with no
+ * way to scroll to it — while the page behind was locked.
  */
 
 const modalFacts = [
@@ -45,12 +52,12 @@ export default function RegisterModal() {
       <div
         ref={panelRef}
         tabIndex={-1}
-        className="relative z-10 grid h-full max-h-[100svh] w-full max-w-5xl grid-cols-1 overflow-hidden bg-mira-ground shadow-float focus:outline-none sm:h-auto sm:max-h-[92vh] lg:grid-cols-[0.8fr_1fr]"
+        className="relative z-10 flex h-full max-h-[100svh] w-full max-w-5xl overflow-hidden bg-mira-ground shadow-float focus:outline-none sm:h-auto sm:max-h-[92vh]"
       >
         {/* ------------------------------------------------------------------
             Left rail — footage, statement and the commercial facts
             ------------------------------------------------------------------ */}
-        <div className="relative hidden overflow-hidden bg-mira-charcoal text-white lg:flex lg:flex-col lg:justify-end">
+        <div className="relative hidden overflow-hidden bg-mira-charcoal text-white lg:flex lg:w-[44%] lg:shrink-0 lg:flex-col lg:justify-end">
           <div className="absolute inset-0" aria-hidden="true">
             <BackdropVideo
               src="/video/brochure-bg.mp4"
@@ -96,7 +103,7 @@ export default function RegisterModal() {
           <X className="h-5 w-5" strokeWidth={1.5} />
         </button>
 
-        <div className="relative flex max-h-full flex-col overflow-y-auto">
+        <div className="relative flex min-h-0 min-w-0 flex-1 flex-col overflow-y-auto">
           {/* Compact motion band, below lg only */}
           <div className="relative h-36 shrink-0 overflow-hidden bg-mira-charcoal sm:h-44 lg:hidden" aria-hidden="true">
             <BackdropVideo
@@ -123,7 +130,9 @@ export default function RegisterModal() {
             </p>
 
             <div className="mt-9">
-              <BrochureForm idPrefix="modal" onSuccess={closeRegister} />
+              {/* No onSuccess: the dialog stays open so the download button is
+                  there for as long as the visitor wants it. */}
+              <BrochureForm idPrefix="modal" />
             </div>
           </div>
         </div>

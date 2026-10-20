@@ -67,19 +67,14 @@ export async function POST(request: Request) {
   });
 
   if (!webhookUrl) {
-    // Deliberately a failure, not a silent success: telling a buyer the sales
-    // team will be in touch when nothing was delivered is worse than an error.
-    console.error(
-      "[brochure] BROCHURE_WEBHOOK_URL is not set - the lead above was not delivered to the CRM."
+    // No CRM connected yet (20 Oct 2026): the visitor still gets the brochure
+    // and the lead stays in the server log above. `delivered: false` tells
+    // the form not to promise a call back. Once the webhook is set, a failed
+    // delivery below is still reported as an error, never as a success.
+    console.warn(
+      "[brochure] BROCHURE_WEBHOOK_URL is not set - the lead above is logged only, not delivered to the CRM."
     );
-    return NextResponse.json(
-      {
-        ok: false,
-        message:
-          "We could not submit your enquiry right now. Please call our sales team directly.",
-      },
-      { status: 503 }
-    );
+    return NextResponse.json({ ok: true, delivered: false });
   }
 
   try {
@@ -113,5 +108,5 @@ export async function POST(request: Request) {
     );
   }
 
-  return NextResponse.json({ ok: true });
+  return NextResponse.json({ ok: true, delivered: true });
 }

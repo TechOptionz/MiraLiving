@@ -45,7 +45,7 @@ export default function CookieConsent() {
   if (!showBanner) return null;
 
   return (
-    <div className="fixed bottom-4 left-4 right-4 md:left-auto md:right-6 md:bottom-6 z-50 max-w-md bg-white/95 backdrop-blur-md border border-mira-border shadow-float p-5 rounded-none animate-fadeIn">
+    <div className="fixed bottom-4 left-4 right-4 md:left-auto md:right-6 md:bottom-6 z-40 max-w-md bg-white/95 backdrop-blur-md border border-mira-border shadow-float p-5 rounded-none animate-fadeIn">
       <div className="text-xs font-sans text-mira-charcoal space-y-2">
         <p className="font-medium text-mira-brown uppercase tracking-eyebrow text-[11px]">
           Cookie & Privacy Preferences
