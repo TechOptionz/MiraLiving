@@ -357,7 +357,7 @@ export const locationTeaser = {
   // Drive/walk times shown on the home teaser. Every figure here is one the
   // rest of the site already states — do not add a new one without a source.
   proximity: [
-    { label: "The Esplanade", value: "At the door" },
+    { label: "The Beach", value: "On your doorstep" },
     { label: "Bargara Golf Club", value: "3 min walk" },
     { label: "Bundaberg", value: "20 min drive" },
     { label: "Bundaberg Airport", value: "25 min drive" }
@@ -536,11 +536,11 @@ export const floorPlans: FloorPlan[] = [
     cars: 2,
     mpr: false,
     // The plan sheet gives 118.29 sqm internal / 139.71 sqm total; the client
-    // asked for 117 "throughout" (review, 16 Oct 2026), so the internal figure
-    // is theirs and the total is internal + balcony to match.
+    // confirmed the figures printed in their current brochure instead
+    // (117 + 21 = 138, review 20 Oct 2026), so all three are theirs.
     internalArea: "117 sqm",
-    externalArea: "21.42 sqm",
-    totalArea: "138.42 sqm",
+    externalArea: "21 sqm",
+    totalArea: "138 sqm",
     units: [5, 10, 15, 20, 25],
     badge: "Maximised space",
     image: "/img/plans/type-c.webp",
