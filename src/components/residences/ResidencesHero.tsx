@@ -6,16 +6,24 @@ import { developmentSpecs, siteConfig } from "@/content/site-content";
 /**
  * The development's masthead.
  *
- * A short interior film — the kitchen, then a bedroom — cut from two
- * cinematic clips and joined with a crossfade (public/video/residences-hero.mp4,
- * 13 s, silent). The poster is the footage's own first frame, so the hero
- * paints finished and never swaps one picture for another; reduced-motion
- * visitors keep that still.
+ * A short interior film cut from the client's completed-building footage
+ * (DSLR, October 2026): it opens on the kitchen and dining room, then the
+ * entry hall pushing into the living room, the television wall, the sofa,
+ * the master bedroom from two angles, the ensuite, and out to the residents'
+ * pool from above and at golden hour, joined with 0.4s dissolves
+ * (public/video/residences-hero-oct-2026.mp4, 14 s, silent; a 720p encode for phones).
+ * One source shot — the slow push along the kitchen island — is itself
+ * frame-held slow motion and stutters on a loop, so it is deliberately not
+ * used. The poster is the footage's own first frame, so the hero paints
+ * finished and never swaps one picture for another; reduced-motion visitors
+ * keep that still.
  */
 const heroFilm = {
-  src: "/video/residences-hero.mp4",
-  poster: "/video/residences-hero-poster.jpg",
-  description: "Interior film of a Mira residence: the kitchen and living room, then the master bedroom.",
+  src: "/video/residences-hero-oct-2026.mp4",
+  smallSrc: "/video/residences-hero-oct-2026-720.mp4",
+  poster: "/video/residences-hero-oct-2026-poster.jpg",
+  description:
+    "Film of a completed Mira residence: the kitchen and dining room, the entry opening onto the living room, the master bedroom and ensuite, then the residents' pool at sunset.",
 };
 const headlineFacts = [
   { value: String(developmentSpecs.totalResidences), label: "Oceanfront residences" },
@@ -31,6 +39,7 @@ export default function ResidencesHero() {
         <Parallax speed={0.12}>
           <BackdropVideo
             src={heroFilm.src}
+            smallSrc={heroFilm.smallSrc}
             poster={heroFilm.poster}
             aria-label={heroFilm.description}
             // The page's own landing frame — fetched and playing from the markup.

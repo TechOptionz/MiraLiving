@@ -6,7 +6,9 @@ import BrochureForm from "@/components/common/BrochureForm";
 /**
  * The closing registration section.
  *
- * The footage runs full-bleed behind the whole section rather than inside a
+ * The footage (Bargara from the air, cut from the client's October 2026 film:
+ * the swell below the headland, Kellys Beach, and the beach in front of the
+ * building) runs full-bleed behind the whole section rather than inside a
  * cropped panel, so the page ends on motion the way it opened on it. The form
  * sits on a glass pane over the top: the swell still reads through it, and the
  * blur is what keeps the hairline fields legible against water that is moving
@@ -27,8 +29,8 @@ export default function RegisterSection() {
       {/* Motion backdrop */}
       <div className="absolute inset-0 z-0" aria-hidden="true">
         <BackdropVideo
-          src="/video/brochure-bg.mp4"
-          poster="/video/brochure-bg-poster.jpg"
+          src="/video/register-bg-oct-2026-v2.mp4"
+          poster="/video/register-bg-oct-2026-v2-poster.jpg"
           className="h-full w-full object-cover object-center"
         />
         {/* Enough ground for the type without flattening the footage to grey:

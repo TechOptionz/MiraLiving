@@ -294,7 +294,7 @@ export const storyPage = {
           caption: "Photographed October 2026",
         } as ImageSlot,
         support: {
-          src: "/img/site/aerial-headland-oct-2026.webp",
+          src: "/img/site/aerial-headland-film.webp",
           alt: "Aerial view of the completed residence on the rocky foreshore, the beach and township of Bargara beyond",
           label: "A landmark address",
           note: "The completed building on the headland",
@@ -472,10 +472,10 @@ export const storyPage = {
     // so both invitations to take the brochure move rather than sit still. Its
     // poster is the footage's own first frame, so the section paints finished.
     video: {
-      src: "/video/brochure-bg.mp4",
-      poster: "/video/brochure-bg-poster.jpg",
+      src: "/video/register-bg-oct-2026-v2.mp4",
+      poster: "/video/register-bg-oct-2026-v2-poster.jpg",
       description:
-        "Aerial footage of the Coral Sea breaking along the Bargara shoreline below Mira.",
+        "Aerial footage of Bargara: the Coral Sea below the headland, Kellys Beach and the shoreline in front of Mira.",
     } as VideoSlot,
   },
 };

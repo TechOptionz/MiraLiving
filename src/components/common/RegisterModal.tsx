@@ -60,8 +60,8 @@ export default function RegisterModal() {
         <div className="relative hidden overflow-hidden bg-mira-charcoal text-white lg:flex lg:w-[44%] lg:shrink-0 lg:flex-col lg:justify-end">
           <div className="absolute inset-0" aria-hidden="true">
             <BackdropVideo
-              src="/video/brochure-bg.mp4"
-              poster="/video/brochure-bg-poster.jpg"
+              src="/video/register-bg-oct-2026-v2.mp4"
+              poster="/video/register-bg-oct-2026-v2-poster.jpg"
               priority
               className="h-full w-full object-cover object-center"
             />
@@ -107,8 +107,8 @@ export default function RegisterModal() {
           {/* Compact motion band, below lg only */}
           <div className="relative h-36 shrink-0 overflow-hidden bg-mira-charcoal sm:h-44 lg:hidden" aria-hidden="true">
             <BackdropVideo
-              src="/video/brochure-bg.mp4"
-              poster="/video/brochure-bg-poster.jpg"
+              src="/video/register-bg-oct-2026-v2.mp4"
+              poster="/video/register-bg-oct-2026-v2-poster.jpg"
               priority
               className="h-full w-full object-cover object-center"
             />

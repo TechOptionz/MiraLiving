@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { useModal } from "@/context/ModalContext";
-import Image from "next/image";
+import BackdropVideo from "@/components/common/BackdropVideo";
 import { siteConfig } from "@/content/site-content";
 
 /**
@@ -25,25 +25,33 @@ export default function Hero() {
       {/* Cinematic full-bleed backdrop */}
       <div className="absolute inset-0 z-0" aria-hidden="true">
         {/*
-          The completed building from the Esplanade at dusk (drone, October
-          2026). It replaced the moving-water footage, which was not Bargara
-          (client review, 16 Oct 2026). The frame is anchored a little above
-          centre so the building stays whole under the headline on wide
-          screens and keeps its roofline on phones.
+          A 19-second cut of the client's completed-building film (DSLR +
+          drone, October 2026): the beach and building from the air, the
+          facade from the street, the living room, kitchen, bedroom and pool,
+          then back out to the headland and the coastline, with 0.4s
+          dissolves. It opens and closes on aerials so the loop seam reads as
+          a deliberate cut. The poster is its own first frame, so the hero
+          paints finished and never swaps one picture for another. Phones get
+          a 720p encode under half the size.
         */}
-        <Image
-          src="/img/site/facade-dusk-photo.webp"
-          alt=""
-          fill
+        <BackdropVideo
+          src="/video/home-hero-oct-2026.mp4"
+          smallSrc="/video/home-hero-oct-2026-720.mp4"
+          poster="/video/home-hero-oct-2026-poster.jpg"
+          // The first thing anyone sees: fetched and playing from the markup,
+          // so the footage is already moving when the page is first readable.
           priority
-          quality={85}
-          sizes="100vw"
-          className="object-cover object-[center_42%]"
+          className="w-full h-full object-cover object-center"
         />
 
-        {/* Light directional scrim: just enough to seat the type, the photograph stays the hero */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/15" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/35 via-black/5 to-transparent" />
+        {/* Directional scrim. The film is bright — midday beach, white
+            interiors — so it carries more weight than the dusk photograph
+            needed: heaviest behind the headline column and along the foot,
+            lifting toward the top right so the footage still reads as the
+            subject. Adjust here rather than darkening the encode. */}
+        <div className="absolute inset-0 bg-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/25" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/20 to-transparent" />
         <div className="absolute inset-0 bg-noise opacity-[0.07]" />
       </div>
 

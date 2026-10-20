@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, X, Plus } from "lucide-react";
 import { displayResidence } from "@/content/site-content";
@@ -43,7 +43,11 @@ function Tile({
     <button
       type="button"
       onClick={() => onOpen(index)}
-      aria-label={more ? `Open all ${photos.length} photographs` : `Open photograph: ${photo.room}`}
+      aria-label={
+        more
+          ? `Open all ${photos.length} photographs`
+          : `Open photograph: ${photo.room}`
+      }
       className={`group relative block w-full overflow-hidden bg-mira-sand ${stretch ? "h-full" : "aspect-[3/2]"} ${className}`}
     >
       <Image
@@ -57,7 +61,9 @@ function Tile({
       {more ? (
         <span className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-white">
           <Plus className="h-6 w-6 stroke-[1.25]" />
-          <span className="font-sans text-[12px] uppercase tracking-[0.18em]">{more} more</span>
+          <span className="font-sans text-[12px] uppercase tracking-[0.18em]">
+            {more} more
+          </span>
         </span>
       ) : (
         <span className="absolute bottom-3 left-3 bg-mira-charcoal/70 px-2.5 py-1 font-sans text-[11px] uppercase tracking-[0.14em] text-white backdrop-blur-sm">
@@ -80,7 +86,10 @@ export default function DisplayGallery() {
     setOpen(true);
   }, []);
   const next = useCallback(() => setIndex((i) => (i + 1) % photos.length), []);
-  const prev = useCallback(() => setIndex((i) => (i - 1 + photos.length) % photos.length), []);
+  const prev = useCallback(
+    () => setIndex((i) => (i - 1 + photos.length) % photos.length),
+    [],
+  );
 
   useEffect(() => {
     if (!open) return;
@@ -92,6 +101,18 @@ export default function DisplayGallery() {
     return () => window.removeEventListener("keydown", onKey);
   }, [open, next, prev]);
 
+  // The filmstrip keeps the current photograph in view as the visitor pages,
+  // so the strip never shows a selection that has scrolled off its edge.
+  const thumbRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  useEffect(() => {
+    if (!open) return;
+    thumbRefs.current[index]?.scrollIntoView({
+      block: "nearest",
+      inline: "center",
+      behavior: "smooth",
+    });
+  }, [open, index]);
+
   const current = photos[index];
 
   return (
@@ -102,18 +123,30 @@ export default function DisplayGallery() {
       <div className="mx-auto max-w-[1400px]">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end">
           <div className="max-w-3xl space-y-5 lg:col-span-8">
-            <Reveal variant="fade" className="block font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-brown">
+            <Reveal
+              variant="fade"
+              className="block font-sans text-[12px] font-medium uppercase tracking-[0.16em] text-mira-brown"
+            >
               {displayResidence.eyebrow}
             </Reveal>
-            <Reveal as="h2" delay={120} className="font-serif text-[clamp(1.9rem,4.4vw,3.5rem)] font-light leading-[1.12] text-mira-charcoal">
+            <Reveal
+              as="h2"
+              delay={120}
+              className="font-serif text-[clamp(1.9rem,4.4vw,3.5rem)] font-light leading-[1.12] text-mira-charcoal"
+            >
               {displayResidence.headline}
             </Reveal>
-            <Reveal delay={220} className="font-sans text-[16px] leading-[1.75] text-mira-brownDark sm:text-lg">
+            <Reveal
+              delay={220}
+              className="font-sans text-[16px] leading-[1.75] text-mira-brownDark sm:text-lg"
+            >
               {displayResidence.intro}
             </Reveal>
           </div>
           <Reveal delay={300} className="lg:col-span-4 lg:text-right">
-            <span className="font-serif text-4xl font-light leading-none text-mira-charcoal">{photos.length}</span>
+            <span className="font-serif text-4xl font-light leading-none text-mira-charcoal">
+              {photos.length}
+            </span>
             <span className="ml-3 font-sans text-[12px] uppercase tracking-[0.16em] text-mira-brown">
               photographs
             </span>
@@ -121,22 +154,75 @@ export default function DisplayGallery() {
         </div>
 
         {/* The grid: a 12-column editorial layout, every tile 3:2. */}
-        <Reveal delay={200} className="mt-12 grid grid-cols-1 gap-3 sm:grid-cols-12 sm:gap-4">
-          <Tile index={0} onOpen={openAt} className="sm:col-span-8" sizes="(max-width: 640px) 100vw, (max-width: 1400px) 66vw, 930px" />
+        <Reveal
+          delay={200}
+          className="mt-12 grid grid-cols-1 gap-3 sm:grid-cols-12 sm:gap-4"
+        >
+          <Tile
+            index={0}
+            onOpen={openAt}
+            className="sm:col-span-8"
+            sizes="(max-width: 640px) 100vw, (max-width: 1400px) 66vw, 930px"
+          />
           <div className="grid grid-cols-2 gap-3 sm:col-span-4 sm:grid-cols-1 sm:grid-rows-2 sm:gap-4">
-            <Tile index={1} onOpen={openAt} stretch sizes="(max-width: 640px) 50vw, (max-width: 1400px) 33vw, 460px" />
-            <Tile index={2} onOpen={openAt} stretch sizes="(max-width: 640px) 50vw, (max-width: 1400px) 33vw, 460px" />
+            <Tile
+              index={1}
+              onOpen={openAt}
+              stretch
+              sizes="(max-width: 640px) 50vw, (max-width: 1400px) 33vw, 460px"
+            />
+            <Tile
+              index={2}
+              onOpen={openAt}
+              stretch
+              sizes="(max-width: 640px) 50vw, (max-width: 1400px) 33vw, 460px"
+            />
           </div>
 
-          <Tile index={3} onOpen={openAt} className="sm:col-span-4" sizes="(max-width: 640px) 100vw, (max-width: 1400px) 33vw, 460px" />
-          <Tile index={4} onOpen={openAt} className="sm:col-span-4" sizes="(max-width: 640px) 100vw, (max-width: 1400px) 33vw, 460px" />
-          <Tile index={5} onOpen={openAt} className="sm:col-span-4" sizes="(max-width: 640px) 100vw, (max-width: 1400px) 33vw, 460px" />
+          <Tile
+            index={3}
+            onOpen={openAt}
+            className="sm:col-span-4"
+            sizes="(max-width: 640px) 100vw, (max-width: 1400px) 33vw, 460px"
+          />
+          <Tile
+            index={4}
+            onOpen={openAt}
+            className="sm:col-span-4"
+            sizes="(max-width: 640px) 100vw, (max-width: 1400px) 33vw, 460px"
+          />
+          <Tile
+            index={5}
+            onOpen={openAt}
+            className="sm:col-span-4"
+            sizes="(max-width: 640px) 100vw, (max-width: 1400px) 33vw, 460px"
+          />
 
-          <Tile index={6} onOpen={openAt} className="sm:col-span-6" sizes="(max-width: 640px) 100vw, (max-width: 1400px) 50vw, 700px" />
-          <Tile index={7} onOpen={openAt} className="sm:col-span-6" sizes="(max-width: 640px) 100vw, (max-width: 1400px) 50vw, 700px" />
+          <Tile
+            index={6}
+            onOpen={openAt}
+            className="sm:col-span-6"
+            sizes="(max-width: 640px) 100vw, (max-width: 1400px) 50vw, 700px"
+          />
+          <Tile
+            index={7}
+            onOpen={openAt}
+            className="sm:col-span-6"
+            sizes="(max-width: 640px) 100vw, (max-width: 1400px) 50vw, 700px"
+          />
 
-          <Tile index={8} onOpen={openAt} className="sm:col-span-4" sizes="(max-width: 640px) 100vw, (max-width: 1400px) 33vw, 460px" />
-          <Tile index={9} onOpen={openAt} className="sm:col-span-4" sizes="(max-width: 640px) 100vw, (max-width: 1400px) 33vw, 460px" />
+          <Tile
+            index={8}
+            onOpen={openAt}
+            className="sm:col-span-4"
+            sizes="(max-width: 640px) 100vw, (max-width: 1400px) 33vw, 460px"
+          />
+          <Tile
+            index={9}
+            onOpen={openAt}
+            className="sm:col-span-4"
+            sizes="(max-width: 640px) 100vw, (max-width: 1400px) 33vw, 460px"
+          />
           <Tile
             index={10}
             onOpen={openAt}
@@ -146,7 +232,9 @@ export default function DisplayGallery() {
           />
         </Reveal>
 
-        <p className="mt-6 font-sans text-[12px] leading-relaxed text-mira-brown">{displayResidence.note}</p>
+        <p className="mt-6 font-sans text-[12px] leading-relaxed text-mira-brown">
+          {displayResidence.note}
+        </p>
       </div>
 
       {/* Lightbox */}
@@ -167,9 +255,12 @@ export default function DisplayGallery() {
             <div className="flex items-center justify-between px-5 py-4 sm:px-8">
               <div className="flex items-baseline gap-4">
                 <span className="font-sans text-[12px] uppercase tracking-[0.16em] text-white/60">
-                  {String(index + 1).padStart(2, "0")} / {String(photos.length).padStart(2, "0")}
+                  {String(index + 1).padStart(2, "0")} /{" "}
+                  {String(photos.length).padStart(2, "0")}
                 </span>
-                <span className="font-serif text-lg font-light sm:text-xl">{current.room}</span>
+                <span className="font-serif text-lg font-light sm:text-xl">
+                  {current.room}
+                </span>
               </div>
               <button
                 type="button"
@@ -181,8 +272,11 @@ export default function DisplayGallery() {
               </button>
             </div>
 
-            <div className="relative flex-1 px-4 pb-16 sm:px-20 sm:pb-4">
-              <div key={current.src} className="animate-fadeIn relative h-full w-full">
+            <div className="relative min-h-0 flex-1 px-4 pb-16 sm:px-20 sm:pb-2">
+              <div
+                key={current.src}
+                className="animate-fadeIn relative h-full w-full"
+              >
                 <Image
                   src={current.src}
                   alt={current.alt}
@@ -212,7 +306,47 @@ export default function DisplayGallery() {
               </button>
             </div>
 
-            <p className="px-5 pb-5 text-center font-sans text-[12px] text-white/55 sm:px-8">
+            {/* Filmstrip: every photograph in the set, the current one lit.
+                It scrolls sideways on narrow screens and is sized so the
+                whole set fits on a desktop width without scrolling. */}
+            <div
+              className="overflow-x-auto px-5 pt-3 sm:px-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              role="group"
+              aria-label="All photographs"
+            >
+              {/* The track is centred only when the whole set fits; a centred
+                  flex row that overflows would clip its first thumbnails. */}
+              <div className="mx-auto flex w-max gap-2">
+                {photos.map((photo, i) => (
+                  <button
+                    key={photo.src}
+                    ref={(el) => {
+                      thumbRefs.current[i] = el;
+                    }}
+                    type="button"
+                    onClick={() => setIndex(i)}
+                    aria-label={`Photograph ${i + 1}: ${photo.room}`}
+                    aria-current={i === index ? "true" : undefined}
+                    className={`relative h-11 w-[4.25rem] shrink-0 overflow-hidden border transition-all duration-300 ${
+                      i === index
+                        ? "border-white opacity-100"
+                        : "border-transparent opacity-45 hover:opacity-85 focus-visible:opacity-85"
+                    } focus:outline-none focus-visible:border-white`}
+                  >
+                    <Image
+                      src={photo.src}
+                      alt=""
+                      fill
+                      quality={60}
+                      sizes="96px"
+                      className="object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <p className="px-5 pb-4 pt-3 text-center font-sans text-[12px] text-white/55 sm:px-8">
               {displayResidence.note}
             </p>
           </div>

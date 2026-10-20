@@ -25,12 +25,21 @@ import React, { useEffect, useRef } from "react";
  */
 export default function BackdropVideo({
   src,
+  smallSrc,
+  smallMedia = "(max-width: 767px)",
   poster,
   className = "",
   priority = false,
   ...rest
 }: {
   src: string;
+  /**
+   * A lighter encode for narrow viewports. Listed first with a `media`
+   * query, so a phone never downloads the desktop file; browsers pick the
+   * first `<source>` whose query matches at load time.
+   */
+  smallSrc?: string;
+  smallMedia?: string;
   poster: string;
   className?: string;
   /** True for footage in the first viewport — fetches and plays immediately. */
@@ -138,6 +147,7 @@ export default function BackdropVideo({
       className={className}
       {...rest}
     >
+      {smallSrc && <source src={smallSrc} type="video/mp4" media={smallMedia} />}
       <source src={src} type="video/mp4" />
     </video>
   );

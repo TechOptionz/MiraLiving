@@ -145,11 +145,22 @@ export const siteConfig = {
   // The local drone fly-over that replaces the "Check Availability" button on
   // the home page. The client is supplying the footage; until `src` is set the
   // section shows a quiet "coming soon" stamp instead of a dead button.
+  // The local fly-over: a 25-second drone-only cut from the client's October
+  // 2026 film (Bargara water tilting up to the coastline, Kellys Beach, the
+  // Esplanade, then the building from over the water, the headland and
+  // directly above). Carries the film's music bed, so the lightbox plays it
+  // with sound. Re-cut from the source film rather than editing the mp4;
+  // a replaced file needs a NEW name (30-day cache on /video/).
   flyoverVideo: {
-    src: null as string | null,
-    poster: "/img/site/aerial-esplanade-front.webp",
+    src: "/video/flyover-oct-2026.mp4" as string | null,
+    /** Lighter encode for phones, picked by media query in the lightbox. */
+    smallSrc: "/video/flyover-oct-2026-720.mp4",
+    poster: "/video/flyover-oct-2026-poster.jpg",
     title: "Bargara from the air",
     description: "A local fly-over of Bargara and the Mira Living address on the Esplanade.",
+    /** Shown on the trigger and in the lightbox caption. */
+    duration: "0:25",
+    credit: "Filmed October 2026",
   },
   
   address: {
@@ -239,12 +250,15 @@ export const aNewWayToLive = {
   headline: "A new way to live by the sea",
   paragraph1: "Mira Living places you on the shoreline of the Coral Sea, with nothing between you and the horizon. Wake to the sound of waves, enjoy leisurely strolls along the Bargara Esplanade and watch the sun rise over the water from your own private balcony.",
   paragraph2: "This is coastal living, elevated — a rare opportunity to own oceanfront in one of Queensland’s most coveted seaside enclaves.",
-  // The completed building from the Esplanade at dusk (drone, October 2026).
-  // It replaced the render (Mira-Facade-Dusk.webp, still used where the Story
-  // page shows the design intent) — and deliberately never
-  // Sold-Properties-Mira-Living-4.webp, which has "SOLD" / "FUTURE RELEASE"
-  // burnt into the balconies and reads as a sales board.
-  image: "/img/site/facade-dusk-photo.webp",
+  // Kellys Beach from the air — the opening frame of the client's October
+  // 2026 film, swapped in for the dusk facade photograph at the client's
+  // request (20 Oct 2026). The facade photograph (facade-dusk-photo.webp)
+  // stays on the residences grid and the Story page; the render
+  // (Mira-Facade-Dusk.webp) still shows the design intent on the Story page.
+  // Deliberately never Sold-Properties-Mira-Living-4.webp, which has "SOLD" /
+  // "FUTURE RELEASE" burnt into the balconies and reads as a sales board.
+  image: "/img/site/aerial-kellys-beach-oct-2026.webp",
+  alt: "Aerial photograph of Kellys Beach, Bargara: the surf breaking over the rock groynes, the sand and the foreshore park, with the township's apartments and trees behind",
   caption: "Photographed October 2026"
 };
 
@@ -351,7 +365,7 @@ export const locationTeaser = {
   // The completed building from the air (drone, October 2026) — the frame the
   // brochure's Bargara spread opens on. It replaced the annotated mud map,
   // which still showed the site as a cleared block (client review, 16 Oct 2026).
-  aerialImage: "/img/site/aerial-headland-oct-2026.webp",
+  aerialImage: "/img/site/aerial-headland-film.webp",
   aerialAlt: "Aerial photograph of the completed Mira Living on the Bargara Esplanade, the rock shelf and beach in front of it and the township, golf course and cane fields behind",
   aerialCaption: "Photographed October 2026",
   // Drive/walk times shown on the home teaser. Every figure here is one the
@@ -824,8 +838,8 @@ export const sharedSpaces = {
       eyebrow: "The setting",
       title: "Absolute beachfront on the Esplanade",
       body: "The building sits directly on the Esplanade, with nothing between its balconies and the Coral Sea. The foreshore walk and Bargara’s beaches begin at the front door.",
-      image: "/img/site/aerial-esplanade-front.webp",
-      alt: "Aerial photograph of the completed Mira Living from over the water, the rock shelf and foreshore in front of it and the township behind",
+      image: "/img/site/aerial-esplanade-front-film.webp",
+      alt: "Aerial photograph of the completed Mira Living on the Esplanade headland, the rock shelf and surf beside it and the foreshore road and new lawn in front",
       caption: "Photographed October 2026",
     },
   ],

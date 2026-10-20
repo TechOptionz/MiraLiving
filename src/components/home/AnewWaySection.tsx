@@ -23,7 +23,7 @@ export default function AnewWaySection() {
       <div className="absolute inset-0">
         <Image
           src={aNewWayToLive.image}
-          alt="The completed Mira Living building at dusk, photographed from above the Esplanade: four levels of balconies facing the Coral Sea"
+          alt={aNewWayToLive.alt}
           fill
           // Not `priority`: this is the fourth section down. Marking it so had
           // the browser preload a full-viewport photograph at first paint, ahead
@@ -63,19 +63,20 @@ export default function AnewWaySection() {
 
           <div className="flex flex-wrap items-center gap-4">
             {/* The local fly-over replaced "Check Availability" (client request,
-                Oct 2026). The film is supplied by the client; until its src is
-                set in siteConfig.flyoverVideo the slot holds a quiet stamp so
-                the layout does not shift when the button arrives. */}
+                Oct 2026). The cut lives at siteConfig.flyoverVideo; with its
+                src null the slot holds a quiet stamp instead, so the layout
+                does not shift between the two states. */}
             {flyover.src ? (
               <button
                 type="button"
                 onClick={openFlyover}
-                className="flex items-center gap-3 bg-white/90 px-7 py-4 font-sans text-xs uppercase tracking-[0.15em] text-mira-charcoal shadow-subtle transition-all hover:bg-white"
+                className="group flex items-center gap-3 bg-white/90 px-7 py-4 font-sans text-xs uppercase tracking-[0.15em] text-mira-charcoal shadow-subtle transition-all hover:bg-white"
               >
-                <span className="flex h-6 w-6 items-center justify-center rounded-full border border-mira-brown/50">
+                <span className="flex h-6 w-6 items-center justify-center rounded-full border border-mira-brown/50 transition-colors group-hover:border-mira-brown">
                   <Play className="ml-px h-3 w-3 fill-mira-brown text-mira-brown" />
                 </span>
                 <span>Watch the Local Fly Over</span>
+                <span className="tabular-nums tracking-[0.1em] text-mira-charcoal/50">{flyover.duration}</span>
               </button>
             ) : (
               <span className="flex items-center gap-3 border border-white/30 px-7 py-4 font-sans text-xs uppercase tracking-[0.15em] text-white/80">
