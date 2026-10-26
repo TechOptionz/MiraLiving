@@ -70,9 +70,9 @@ export default function BrochureForm({ idPrefix = "form", onSuccess, darkVariant
     setStatus("submitting");
     setErrorMessage("");
 
-    // Delivery is handled by /api/brochure, which forwards the lead to the
-    // CRM webhook. Success is only reported when the lead was actually
-    // accepted - never on a network or configuration failure.
+    // Delivery is handled by /api/brochure, which emails the lead to the
+    // sales team via Resend. Success is only reported when the lead was
+    // actually accepted - never on a network or configuration failure.
     try {
       const response = await fetch("/api/brochure", {
         method: "POST",
@@ -258,6 +258,7 @@ export default function BrochureForm({ idPrefix = "form", onSuccess, darkVariant
             id={`${idPrefix}-firstName`}
             name="firstName"
             autoComplete="given-name"
+            maxLength={80}
             value={formData.firstName}
             onChange={handleChange}
             aria-invalid={Boolean(errors.firstName)}
@@ -277,6 +278,7 @@ export default function BrochureForm({ idPrefix = "form", onSuccess, darkVariant
             id={`${idPrefix}-lastName`}
             name="lastName"
             autoComplete="family-name"
+            maxLength={80}
             value={formData.lastName}
             onChange={handleChange}
             aria-invalid={Boolean(errors.lastName)}
@@ -297,6 +299,7 @@ export default function BrochureForm({ idPrefix = "form", onSuccess, darkVariant
             name="email"
             autoComplete="email"
             inputMode="email"
+            maxLength={254}
             value={formData.email}
             onChange={handleChange}
             aria-invalid={Boolean(errors.email)}
@@ -317,6 +320,7 @@ export default function BrochureForm({ idPrefix = "form", onSuccess, darkVariant
             name="phone"
             autoComplete="tel"
             inputMode="tel"
+            maxLength={40}
             value={formData.phone}
             onChange={handleChange}
             className={fieldClass()}
@@ -344,6 +348,7 @@ export default function BrochureForm({ idPrefix = "form", onSuccess, darkVariant
             id={`${idPrefix}-budget`}
             name="budget"
             autoComplete="off"
+            maxLength={120}
             value={formData.budget}
             onChange={handleChange}
             className={fieldClass()}
@@ -388,6 +393,7 @@ export default function BrochureForm({ idPrefix = "form", onSuccess, darkVariant
             id={`${idPrefix}-message`}
             name="message"
             rows={2}
+            maxLength={2000}
             value={formData.message}
             onChange={handleChange}
             className={`${fieldClass()} resize-none`}

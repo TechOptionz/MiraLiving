@@ -1,19 +1,34 @@
 import { NextResponse } from "next/server";
+import { Resend } from "resend";
+import { buildLeadEmail, FIELD_LABELS, LOGO_CONTENT_ID, type BrochureLead } from "./email";
+import { LOGO_PNG_BASE64 } from "./logo";
 
-export interface BrochureLead {
-  firstName: string;
-  lastName: string;
-  phone: string;
-  email: string;
-  message: string;
-  budget: string;
-  timeframe: string;
-}
+export type { BrochureLead };
 
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
+const FROM_ADDRESS = "MIRA Living <enquiries@miraliving.com.au>";
+
+// Generous for a real enquiry, small enough that a bot cannot use the form
+// to push a novel through our inbox.
+const MAX_LENGTH: Record<keyof BrochureLead, number> = {
+  firstName: 80,
+  lastName: 80,
+  phone: 40,
+  email: 254,
+  message: 2000,
+  budget: 120,
+  timeframe: 120,
+};
 function asString(value: unknown): string {
   return typeof value === "string" ? value.trim() : "";
+}
+
+function recipients(): string[] {
+  return (process.env.BROCHURE_RECIPIENTS ?? "")
+    .split(",")
+    .map((address) => address.trim())
+    .filter((address) => EMAIL_PATTERN.test(address));
 }
 
 export async function POST(request: Request) {
@@ -57,47 +72,76 @@ export async function POST(request: Request) {
     );
   }
 
-  const webhookUrl = process.env.BROCHURE_WEBHOOK_URL;
+  const tooLong = (Object.keys(MAX_LENGTH) as Array<keyof BrochureLead>).find(
+    (key) => lead[key].length > MAX_LENGTH[key]
+  );
+  if (tooLong) {
+    return NextResponse.json(
+      {
+        ok: false,
+        message: `${FIELD_LABELS[tooLong]} is too long (maximum ${MAX_LENGTH[tooLong]} characters).`,
+      },
+      { status: 422 }
+    );
+  }
 
-  // Log every valid lead server-side so nothing is lost even if the webhook
-  // is misconfigured or the CRM is temporarily unreachable.
+  const context = {
+    submittedAt: new Intl.DateTimeFormat("en-AU", {
+      timeZone: "Australia/Brisbane",
+      dateStyle: "full",
+      timeStyle: "short",
+    }).format(new Date()),
+  };
+
+  // Log every valid lead server-side so nothing is lost even if email
+  // delivery is misconfigured or Resend is temporarily unreachable.
   console.info("[brochure] lead received", {
     ...lead,
+    ...context,
     receivedAt: new Date().toISOString(),
   });
 
-  if (!webhookUrl) {
-    // No CRM connected yet (20 Oct 2026): the visitor still gets the brochure
-    // and the lead stays in the server log above. `delivered: false` tells
-    // the form not to promise a call back. Once the webhook is set, a failed
-    // delivery below is still reported as an error, never as a success.
+  const apiKey = process.env.RESEND_API_KEY;
+  const to = recipients();
+
+  if (!apiKey || to.length === 0) {
+    // Email not configured: the visitor still gets the brochure and the lead
+    // stays in the server log above. `delivered: false` tells the form not
+    // to promise a call back. Once configured, a failed send below is still
+    // reported as an error, never as a success.
     console.warn(
-      "[brochure] BROCHURE_WEBHOOK_URL is not set - the lead above is logged only, not delivered to the CRM."
+      "[brochure] RESEND_API_KEY or BROCHURE_RECIPIENTS is not set - the lead above is logged only, not emailed."
     );
     return NextResponse.json({ ok: true, delivered: false });
   }
 
+  const { html, text } = buildLeadEmail(lead, context);
+
   try {
-    const response = await fetch(webhookUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        ...(process.env.BROCHURE_WEBHOOK_TOKEN
-          ? { Authorization: `Bearer ${process.env.BROCHURE_WEBHOOK_TOKEN}` }
-          : {}),
-      },
-      body: JSON.stringify({
-        ...lead,
-        source: "miraliving.com.au brochure form",
-        submittedAt: new Date().toISOString(),
-      }),
+    const resend = new Resend(apiKey);
+    const { error } = await resend.emails.send({
+      from: FROM_ADDRESS,
+      to,
+      replyTo: lead.email,
+      // Strip line breaks so the name cannot inject extra headers.
+      subject: `New brochure request – ${lead.firstName} ${lead.lastName}`.replace(/[\r\n]+/g, " "),
+      html,
+      text,
+      attachments: [
+        {
+          filename: "mira-living-logo.png",
+          content: LOGO_PNG_BASE64,
+          contentType: "image/png",
+          contentId: LOGO_CONTENT_ID,
+        },
+      ],
     });
 
-    if (!response.ok) {
-      throw new Error(`CRM responded ${response.status}`);
+    if (error) {
+      throw new Error(`Resend responded: ${error.name} - ${error.message}`);
     }
   } catch (error) {
-    console.error("[brochure] delivery to CRM failed", error);
+    console.error("[brochure] email delivery failed", error);
     return NextResponse.json(
       {
         ok: false,
