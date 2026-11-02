@@ -569,15 +569,15 @@ export function planForUnit(unit: number): FloorPlan | undefined {
 
 /**
  * The number on the door, as the brochure and the price guide print it: the
- * level first, then the position along it — 101 to 105 on the ground floor,
- * 201 to 205 on Level 2, and so on. `priceGuide` still keys every apartment by
- * its sequential number (1–25), which is what the plans and the schema use.
+ * level first, then the apartment's sequential number — 101 to 105 on the
+ * ground floor, 206 to 210 on Level 2, 311 to 315 on Level 3, and so on up to
+ * 525. `priceGuide` still keys every apartment by its sequential number (1–25),
+ * which is what the plans and the schema use.
  */
 export function unitLabel(unit: number): string {
   const levelIndex = priceGuide.levels.findIndex((level) => level.units.some((u) => u.number === unit));
   if (levelIndex < 0) return String(unit);
-  const position = priceGuide.levels[levelIndex].units.findIndex((u) => u.number === unit) + 1;
-  return String((levelIndex + 1) * 100 + position);
+  return String((levelIndex + 1) * 100 + unit);
 }
 
 // The basement, from the carpark plan sheet.

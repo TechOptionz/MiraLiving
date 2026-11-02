@@ -58,9 +58,10 @@ export default function Header() {
     ? "bg-mira-ground/[0.97] border-b border-mira-border shadow-subtle text-mira-charcoal"
     : "bg-gradient-to-b from-black/60 via-black/20 to-transparent text-white";
 
-  const logoSrc = isScrolled || !overHero
-    ? "/img/site/mira-logo-brown.svg"
-    : "/img/site/mira-logo.svg";
+  // Both logos are rendered and cross-faded rather than swapping one src: a
+  // swapped src only starts downloading on scroll, and while the hero videos
+  // hold the connection the white logo lingered on the light header.
+  const solidHeader = isScrolled || !overHero;
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-40 transition-colors duration-300 ${headerBgClass}`}>
@@ -69,12 +70,21 @@ export default function Header() {
         <Link href="/" className="relative z-50 inline-block focus:outline-none">
           <div className="relative w-28 sm:w-36 h-12 flex items-center">
             <Image
-              src={logoSrc}
+              src="/img/site/mira-logo-brown.svg"
               alt="Mira Living"
               width={144}
               height={48}
               priority
-              className="object-contain transition-opacity duration-300"
+              className={`w-full object-contain transition-opacity duration-300 ${solidHeader ? "opacity-100" : "opacity-0"}`}
+            />
+            <Image
+              src="/img/site/mira-logo.svg"
+              alt=""
+              aria-hidden="true"
+              width={144}
+              height={48}
+              priority
+              className={`absolute left-0 top-1/2 w-full -translate-y-1/2 object-contain transition-opacity duration-300 ${solidHeader ? "opacity-0" : "opacity-100"}`}
             />
           </div>
         </Link>
